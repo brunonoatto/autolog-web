@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import ChoosePerfil from "@choose-perfil/index";
-import Client from "@client/index";
+import Driver from "@driver/index";
 import ServiceProvider from "@service-provider/index";
 
 const router = createBrowserRouter([
@@ -14,8 +14,8 @@ const router = createBrowserRouter([
         element: <ServiceProvider />,
     },
     {
-        path: "/cliente",
-        element: <Client />,
+        path: "/motorista",
+        element: <Driver />,
     },
 
 ]);
