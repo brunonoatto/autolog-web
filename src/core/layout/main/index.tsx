@@ -1,11 +1,9 @@
-import { RouterProvider } from 'react-router-dom';
-
-import router from '@core/router';
+import { Outlet } from 'react-router-dom';
 
 const Main = () => {
   return (
     <main className="bg-neutral-800 px-4">
-      <RouterProvider router={router} fallbackElement={<>Big spinner</>} />
+      <Outlet />
     </main>
   );
 };

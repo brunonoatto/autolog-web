@@ -8,41 +8,47 @@ import ConsultLicense from '@consult-license/index';
 import AddCar from '@service-provider/add-car';
 import Budget from '@service-provider/budget';
 import RegisterProvider from 'src/modules/register-provider';
+import BodyApp from '@core/layout/body-app';
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    Component: ChoosePerfil,
-  },
-  {
-    path: '*',
-    Component: NotFoundRoute,
-  },
-  {
-    path: '/cadastro',
-    Component: RegisterProvider,
-  },
-  {
-    path: '/prestador-servico',
-    Component: ServiceProvider,
+    Component: BodyApp,
     children: [
       {
-        path: 'dashboard',
-        Component: Dashboard,
+        path: '/',
+        Component: ChoosePerfil,
       },
       {
-        path: 'add-veiculo',
-        Component: AddCar,
+        path: '*',
+        Component: NotFoundRoute,
       },
       {
-        path: 'orcamento',
-        Component: Budget,
+        path: '/cadastro',
+        Component: RegisterProvider,
+      },
+      {
+        path: '/prestador-servico',
+        Component: ServiceProvider,
+        children: [
+          {
+            path: 'dashboard',
+            Component: Dashboard,
+          },
+          {
+            path: 'add-veiculo',
+            Component: AddCar,
+          },
+          {
+            path: 'orcamento',
+            Component: Budget,
+          },
+        ],
+      },
+      {
+        path: '/consulta',
+        Component: ConsultLicense,
       },
     ],
-  },
-  {
-    path: '/consulta',
-    Component: ConsultLicense,
   },
 ]);
 

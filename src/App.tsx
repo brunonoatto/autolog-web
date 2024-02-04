@@ -1,12 +1,8 @@
-import Header from '@core/layout/header';
-import Main from '@core/layout/main';
+import { RouterProvider } from 'react-router-dom';
+
+import router from '@core/router';
 
 const App = () => {
-  return (
-    <>
-      <Header />
-      <Main />
-    </>
-  );
+  return <RouterProvider router={router} fallbackElement={<>Big spinner</>} />;
 };
 export default App;
