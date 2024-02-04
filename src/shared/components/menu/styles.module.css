@@ -1,0 +1,3 @@
+.link {
+  @apply text-teal-700 hover:text-neutral-200 hover:bg-teal-800 rounded-md hover:shadow-md p-1 text-center inline-block align-middle;
+}

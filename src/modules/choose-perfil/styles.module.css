@@ -1,0 +1,8 @@
+.link {
+  /* Cores */
+  @apply bg-teal-700 hover:bg-teal-800;
+  @apply dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800;
+  /* Layout */
+  @apply focus:outline-none rounded-md shadow-md;
+  @apply w-2/4 p-8 flex text-center items-center justify-center;
+}
