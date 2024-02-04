@@ -6,7 +6,7 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
+    "allowImportingTsExtensions": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
@@ -25,6 +25,7 @@
     },
   },
   "include": ["src"],
+  "exclude": ["node_modules", "dist", "build"],
   "references": [
     {
       "path": "./tsconfig.node.json",

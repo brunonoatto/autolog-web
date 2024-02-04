@@ -1,6 +1,13 @@
+// import LinkButton from '@shared/components/link-button';
+import styles from './styles.module.css';
+
 const Header = () => {
   return (
-    <header className="sticky top-0 text-center p-4 mb-4 bg-neutral-800 shadow-md shadow-neutral-500">AutoLog</header>
+    <header className={styles.header}>
+      <b>AutoLog</b>
+      {/* <LinkButton to="/prestador-servico">Login</LinkButton> */}
+      LOGIN
+    </header>
   );
 };
 

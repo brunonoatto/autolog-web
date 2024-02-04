@@ -9,11 +9,7 @@ const GoBackButton = () => {
     navigate(-1);
   };
 
-  return (
-    <Button onClick={handleGoBack} className="mt-8">
-      Voltar
-    </Button>
-  );
+  return <Button onClick={handleGoBack}>Voltar</Button>;
 };
 
 export default GoBackButton;
