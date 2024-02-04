@@ -9,12 +9,14 @@ import AddCar from '@service-provider/add-car';
 import Budget from '@service-provider/budget';
 import RegisterProvider from 'src/modules/register-provider';
 import BodyApp from '@core/layout/body-app';
+import ProtectedRoute from './protected-route';
 
 const router = createBrowserRouter([
   {
     Component: BodyApp,
     children: [
       {
+        id: 'root',
         path: '/',
         Component: ChoosePerfil,
       },
@@ -28,7 +30,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/prestador-servico',
-        Component: ServiceProvider,
+        element: (
+          <ProtectedRoute>
+            <ServiceProvider />
+          </ProtectedRoute>
+        ),
         children: [
           {
             path: 'dashboard',
