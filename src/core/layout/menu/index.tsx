@@ -1,18 +1,33 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import type { TMenu } from './types';
 import styles from './styles.module.css';
+import { useEffect } from 'react';
 
 type TMenuProps = { menus: TMenu[] };
 
+const toogleMenu = () => {
+  const menuList = document.getElementById('menu-list');
+  menuList?.classList.toggle('hidden');
+  /* Como está sendo usado o mobile first, precisei fazer o toogle
+    no flex pq o tailwind não permite colocar 'hidden e flex' ao
+    mesmo tempo, e o elemento precisa iniciar como hidden no mobile */
+  menuList?.classList.toggle('flex');
+};
+
 const Menu = ({ menus }: TMenuProps) => {
+  const { pathname } = useLocation();
+
   const handleMobileMenuClick = () => {
-    document.getElementById('menu')?.classList.toggle('hidden');
-    /* Como está sendo usado o mobile first, precisei fazer o toogle
-     no flex pq o tailwind não permite colocar 'hidden e flex' ao
-     mesmo tempo, e o elemento precisa iniciar como hidden no mobile */
-    document.getElementById('menu')?.classList.toggle('flex');
+    toogleMenu();
   };
+
+  useEffect(() => {
+    // somente quando for mobile
+    if (window.innerWidth <= 768) {
+      toogleMenu();
+    }
+  }, [pathname]);
 
   return (
     <nav className={styles.content}>
@@ -31,7 +46,7 @@ const Menu = ({ menus }: TMenuProps) => {
           </svg>
         </button>
       </div>
-      <div id="menu" className={styles.menu}>
+      <div id="menu-list" className="hidden md:flex flex-col gap-6 pt-6">
         {menus.map((menu) => (
           <Link key={menu.route} className={styles.link} to={menu.route}>
             {menu.title}

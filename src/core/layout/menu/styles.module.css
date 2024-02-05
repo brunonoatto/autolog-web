@@ -1,9 +1,5 @@
 .content {
-  @apply md:w-60;
-}
-
-.menu {
-  @apply hidden md:flex flex-col gap-6 pt-6;
+  @apply p-4 md:p-0 md:w-60;
 }
 
 .link {
