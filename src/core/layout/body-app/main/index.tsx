@@ -1,8 +1,10 @@
 import { Outlet } from 'react-router-dom';
 
+import styles from './styles.module.css';
+
 const Main = () => {
   return (
-    <main className="bg-neutral-800 px-4">
+    <main className={styles.content}>
       <Outlet />
     </main>
   );

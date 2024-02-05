@@ -1,12 +1,13 @@
-import Menu from '@shared/components/menu';
 import { Route, Routes } from 'react-router-dom';
+
+import Menu from '@core/layout/menu';
 import Dashboard from './dashboard';
 import AddCar from './add-car';
 import Budget from './budget';
 
 const ServiceProvider = () => {
   return (
-    <div className="md:flex">
+    <div className="md:flex h-full">
       <Menu
         menus={[
           {
@@ -23,11 +24,13 @@ const ServiceProvider = () => {
           },
         ]}
       />
-      <Routes>
-        <Route path="dashboard" Component={Dashboard} />
-        <Route path="add-veiculo" Component={AddCar} />
-        <Route path="orcamento" Component={Budget} />
-      </Routes>
+      <div>
+        <Routes>
+          <Route path="dashboard" Component={Dashboard} />
+          <Route path="add-veiculo" Component={AddCar} />
+          <Route path="orcamento" Component={Budget} />
+        </Routes>
+      </div>
     </div>
   );
 };

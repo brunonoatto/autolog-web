@@ -1,0 +1,10 @@
+.content {
+  @apply h-full;
+
+  display: grid;
+  grid-template-areas:
+    'header'
+    'main'
+    'footer';
+  grid-template-rows: 70px 1fr 30px;
+}

@@ -1,0 +1,5 @@
+.content {
+  @apply bg-neutral-800 h-full;
+
+  grid-area: main;
+}

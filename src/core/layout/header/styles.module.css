@@ -1,5 +1,0 @@
-.header {
-  @apply sticky top-0 text-center p-4 mb-4;
-  @apply bg-neutral-800 shadow-md shadow-teal-300;
-  @apply flex justify-between items-center;
-}

@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
+
 import type { TMenu } from './types';
 import styles from './styles.module.css';
-import { Link } from 'react-router-dom';
 
 type TMenuProps = { menus: TMenu[] };
 
@@ -14,7 +15,7 @@ const Menu = ({ menus }: TMenuProps) => {
   };
 
   return (
-    <nav className="md:w-60">
+    <nav className={styles.content}>
       <div className="flex justify-end md:hidden" aria-label="Menu" aria-expanded="false">
         <button onClick={handleMobileMenuClick}>
           <svg
@@ -30,7 +31,7 @@ const Menu = ({ menus }: TMenuProps) => {
           </svg>
         </button>
       </div>
-      <div id="menu" className="hidden md:flex flex-col pr-2 gap-2">
+      <div id="menu" className={styles.menu}>
         {menus.map((menu) => (
           <Link key={menu.route} className={styles.link} to={menu.route}>
             {menu.title}

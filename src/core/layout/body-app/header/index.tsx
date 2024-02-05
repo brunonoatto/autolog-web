@@ -1,8 +1,8 @@
-import styles from './styles.module.css';
-
 import { useNavigate } from 'react-router-dom';
+
 import Button from '@shared/components/button';
 import { useAuthStore } from '@core/auth';
+import styles from './styles.module.css';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const Header = () => {
   };
 
   return (
-    <header className={styles.header}>
+    <header className={styles.content}>
       <b>AutoLog</b>
 
       {isAuthenticated ? (
