@@ -1,9 +1,6 @@
-import { Route, Routes } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 import Menu from '@core/layout/menu';
-import Dashboard from './dashboard';
-import AddCar from './add-car';
-import Budget from './budget';
 
 const ServiceProvider = () => {
   return (
@@ -25,11 +22,7 @@ const ServiceProvider = () => {
         ]}
       />
       <div>
-        <Routes>
-          <Route path="dashboard" Component={Dashboard} />
-          <Route path="add-veiculo" Component={AddCar} />
-          <Route path="orcamento" Component={Budget} />
-        </Routes>
+        <Outlet />
       </div>
     </div>
   );
