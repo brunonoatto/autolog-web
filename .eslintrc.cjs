@@ -23,6 +23,8 @@ module.exports = {
   },
   rules: {
     'react/react-in-jsx-scope': 'off',
+    'react/display-name': 'off',
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+    '@typescript-eslint/no-explicit-any': ['warn'],
   },
 };

@@ -1,0 +1,11 @@
+.label {
+  @apply flex flex-col;
+}
+
+.input {
+  @apply text-slate-600;
+}
+
+.error {
+  @apply text-xs text-teal-400;
+}

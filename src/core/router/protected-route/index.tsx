@@ -1,8 +1,8 @@
 import { useAuthStore } from '@core/auth';
-import type { FunctionComponent } from 'react';
+import type { FunctionComponent, PropsWithChildren } from 'react';
 import { Navigate } from 'react-router-dom';
 
-export const ProtectedRoute: FunctionComponent<any> = ({ children }) => {
+export const ProtectedRoute: FunctionComponent<PropsWithChildren> = ({ children }) => {
   const username = useAuthStore((props) => props.username);
 
   if (!username) {

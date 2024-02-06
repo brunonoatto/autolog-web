@@ -1,0 +1,15 @@
+.content {
+  @apply m-8 border-2 border-teal-800 rounded-lg p-8 max-w-screen-lg lg:mx-auto;
+}
+
+.title {
+  @apply text-xl text-center font-bold;
+}
+
+.body {
+  @apply my-6;
+}
+
+.footer {
+  @apply text-right;
+}

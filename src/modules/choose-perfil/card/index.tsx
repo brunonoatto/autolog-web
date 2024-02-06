@@ -17,7 +17,7 @@ const Card = ({ title, infos, price, linkRoute, linkText }: TCardProps) => {
 
       <ul className={styles.infos}>
         {infos.map((info) => (
-          <li>{info}</li>
+          <li key={info}>{info}</li>
         ))}
       </ul>
 

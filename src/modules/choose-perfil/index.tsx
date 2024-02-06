@@ -4,7 +4,7 @@ const ChoosePerfil = () => {
   return (
     <div className="flex flex-col items-center p-2 md:p-10">
       <div className="font-bold mb-6">Selecione o Produto desejado</div>
-      <div className="flex justify-around gap-x-8">
+      <div className="flex justify-around gap-x-2 md:gap-x-4">
         <Card
           title="Sistema para mecânicas"
           infos={[

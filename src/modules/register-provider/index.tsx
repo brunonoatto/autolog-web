@@ -1,30 +1,61 @@
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+import InputForm from '@shared/components/form/input-form';
+import {
+  CnpjValidator,
+  DateValidator,
+  EmailValidator,
+  NumberValidator,
+  StringValidator,
+} from '@shared/form-validations';
+import FormCard from '@core/layout/form/form-card';
+
+const schema = yup
+  .object({
+    name: StringValidator(),
+    dataNascimento: DateValidator(),
+    cnpj: CnpjValidator(),
+    email: EmailValidator(),
+    address: StringValidator(),
+    number: NumberValidator(),
+    complement: StringValidator({ size: 50 }),
+    password: StringValidator({ size: 25 }),
+    passwordConfirm: StringValidator({ size: 25 }).oneOf([yup.ref('password')], 'Confirmação da senha inválida.'),
+  })
+  .required();
+
+type TRegisterProvicerFormType = yup.InferType<typeof schema>;
+
 const RegisterProvider = () => {
+  const form = useForm({
+    mode: 'onChange',
+    resolver: yupResolver(schema),
+  });
+  const { register } = form;
+
+  const onSubmit: SubmitHandler<TRegisterProvicerFormType> = (data) => console.log(data);
+
   return (
     <>
-      Sessão de cadastro de prestador de serviço
-      <form>
-        <div className="grid md:grid-cols-3 gap-4 whitespace-nowrap">
-          <label>
-            Nome:
-            <input id="username" name="username" type="text" />
-          </label>
-
-          <label>
-            CNPJ:
-            <input id="username" name="username" type="text" />
-          </label>
-
-          <label>
-            Email:
-            <input id="username" name="username" type="text" />
-          </label>
-
-          <label>
-            Endereço:
-            <input id="username" name="username" type="text" />
-          </label>
+      <FormCard form={form} onSubmit={onSubmit} title="Dados para Cadastro">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <InputForm label="Nome" {...register('name')} />
+          <InputForm label="Data Nascimento" {...register('dataNascimento')} type="date" />
+          <InputForm label="CNPJ" {...register('cnpj')} />
+          <InputForm label="E-mail" {...register('email')} />
+          <InputForm label="Endereço" {...register('address')} />
+          <InputForm label="Número" {...register('number')} type="number" />
+          <InputForm label="Complemento" {...register('complement')} />
         </div>
-      </form>
+        <br />
+        <div className="text-xl">Defina uma senha de acesso</div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <InputForm label="Senha" {...register('password')} type="password" />
+          <InputForm label="Confirmação Senha" {...register('passwordConfirm')} type="password" />
+        </div>
+      </FormCard>
     </>
   );
 };
