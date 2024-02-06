@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 #root {
-  @apply h-screen text-neutral-200 bg-neutral-800;
+  @apply h-screen;
 }

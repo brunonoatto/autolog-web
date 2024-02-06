@@ -1,9 +1,9 @@
 .label {
-  @apply flex flex-col;
+  @apply flex flex-col space-y-1;
 }
 
 .input {
-  @apply text-slate-600;
+  @apply tracking-tight;
 }
 
 .error {

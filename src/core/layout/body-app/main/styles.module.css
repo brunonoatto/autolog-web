@@ -1,5 +1,5 @@
 .content {
-  @apply bg-neutral-800 h-full;
+  @apply overflow-y-auto;
 
   grid-area: main;
 }

@@ -1,7 +1,6 @@
 .content {
-  @apply sticky top-0 text-center px-4;
-  @apply bg-neutral-800 shadow shadow-teal-700;
-  @apply flex justify-between items-center auto-rows-min;
+  @apply text-center px-4 shadow shadow-teal-700;
+  @apply flex justify-between items-center;
 
   grid-area: header;
 }

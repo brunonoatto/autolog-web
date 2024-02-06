@@ -1,10 +1,10 @@
 .content {
-  @apply h-full;
+  @apply h-full bg-neutral-800 text-neutral-100 antialiased  overflow-hidden;
 
   display: grid;
   grid-template-areas:
     'header'
     'main'
     'footer';
-  grid-template-rows: 70px 1fr 30px;
+  grid-template-rows: minmax(70px, auto) 1fr minmax(30px, auto);
 }
