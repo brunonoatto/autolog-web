@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import Button from '@shared/components/button';
 import { useAuthStore } from '@core/auth';
 import styles from './styles.module.css';
+import HomeLink from './home-link';
+import IconButton from '@shared/components/icon-button';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -25,13 +27,11 @@ const Header = () => {
 
   return (
     <header className={styles.content}>
-      <b>AutoLog</b>
+      <HomeLink isAuthenticated={isAuthenticated} />
 
       {isAuthenticated ? (
         <div>
-          <Button className="float-end" onClick={handleLooutClick}>
-            Logout
-          </Button>
+          <IconButton className="float-right" icon="ArrowDownLineIcon" onClick={handleLooutClick} />
           <div className="text-xs">Usuário: {username}</div>
         </div>
       ) : (

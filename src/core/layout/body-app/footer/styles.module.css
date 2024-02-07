@@ -1,5 +1,5 @@
 .footer {
-  @apply text-center shadow shadow-teal-700;
+  @apply text-center border-t-2 border-teal-700;
 
   grid-area: footer;
 }
