@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import NotFoundRoute from '@shared/components/not-found-route';
 import ChoosePerfil from '@choose-perfil/index';
@@ -58,4 +58,9 @@ const router = createBrowserRouter([
   },
 ]);
 
-export default router;
+type TRouterProps = { spinner: React.ReactNode };
+const Router = ({ spinner }: TRouterProps) => {
+  return <RouterProvider router={router} fallbackElement={spinner} />;
+};
+
+export default Router;
