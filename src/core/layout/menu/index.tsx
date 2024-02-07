@@ -2,12 +2,10 @@ import { useEffect } from 'react';
 
 import { useLocation } from 'react-router-dom';
 
-import { MenuIcon } from '@assets/icons';
-import type { TMenu } from './types';
-import MenuItem from './menu-item';
-import styles from './styles.module.css';
-import Icon from '@shared/components/Icon';
 import IconButton from '@shared/components/icon-button';
+import MenuItem from './menu-item';
+import type { TMenu } from './types';
+import styles from './styles.module.css';
 
 type TMenuProps = { menus: TMenu[] };
 
