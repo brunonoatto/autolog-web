@@ -1,8 +1,10 @@
-import { Link, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+
+import { useLocation } from 'react-router-dom';
 
 import type { TMenu } from './types';
+import MenuItem from './menu-item';
 import styles from './styles.module.css';
-import { useEffect } from 'react';
 
 type TMenuProps = { menus: TMenu[] };
 
@@ -48,9 +50,7 @@ const Menu = ({ menus }: TMenuProps) => {
       </div>
       <div id="menu-list" className="hidden md:flex flex-col gap-6 pt-6">
         {menus.map((menu) => (
-          <Link key={menu.route} className={styles.link} to={menu.route}>
-            {menu.title}
-          </Link>
+          <MenuItem key={menu.route} isActive={pathname.includes(`/${menu.route}`)} {...menu} />
         ))}
       </div>
     </nav>

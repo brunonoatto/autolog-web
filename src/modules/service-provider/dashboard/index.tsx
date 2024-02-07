@@ -39,7 +39,7 @@ const Dashboard = () => {
       <br />
       <br />
       <br />
-      'Exibição do dashboard da oficina'
+      Exibição do dashboard da oficina
       <br />
       <br />
       <br />
