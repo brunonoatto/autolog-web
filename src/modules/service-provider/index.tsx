@@ -4,7 +4,7 @@ import Menu from '@core/layout/menu';
 
 const ServiceProvider = () => {
   return (
-    <div className="md:flex h-full">
+    <div className="md:h-full md:grid md:grid-cols-[15rem_auto]">
       <Menu
         menus={[
           {
@@ -21,7 +21,7 @@ const ServiceProvider = () => {
           },
         ]}
       />
-      <div>
+      <div className="md:overflow-y-auto">
         <Outlet />
       </div>
     </div>

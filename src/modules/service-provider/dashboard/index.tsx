@@ -1,11 +1,7 @@
 const Dashboard = () => {
   return (
     <>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+      INÍCIO
       <br />
       <br />
       <br />
@@ -44,6 +40,17 @@ const Dashboard = () => {
       <br />
       <br />
       'Exibição do dashboard da oficina'
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      FIM
     </>
   );
 };
