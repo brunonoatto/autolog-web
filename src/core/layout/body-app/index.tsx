@@ -1,13 +1,13 @@
+import BigSpinner from './big-spinner';
 import Header from './header';
 import Main from './main';
 import Footer from './footer';
 import styles from './styles.module.css';
-import Loading from './loading';
 
 const BodyApp = () => {
   return (
     <>
-      <Loading />
+      <BigSpinner />
       <div className={styles.content}>
         <Header />
         <Main />
