@@ -7,7 +7,7 @@ type TAuthStore = {
   signout: () => Promise<void>;
 };
 
-export const useAuthStore = createStore<TAuthStore>((setState) => ({
+const useAuthStore = createStore<TAuthStore>((setState) => ({
   isAuthenticated: false,
   username: null,
   signin: async (username: string) => {
@@ -19,3 +19,5 @@ export const useAuthStore = createStore<TAuthStore>((setState) => ({
     setState({ isAuthenticated: false, username: '' });
   },
 }));
+
+export default useAuthStore;
