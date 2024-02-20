@@ -31,12 +31,11 @@ const MenuContent = ({ items, ...otherPops }: TMenuContentProps) => {
   const handleMenuClick =
     (route: TMenuContentItem['route'], onClick: TMenuContentItem['onClick']): TMenuContentItem['onClick'] =>
     (e) => {
+      handleCloseMenu();
       onClick?.(e);
 
       if (route) {
         navigate(route);
-      } else {
-        handleCloseMenu();
       }
     };
 
