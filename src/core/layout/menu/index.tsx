@@ -18,6 +18,12 @@ const toogleMenu = () => {
   menuList?.classList.toggle('flex');
 };
 
+const closeMenu = () => {
+  const menuList = document.getElementById('menu-list');
+  menuList?.classList.add('hidden');
+  menuList?.classList.remove('flex');
+};
+
 const Menu = ({ menus }: TMenuProps) => {
   const { pathname } = useLocation();
 
@@ -28,7 +34,7 @@ const Menu = ({ menus }: TMenuProps) => {
   useEffect(() => {
     // somente quando for mobile
     if (window.innerWidth <= 768) {
-      toogleMenu();
+      closeMenu();
     }
   }, [pathname]);
 
