@@ -1,5 +1,12 @@
 import * as yup from 'yup';
-import { DATE_INVALID_MSG, EMAIL_INVALID_MSG, MAX_INVALID_MSG, NUMBER_INVALID_MSG, REQUIRED_MSG } from './consts';
+import {
+  BYRTHDAY_INVALID_MSG,
+  DATE_INVALID_MSG,
+  EMAIL_INVALID_MSG,
+  MAX_INVALID_MSG,
+  NUMBER_INVALID_MSG,
+  REQUIRED_MSG,
+} from './consts';
 
 type TStringValidator = { size: number };
 export const StringValidator = ({ size }: TStringValidator = { size: 150 }) =>
@@ -12,3 +19,5 @@ export const EmailValidator = () => yup.string().email(EMAIL_INVALID_MSG).requir
 export const CnpjValidator = () => yup.string().max(14, MAX_INVALID_MSG(14)).required(REQUIRED_MSG);
 
 export const DateValidator = () => yup.date().typeError(DATE_INVALID_MSG).required(REQUIRED_MSG);
+
+export const BirthdayValidator = () => DateValidator().min(new Date(1920, 0, 1), BYRTHDAY_INVALID_MSG);

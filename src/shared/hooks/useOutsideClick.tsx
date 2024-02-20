@@ -6,7 +6,6 @@ type TUseOutsideClickProps = {
 };
 const useOutsideClick = ({ ref, action }: TUseOutsideClickProps) => {
   useEffect(() => {
-    console.log('useEffect useOutsideClick');
     const handleOutsideClick = (event: MouseEvent) => {
       if (ref.current && !ref.current.contains(event.target as HTMLDivElement)) {
         action?.();
