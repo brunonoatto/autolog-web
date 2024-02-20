@@ -26,8 +26,10 @@ const FormCard: FunctionComponent<TFormCard> = ({
     <FormProvider {...form}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.content}>
-          <div className={styles.title}>{title}</div>
+          <h2>{title}</h2>
+
           <div className={styles.body}>{children}</div>
+
           <div className={styles.footer}>
             <Button>{confirmButtonText}</Button>
           </div>
