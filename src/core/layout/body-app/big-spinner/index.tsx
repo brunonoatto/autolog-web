@@ -8,7 +8,7 @@ const BigSpinner = () => {
   return (
     <Portal open={isLoading}>
       <div className="relative top-1/3 m-auto w-48 bg-neutral-800 text-center rounded-xl py-4">
-        <Icon icon="LoadingIcon" />
+        <Icon name="LoadingIcon" />
         <div className="text-teal-400">Carregando...</div>
       </div>
     </Portal>

@@ -8,27 +8,27 @@ import styles from './styles.module.css';
 const statusIcon: { [key in TStatusCar]: ReactNode } = {
   WaitingBudget: (
     <>
-      <Icon icon="FileExclamationIcon" height={26} width={26} className="fill-teal-500" /> Realizando orçamento
+      <Icon name="FileExclamationIcon" height={26} width={26} className="fill-teal-500" /> Realizando orçamento
     </>
   ),
   WaitingBudgetApproval: (
     <>
-      <Icon icon="SendIcon" height={26} width={26} className="fill-amber-400" /> Aguardando aprovação
+      <Icon name="SendIcon" height={26} width={26} className="fill-amber-400" /> Aguardando aprovação
     </>
   ),
   ApprovedBudget: (
     <>
-      <Icon icon="CheckCircleIcon" height={26} width={26} className="fill-green-500" /> Orçamento aprovado
+      <Icon name="CheckCircleIcon" height={26} width={26} className="fill-green-500" /> Orçamento aprovado
     </>
   ),
   BudgetRejected: (
     <>
-      <Icon icon="CloseCircleIcon" height={26} width={26} className="fill-red-400" /> Orçamento rejeitado
+      <Icon name="CloseCircleIcon" height={26} width={26} className="fill-red-400" /> Orçamento rejeitado
     </>
   ),
   RunningService: (
     <>
-      <Icon icon="ProgressWrenchIcon" height={26} width={26} className="fill-amber-400" /> Serviço em execução
+      <Icon name="ProgressWrenchIcon" height={26} width={26} className="fill-amber-400" /> Serviço em execução
     </>
   ),
 };
