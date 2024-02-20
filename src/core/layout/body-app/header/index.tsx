@@ -14,7 +14,7 @@ const Header = () => {
 
   const handleLoginClick = async () => {
     await signin('brunonoatto');
-    navigate('/prestador-servico');
+    navigate('/prestador-servico/dashboard');
   };
 
   return (

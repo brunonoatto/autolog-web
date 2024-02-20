@@ -10,7 +10,6 @@ import Budget from '@service-provider/budget';
 import RegisterProvider from 'src/modules/register-provider';
 import BodyApp from '@core/layout/body-app';
 import ProtectedRoute from './protected-route';
-import Home from '@service-provider/home';
 import Logout from '@core/auth/logout';
 
 const router = createBrowserRouter([
@@ -42,10 +41,6 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
         children: [
-          {
-            path: '',
-            Component: Home,
-          },
           {
             path: 'dashboard',
             Component: Dashboard,
