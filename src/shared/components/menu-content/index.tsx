@@ -48,12 +48,12 @@ const MenuContent = ({ items, ...otherPops }: TMenuContentProps) => {
 
       <div
         id="menu-content"
-        className="absolute hidden min-w-36 top-14 right-3 p-2 text-md font-semibold text-neutral-200 bg-neutral-700 space-y-1"
+        className="absolute hidden min-w-36 top-14 right-3 p-2 text-md font-semibold text-neutral-200 bg-neutral-700 space-y-1 rounded-lg"
       >
         {items.map(({ title, route, dividerTop, onClick }) => (
           <div key={route} className={`py-1 ${dividerTop ? 'border-t-2 border-teal-800' : ''}`}>
             <button
-              className={`block w-full   p-2 rounded-xl ring-teal-300 hover:ring-2`}
+              className={`block w-full p-2 rounded-lg ring-teal-300 hover:ring-2`}
               onClick={handleMenuClick(route, onClick)}
             >
               {title}
