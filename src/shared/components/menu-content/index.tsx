@@ -1,8 +1,19 @@
+import { useRef } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
-import IconButton from '../icon-button';
-import { useRef } from 'react';
 import useOutsideClick from '@shared/hooks/useOutsideClick';
+import IconButton from '../icon-button';
+
+const handleToogleContentClick = () => {
+  const menuList = document.getElementById('menu-content');
+  menuList?.classList.toggle('hidden');
+};
+
+const handleCloseMenu = () => {
+  const menuList = document.getElementById('menu-content');
+  menuList?.classList.add('hidden');
+};
 
 type TMenuContentItem = {
   route?: string;
@@ -18,28 +29,19 @@ const MenuContent = ({ items, ...otherPops }: TMenuContentProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  const handleToogleContentClick = () => {
-    const menuList = document.getElementById('menu-content');
-    menuList?.classList.toggle('hidden');
-  };
-
-  const handleCloseMenu = () => {
-    const menuList = document.getElementById('menu-content');
-    menuList?.classList.add('hidden');
-  };
+  useOutsideClick({ ref, action: handleCloseMenu });
 
   const handleMenuClick =
     (route: TMenuContentItem['route'], onClick: TMenuContentItem['onClick']): TMenuContentItem['onClick'] =>
     (e) => {
       handleCloseMenu();
+
       onClick?.(e);
 
       if (route) {
         navigate(route);
       }
     };
-
-  useOutsideClick({ ref, action: handleCloseMenu });
 
   return (
     <div ref={ref}>
