@@ -21,9 +21,12 @@ const Card = ({ title, infos, price, linkRoute, linkText }: TCardProps) => {
         ))}
       </ul>
 
-      <div className={styles.price}>{price}</div>
-
-      <LinkButton to={linkRoute}>{linkText}</LinkButton>
+      <div className={styles.price}>
+        {price}
+        <LinkButton to={linkRoute} className="block">
+          {linkText}
+        </LinkButton>
+      </div>
     </div>
   );
 };

@@ -12,5 +12,5 @@
 }
 
 .price {
-  @apply text-center py-2;
+  @apply text-center py-2 space-y-2;
 }

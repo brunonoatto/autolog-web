@@ -9,7 +9,6 @@ const HeaderActions = () => {
       <MenuContent
         className="float-end"
         items={[
-          { route: 'prestador-servico', title: 'Home' },
           { route: 'consulta', title: 'Consultar Placa' },
           { route: 'logout', title: 'Sair', dividerTop: true },
         ]}

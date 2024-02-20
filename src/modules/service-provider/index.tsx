@@ -12,7 +12,7 @@ const ServiceProvider = () => {
             route: 'dashboard',
           },
           {
-            title: 'Adicionar Veículo',
+            title: 'Adicionar veiculo',
             route: 'add-veiculo',
           },
           {
