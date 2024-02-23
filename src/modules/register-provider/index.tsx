@@ -4,6 +4,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { yup, yupValidators } from '@shared/form-validations/index';
 import InputForm from '@shared/components/form/input';
 import FormCard from '@core/layout/form/form-card';
+import InputDateForm from '@shared/components/form/inputDate';
+import InputNumberForm from '@shared/components/form/inputNumber';
 
 const schema = yup
   .object({
@@ -36,11 +38,11 @@ const RegisterProvider = () => {
     <FormCard form={form} onSubmit={onSubmit} title="Dados para Cadastro">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <InputForm label="Nome" {...register('name')} />
-        <InputForm label="Data Nascimento" {...register('dataNascimento')} type="date" />
+        <InputDateForm label="Data Nascimento" {...register('dataNascimento')} />
         <InputForm label="CNPJ" {...register('cnpj')} />
         <InputForm label="E-mail" {...register('email')} />
         <InputForm label="Endereço" {...register('address')} />
-        <InputForm label="Número" {...register('number')} type="number" />
+        <InputNumberForm label="Número" {...register('number')} />
         <InputForm label="Complemento" {...register('complement')} />
       </div>
 
