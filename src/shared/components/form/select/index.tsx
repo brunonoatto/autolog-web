@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 
 import { useFormState } from 'react-hook-form';
 
-import Select, { TSelectProps } from '@shared/design-system/select';
+import Select, { type TSelectProps } from '@shared/design-system/select';
 
 const SelectForm = forwardRef<HTMLSelectElement, TSelectProps>((props, ref) => {
   const formState = useFormState({ name: props.name });

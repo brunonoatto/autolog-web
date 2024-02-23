@@ -9,10 +9,14 @@ import ModelSelect from '@shared/components/selects/model-select';
 import CarStatusSelect from '@shared/components/selects/card-status-select';
 import { StatusCarEnum } from '@shared/types/statusCar';
 import Textarea from '@shared/design-system/textarea';
+import InputNumberForm from '@shared/components/form/inputNumber';
 
 const schema = yup
   .object({
-    license: yupValidators.StringValidator().required().max(10, 'Placa deve ter no máximo 10 caracteres').uppercase(),
+    license: yupValidators
+      .StringValidator()
+      .required()
+      .max(10, 'Placa deve ter no máximo 10 caracteres'),
     brand: yupValidators.StringValidator().required(),
     model: yupValidators.StringValidator().required(),
     year: yupValidators.NumberValidator().required().integer(),
@@ -38,12 +42,24 @@ const AddCar = () => {
   return (
     <FormCard form={form} onSubmit={onSubmit} title="Aicionar veiculo">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <InputForm label="Placa" {...register('license')} />
+        <InputForm
+          label="Placa"
+          labelProps={{ className: 'col-span-full' }}
+          inputProps={{
+            className: 'w-full md:w-32 h-8 text-xl font-bold',
+            ...register('license'),
+          }}
+        />
         <BrandSelect label="Montadora" {...register('brand')} />
         <ModelSelect label="Modelo" brandId={brandId} {...register('model')} />
-        <InputForm label="Ano" type="number" {...register('year')} />
+        <InputNumberForm label="Ano" inputProps={register('year')} />
         <CarStatusSelect label="Status" {...register('status')} />
-        <Textarea label="Observação" {...register('observation')} className="h-20" />
+        <Textarea
+          labelProps={{ className: 'col-span-full' }}
+          inputProps={{ className: 'h-20' }}
+          label="Observação"
+          {...register('observation')}
+        />
       </div>
     </FormCard>
   );

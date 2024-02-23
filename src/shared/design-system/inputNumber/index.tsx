@@ -1,14 +1,22 @@
 import { forwardRef } from 'react';
 
+import type { TInputProps } from '../input';
 import styles from '../styles.module.css';
 
-export type TInputNumberProps = React.InputHTMLAttributes<HTMLInputElement> & { label: string; error?: string };
+const InputNumber = forwardRef<HTMLInputElement, TInputProps>(
+  ({ label, error, labelProps = {}, inputProps = {} }, ref) => {
+    const { className: inputClass = '', ...otherInputProps } = inputProps;
+    const { className: labelClass = '', ...otherLabelProps } = labelProps;
 
-const InputNumber = forwardRef<HTMLInputElement, TInputNumberProps>(
-  ({ label, error, className = '', ...inputProps }, ref) => {
     return (
-      <label className={styles.label}>
-        {label}: <input ref={ref} type="number" className={`${className} ${styles.input}`} {...inputProps} />
+      <label className={`${labelClass} ${styles.label}`} {...otherLabelProps}>
+        {label}:{' '}
+        <input
+          ref={ref}
+          type="number"
+          className={`${inputClass} ${styles.input}`}
+          {...otherInputProps}
+        />
         {error && <p className={styles.error}>{error}</p>}
       </label>
     );

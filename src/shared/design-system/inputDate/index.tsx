@@ -1,14 +1,22 @@
 import { forwardRef } from 'react';
 
+import type { TInputProps } from '../input';
 import styles from '../styles.module.css';
 
-export type TInputDateProps = React.InputHTMLAttributes<HTMLInputElement> & { label: string; error?: string };
+const InputDate = forwardRef<HTMLInputElement, TInputProps>(
+  ({ label, error, labelProps = {}, inputProps = {} }, ref) => {
+    const { className: inputClass = '', ...otherInputProps } = inputProps;
+    const { className: labelClass = '', ...otherLabelProps } = labelProps;
 
-const InputDate = forwardRef<HTMLInputElement, TInputDateProps>(
-  ({ label, error, className = '', ...inputProps }, ref) => {
     return (
-      <label className={styles.label}>
-        {label}: <input ref={ref} type="date" className={`${className} ${styles.input}`} {...inputProps} />
+      <label className={`${labelClass} ${styles.label}`} {...otherLabelProps}>
+        {label}:{' '}
+        <input
+          ref={ref}
+          type="date"
+          className={`${inputClass} ${styles.input}`}
+          {...otherInputProps}
+        />
         {error && <p className={styles.error}>{error}</p>}
       </label>
     );

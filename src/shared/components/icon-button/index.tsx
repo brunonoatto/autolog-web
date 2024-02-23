@@ -1,4 +1,4 @@
-import Icon, { TIconProps } from '../Icon';
+import Icon, { type TIconProps } from '../Icon';
 
 type TIconButtonProps = React.HTMLAttributes<HTMLButtonElement> & { icon: TIconProps['name'] };
 
