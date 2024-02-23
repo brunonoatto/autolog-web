@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 
+import { ROUTES_PATH } from '@core/router/consts';
 import Menu from '@core/layout/menu';
 
 const ServiceProvider = () => {
@@ -9,15 +10,15 @@ const ServiceProvider = () => {
         menus={[
           {
             title: 'Dashboard',
-            route: 'dashboard',
+            route: ROUTES_PATH.dashboard,
           },
           {
             title: 'Adicionar veiculo',
-            route: 'add-veiculo',
+            route: ROUTES_PATH.addVeiculo,
           },
           {
             title: 'Orçamentos',
-            route: 'orcamento',
+            route: ROUTES_PATH.orcamento,
           },
         ]}
       />

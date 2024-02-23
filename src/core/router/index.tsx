@@ -11,6 +11,7 @@ import RegisterProvider from 'src/modules/register-provider';
 import BodyApp from '@core/layout/body-app';
 import ProtectedRoute from './protected-route';
 import Logout from '@core/auth/logout';
+import { ROUTES_PATH } from './consts';
 
 const router = createBrowserRouter([
   {
@@ -18,23 +19,23 @@ const router = createBrowserRouter([
     children: [
       {
         id: 'root',
-        path: '',
+        path: ROUTES_PATH.root,
         Component: Home,
       },
       {
-        path: '*',
+        path: ROUTES_PATH.all,
         Component: NotFoundRoute,
       },
       {
-        path: 'logout',
+        path: ROUTES_PATH.logout,
         Component: Logout,
       },
       {
-        path: 'cadastro',
+        path: ROUTES_PATH.cadastroPrestadorServico,
         Component: RegisterProvider,
       },
       {
-        path: 'prestador-servico',
+        path: ROUTES_PATH.prestadorServico,
         element: (
           <ProtectedRoute>
             <ServiceProvider />
@@ -42,21 +43,21 @@ const router = createBrowserRouter([
         ),
         children: [
           {
-            path: 'dashboard',
+            path: ROUTES_PATH.dashboard,
             Component: Dashboard,
           },
           {
-            path: 'add-veiculo',
+            path: ROUTES_PATH.addVeiculo,
             Component: AddCar,
           },
           {
-            path: 'orcamento',
+            path: ROUTES_PATH.orcamento,
             Component: Budget,
           },
         ],
       },
       {
-        path: '/consulta',
+        path: ROUTES_PATH.consultaPlaca,
         Component: ConsultLicense,
       },
     ],

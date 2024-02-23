@@ -28,7 +28,7 @@ const Home = () => {
               Preço: <div className="font-bold text-xl text-teal-400">GRÁTIS</div>
             </>
           }
-          linkRoute="consulta"
+          linkRoute="consulta-placa"
           linkText="Consultar"
         />
       </div>

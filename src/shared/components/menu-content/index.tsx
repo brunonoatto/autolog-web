@@ -32,7 +32,10 @@ const MenuContent = ({ items, ...otherPops }: TMenuContentProps) => {
   useOutsideClick({ ref, action: handleCloseMenu });
 
   const handleMenuClick =
-    (route: TMenuContentItem['route'], onClick: TMenuContentItem['onClick']): TMenuContentItem['onClick'] =>
+    (
+      route: TMenuContentItem['route'],
+      onClick: TMenuContentItem['onClick'],
+    ): TMenuContentItem['onClick'] =>
     (e) => {
       handleCloseMenu();
 
@@ -45,7 +48,12 @@ const MenuContent = ({ items, ...otherPops }: TMenuContentProps) => {
 
   return (
     <div ref={ref}>
-      <IconButton id="menu-content-button" icon="ArrowDownLineIcon" onClick={handleToogleContentClick} {...otherPops} />
+      <IconButton
+        id="menu-content-button"
+        icon="ArrowDownLineIcon"
+        onClick={handleToogleContentClick}
+        {...otherPops}
+      />
 
       <div
         id="menu-content"

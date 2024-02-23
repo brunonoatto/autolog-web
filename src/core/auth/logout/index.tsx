@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { ROUTES_PATH } from '@core/router/consts';
 import { useAuthStore, useLoadingStore } from '@core/store/hooks';
 
 const Logout = () => {
@@ -12,7 +13,7 @@ const Logout = () => {
   useEffect(() => {
     const handleLogout = async () => {
       await signout();
-      navigate('/', { replace: true });
+      navigate(ROUTES_PATH.root, { replace: true });
     };
 
     loading(true);

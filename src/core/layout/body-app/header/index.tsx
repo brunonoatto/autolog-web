@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
+import { ROUTES_PATH } from '@core/router/consts';
 import { useAuthStore } from '@core/store/hooks';
 import Button from '@shared/design-system/button';
 import HomeLink from './home-link';
@@ -14,7 +15,7 @@ const Header = () => {
 
   const handleLoginClick = async () => {
     await signin('brunonoatto');
-    navigate('/prestador-servico/dashboard');
+    navigate(ROUTES_PATH.dashboard);
   };
 
   return (
