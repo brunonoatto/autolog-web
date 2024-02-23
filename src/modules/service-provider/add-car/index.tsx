@@ -1,8 +1,10 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { yup, yupValidators } from '@shared/form-validations/index';
+import { useAddDashboardItem } from '@core/service/autolog';
 import FormCard from '@core/layout/form/form-card';
+import { yup, yupValidators } from '@shared/form-validations/index';
 import InputForm from '@shared/components/form/input';
 import BrandSelect from '@shared/components/selects/brand-select';
 import ModelSelect from '@shared/components/selects/model-select';
@@ -13,10 +15,7 @@ import InputNumberForm from '@shared/components/form/inputNumber';
 
 const schema = yup
   .object({
-    license: yupValidators
-      .StringValidator()
-      .required()
-      .max(10, 'Placa deve ter no máximo 10 caracteres'),
+    license: yupValidators.StringValidator().required(),
     brand: yupValidators.StringValidator().required(),
     model: yupValidators.StringValidator().required(),
     year: yupValidators.NumberValidator().required().integer(),
@@ -28,6 +27,8 @@ const schema = yup
 type TRegisterProvicerFormType = yup.InferType<typeof schema>;
 
 const AddCar = () => {
+  const navigate = useNavigate();
+  const { mutate: addDashboardItem } = useAddDashboardItem();
   const form = useForm({
     mode: 'onChange',
     defaultValues: { status: StatusCarEnum.WaitingBudget },
@@ -37,7 +38,10 @@ const AddCar = () => {
 
   const brandId = watch('brand');
 
-  const onSubmit: SubmitHandler<TRegisterProvicerFormType> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<TRegisterProvicerFormType> = async (formValues) => {
+    await addDashboardItem(formValues);
+    navigate('/prestador-servico/dashboard');
+  };
 
   return (
     <FormCard form={form} onSubmit={onSubmit} title="Aicionar veiculo">
@@ -46,19 +50,19 @@ const AddCar = () => {
           label="Placa"
           labelProps={{ className: 'col-span-full' }}
           inputProps={{
-            className: 'w-full md:w-32 h-8 text-xl font-bold',
+            className: 'w-36 h-8 text-xl font-bold uppercase',
             ...register('license'),
+            maxLength: 10,
           }}
         />
         <BrandSelect label="Montadora" {...register('brand')} />
         <ModelSelect label="Modelo" brandId={brandId} {...register('model')} />
-        <InputNumberForm label="Ano" inputProps={register('year')} />
+        <InputNumberForm label="Ano" inputProps={{ ...register('year') }} />
         <CarStatusSelect label="Status" {...register('status')} />
         <Textarea
           labelProps={{ className: 'col-span-full' }}
-          inputProps={{ className: 'h-20' }}
+          inputProps={{ className: 'h-20', ...register('observation') }}
           label="Observação"
-          {...register('observation')}
         />
       </div>
     </FormCard>

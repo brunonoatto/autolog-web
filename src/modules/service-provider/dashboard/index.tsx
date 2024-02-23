@@ -5,11 +5,11 @@ import styles from './styles.module.css';
 import StatusCardSkeleton from './status-card-skeleton';
 
 const Dashboard = () => {
-  const { data: cars, isLoading } = useListDashboard();
+  const { data: cars, isLoading, isRefetching } = useListDashboard();
 
   return (
     <div className={styles.container}>
-      {isLoading ? (
+      {isLoading || isRefetching ? (
         <>
           <StatusCardSkeleton />
           <StatusCardSkeleton />

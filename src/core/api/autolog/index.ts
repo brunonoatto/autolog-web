@@ -1,5 +1,5 @@
 import { StatusCarEnum } from '@shared/types/statusCar';
-import type { TDashboardItem } from './types';
+import type { TDashboardItem, TDashboardItemToAdd } from './types';
 
 // const BASE_URL = 'https://autolog-api.com.br/';
 const listDashboardMock: TDashboardItem[] = [
@@ -46,4 +46,12 @@ export const listDashboard = async (): Promise<TDashboardItem[]> => {
 
   await new Promise((resolve) => setTimeout(resolve, 2000));
   return listDashboardMock;
+};
+
+export const addDashboardItem = async (item: TDashboardItemToAdd): Promise<void> => {
+  //const response = await axios.put<TDashboardItem[]>(`${BASE_URL}/dashboard`);
+  //return response.data;
+
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  listDashboardMock.unshift(item);
 };
