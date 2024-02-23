@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 
-import styles from './styles.module.css';
+import styles from '../styles.module.css';
 
 export type TInputProps = React.InputHTMLAttributes<HTMLInputElement> & { label: string; error?: string };
 

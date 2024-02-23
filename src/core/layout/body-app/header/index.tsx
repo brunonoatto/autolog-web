@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { useAuthStore } from '@core/store/hooks';
-import Button from '@shared/components/button';
+import Button from '@shared/design-system/button';
 import HomeLink from './home-link';
 import HeaderActions from './header-actions';
 import styles from './styles.module.css';

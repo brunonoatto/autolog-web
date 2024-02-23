@@ -3,7 +3,7 @@ import { FunctionComponent, PropsWithChildren } from 'react';
 import { FormProvider, type SubmitHandler, type UseFormReturn } from 'react-hook-form';
 
 import styles from './styles.module.css';
-import Button from '@shared/components/button';
+import Button from '@shared/design-system/button';
 
 type TFormCard = PropsWithChildren & {
   // TODO: trocar any por um tipo q faça inferência ao outro

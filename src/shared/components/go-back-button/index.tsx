@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import Button from '../button';
+import Button from '@shared/design-system/button';
 
 const GoBackButton = () => {
   const navigate = useNavigate();
