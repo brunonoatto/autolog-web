@@ -1,3 +1,4 @@
+import { StatusCarEnum } from '@core/models/car';
 import AddCarCard from './add-car-card';
 import StatusCard, { TStatusCardProps } from './status-card';
 import styles from './styles.module.css';
@@ -5,38 +6,38 @@ import styles from './styles.module.css';
 const cars: TStatusCardProps[] = [
   {
     license: 'AAA4323',
-    manufacturer: 'Ford',
+    brand: 'Ford',
     model: 'Fiesta 1.6',
     year: 2015,
-    status: 'WaitingBudget',
+    status: StatusCarEnum.WaitingBudget,
   },
   {
     license: 'BBB4323',
-    manufacturer: 'Volkswagen',
+    brand: 'Volkswagen',
     model: 'Polo',
     year: 2011,
-    status: 'WaitingBudgetApproval',
+    status: StatusCarEnum.WaitingBudgetApproval,
   },
   {
     license: 'VVV4323',
-    manufacturer: 'Fiat',
+    brand: 'Fiat',
     model: 'Uno',
     year: 1998,
-    status: 'ApprovedBudget',
+    status: StatusCarEnum.ApprovedBudget,
   },
   {
     license: 'DDD4323',
-    manufacturer: 'Peugeot',
+    brand: 'Peugeot',
     model: '206',
     year: 2020,
-    status: 'BudgetRejected',
+    status: StatusCarEnum.BudgetRejected,
   },
   {
-    license: 'DDD4323',
-    manufacturer: 'Peugeot',
+    license: 'DAD4323',
+    brand: 'Peugeot',
     model: '206',
     year: 2020,
-    status: 'RunningService',
+    status: StatusCarEnum.RunningService,
   },
 ];
 
