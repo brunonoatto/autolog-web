@@ -1,4 +1,4 @@
-import { StatusCarEnum } from '@core/models/car';
+import { StatusCarEnum } from '@shared/types/statusCar';
 
 export const getStatusCarDescription = (status: StatusCarEnum): string => {
   const values = {

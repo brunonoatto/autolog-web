@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 
 import Select from '@shared/components/form/select';
 import type { TSelectDefaultProps, TSelectOption } from '@shared/design-system/select';
-import { StatusCarEnum } from '@core/models/car';
+import { StatusCarEnum } from '@shared/types/statusCar';
 import { getStatusCarDescription } from '@shared/helpers/string';
 
 const CarStatusSelect = forwardRef<HTMLSelectElement, TSelectDefaultProps>((props, ref) => {

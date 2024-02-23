@@ -7,7 +7,7 @@ import InputForm from '@shared/components/form/input';
 import BrandSelect from '@shared/components/selects/brand-select';
 import ModelSelect from '@shared/components/selects/model-select';
 import CarStatusSelect from '@shared/components/selects/card-status-select';
-import { StatusCarEnum } from '@core/models/car';
+import { StatusCarEnum } from '@shared/types/statusCar';
 import Textarea from '@shared/design-system/textarea';
 
 const schema = yup

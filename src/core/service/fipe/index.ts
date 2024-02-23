@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { ServiceApi } from '../api';
+
+import { ServiceApi } from '@core/api';
 
 export const useListBrands = () => {
   return useQuery({

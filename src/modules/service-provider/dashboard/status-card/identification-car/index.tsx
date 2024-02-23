@@ -1,6 +1,11 @@
-import type { TCar } from '@core/models/car';
+type TIdentificationCarProps = {
+  license: string;
+  brand: string;
+  model: string;
+  year: number;
+};
 
-const IdentificationCar = ({ license, brand: brand, model, year }: TCar) => {
+const IdentificationCar = ({ license, brand, model, year }: TIdentificationCarProps) => {
   return (
     <div className="w-full flex flex-col md:flex-row md:justify-between">
       <h3>{license}</h3>
