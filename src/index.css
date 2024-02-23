@@ -19,7 +19,9 @@
   hr {
     @apply mt-4;
   }
-  input {
+  input,
+  textarea,
+  select {
     @apply text-black;
   }
 }
