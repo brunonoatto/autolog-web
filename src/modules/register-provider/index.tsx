@@ -1,28 +1,23 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 
-import InputForm from '@shared/components/form/input-form';
-import {
-  CnpjValidator,
-  BirthdayValidator,
-  EmailValidator,
-  NumberValidator,
-  StringValidator,
-} from '@shared/form-validations';
+import { yup, yupValidators } from '@shared/form-validations/index';
+import InputForm from '@shared/components/form/input';
 import FormCard from '@core/layout/form/form-card';
 
 const schema = yup
   .object({
-    name: StringValidator(),
-    dataNascimento: BirthdayValidator(),
-    cnpj: CnpjValidator(),
-    email: EmailValidator(),
-    address: StringValidator(),
-    number: NumberValidator(),
-    complement: StringValidator({ size: 50 }),
-    password: StringValidator({ size: 25 }),
-    passwordConfirm: StringValidator({ size: 25 }).oneOf([yup.ref('password')], 'Confirmação da senha inválida.'),
+    name: yupValidators.StringValidator().required(),
+    dataNascimento: yupValidators.BirthdayValidator().required(),
+    cnpj: yupValidators.CnpjValidator().required(),
+    email: yupValidators.EmailValidator().required(),
+    address: yupValidators.StringValidator().required(),
+    number: yupValidators.NumberValidator().required(),
+    complement: yupValidators.StringValidator({ size: 50 }),
+    password: yupValidators.StringValidator({ size: 25 }).required(),
+    passwordConfirm: yupValidators
+      .StringValidator({ size: 25 })
+      .oneOf([yup.ref('password')], 'Confirmação da senha inválida.'),
   })
   .required();
 
