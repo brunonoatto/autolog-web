@@ -1,11 +1,15 @@
 import Icon, { type TIconProps } from '../Icon';
 
-type TIconButtonProps = React.HTMLAttributes<HTMLButtonElement> & { icon: TIconProps['name'] };
+type TIconButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
+  icon: TIconProps['name'];
+  iconProps?: Omit<TIconProps, 'name'>;
+};
 
-const IconButton = ({ icon, className, ...otherProps }: TIconButtonProps) => {
+const IconButton = ({ icon, className, iconProps = {}, ...otherProps }: TIconButtonProps) => {
+  const { className: classNameIcon, ...otherIconProps } = iconProps;
   return (
-    <button className={`rounded hover:ring-2 hover:ring-teal-500 ${className}`} {...otherProps}>
-      <Icon name={icon} />
+    <button className={`rounded  ${className}`} {...otherProps}>
+      <Icon name={icon} className={`${classNameIcon} hover:fill-teal-500`} {...otherIconProps} />
     </button>
   );
 };
