@@ -2,16 +2,15 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { yup, yupValidators } from '@shared/form-validations/index';
+import InputNumberForm from '@shared/components/form/inputNumber';
 import InputForm from '@shared/components/form/input';
 import FormCard from '@core/layout/form/form-card';
-import InputDateForm from '@shared/components/form/inputDate';
-import InputNumberForm from '@shared/components/form/inputNumber';
 
 const schema = yup
   .object({
     name: yupValidators.StringValidator().required(),
-    dataNascimento: yupValidators.BirthdayValidator().required(),
     cnpj: yupValidators.CnpjValidator().required(),
+    phone: yupValidators.StringValidator().required(),
     email: yupValidators.EmailValidator().required(),
     address: yupValidators.StringValidator().required(),
     number: yupValidators.NumberValidator().required(),
@@ -38,7 +37,7 @@ const RegisterProvider = () => {
     <FormCard form={form} onSubmit={onSubmit} title="Dados para Cadastro">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <InputForm label="Nome" inputProps={register('name')} />
-        <InputDateForm label="Data Nascimento" inputProps={register('dataNascimento')} />
+        <InputForm label="Telefone" inputProps={register('phone')} />
         <InputForm label="CNPJ" inputProps={register('cnpj')} />
         <InputForm label="E-mail" inputProps={register('email')} />
         <InputForm label="Endereço" inputProps={register('address')} />

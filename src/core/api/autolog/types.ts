@@ -7,6 +7,9 @@ export type TDashboardItem = {
 };
 
 export type TDashboardItemToAdd = {
+  name: string;
+  cpf_cnpj: string;
+  phone: string;
   license: string;
   brand: string;
   model: string;

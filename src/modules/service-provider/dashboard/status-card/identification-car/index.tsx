@@ -1,5 +1,5 @@
 type TIdentificationCarProps = {
-  license: string;
+  license?: string;
   brand: string;
   model: string;
   year: number;
