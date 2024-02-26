@@ -15,6 +15,9 @@ import InputNumberForm from '@shared/components/form/inputNumber';
 
 const schema = yup
   .object({
+    name: yupValidators.StringValidator().required(),
+    phone: yupValidators.StringValidator().required(),
+    cpf_cnpj: yupValidators.StringValidator().required(),
     license: yupValidators.StringValidator().required(),
     brand: yupValidators.StringValidator().required(),
     model: yupValidators.StringValidator().required(),
@@ -30,7 +33,6 @@ const AddCar = () => {
   const navigate = useNavigate();
   const { mutate: addDashboardItem } = useAddDashboardItem();
   const form = useForm({
-    mode: 'onChange',
     defaultValues: { status: StatusCarEnum.WaitingBudget },
     resolver: yupResolver(schema),
   });
@@ -44,8 +46,15 @@ const AddCar = () => {
   };
 
   return (
-    <FormCard form={form} onSubmit={onSubmit} title="Aicionar veiculo">
+    <FormCard form={form} onSubmit={onSubmit} title="Adicionar veiculo">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <InputForm
+          label="Nome Cliente"
+          labelProps={{ className: 'col-span-full' }}
+          inputProps={register('name')}
+        />
+        <InputForm label="CPF/CNPJ" inputProps={register('cpf_cnpj')} />
+        <InputForm label="Telefone" inputProps={register('phone')} />
         <InputForm
           label="Placa"
           labelProps={{ className: 'col-span-full' }}
