@@ -1,5 +1,5 @@
 .content {
-  @apply h-full bg-neutral-800 text-neutral-100 antialiased  overflow-hidden;
+  @apply h-full bg-neutral-800 text-neutral-100 antialiased overflow-hidden;
 
   display: grid;
   grid-template-areas:

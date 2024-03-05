@@ -11,7 +11,6 @@ export const useListDashboard = () => {
       const data = await ServiceApi.Autolog.listDashboard();
       return data.map((item) => new DashboardItem(item));
     },
-    refetchOnWindowFocus: false,
   });
 };
 

@@ -1,57 +1,16 @@
-import { StatusCarEnum } from '@shared/types/statusCar';
+import axios, { AxiosResponse } from 'axios';
+
 import type { TDashboardItem, TDashboardItemToAdd } from './types';
 
-// const BASE_URL = 'https://autolog-api.com.br/';
-const listDashboardMock: TDashboardItem[] = [
-  {
-    license: 'AAA4323',
-    brand: 'Ford',
-    model: 'Fiesta 1.6',
-    year: 2015,
-    status: StatusCarEnum.WaitingBudget,
-  },
-  {
-    license: 'BBB4323',
-    brand: 'Volkswagen',
-    model: 'Polo',
-    year: 2011,
-    status: StatusCarEnum.WaitingBudgetApproval,
-  },
-  {
-    license: 'VVV4323',
-    brand: 'Fiat',
-    model: 'Uno',
-    year: 1998,
-    status: StatusCarEnum.ApprovedBudget,
-  },
-  {
-    license: 'DDD4323',
-    brand: 'Peugeot',
-    model: '206',
-    year: 2020,
-    status: StatusCarEnum.BudgetRejected,
-  },
-  {
-    license: 'DAD4323',
-    brand: 'Peugeot',
-    model: '206',
-    year: 2020,
-    status: StatusCarEnum.RunningService,
-  },
-];
+const BASE_URL = 'http://localhost:3000';
 
 export const listDashboard = async (): Promise<TDashboardItem[]> => {
-  //const response = await axios.get<TDashboardItem[]>(`${BASE_URL}/dashboard`);
-  //return response.data;
-
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-  return listDashboardMock;
+  const response = await axios.get<TDashboardItem[]>(`${BASE_URL}/dashboard`);
+  return response.data;
 };
 
-export const addDashboardItem = async (item: TDashboardItemToAdd): Promise<void> => {
-  //const response = await axios.put<TDashboardItem[]>(`${BASE_URL}/dashboard`);
-  //return response.data;
-
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-  listDashboardMock.unshift(item);
+export const addDashboardItem = async (
+  item: TDashboardItemToAdd,
+): Promise<AxiosResponse<TDashboardItem>> => {
+  return axios.post<TDashboardItem>(`${BASE_URL}/dashboard`, item);
 };
