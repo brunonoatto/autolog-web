@@ -1,0 +1,18 @@
+{
+  "dashboard": [
+    {
+      "license": "AAA4323",
+      "brand": "Ford",
+      "model": "Fiesta 1.6",
+      "year": 2015,
+      "status": 1
+    },
+    {
+      "license": "AAA4324",
+      "brand": "Fiat",
+      "model": "Uno",
+      "year": 2008,
+      "status": 2
+    }
+  ]
+}
