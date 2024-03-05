@@ -8,16 +8,16 @@ import { DashboardItem } from '@core/models/autolog';
 
 const statusIcon: { [key in StatusCarEnum]: ReactNode } = {
   [StatusCarEnum.WaitingBudget]: (
-    <Icon name="FileExclamationIcon" height={26} width={26} className="fill-teal-500" />
+    <Icon name="BudgetLoadingIcon" height={26} width={26} className="fill-teal-500" />
   ),
   [StatusCarEnum.WaitingBudgetApproval]: (
-    <Icon name="SendIcon" height={26} width={26} className="fill-amber-400" />
+    <Icon name="HourglassIcon" height={26} width={26} className="fill-amber-400" />
   ),
   [StatusCarEnum.ApprovedBudget]: (
     <Icon name="CheckCircleIcon" height={26} width={26} className="fill-green-500" />
   ),
   [StatusCarEnum.BudgetRejected]: (
-    <Icon name="CloseCircleIcon" height={26} width={26} className="fill-red-400" />
+    <Icon name="ThumbDownIcon" height={26} width={26} className="fill-red-400" />
   ),
   [StatusCarEnum.RunningService]: (
     <Icon name="ProgressWrenchIcon" height={26} width={26} className="fill-amber-400" />

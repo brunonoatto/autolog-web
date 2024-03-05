@@ -13,6 +13,27 @@
       "model": "Uno",
       "year": 2008,
       "status": 2
+    },
+    {
+      "license": "AAA4325",
+      "brand": "Fiat",
+      "model": "Uno",
+      "year": 2008,
+      "status": 3
+    },
+    {
+      "license": "AAA4326",
+      "brand": "Fiat",
+      "model": "Uno",
+      "year": 2008,
+      "status": 4
+    },
+    {
+      "license": "AAA4327",
+      "brand": "Fiat",
+      "model": "Uno",
+      "year": 2008,
+      "status": 5
     }
   ]
 }
