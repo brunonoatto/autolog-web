@@ -1,5 +1,5 @@
+import LinkButton from '@shared/design-system/link-button';
 import GoBackButton from '../go-back-button';
-import LinkButton from '../link-button';
 
 const NotFoundRoute = () => {
   return (

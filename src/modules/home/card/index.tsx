@@ -1,4 +1,4 @@
-import LinkButton from '@shared/components/link-button';
+import LinkButton from '@shared/design-system/link-button';
 
 import styles from './styles.module.css';
 import React from 'react';

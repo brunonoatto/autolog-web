@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from 'react';
+import { type PropsWithChildren } from 'react';
 
 import Portal from '../portal';
 import IconButton from '../icon-button';

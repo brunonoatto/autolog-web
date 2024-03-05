@@ -3,7 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import { yup, yupValidators } from '@shared/form-validations';
 import { DashboardItem } from '@core/models/autolog';
-import Modal from '@shared/components/modal';
+import Modal from '@shared/design-system/modal';
 import FormCard from '@core/layout/form/form-card';
 import InputForm from '@shared/components/form/input';
 import InputNumberForm from '@shared/components/form/inputNumber';

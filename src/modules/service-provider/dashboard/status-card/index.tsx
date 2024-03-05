@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 import { StatusCarEnum } from '@shared/types/statusCar';
-import Icon from '@shared/components/Icon';
+import Icon from '@shared/design-system/Icon';
 import IdentificationCar from './identification-car';
 import styles from './styles.module.css';
 import { DashboardItem } from '@core/models/autolog';

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { useLocation } from 'react-router-dom';
 
-import IconButton from '@shared/components/icon-button';
+import IconButton from '@shared/design-system/icon-button';
 import MenuItem from './menu-item';
 import type { TMenu } from './types';
 import styles from './styles.module.css';

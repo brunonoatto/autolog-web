@@ -1,6 +1,6 @@
 import { useLoadingStore } from '@core/store/hooks';
-import Icon from '@shared/components/Icon';
-import Portal from '@shared/components/portal';
+import Icon from '@shared/design-system/Icon';
+import Portal from '@shared/design-system/portal';
 
 const BigSpinner = () => {
   const isLoading = useLoadingStore((props) => props.isLoading);

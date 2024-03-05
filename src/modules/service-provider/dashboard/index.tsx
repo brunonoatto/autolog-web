@@ -5,7 +5,7 @@ import StatusCardSkeleton from './status-card-skeleton';
 import { useState } from 'react';
 import { DashboardItem } from '@core/models/autolog';
 import CarModal from './car-modal';
-import LinkButton from '@shared/components/link-button';
+import LinkButton from '@shared/design-system/link-button';
 
 const Dashboard = () => {
   const [selectedCar, setSelectedCar] = useState<DashboardItem>();

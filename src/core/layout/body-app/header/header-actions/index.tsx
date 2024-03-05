@@ -1,6 +1,6 @@
 import { ROUTES_PATH } from '@core/router/consts';
 import { useAuthStore } from '@core/store/hooks';
-import MenuContent from '@shared/components/menu-content';
+import MenuContent from '@shared/design-system/menu-content';
 
 const HeaderActions = () => {
   const username = useAuthStore((props) => props.username);

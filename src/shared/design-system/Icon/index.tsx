@@ -1,5 +1,5 @@
-import * as icons from '@assets/icons';
-import { TIcons } from '@assets/icons/types';
+import * as icons from '@shared/design-system/assets/icons';
+import { TIcons } from '@shared/design-system/assets/icons/types';
 
 const sizeNumber = {
   small: 24,
