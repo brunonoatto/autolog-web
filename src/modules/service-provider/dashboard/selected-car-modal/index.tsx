@@ -1,13 +1,15 @@
+import { useMemo, useState } from 'react';
+
+import { useSearchParams } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { yup, yupValidators } from '@shared/form-validations';
-import { DashboardItem } from '@core/models/autolog';
 import Modal from '@shared/design-system/modal';
 import FormCard from '@core/layout/form/form-card';
 import InputForm from '@shared/components/form/input';
 import InputNumberForm from '@shared/components/form/inputNumber';
-import { useState } from 'react';
+import { useListDashboard } from '@core/service/autolog';
 
 const schema = yup
   .object({
@@ -19,71 +21,17 @@ const schema = yup
 
 type TBudgetItemFormType = yup.InferType<typeof schema>;
 
-type TCarModalProps = { car: DashboardItem; onClose: () => void };
-const CarModal = ({ car, onClose }: TCarModalProps) => {
-  const { license, brand, model, year } = car;
+const CarModal = () => {
+  const [searchParams] = useSearchParams();
+  const licenseParam = searchParams.get('license');
+
+  const { data: cars = [] } = useListDashboard(false);
+
+  const { license, brand, model, year } = useMemo(() => {
+    return cars.find((car) => car.license === licenseParam) || {};
+  }, [cars, licenseParam]);
 
   const [items, setItems] = useState<TBudgetItemFormType[]>([
-    {
-      description: 'cs dsf a',
-      price: 1,
-      quantity: 1,
-    },
-    {
-      description: 'cs dsf a',
-      price: 1,
-      quantity: 1,
-    },
-    {
-      description: 'cs dsf a',
-      price: 1,
-      quantity: 1,
-    },
-    {
-      description: 'cs dsf a',
-      price: 1,
-      quantity: 1,
-    },
-    {
-      description: 'cs dsf a',
-      price: 1,
-      quantity: 1,
-    },
-    {
-      description: 'cs dsf a',
-      price: 1,
-      quantity: 1,
-    },
-    {
-      description: 'cs dsf a',
-      price: 1,
-      quantity: 1,
-    },
-    {
-      description: 'cs dsf a',
-      price: 1,
-      quantity: 1,
-    },
-    {
-      description: 'cs dsf a',
-      price: 1,
-      quantity: 1,
-    },
-    {
-      description: 'cs dsf a',
-      price: 1,
-      quantity: 1,
-    },
-    {
-      description: 'cs dsf a',
-      price: 1,
-      quantity: 1,
-    },
-    {
-      description: 'cs dsf a',
-      price: 1,
-      quantity: 1,
-    },
     {
       description: 'cs dsf a',
       price: 1,
@@ -102,6 +50,12 @@ const CarModal = ({ car, onClose }: TCarModalProps) => {
   });
   const { register, reset } = form;
 
+  const onClose = () => {
+    const newSearchParam = new URLSearchParams();
+    newSearchParam.delete('license');
+    setSearchParams(newSearchParam);
+  };
+
   const onSubmit: SubmitHandler<TBudgetItemFormType> = async (formValues) => {
     setItems((prev) => [...prev, formValues]);
     reset();
@@ -109,7 +63,7 @@ const CarModal = ({ car, onClose }: TCarModalProps) => {
 
   return (
     <Modal
-      open={true}
+      open={!!license}
       title={`Placa ${license}`}
       onClose={onClose}
       cancelText="Fechar"

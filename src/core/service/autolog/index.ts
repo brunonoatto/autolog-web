@@ -4,8 +4,9 @@ import { ServiceApi } from '@core/api';
 import { DashboardItem } from '@core/models/autolog';
 import type { TDashboardItemToAdd } from '@core/api/autolog/types';
 
-export const useListDashboard = () => {
+export const useListDashboard = (enabled = true) => {
   return useQuery({
+    enabled,
     queryKey: ['useListDashboard'],
     queryFn: async () => {
       const data = await ServiceApi.Autolog.listDashboard();

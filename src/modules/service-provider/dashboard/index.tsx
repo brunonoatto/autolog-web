@@ -1,18 +1,21 @@
+import { useSearchParams } from 'react-router-dom';
+
 import { useListDashboard } from '@core/service/autolog';
-import StatusCard from './status-card';
-import styles from './styles.module.css';
-import StatusCardSkeleton from './status-card-skeleton';
-import { useState } from 'react';
 import { DashboardItem } from '@core/models/autolog';
-import CarModal from './car-modal';
 import LinkButton from '@shared/design-system/link-button';
+import SelectedCarModal from './selected-car-modal';
+import StatusCard from './status-card';
+import StatusCardSkeleton from './status-card-skeleton';
+import styles from './styles.module.css';
 
 const Dashboard = () => {
-  const [selectedCar, setSelectedCar] = useState<DashboardItem>();
+  const [_, setSearchParams] = useSearchParams();
   const { data: cars, isLoading, isRefetching } = useListDashboard();
 
   const handleSelectCar = (car: DashboardItem) => {
-    setSelectedCar(car);
+    const newSearchParam = new URLSearchParams();
+    newSearchParam.set('license', car.license);
+    setSearchParams(newSearchParam);
   };
 
   return (
@@ -35,7 +38,7 @@ const Dashboard = () => {
             <StatusCard key={car.license} {...car} onClick={() => handleSelectCar(car)} />
           ))}
 
-          {selectedCar && <CarModal car={selectedCar} onClose={() => setSelectedCar(undefined)} />}
+          <SelectedCarModal />
         </>
       )}
     </div>

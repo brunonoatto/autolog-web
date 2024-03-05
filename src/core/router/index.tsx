@@ -43,7 +43,7 @@ const router = createBrowserRouter([
         ),
         children: [
           {
-            path: ROUTES_PATH.dashboard,
+            path: `${ROUTES_PATH.dashboard}/:license?`,
             Component: Dashboard,
           },
           {
