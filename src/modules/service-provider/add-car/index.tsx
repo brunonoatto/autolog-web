@@ -29,7 +29,7 @@ const schema = yup
 
 type TRegisterProvicerFormType = yup.InferType<typeof schema>;
 
-const AddCar = () => {
+export default function AddCar() {
   const navigate = useNavigate();
   const { mutate: addDashboardItem } = useAddDashboardItem();
   const form = useForm({
@@ -76,6 +76,4 @@ const AddCar = () => {
       </div>
     </FormCard>
   );
-};
-
-export default AddCar;
+}

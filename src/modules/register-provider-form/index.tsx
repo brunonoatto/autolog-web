@@ -24,7 +24,7 @@ const schema = yup
 
 type TRegisterProvicerFormType = yup.InferType<typeof schema>;
 
-const RegisterProvider = () => {
+export default function RegisterProviderForm() {
   const form = useForm({
     mode: 'onChange',
     resolver: yupResolver(schema),
@@ -56,6 +56,4 @@ const RegisterProvider = () => {
       </div>
     </FormCard>
   );
-};
-
-export default RegisterProvider;
+}

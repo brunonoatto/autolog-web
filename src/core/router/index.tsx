@@ -1,17 +1,20 @@
+import { lazy } from 'react';
+
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
-import NotFoundRoute from '@shared/components/not-found-route';
-import Home from '@home/index';
-import ServiceProvider from '@service-provider/index';
-import Dashboard from '@service-provider/dashboard';
-import ConsultLicense from '@consult-license/index';
-import AddCar from '@service-provider/add-car';
-import Budget from '@service-provider/budget';
-import RegisterProvider from 'src/modules/register-provider';
-import BodyApp from '@core/layout/body-app';
-import ProtectedRoute from './protected-route';
-import Logout from '@core/auth/logout';
 import { ROUTES_PATH } from './consts';
+
+const NotFoundRoute = lazy(() => import('@shared/components/not-found-route'));
+const Home = lazy(() => import('@modules/home'));
+const ServiceProvider = lazy(() => import('@modules/service-provider'));
+const Dashboard = lazy(() => import('@modules/service-provider/dashboard'));
+const ConsultLicense = lazy(() => import('@modules/consult-license/index'));
+const AddCar = lazy(() => import('@modules/service-provider/add-car'));
+const Budget = lazy(() => import('@modules/service-provider/budget'));
+const RegisterProviderForm = lazy(() => import('@modules/register-provider-form'));
+const BodyApp = lazy(() => import('@core/layout/body-app'));
+const ProtectedRoute = lazy(() => import('./protected-route'));
+const Logout = lazy(() => import('@core/auth/logout'));
 
 const router = createBrowserRouter([
   {
@@ -32,7 +35,7 @@ const router = createBrowserRouter([
       },
       {
         path: ROUTES_PATH.cadastroPrestadorServico,
-        Component: RegisterProvider,
+        Component: RegisterProviderForm,
       },
       {
         path: ROUTES_PATH.prestadorServico,

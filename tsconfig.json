@@ -19,9 +19,7 @@
     "paths": {
       "@core/*": ["src/core/*"],
       "@shared/*": ["src/shared/*"],
-      "@home/*": ["src/modules/home/*"],
-      "@consult-license/*": ["src/modules/consult-license/*"],
-      "@service-provider/*": ["src/modules/service-provider/*"]
+      "@modules/*": ["src/modules/*"]
     }
   },
   "include": ["src"],

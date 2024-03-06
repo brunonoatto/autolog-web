@@ -8,7 +8,7 @@ import StatusCard from './status-card';
 import StatusCardSkeleton from './status-card-skeleton';
 import styles from './styles.module.css';
 
-const Dashboard = () => {
+export default function Dashboard() {
   const [_, setSearchParams] = useSearchParams();
   const { data: cars, isLoading, isRefetching } = useListDashboard();
 
@@ -43,6 +43,4 @@ const Dashboard = () => {
       )}
     </div>
   );
-};
-
-export default Dashboard;
+}

@@ -1,6 +1,6 @@
 import Card from './card';
 
-const Home = () => {
+export default function Home() {
   return (
     <div className="flex flex-col items-center p-2 md:p-10">
       <div className="font-bold mb-6">Selecione o Produto desejado</div>
@@ -34,6 +34,4 @@ const Home = () => {
       </div>
     </div>
   );
-};
-
-export default Home;
+}

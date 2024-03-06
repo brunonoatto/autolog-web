@@ -1,10 +1,10 @@
-import type { FunctionComponent, PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 
 import { Navigate } from 'react-router-dom';
 
 import { useAuthStore } from '@core/store/hooks';
 
-export const ProtectedRoute: FunctionComponent<PropsWithChildren> = ({ children }) => {
+export default function ProtectedRoute({ children }: PropsWithChildren) {
   const username = useAuthStore((props) => props.username);
 
   if (!username) {
@@ -12,6 +12,4 @@ export const ProtectedRoute: FunctionComponent<PropsWithChildren> = ({ children 
   }
 
   return children;
-};
-
-export default ProtectedRoute;
+}

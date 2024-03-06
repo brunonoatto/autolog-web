@@ -4,7 +4,7 @@ import Main from './main';
 import Footer from './footer';
 import styles from './styles.module.css';
 
-const BodyApp = () => {
+export default function BodyApp() {
   return (
     <>
       <BigSpinner />
@@ -15,5 +15,4 @@ const BodyApp = () => {
       </div>
     </>
   );
-};
-export default BodyApp;
+}

@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { ROUTES_PATH } from '@core/router/consts';
 import Menu from '@core/layout/menu';
 
-const ServiceProvider = () => {
+export default function ServiceProvider() {
   return (
     <div className="md:h-full md:grid md:grid-cols-[15rem_auto]">
       <Menu
@@ -27,6 +27,4 @@ const ServiceProvider = () => {
       </div>
     </div>
   );
-};
-
-export default ServiceProvider;
+}

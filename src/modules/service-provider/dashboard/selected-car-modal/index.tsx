@@ -10,6 +10,7 @@ import FormCard from '@core/layout/form/form-card';
 import InputForm from '@shared/components/form/input';
 import InputNumberForm from '@shared/components/form/inputNumber';
 import { useListDashboard } from '@core/service/autolog';
+import { DashboardItem } from '@core/models/autolog';
 
 const schema = yup
   .object({
@@ -22,13 +23,13 @@ const schema = yup
 type TBudgetItemFormType = yup.InferType<typeof schema>;
 
 const CarModal = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const licenseParam = searchParams.get('license');
 
   const { data: cars = [] } = useListDashboard(false);
 
   const { license, brand, model, year } = useMemo(() => {
-    return cars.find((car) => car.license === licenseParam) || {};
+    return cars.find((car) => car.license === licenseParam) || ({} as DashboardItem);
   }, [cars, licenseParam]);
 
   const [items, setItems] = useState<TBudgetItemFormType[]>([
