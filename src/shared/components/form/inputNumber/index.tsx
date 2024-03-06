@@ -6,7 +6,7 @@ import type { TInputProps } from '@shared/design-system/input';
 import InputNumber from '@shared/design-system/inputNumber';
 
 const InputNumberForm = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
-  const { name } = props?.inputProps || {};
+  const { name } = props || {};
   const formState = useFormState({ name });
 
   if (!name) return null;

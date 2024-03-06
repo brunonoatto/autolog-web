@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { useAddDashboardItem } from '@core/service/autolog';
-import FormCard from '@core/layout/form/form-card';
+import FormCard from '@layout/form/form-card';
 import { yup, yupValidators } from '@shared/form-validations/index';
 import InputForm from '@shared/components/form/input';
 import BrandSelect from '@shared/components/selects/brand-select';
@@ -51,26 +51,24 @@ export default function AddCar() {
         <InputForm
           label="Nome Cliente"
           labelProps={{ className: 'col-span-full' }}
-          inputProps={register('name')}
+          {...register('name')}
         />
-        <InputForm label="CPF/CNPJ" inputProps={register('cpf_cnpj')} />
-        <InputForm label="Telefone" inputProps={register('phone')} />
+        <InputForm label="CPF/CNPJ" {...register('cpf_cnpj')} />
+        <InputForm label="Telefone" {...register('phone')} />
         <InputForm
           label="Placa"
           labelProps={{ className: 'col-span-full' }}
-          inputProps={{
-            className: 'w-36 h-8 text-xl font-bold uppercase',
-            ...register('license'),
-            maxLength: 10,
-          }}
+          className="w-36 h-8 text-xl font-bold uppercase"
+          maxLength={10}
+          {...register('license')}
         />
         <BrandSelect label="Montadora" {...register('brand')} />
         <ModelSelect label="Modelo" brandId={brandId} {...register('model')} />
-        <InputNumberForm label="Ano" inputProps={{ ...register('year') }} />
+        <InputNumberForm label="Ano" {...{ ...register('year') }} />
         <CarStatusSelect label="Status" {...register('status')} />
         <Textarea
           labelProps={{ className: 'col-span-full' }}
-          inputProps={{ className: 'h-20', ...register('observation') }}
+          {...{ className: 'h-20', ...register('observation') }}
           label="Observação"
         />
       </div>

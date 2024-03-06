@@ -2,15 +2,14 @@ import { forwardRef } from 'react';
 
 import styles from '../styles.module.css';
 
-export type TInputProps = {
+export type TInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   labelProps?: React.LabelHTMLAttributes<HTMLLabelElement>;
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
   label: string;
   error?: string;
 };
 
 const Input = forwardRef<HTMLInputElement, TInputProps>(
-  ({ label, error, labelProps = {}, inputProps = {} }, ref) => {
+  ({ label, error, labelProps = {}, ...inputProps }, ref) => {
     const { className: inputClass = '', ...otherInputProps } = inputProps;
     const { className: labelClass = '', ...otherLabelProps } = labelProps;
 

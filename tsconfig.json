@@ -18,8 +18,9 @@
     "baseUrl": ".",
     "paths": {
       "@core/*": ["src/core/*"],
-      "@shared/*": ["src/shared/*"],
-      "@modules/*": ["src/modules/*"]
+      "@layout/*": ["src/layout/*"],
+      "@modules/*": ["src/modules/*"],
+      "@shared/*": ["src/shared/*"]
     }
   },
   "include": ["src"],

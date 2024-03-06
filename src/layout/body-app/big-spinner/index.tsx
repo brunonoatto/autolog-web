@@ -2,7 +2,7 @@ import { useLoadingStore } from '@core/store/hooks';
 import Icon from '@shared/design-system/Icon';
 import Portal from '@shared/design-system/portal';
 
-const BigSpinner = () => {
+export default function BigSpinner() {
   const isLoading = useLoadingStore((props) => props.isLoading);
 
   return (
@@ -13,6 +13,4 @@ const BigSpinner = () => {
       </div>
     </Portal>
   );
-};
-
-export default BigSpinner;
+}

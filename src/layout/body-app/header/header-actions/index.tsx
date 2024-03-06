@@ -3,7 +3,7 @@ import { useAuthStore } from '@core/store/hooks';
 import MenuContent from '@shared/design-system/menu-content';
 
 const HeaderActions = () => {
-  const username = useAuthStore((props) => props.username);
+  const user = useAuthStore((props) => props.user);
 
   return (
     <div>
@@ -14,7 +14,7 @@ const HeaderActions = () => {
           { route: ROUTES_PATH.logout, title: 'Sair', dividerTop: true },
         ]}
       />
-      <div className="text-xs">Usuário: {username}</div>
+      <div className="text-xs">Usuário: {user?.username}</div>
     </div>
   );
 };

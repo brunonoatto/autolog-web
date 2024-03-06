@@ -1,9 +1,11 @@
-import { lazy } from 'react';
+import { Suspense, lazy } from 'react';
 
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { ROUTES_PATH } from './consts';
+import BigSpinner from '@layout/body-app/big-spinner';
 
+const BodyApp = lazy(() => import('@layout/body-app'));
 const NotFoundRoute = lazy(() => import('@shared/components/not-found-route'));
 const Home = lazy(() => import('@modules/home'));
 const ServiceProvider = lazy(() => import('@modules/service-provider'));
@@ -12,13 +14,26 @@ const ConsultLicense = lazy(() => import('@modules/consult-license/index'));
 const AddCar = lazy(() => import('@modules/service-provider/add-car'));
 const Budget = lazy(() => import('@modules/service-provider/budget'));
 const RegisterProviderForm = lazy(() => import('@modules/register-provider-form'));
-const BodyApp = lazy(() => import('@core/layout/body-app'));
 const ProtectedRoute = lazy(() => import('./protected-route'));
-const Logout = lazy(() => import('@core/auth/logout'));
+const Login = lazy(() => import('@modules/auth/login'));
+const Logout = lazy(() => import('@modules/auth/logout'));
 
 const router = createBrowserRouter([
   {
-    Component: BodyApp,
+    id: 'login',
+    path: ROUTES_PATH.login,
+    element: (
+      <Suspense fallback={<BigSpinner />}>
+        <Login />
+      </Suspense>
+    ),
+  },
+  {
+    element: (
+      <Suspense fallback={<BigSpinner />}>
+        <BodyApp />
+      </Suspense>
+    ),
     children: [
       {
         id: 'root',

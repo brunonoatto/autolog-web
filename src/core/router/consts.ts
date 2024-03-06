@@ -1,6 +1,7 @@
 export const ROUTES_PATH = {
   root: '/',
   all: '*',
+  login: '/login',
   logout: '/logout',
   cadastroPrestadorServico: '/cadastro',
   prestadorServico: '/prestador-servico',

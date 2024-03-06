@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { yup, yupValidators } from '@shared/form-validations/index';
 import InputNumberForm from '@shared/components/form/inputNumber';
 import InputForm from '@shared/components/form/input';
-import FormCard from '@core/layout/form/form-card';
+import FormCard from '@layout/form/form-card';
 
 const schema = yup
   .object({
@@ -36,23 +36,20 @@ export default function RegisterProviderForm() {
   return (
     <FormCard form={form} onSubmit={onSubmit} title="Dados para Cadastro">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <InputForm label="Nome" inputProps={register('name')} />
-        <InputForm label="Telefone" inputProps={register('phone')} />
-        <InputForm label="CNPJ" inputProps={register('cnpj')} />
-        <InputForm label="E-mail" inputProps={register('email')} />
-        <InputForm label="Endereço" inputProps={register('address')} />
-        <InputNumberForm label="Número" inputProps={register('number')} />
-        <InputForm label="Complemento" inputProps={register('complement')} />
+        <InputForm label="Nome" {...register('name')} />
+        <InputForm label="Telefone" {...register('phone')} />
+        <InputForm label="CNPJ" {...register('cnpj')} />
+        <InputForm label="E-mail" {...register('email')} />
+        <InputForm label="Endereço" {...register('address')} />
+        <InputNumberForm label="Número" {...register('number')} />
+        <InputForm label="Complemento" {...register('complement')} />
       </div>
 
       <hr />
       <h3>Defina uma senha de acesso</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <InputForm label="Senha" inputProps={{ ...register('password'), type: 'password' }} />
-        <InputForm
-          label="Confirmação Senha"
-          inputProps={{ ...register('passwordConfirm'), type: 'password' }}
-        />
+        <InputForm label="Senha" type="password" {...register('password')} />
+        <InputForm label="Confirmação Senha" type="password" {...register('passwordConfirm')} />
       </div>
     </FormCard>
   );

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTES_PATH } from '@core/router/consts';
 import { useAuthStore, useLoadingStore } from '@core/store/hooks';
 
-const Logout = () => {
+export default function Logout() {
   const navigate = useNavigate();
 
   const loading = useLoadingStore((props) => props.loading);
@@ -24,6 +24,4 @@ const Logout = () => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return <div className="mt-10 text-center">Saindo do sistema...</div>;
-};
-
-export default Logout;
+}

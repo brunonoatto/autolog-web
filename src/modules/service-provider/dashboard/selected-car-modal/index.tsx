@@ -6,7 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import { yup, yupValidators } from '@shared/form-validations';
 import Modal from '@shared/design-system/modal';
-import FormCard from '@core/layout/form/form-card';
+import FormCard from '@layout/form/form-card';
 import InputForm from '@shared/components/form/input';
 import InputNumberForm from '@shared/components/form/inputNumber';
 import { useListDashboard } from '@core/service/autolog';
@@ -85,11 +85,11 @@ const CarModal = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <InputForm
             label="Descrição"
-            inputProps={register('description')}
             labelProps={{ className: 'col-span-full' }}
+            {...register('description')}
           />
-          <InputNumberForm label="Quantidade" inputProps={register('quantity')} />
-          <InputNumberForm label="Preço Unitário" inputProps={register('price')} />
+          <InputNumberForm label="Quantidade" {...register('quantity')} />
+          <InputNumberForm label="Preço Unitário" {...register('price')} />
         </div>
       </FormCard>
 

@@ -30,5 +30,5 @@
 @tailwind utilities;
 
 #root {
-  @apply h-screen;
+  @apply h-screen bg-neutral-800 text-neutral-100 antialiased;
 }

@@ -4,8 +4,8 @@ import type { TInputProps } from '../input';
 import styles from '../styles.module.css';
 
 const InputNumber = forwardRef<HTMLInputElement, TInputProps>(
-  ({ label, error, labelProps = {}, inputProps = {} }, ref) => {
-    const { className: inputClass = '', ...otherInputProps } = inputProps;
+  ({ label, error, labelProps = {}, ...inputProps }, ref) => {
+    const { className: inputClass = '', ...otherInputProps } = inputProps || {};
     const { className: labelClass = '', ...otherLabelProps } = labelProps;
 
     return (

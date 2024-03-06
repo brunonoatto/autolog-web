@@ -1,28 +1,17 @@
-import { useNavigate } from 'react-router-dom';
-
 import { ROUTES_PATH } from '@core/router/consts';
 import { useAuthStore } from '@core/store/hooks';
-import Button from '@shared/design-system/button';
+import LinkButton from '@shared/design-system/link-button';
 import HomeLink from './home-link';
 import HeaderActions from './header-actions';
 import styles from './styles.module.css';
 
 const Header = () => {
-  const navigate = useNavigate();
-
   const isAuthenticated = useAuthStore((props) => props.isAuthenticated);
-  const signin = useAuthStore((props) => props.signin);
-
-  const handleLoginClick = async () => {
-    await signin('brunonoatto');
-    navigate(ROUTES_PATH.dashboard);
-  };
 
   return (
     <header className={styles.content}>
       <HomeLink isAuthenticated={isAuthenticated} />
-
-      {isAuthenticated ? <HeaderActions /> : <Button onClick={handleLoginClick}>Login</Button>}
+      {isAuthenticated ? <HeaderActions /> : <LinkButton to={ROUTES_PATH.login}>Login</LinkButton>}
     </header>
   );
 };

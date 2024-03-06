@@ -5,9 +5,9 @@ import { Navigate } from 'react-router-dom';
 import { useAuthStore } from '@core/store/hooks';
 
 export default function ProtectedRoute({ children }: PropsWithChildren) {
-  const username = useAuthStore((props) => props.username);
+  const user = useAuthStore((props) => props.user);
 
-  if (!username) {
+  if (!user?.username) {
     return <Navigate to="/" />;
   }
 

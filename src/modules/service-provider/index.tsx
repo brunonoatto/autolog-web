@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 
 import { ROUTES_PATH } from '@core/router/consts';
-import Menu from '@core/layout/menu';
+import Menu from '@layout/menu';
 
 export default function ServiceProvider() {
   return (

@@ -1,6 +1,8 @@
-import Router from '@core/router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+import Router from '@core/router';
+import BigSpinner from '@layout/body-app/big-spinner';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -14,7 +16,8 @@ const queryClient = new QueryClient({
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <Router spinner={<>Big spinner</>} />
+      <BigSpinner />
+      <Router spinner={<BigSpinner />} />
       <ReactQueryDevtools buttonPosition="bottom-left" />
     </QueryClientProvider>
   );
