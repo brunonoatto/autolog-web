@@ -23,14 +23,14 @@ const router = createBrowserRouter([
     id: 'login',
     path: ROUTES_PATH.login,
     element: (
-      <Suspense fallback={<BigSpinner />}>
+      <Suspense fallback={<BigSpinner open={true} />}>
         <Login />
       </Suspense>
     ),
   },
   {
     element: (
-      <Suspense fallback={<BigSpinner />}>
+      <Suspense fallback={<BigSpinner open={true} />}>
         <BodyApp />
       </Suspense>
     ),
@@ -82,9 +82,8 @@ const router = createBrowserRouter([
   },
 ]);
 
-type TRouterProps = { spinner: React.ReactNode };
-const Router = ({ spinner }: TRouterProps) => {
-  return <RouterProvider router={router} fallbackElement={spinner} />;
+const Router = () => {
+  return <RouterProvider router={router} fallbackElement={<BigSpinner open={true} />} />;
 };
 
 export default Router;

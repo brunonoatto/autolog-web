@@ -17,7 +17,9 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BigSpinner />
-      <Router spinner={<BigSpinner />} />
+
+      <Router />
+
       <ReactQueryDevtools buttonPosition="bottom-left" />
     </QueryClientProvider>
   );
