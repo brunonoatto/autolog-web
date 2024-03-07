@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 
 import styles from '../styles.module.css';
+import { twMerge } from 'tailwind-merge';
 
 export type TTextareaProps = {
   labelProps?: React.LabelHTMLAttributes<HTMLLabelElement>;
@@ -11,15 +12,15 @@ export type TTextareaProps = {
 
 const Textarea = forwardRef<HTMLTextAreaElement, TTextareaProps>(
   ({ label, error, labelProps = {}, inputProps = {} }, ref) => {
-    const { className: inputClass = '', ...otherInputProps } = inputProps;
-    const { className: labelClass = '', ...otherLabelProps } = labelProps;
+    const { className: inputClass, ...otherInputProps } = inputProps;
+    const { className: labelClass, ...otherLabelProps } = labelProps;
 
     return (
-      <label className={`${labelClass} ${styles.label}`} {...otherLabelProps}>
+      <label className={twMerge(styles.label, labelClass)} {...otherLabelProps}>
         {label}:{' '}
         <textarea
           ref={ref}
-          className={`${inputClass} leading-4 ${styles.input}`}
+          className={twMerge('leading-4', styles.input, inputClass)}
           {...otherInputProps}
         />
         {error && <p className={styles.error}>{error}</p>}

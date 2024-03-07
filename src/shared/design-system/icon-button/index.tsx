@@ -1,3 +1,4 @@
+import { twMerge } from 'tailwind-merge';
 import Icon, { type TIconProps } from '../Icon';
 
 type TIconButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
@@ -5,11 +6,15 @@ type TIconButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
   iconProps?: Omit<TIconProps, 'name'>;
 };
 
-const IconButton = ({ icon, className = '', iconProps = {}, ...otherProps }: TIconButtonProps) => {
-  const { className: classNameIcon = '', ...otherIconProps } = iconProps;
+const IconButton = ({ icon, className, iconProps = {}, ...otherProps }: TIconButtonProps) => {
+  const { className: classNameIcon, ...otherIconProps } = iconProps;
   return (
-    <button className={`rounded  ${className}`} {...otherProps}>
-      <Icon name={icon} className={`${classNameIcon} hover:fill-teal-500`} {...otherIconProps} />
+    <button className={twMerge('rounded', className)} {...otherProps}>
+      <Icon
+        name={icon}
+        className={twMerge('hover:fill-teal-500', classNameIcon)}
+        {...otherIconProps}
+      />
     </button>
   );
 };

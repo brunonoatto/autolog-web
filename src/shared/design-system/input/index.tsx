@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 
 import styles from '../styles.module.css';
+import { twMerge } from 'tailwind-merge';
 
 export type TInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   labelProps?: React.LabelHTMLAttributes<HTMLLabelElement>;
@@ -14,9 +15,9 @@ const Input = forwardRef<HTMLInputElement, TInputProps>(
     const { className: labelClass = '', ...otherLabelProps } = labelProps;
 
     return (
-      <label className={`${labelClass} ${styles.label}`} {...otherLabelProps}>
+      <label className={twMerge(styles.label, labelClass)} {...otherLabelProps}>
         {label}:{' '}
-        <input ref={ref} className={`${inputClass} ${styles.input}`} {...otherInputProps} />
+        <input ref={ref} className={twMerge(styles.input, inputClass)} {...otherInputProps} />
         {error && <p className={styles.error}>{error}</p>}
       </label>
     );
