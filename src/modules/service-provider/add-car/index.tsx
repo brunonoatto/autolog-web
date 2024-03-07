@@ -46,7 +46,7 @@ export default function AddCar() {
   };
 
   return (
-    <FormCard form={form} onSubmit={onSubmit} title="Adicionar veiculo">
+    <FormCard form={form} onSubmit={onSubmit} title="Adicionar veiculo" className="m-2 md:m-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <InputForm
           label="Nome Cliente"

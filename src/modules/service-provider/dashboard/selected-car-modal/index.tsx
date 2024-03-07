@@ -72,64 +72,65 @@ const CarModal = () => {
       cancelText="Fechar"
       onCancelClick={onClose}
     >
-      <h5 className="">
-        {brand} {' - '} {model} {' - '} {year}
-      </h5>
-      <div className="absolute right-[22px] top-[58px]">
-        <StatusBadge {...car} />
-      </div>
-
-      <FormCard
-        form={form}
-        onSubmit={onSubmit}
-        title="Aicionar Item no Orçamento"
-        confirmButtonText="Adicionar"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-          <InputForm
-            label="Descrição"
-            labelProps={{ className: 'col-span-full' }}
-            {...register('description')}
-          />
-          <InputNumberForm label="Quantidade" {...register('quantity')} />
-          <InputNumberForm label="Preço Unitário" {...register('price')} />
+      <div className="space-y-2">
+        <h5 className="">
+          {brand} {' - '} {model} {' - '} {year}
+        </h5>
+        <div className="absolute right-[16px] top-[48px]">
+          <StatusBadge {...car} />
         </div>
-      </FormCard>
 
-      <br />
-      <h2>Orçamento</h2>
-      <table className="w-full">
-        <thead>
-          <th scope="col">Descrição</th>
-          <th scope="col">Qtd.</th>
-          <th scope="col">Preço</th>
-          <th scope="col">Total</th>
-        </thead>
-        <tbody>
-          {items.map(({ description, quantity, price }, index) => {
-            return (
-              <tr key={index}>
-                <td>{description}</td>
-                <td>{quantity}</td>
-                <td>{price}</td>
-                <td>{quantity * price}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-        <tfoot>
-          <tr>
-            <th scope="row" colSpan={3}>
-              Total do Orçamento:
-            </th>
-            <td>
-              {items.reduce((acc, item) => {
-                return acc + item.quantity * item.price;
-              }, 0)}
-            </td>
-          </tr>
-        </tfoot>
-      </table>
+        <FormCard
+          form={form}
+          onSubmit={onSubmit}
+          title="Aicionar Item no Orçamento"
+          confirmButtonText="Adicionar"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+            <InputForm
+              label="Descrição"
+              labelProps={{ className: 'col-span-full' }}
+              {...register('description')}
+            />
+            <InputNumberForm label="Quantidade" {...register('quantity')} />
+            <InputNumberForm label="Preço Unitário" {...register('price')} />
+          </div>
+        </FormCard>
+
+        <h2>Orçamento</h2>
+        <table className="w-full">
+          <thead>
+            <th scope="col">Descrição</th>
+            <th scope="col">Qtd.</th>
+            <th scope="col">Preço</th>
+            <th scope="col">Total</th>
+          </thead>
+          <tbody>
+            {items.map(({ description, quantity, price }, index) => {
+              return (
+                <tr key={index}>
+                  <td>{description}</td>
+                  <td>{quantity}</td>
+                  <td>{price}</td>
+                  <td>{quantity * price}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+          <tfoot>
+            <tr>
+              <th scope="row" colSpan={3}>
+                Total do Orçamento:
+              </th>
+              <td>
+                {items.reduce((acc, item) => {
+                  return acc + item.quantity * item.price;
+                }, 0)}
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     </Modal>
   );
 };

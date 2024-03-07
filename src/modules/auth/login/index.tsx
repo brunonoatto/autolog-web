@@ -36,8 +36,8 @@ export default function Login() {
   };
 
   return (
-    <div className="h-full pt-10">
-      <FormCard form={form} onSubmit={onSubmit} title="Login">
+    <div className="pt-10">
+      <FormCard form={form} onSubmit={onSubmit} title="Login" className="m-4 md:m-auto md:w-1/2">
         <InputForm label="Usuário" {...register('username')} />
         <InputForm label="Senha" type="password" {...register('password')} />
       </FormCard>
