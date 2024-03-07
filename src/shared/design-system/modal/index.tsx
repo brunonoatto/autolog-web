@@ -1,4 +1,4 @@
-import { type PropsWithChildren } from 'react';
+import { ReactNode, type PropsWithChildren } from 'react';
 
 import Portal from '../portal';
 import IconButton from '../icon-button';
@@ -6,7 +6,7 @@ import Button from '@shared/design-system/button';
 
 type TModalProps = PropsWithChildren & {
   open: boolean;
-  title?: string;
+  title?: ReactNode;
   confirmText?: string;
   cancelText?: string;
   onClose: () => void;

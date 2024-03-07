@@ -11,6 +11,7 @@ import InputForm from '@shared/components/form/input';
 import InputNumberForm from '@shared/components/form/inputNumber';
 import { useListDashboard } from '@core/service/autolog';
 import { DashboardItem } from '@core/models/autolog';
+import StatusBadge from '@modules/service-provider/dashboard/status-badge';
 
 const schema = yup
   .object({
@@ -28,9 +29,10 @@ const CarModal = () => {
 
   const { data: cars = [] } = useListDashboard(false);
 
-  const { license, brand, model, year } = useMemo(() => {
+  const car = useMemo(() => {
     return cars.find((car) => car.license === licenseParam) || ({} as DashboardItem);
   }, [cars, licenseParam]);
+  const { license, brand, model, year } = car;
 
   const [items, setItems] = useState<TBudgetItemFormType[]>([
     {
@@ -73,8 +75,9 @@ const CarModal = () => {
       <h5 className="">
         {brand} {' - '} {model} {' - '} {year}
       </h5>
-
-      <br />
+      <div className="absolute right-[22px] top-[58px]">
+        <StatusBadge {...car} />
+      </div>
 
       <FormCard
         form={form}
@@ -82,7 +85,7 @@ const CarModal = () => {
         title="Aicionar Item no Orçamento"
         confirmButtonText="Adicionar"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           <InputForm
             label="Descrição"
             labelProps={{ className: 'col-span-full' }}

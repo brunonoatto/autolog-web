@@ -35,7 +35,7 @@ export default function Dashboard() {
           </LinkButton>
 
           {cars?.map((car) => (
-            <StatusCard key={car.license} {...car} onClick={() => handleSelectCar(car)} />
+            <StatusCard key={car.license} car={car} onClick={() => handleSelectCar(car)} />
           ))}
 
           <SelectedCarModal />
