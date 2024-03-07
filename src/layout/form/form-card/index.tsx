@@ -2,7 +2,6 @@ import { FunctionComponent, PropsWithChildren } from 'react';
 
 import { FormProvider, type SubmitHandler, type UseFormReturn } from 'react-hook-form';
 
-import styles from './styles.module.css';
 import Button from '@shared/design-system/button';
 
 type TFormCard = PropsWithChildren & {
@@ -25,12 +24,12 @@ const FormCard: FunctionComponent<TFormCard> = ({
   return (
     <FormProvider {...form}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={styles.content}>
+        <div className=" m-2 border-2 border-teal-800 rounded-lg p-2 md:p-4 max-w-screen-lg lg:mx-auto">
           <h2>{title}</h2>
 
-          <div className={styles.body}>{children}</div>
+          <div className="my-2">{children}</div>
 
-          <div className={styles.footer}>
+          <div className="text-right ">
             <Button>{confirmButtonText}</Button>
           </div>
         </div>
