@@ -1,28 +1,21 @@
-import { twMerge } from 'tailwind-merge';
+import { tv, VariantProps } from 'tailwind-variants';
 
-type TButtonProps = React.HTMLAttributes<HTMLButtonElement> & { color?: 'primary' | 'secondary' };
+const buttonVariants = tv({
+  base: 'text-white font-medium text-sm rounded-lg px-5 py-2.5 focus:ring-2 focus:ring-teal-300 focus:outline-none',
+  variants: {
+    color: {
+      primary: 'bg-teal-800 hover:bg-teal-700',
+      secondary: 'ring-1 ring-white hover:ring-teal-300 hover:text-teal-300',
+    },
+  },
+  defaultVariants: {
+    color: 'primary',
+  },
+});
+
+type TButtonProps = React.HTMLAttributes<HTMLButtonElement> & VariantProps<typeof buttonVariants>;
 const Button = ({ className, color = 'primary', ...otherProps }: TButtonProps) => {
-  if (color === 'primary') {
-    return (
-      <button
-        className={twMerge(
-          'text-white bg-teal-800 hover:bg-teal-700 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none',
-          className,
-        )}
-        {...otherProps}
-      />
-    );
-  } else {
-    return (
-      <button
-        className={twMerge(
-          'text-white hover:text-teal-300 ring-1 ring-white hover:ring-teal-300 focus:ring-4 focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none',
-          className,
-        )}
-        {...otherProps}
-      />
-    );
-  }
+  return <button className={buttonVariants({ color, className })} {...otherProps} />;
 };
 
 export default Button;
