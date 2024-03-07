@@ -1,6 +1,19 @@
+import { useLayoutEffect } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
+import { useAuthStore } from '@core/store/hooks';
+import { ROUTES_PATH } from '@core/router/consts';
 import Card from './card';
 
 export default function Home() {
+  const navigate = useNavigate();
+  const isAuthenticated = useAuthStore((props) => props.isAuthenticated);
+
+  useLayoutEffect(() => {
+    if (isAuthenticated) navigate(ROUTES_PATH.dashboard);
+  }, [isAuthenticated, navigate]);
+
   return (
     <div className="flex flex-col items-center p-2 md:p-10">
       <div className="font-bold mb-6">Selecione o Produto desejado</div>

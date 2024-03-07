@@ -12,13 +12,23 @@ type TAuthStore = {
   signout: () => Promise<void>;
 };
 
+const getSessionUser = () => {
+  try {
+    return (JSON.parse(localStorage.getItem('auth') || '{}') as TUser) || undefined;
+  } catch {
+    return undefined;
+  }
+};
+
+const user = getSessionUser();
+
 const useAuthStore = createStore<TAuthStore>((setState) => ({
-  isAuthenticated: false,
-  user: undefined,
+  user,
+  isAuthenticated: !!user,
   signin: async (user: TUser) => {
     await new Promise((r) => setTimeout(r, 500)); // fake delay
 
-    localStorage.setItem('auth', user.username);
+    localStorage.setItem('auth', JSON.stringify(user));
     setState({ isAuthenticated: true, user });
   },
   signout: async () => {
