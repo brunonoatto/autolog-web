@@ -20,6 +20,7 @@ const statusIcon: { [key in StatusCarEnum]: ReactNode } = {
   [StatusCarEnum.RunningService]: (
     <Icon name="ProgressWrenchIcon" height={26} width={26} className="fill-amber-400 inline" />
   ),
+  [StatusCarEnum.Finished]: null,
 };
 
 type TStatusBadgeProps = { status: StatusCarEnum; statusDescription: string; className?: string };

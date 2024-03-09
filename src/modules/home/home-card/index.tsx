@@ -10,7 +10,7 @@ type TCardProps = {
   linkRoute: string;
   linkText: string;
 };
-const Card = ({ title, infos, price, linkRoute, linkText }: TCardProps) => {
+const HomeCard = ({ title, infos, price, linkRoute, linkText }: TCardProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>{title}</div>
@@ -31,4 +31,4 @@ const Card = ({ title, infos, price, linkRoute, linkText }: TCardProps) => {
   );
 };
 
-export default Card;
+export default HomeCard;

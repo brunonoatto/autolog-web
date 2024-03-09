@@ -7,11 +7,26 @@ import { getStatusCarDescription } from '@shared/helpers/string';
 
 const CarStatusSelect = forwardRef<HTMLSelectElement, TSelectDefaultProps>((props, ref) => {
   const options: TSelectOption[] = [
-    { value: StatusCarEnum.WaitingBudget, title: getStatusCarDescription(StatusCarEnum.WaitingBudget) },
-    { value: StatusCarEnum.WaitingBudgetApproval, title: getStatusCarDescription(StatusCarEnum.WaitingBudgetApproval) },
-    { value: StatusCarEnum.ApprovedBudget, title: getStatusCarDescription(StatusCarEnum.ApprovedBudget) },
-    { value: StatusCarEnum.BudgetRejected, title: getStatusCarDescription(StatusCarEnum.BudgetRejected) },
-    { value: StatusCarEnum.RunningService, title: getStatusCarDescription(StatusCarEnum.RunningService) },
+    {
+      value: StatusCarEnum.WaitingBudget,
+      title: getStatusCarDescription(StatusCarEnum.WaitingBudget),
+    },
+    {
+      value: StatusCarEnum.WaitingBudgetApproval,
+      title: getStatusCarDescription(StatusCarEnum.WaitingBudgetApproval),
+    },
+    {
+      value: StatusCarEnum.ApprovedBudget,
+      title: getStatusCarDescription(StatusCarEnum.ApprovedBudget),
+    },
+    {
+      value: StatusCarEnum.BudgetRejected,
+      title: getStatusCarDescription(StatusCarEnum.BudgetRejected),
+    },
+    {
+      value: StatusCarEnum.RunningService,
+      title: getStatusCarDescription(StatusCarEnum.RunningService),
+    },
   ];
 
   return <Select options={options} ref={ref} {...props} />;

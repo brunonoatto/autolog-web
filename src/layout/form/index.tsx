@@ -1,11 +1,11 @@
 import { FunctionComponent, PropsWithChildren } from 'react';
 
 import { FormProvider, type SubmitHandler, type UseFormReturn } from 'react-hook-form';
-import { twMerge } from 'tailwind-merge';
 
 import Button from '@shared/design-system/button';
+import Card from '@layout/card';
 
-type TFormCard = PropsWithChildren & {
+type TForm = PropsWithChildren & {
   // TODO: trocar any por um tipo q faça inferência ao outro
   form: UseFormReturn<any>;
   onSubmit: SubmitHandler<any>;
@@ -14,7 +14,7 @@ type TFormCard = PropsWithChildren & {
   className?: string;
 };
 
-const FormCard: FunctionComponent<TFormCard> = ({
+const Form: FunctionComponent<TForm> = ({
   form,
   onSubmit,
   title,
@@ -27,18 +27,16 @@ const FormCard: FunctionComponent<TFormCard> = ({
   return (
     <FormProvider {...form}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={twMerge('border-2 border-teal-800 rounded-lg p-2', className)}>
-          <h2>{title}</h2>
-
+        <Card className={className} title={title}>
           <div className="my-2">{children}</div>
 
           <div className="text-right ">
             <Button>{confirmButtonText}</Button>
           </div>
-        </div>
+        </Card>
       </form>
     </FormProvider>
   );
 };
 
-export default FormCard;
+export default Form;

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useAuthStore } from '@core/store/hooks';
 import { ROUTES_PATH } from '@core/router/consts';
-import Card from './card';
+import HomeCard from './home-card';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ export default function Home() {
     <div className="flex flex-col items-center p-2 md:p-10">
       <div className="font-bold mb-6">Selecione o Produto desejado</div>
       <div className="flex justify-around gap-x-2 md:gap-x-4">
-        <Card
+        <HomeCard
           title="Sistema para mecânicas"
           infos={[
             'Visualização geral dos carros que estão na oficina e facilidade de encontrar informações.',
@@ -33,7 +33,7 @@ export default function Home() {
           linkText="Quero me cadastrar"
         />
 
-        <Card
+        <HomeCard
           title="Consultar Placa"
           infos={['Consulte o histórico de manutenção de um veículo pela placa.']}
           price={

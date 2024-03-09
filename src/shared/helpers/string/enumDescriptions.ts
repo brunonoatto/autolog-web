@@ -7,6 +7,7 @@ export const getStatusCarDescription = (status: StatusCarEnum): string => {
     [StatusCarEnum.ApprovedBudget]: 'Orçamento aprovado',
     [StatusCarEnum.BudgetRejected]: 'Orçamento rejeitado',
     [StatusCarEnum.RunningService]: 'Serviço em execução',
+    [StatusCarEnum.Finished]: 'Serviço Finalizado',
   };
 
   return values[status];

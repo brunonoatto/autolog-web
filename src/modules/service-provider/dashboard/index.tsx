@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 
-import { useListDashboard } from '@core/service/autolog';
-import { DashboardItem } from '@core/models/autolog';
+import { useListDashboard } from '@core/service/dashboard';
+import { DashboardItem } from '@core/models/dashboard';
 import LinkButton from '@shared/design-system/link-button';
 import SelectedCarModal from './selected-car-modal';
 import StatusCard from './status-card';
@@ -9,6 +9,7 @@ import StatusCardSkeleton from './status-card-skeleton';
 import styles from './styles.module.css';
 
 export default function Dashboard() {
+  // TODO: add regra para esse eslint para não dar erro com underscore
   const [_, setSearchParams] = useSearchParams();
   const { data: cars, isLoading, isRefetching } = useListDashboard();
 

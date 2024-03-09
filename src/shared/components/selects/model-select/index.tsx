@@ -7,12 +7,14 @@ import { buildSelectOptions } from '@shared/design-system/select/helpers';
 
 type TModelSelectProps = TSelectDefaultProps & { brandId: string };
 
-const ModelSelect = forwardRef<HTMLSelectElement, TModelSelectProps>(({ brandId, ...props }, ref) => {
-  const { data: listBrands } = useListModelsBrand(brandId);
+const ModelSelect = forwardRef<HTMLSelectElement, TModelSelectProps>(
+  ({ brandId, ...props }, ref) => {
+    const { data: listModels } = useListModelsBrand(brandId);
 
-  const options = buildSelectOptions(listBrands, 'code', 'name');
+    const options = buildSelectOptions(listModels, 'code', 'name');
 
-  return <Select ref={ref} options={options} disabled={!options.length} {...props} />;
-});
+    return <Select ref={ref} options={options} disabled={!options.length} {...props} />;
+  },
+);
 
 export default ModelSelect;

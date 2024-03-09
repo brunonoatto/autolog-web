@@ -2,16 +2,16 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { useAddDashboardItem } from '@core/service/autolog';
-import FormCard from '@layout/form/form-card';
+import Form from '@layout/form';
 import { yup, yupValidators } from '@shared/form-validations/index';
 import InputForm from '@shared/components/form/input';
-import BrandSelect from '@shared/components/selects/brand-select';
-import ModelSelect from '@shared/components/selects/model-select';
 import CarStatusSelect from '@shared/components/selects/card-status-select';
 import { StatusCarEnum } from '@shared/types/statusCar';
 import Textarea from '@shared/design-system/textarea';
-import InputNumberForm from '@shared/components/form/inputNumber';
+import { useAddBudget } from '@core/service/budget';
+import { useLoadingStore } from '@core/store/hooks';
+import CarInfos from '@modules/service-provider/add-car/card-infos';
+import { useListBrands, useListModelsBrand } from '@core/service/fipe';
 
 const schema = yup
   .object({
@@ -27,11 +27,15 @@ const schema = yup
   })
   .required();
 
-type TRegisterProvicerFormType = yup.InferType<typeof schema>;
+export type TRegisterCarFormType = yup.InferType<typeof schema>;
 
 export default function AddCar() {
   const navigate = useNavigate();
-  const { mutate: addDashboardItem } = useAddDashboardItem();
+
+  const loading = useLoadingStore((props) => props.loading);
+
+  const { mutate } = useAddBudget();
+
   const form = useForm({
     defaultValues: { status: StatusCarEnum.WaitingBudget },
     resolver: yupResolver(schema),
@@ -39,14 +43,32 @@ export default function AddCar() {
   const { register, watch } = form;
 
   const brandId = watch('brand');
+  const { data: listBrands } = useListBrands();
+  const { data: listModels } = useListModelsBrand(brandId);
 
-  const onSubmit: SubmitHandler<TRegisterProvicerFormType> = async (formValues) => {
-    await addDashboardItem(formValues);
+  const handleSuccess = () => {
     navigate('/prestador-servico/dashboard');
   };
 
+  const onSubmit: SubmitHandler<TRegisterCarFormType> = async (formValues) => {
+    console.log('onSubmit');
+    loading(true);
+
+    // TODO: transformar essa lógica em hook
+    const brand = listBrands?.find((b) => b.code === formValues.brand)?.name;
+    const model = listModels?.find((b) => b.code === formValues.model)?.name;
+
+    mutate(
+      { ...formValues, brand, model },
+      {
+        onSuccess: handleSuccess,
+        onSettled: () => loading(false),
+      },
+    );
+  };
+
   return (
-    <FormCard form={form} onSubmit={onSubmit} title="Adicionar veiculo" className="m-2 md:m-6">
+    <Form form={form} onSubmit={onSubmit} title="Adicionar veiculo" className="m-2 md:m-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <InputForm
           label="Nome Cliente"
@@ -55,16 +77,9 @@ export default function AddCar() {
         />
         <InputForm label="CPF/CNPJ" {...register('cpf_cnpj')} />
         <InputForm label="Telefone" {...register('phone')} />
-        <InputForm
-          label="Placa"
-          labelProps={{ className: 'col-span-full' }}
-          className="w-36 h-8 text-xl font-bold uppercase"
-          maxLength={10}
-          {...register('license')}
-        />
-        <BrandSelect label="Montadora" {...register('brand')} />
-        <ModelSelect label="Modelo" brandId={brandId} {...register('model')} />
-        <InputNumberForm label="Ano" {...{ ...register('year') }} />
+
+        <CarInfos />
+
         <CarStatusSelect label="Status" {...register('status')} />
         <Textarea
           labelProps={{ className: 'col-span-full' }}
@@ -72,6 +87,6 @@ export default function AddCar() {
           label="Observação"
         />
       </div>
-    </FormCard>
+    </Form>
   );
 }

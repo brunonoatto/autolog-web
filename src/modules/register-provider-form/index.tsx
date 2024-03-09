@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { yup, yupValidators } from '@shared/form-validations/index';
 import InputNumberForm from '@shared/components/form/inputNumber';
 import InputForm from '@shared/components/form/input';
-import FormCard from '@layout/form/form-card';
+import Form from '@layout/form';
 
 const schema = yup
   .object({
@@ -34,7 +34,7 @@ export default function RegisterProviderForm() {
   const onSubmit: SubmitHandler<TRegisterProvicerFormType> = (data) => console.log(data);
 
   return (
-    <FormCard form={form} onSubmit={onSubmit} title="Dados para Cadastro" className="m-2 md:m-6">
+    <Form form={form} onSubmit={onSubmit} title="Dados para Cadastro" className="m-2 md:m-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <InputForm label="Nome" {...register('name')} />
         <InputForm label="Telefone" {...register('phone')} />
@@ -51,6 +51,6 @@ export default function RegisterProviderForm() {
         <InputForm label="Senha" type="password" {...register('password')} />
         <InputForm label="Confirmação Senha" type="password" {...register('passwordConfirm')} />
       </div>
-    </FormCard>
+    </Form>
   );
 }

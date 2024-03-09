@@ -4,14 +4,24 @@ import { useSearchParams } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import { useListDashboard } from '@core/service/dashboard';
 import { yup, yupValidators } from '@shared/form-validations';
 import Modal from '@shared/design-system/modal';
-import FormCard from '@layout/form/form-card';
+import { StatusCarEnum } from '@shared/types/statusCar';
+import Form from '@layout/form';
 import InputForm from '@shared/components/form/input';
 import InputNumberForm from '@shared/components/form/inputNumber';
-import { useListDashboard } from '@core/service/autolog';
-import { DashboardItem } from '@core/models/autolog';
+import { DashboardItem } from '@core/models/dashboard';
 import StatusBadge from '@modules/service-provider/dashboard/status-badge';
+
+const statusAction: { [key in StatusCarEnum]: string } = {
+  [StatusCarEnum.WaitingBudget]: 'Enviar orçamento',
+  [StatusCarEnum.WaitingBudgetApproval]: '',
+  [StatusCarEnum.ApprovedBudget]: 'Iniciar serviço',
+  [StatusCarEnum.BudgetRejected]: 'Reenviar orçamento',
+  [StatusCarEnum.RunningService]: 'Finalizar serviço',
+  [StatusCarEnum.Finished]: '',
+};
 
 const schema = yup
   .object({
@@ -53,36 +63,42 @@ const CarModal = () => {
   });
   const { register, reset } = form;
 
-  const onClose = () => {
+  const handleClose = () => {
     const newSearchParam = new URLSearchParams();
     newSearchParam.delete('license');
     setSearchParams(newSearchParam);
   };
 
-  const onSubmit: SubmitHandler<TBudgetItemFormType> = async (formValues) => {
+  const handleAddBudgetItem: SubmitHandler<TBudgetItemFormType> = async (formValues) => {
     setItems((prev) => [...prev, formValues]);
     reset();
+  };
+
+  const handleConfirm = () => {
+    // Aqui vai fazer a ação de acordo com o status
   };
 
   return (
     <Modal
       open={!!license}
       title={`Placa ${license}`}
-      onClose={onClose}
+      confirmText={statusAction[car.status]}
+      onConfirmClick={handleConfirm}
       cancelText="Fechar"
-      onCancelClick={onClose}
+      onClose={handleClose}
+      onCancelClick={handleClose}
     >
       <div className="space-y-2">
         <h5 className="">
           {brand} {' - '} {model} {' - '} {year}
         </h5>
-        <div className="absolute right-[16px] top-[48px]">
+        <div className="md:absolute right-[16px] top-[48px]">
           <StatusBadge {...car} />
         </div>
 
-        <FormCard
+        <Form
           form={form}
-          onSubmit={onSubmit}
+          onSubmit={handleAddBudgetItem}
           title="Aicionar Item no Orçamento"
           confirmButtonText="Adicionar"
         >
@@ -95,7 +111,7 @@ const CarModal = () => {
             <InputNumberForm label="Quantidade" {...register('quantity')} />
             <InputNumberForm label="Preço Unitário" {...register('price')} />
           </div>
-        </FormCard>
+        </Form>
 
         <h2>Orçamento</h2>
         <table className="w-full">

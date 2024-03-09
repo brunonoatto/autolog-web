@@ -1,4 +1,4 @@
-import type { TDashboardItem } from '@core/api/autolog/types';
+import type { TDashboardItem } from '@core/api/dashboard/types';
 import { StatusCarEnum } from '@shared/types/statusCar';
 import { getStatusCarDescription } from '@shared/helpers/string';
 

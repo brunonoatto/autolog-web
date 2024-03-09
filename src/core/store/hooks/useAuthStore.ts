@@ -1,41 +1,39 @@
+import { TGarage } from '@core/api/garage/types';
 import createStore from '@core/store';
-
-type TUser = {
-  username: string;
-  password: string;
-};
 
 type TAuthStore = {
   isAuthenticated: boolean;
-  user?: TUser;
-  signin: (user: TUser) => Promise<void>;
+  garage: TGarage;
+  signin: (user: TGarage) => Promise<void>;
   signout: () => Promise<void>;
 };
 
-const getSessionUser = () => {
+const getLoggedGarage = () => {
   try {
-    return (JSON.parse(localStorage.getItem('auth') || '{}') as TUser) || undefined;
+    const autoStorage = localStorage.getItem('auth');
+    return autoStorage ? (JSON.parse(autoStorage) as TGarage) : undefined;
   } catch {
     return undefined;
   }
 };
 
-const user = getSessionUser();
+const loggedGarage = getLoggedGarage();
 
 const useAuthStore = createStore<TAuthStore>((setState) => ({
-  user,
-  isAuthenticated: !!user,
-  signin: async (user: TUser) => {
+  garage: loggedGarage || ({} as TGarage),
+  isAuthenticated: !!loggedGarage,
+  signin: async (garage: TGarage) => {
+    console.log;
     await new Promise((r) => setTimeout(r, 500)); // fake delay
 
-    localStorage.setItem('auth', JSON.stringify(user));
-    setState({ isAuthenticated: true, user });
+    localStorage.setItem('auth', JSON.stringify(garage));
+    setState({ isAuthenticated: true, garage });
   },
   signout: async () => {
     await new Promise((r) => setTimeout(r, 500)); // fake delay
 
     localStorage.removeItem('auth');
-    setState({ isAuthenticated: false, user: undefined });
+    setState({ isAuthenticated: false, garage: undefined });
   },
 }));
 
