@@ -1,9 +1,11 @@
-import axios, { AxiosResponse } from 'axios';
-import type { TDashboardItem } from '@core/api/dashboard/types';
+import { AxiosResponse } from 'axios';
 
-const BASE_URL = 'http://localhost:3031/api/dashboard';
+import httpClient from '@core/api/HttpClient';
+import type { TDashboardItem } from './types';
+
+const BASE_URL = '/dashboard';
 
 export const getDashboard = async (garageId: string): Promise<AxiosResponse<TDashboardItem[]>> => {
-  const response = await axios.get<TDashboardItem[]>(`${BASE_URL}/${garageId}`);
+  const response = await httpClient.get<TDashboardItem[]>(`${BASE_URL}/${garageId}`);
   return response;
 };

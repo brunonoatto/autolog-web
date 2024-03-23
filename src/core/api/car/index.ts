@@ -1,10 +1,11 @@
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 
+import httpClient from '@core/api/HttpClient';
 import type { TCar } from '@core/api/car/types';
 
-const BASE_URL = 'http://localhost:3031/api/car';
+const BASE_URL = '/car';
 
 export const get = async (license: string): Promise<AxiosResponse<TCar>> => {
-  const response = await axios.get<TCar>(`${BASE_URL}/${license}`);
+  const response = await httpClient.get<TCar>(`${BASE_URL}/${license}`);
   return response;
 };

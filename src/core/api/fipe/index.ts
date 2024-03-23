@@ -1,14 +1,16 @@
 import axios from 'axios';
 import type { TListBrandModelsResponse, TListCarsBrandsResponse } from './types';
 
-const BASE_URL = 'https://parallelum.com.br/fipe/api/v2';
+const httpFipeClient = axios.create({ baseURL: 'https://parallelum.com.br/fipe/api/v2' });
 
 export const listBrands = async (): Promise<TListCarsBrandsResponse[]> => {
-  const response = await axios.get<TListCarsBrandsResponse[]>(`${BASE_URL}/cars/brands`);
+  const response = await httpFipeClient.get<TListCarsBrandsResponse[]>('/cars/brands');
   return response.data;
 };
 
 export const listModelsBrand = async (brandId: string): Promise<TListBrandModelsResponse[]> => {
-  const response = await axios.get<TListBrandModelsResponse[]>(`${BASE_URL}/cars/brands/${brandId}/models`);
+  const response = await httpFipeClient.get<TListBrandModelsResponse[]>(
+    `/cars/brands/${brandId}/models`,
+  );
   return response.data;
 };
