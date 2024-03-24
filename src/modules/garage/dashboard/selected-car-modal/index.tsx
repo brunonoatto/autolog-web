@@ -42,7 +42,7 @@ const CarModal = () => {
   const car = useMemo(() => {
     return cars.find((car) => car.license === licenseParam) || ({} as DashboardItem);
   }, [cars, licenseParam]);
-  const { license, brand, model, year } = car;
+  const { license, brand, model, year, status } = car;
 
   const [items, setItems] = useState<TBudgetItemFormType[]>([
     {
@@ -82,7 +82,7 @@ const CarModal = () => {
     <Modal
       open={!!license}
       title={`Placa ${license}`}
-      confirmText={statusAction[car.status]}
+      confirmText={statusAction[status]}
       onConfirmClick={handleConfirm}
       cancelText="Fechar"
       onClose={handleClose}
@@ -93,7 +93,7 @@ const CarModal = () => {
           {brand} {' - '} {model} {' - '} {year}
         </h5>
         <div className="md:absolute right-[16px] top-[48px]">
-          <StatusBadge {...car} />
+          <StatusBadge status={status} />
         </div>
 
         <Form

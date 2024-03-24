@@ -29,12 +29,17 @@ export default function GarageRegister() {
     mode: 'onChange',
     resolver: yupResolver(schema),
   });
-  const { register } = form;
+  const { register, handleSubmit } = form;
 
-  const onSubmit: SubmitHandler<TRegisterProvicerFormType> = (data) => console.log(data);
+  const handleValid: SubmitHandler<TRegisterProvicerFormType> = (data) => console.log(data);
 
   return (
-    <Form form={form} onSubmit={onSubmit} title="Dados para Cadastro" className="m-2 md:m-6">
+    <Form
+      form={form}
+      onSubmit={handleSubmit(handleValid)}
+      title="Dados para Cadastro"
+      className="m-2 md:m-6"
+    >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <InputForm label="Nome" {...register('name')} />
         <InputForm label="Telefone" {...register('phone')} />

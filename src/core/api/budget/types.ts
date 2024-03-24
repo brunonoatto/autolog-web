@@ -1,6 +1,5 @@
 export type TAddBudgetParams = {
   license: string;
-  status: number;
   name: string;
   phone: string;
   cpf_cnpj: string;

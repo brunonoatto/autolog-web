@@ -7,7 +7,7 @@ export const ROUTES_PATH = {
   garageHome: '/garage',
   dashboard: '/garage/dashboard',
   addVeiculo: '/garage/add-veiculo',
-  orcamento: '/garage/orcamento',
+  bugget: '/garage/orcamento',
   clientHome: '/cliente',
   consultaPlaca: '/cliente/consulta-placa',
 };

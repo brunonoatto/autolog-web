@@ -9,7 +9,7 @@ type TModalProps = PropsWithChildren & {
   title?: ReactNode;
   confirmText?: string;
   cancelText?: string;
-  onClose: () => void;
+  onClose?: () => void;
   onCancelClick?: () => void;
   onConfirmClick?: () => void;
 };

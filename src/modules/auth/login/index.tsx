@@ -24,7 +24,7 @@ export default function Login() {
     mode: 'onChange',
     resolver: yupResolver(schema),
   });
-  const { register } = form;
+  const { register, handleSubmit } = form;
 
   const onSubmit: SubmitHandler<TLoginType> = async ({ email, password }) => {
     loading(true);
@@ -37,7 +37,12 @@ export default function Login() {
 
   return (
     <div className="pt-10">
-      <Form form={form} onSubmit={onSubmit} title="Login" className="m-4 md:m-auto md:w-1/2">
+      <Form
+        form={form}
+        onSubmit={handleSubmit(onSubmit)}
+        title="Login"
+        className="m-4 md:m-auto md:w-1/2"
+      >
         <InputForm label="Email" {...register('email')} />
         <InputForm label="Senha" type="password" {...register('password')} />
       </Form>

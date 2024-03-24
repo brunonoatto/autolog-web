@@ -1,17 +1,19 @@
+import { useState } from 'react';
+
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import { useLoadingStore } from '@core/store/hooks';
+import { useListBrands, useListModelsBrand } from '@core/service/fipe';
+import { ROUTES_PATH } from '@core/router/consts';
 import Form from '@layout/form';
 import { yup, yupValidators } from '@shared/form-validations/index';
 import InputForm from '@shared/components/form/input';
-import CarStatusSelect from '@shared/components/selects/card-status-select';
-import { StatusCarEnum } from '@shared/types/statusCar';
 import Textarea from '@shared/design-system/textarea';
+import Modal from '@shared/design-system/modal';
 import { useAddBudget } from '@core/service/budget';
-import { useLoadingStore } from '@core/store/hooks';
 import CarInfos from '@modules/garage/add-car/card-infos';
-import { useListBrands, useListModelsBrand } from '@core/service/fipe';
 
 const schema = yup
   .object({
@@ -22,7 +24,6 @@ const schema = yup
     brand: yupValidators.StringValidator().required(),
     model: yupValidators.StringValidator().required(),
     year: yupValidators.NumberValidator().required().integer(),
-    status: yupValidators.NumberValidator().required(),
     observation: yupValidators.StringValidator(),
   })
   .required();
@@ -30,27 +31,29 @@ const schema = yup
 export type TRegisterCarFormType = yup.InferType<typeof schema>;
 
 export default function AddCar() {
+  const [generateOS, setGenerateOS] = useState('');
   const navigate = useNavigate();
-
+  const { mutate } = useAddBudget();
   const loading = useLoadingStore((props) => props.loading);
 
-  const { mutate } = useAddBudget();
-
   const form = useForm({
-    defaultValues: { status: StatusCarEnum.WaitingBudget },
     resolver: yupResolver(schema),
   });
-  const { register, watch } = form;
+  const { register, watch, handleSubmit } = form;
 
   const brandId = watch('brand');
   const { data: listBrands } = useListBrands();
   const { data: listModels } = useListModelsBrand(brandId);
 
-  const handleSuccess = () => {
-    navigate('/garage/dashboard');
+  const handleSuccessConfirm = () => {
+    navigate(`${ROUTES_PATH.bugget}/${generateOS}`);
   };
 
-  const onSubmit: SubmitHandler<TRegisterCarFormType> = async (formValues) => {
+  const handleSuccessCancel = () => {
+    navigate(ROUTES_PATH.dashboard);
+  };
+
+  const handleValid: SubmitHandler<TRegisterCarFormType> = async (formValues) => {
     console.log('onSubmit', { formValues });
     loading(true);
 
@@ -61,33 +64,49 @@ export default function AddCar() {
     mutate(
       { ...formValues, brand, model },
       {
-        onSuccess: handleSuccess,
+        onSuccess: (budget) => setGenerateOS(budget.os),
         onSettled: () => loading(false),
       },
     );
   };
 
   return (
-    <Form form={form} onSubmit={onSubmit} title="Adicionar veiculo" className="m-2 md:m-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <InputForm
-          label="Nome Cliente"
-          labelProps={{ className: 'col-span-full' }}
-          {...register('name')}
-        />
-        <InputForm label="CPF/CNPJ" {...register('cpf_cnpj')} />
-        <InputForm label="Telefone" {...register('phone')} />
+    <>
+      <Form
+        form={form}
+        onSubmit={handleSubmit(handleValid)}
+        title="Adicionar veiculo"
+        className="m-2 md:m-6"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <InputForm
+            label="Nome Cliente"
+            labelProps={{ className: 'col-span-full' }}
+            {...register('name')}
+          />
+          <InputForm label="CPF/CNPJ" {...register('cpf_cnpj')} />
+          <InputForm label="Telefone" {...register('phone')} />
 
-        <CarInfos />
+          <CarInfos />
 
-        <CarStatusSelect label="Status" {...register('status')} />
-        <Textarea
-          labelProps={{ className: 'col-span-full' }}
-          className="h-20"
-          label="Observação"
-          {...register('observation')}
-        />
-      </div>
-    </Form>
+          <Textarea
+            labelProps={{ className: 'col-span-full' }}
+            className="h-20"
+            label="Observação"
+            {...register('observation')}
+          />
+        </div>
+      </Form>
+      <Modal
+        open={!!generateOS}
+        title="Veículo cadastrado com sucesso!"
+        confirmText="Editar orçamento"
+        onConfirmClick={handleSuccessConfirm}
+        cancelText="Ir para Dashboard"
+        onCancelClick={handleSuccessCancel}
+      >
+        <p>Você deseja editar o Orçamento?</p>
+      </Modal>
+    </>
   );
 }

@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 import { StatusCarEnum } from '@shared/types/statusCar';
 import Icon from '@shared/design-system/Icon';
 import { twMerge } from 'tailwind-merge';
+import { getStatusCarDescription } from '@shared/helpers/string';
 
 const statusIcon: { [key in StatusCarEnum]: ReactNode } = {
   [StatusCarEnum.WaitingBudget]: (
@@ -23,8 +24,8 @@ const statusIcon: { [key in StatusCarEnum]: ReactNode } = {
   [StatusCarEnum.Finished]: null,
 };
 
-type TStatusBadgeProps = { status: StatusCarEnum; statusDescription: string; className?: string };
-const StatusBadge = ({ status, statusDescription, className }: TStatusBadgeProps) => {
+type TStatusBadgeProps = { status: StatusCarEnum; className?: string };
+const StatusBadge = ({ status, className }: TStatusBadgeProps) => {
   return (
     <div
       className={twMerge(
@@ -33,7 +34,7 @@ const StatusBadge = ({ status, statusDescription, className }: TStatusBadgeProps
       )}
     >
       {statusIcon[status]}
-      <div className="inline">{statusDescription}</div>
+      <div className="inline">{getStatusCarDescription(status)}</div>
     </div>
   );
 };

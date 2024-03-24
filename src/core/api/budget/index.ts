@@ -9,3 +9,8 @@ export const addBudget = async (data: TAddBudgetParams): Promise<AxiosResponse<T
   const response = await httpClient.post<TBudget>(BASE_URL, data);
   return response;
 };
+
+export const listBudgets = async (license: string | null): Promise<AxiosResponse<TBudget[]>> => {
+  const response = await httpClient.get<TBudget[]>(BASE_URL, { params: { license } });
+  return response;
+};

@@ -72,7 +72,7 @@ const router = createBrowserRouter([
                 Component: AddCar,
               },
               {
-                path: ROUTES_PATH.orcamento,
+                path: `${ROUTES_PATH.bugget}/:os?`,
                 Component: Budget,
               },
             ],
