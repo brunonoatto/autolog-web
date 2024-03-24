@@ -8,13 +8,13 @@ import BigSpinner from '@layout/body-app/big-spinner';
 const BodyApp = lazy(() => import('@layout/body-app'));
 const NotFoundRoute = lazy(() => import('@shared/components/not-found-route'));
 const LandingPage = lazy(() => import('@modules/landing-page'));
-const ClientHome = lazy(() => import('@modules/client-home'));
+const Client = lazy(() => import('@modules/client'));
 const ClientRegister = lazy(() => import('@modules/client-register'));
-const GarageHome = lazy(() => import('@modules/garage-home'));
-const Dashboard = lazy(() => import('@modules/garage-home/dashboard'));
+const Garage = lazy(() => import('@modules/garage'));
+const Dashboard = lazy(() => import('@modules/garage/dashboard'));
 const ConsultLicense = lazy(() => import('@modules/consult-license/index'));
-const AddCar = lazy(() => import('@modules/garage-home/add-car'));
-const Budget = lazy(() => import('@modules/garage-home/budget'));
+const AddCar = lazy(() => import('@modules/garage/add-car'));
+const Budget = lazy(() => import('@modules/garage/budget'));
 const GarageRegister = lazy(() => import('@modules/garage-register'));
 const ProtectedRoute = lazy(() => import('./protected-route'));
 const Login = lazy(() => import('@modules/auth/login'));
@@ -60,7 +60,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: ROUTES_PATH.garageHome,
-            element: <GarageHome />,
+            element: <Garage />,
             children: [
               {
                 index: true,
@@ -90,7 +90,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: ROUTES_PATH.clientHome,
-        element: <ClientHome />,
+        element: <Client />,
         children: [
           {
             path: ROUTES_PATH.consultaPlaca,

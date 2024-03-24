@@ -12,7 +12,7 @@ import Form from '@layout/form';
 import InputForm from '@shared/components/form/input';
 import InputNumberForm from '@shared/components/form/inputNumber';
 import { DashboardItem } from '@core/models/dashboard';
-import StatusBadge from '@modules/garage-home/dashboard/status-badge';
+import StatusBadge from '@modules/garage/dashboard/status-badge';
 
 const statusAction: { [key in StatusCarEnum]: string } = {
   [StatusCarEnum.WaitingBudget]: 'Enviar orçamento',

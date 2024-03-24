@@ -10,7 +10,7 @@ import { StatusCarEnum } from '@shared/types/statusCar';
 import Textarea from '@shared/design-system/textarea';
 import { useAddBudget } from '@core/service/budget';
 import { useLoadingStore } from '@core/store/hooks';
-import CarInfos from '@modules/garage-home/add-car/card-infos';
+import CarInfos from '@modules/garage/add-car/card-infos';
 import { useListBrands, useListModelsBrand } from '@core/service/fipe';
 
 const schema = yup
