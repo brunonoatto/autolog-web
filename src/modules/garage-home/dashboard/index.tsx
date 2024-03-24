@@ -31,7 +31,7 @@ export default function Dashboard() {
         </>
       ) : (
         <>
-          <LinkButton to="/prestador-servico/add-veiculo" className="md:hidden h-20 md:h-32">
+          <LinkButton to="/garage/add-veiculo" className="md:hidden h-20 md:h-32">
             <h3>Adicionar veiculo</h3>
           </LinkButton>
 

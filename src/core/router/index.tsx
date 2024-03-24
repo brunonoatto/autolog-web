@@ -7,78 +7,102 @@ import BigSpinner from '@layout/body-app/big-spinner';
 
 const BodyApp = lazy(() => import('@layout/body-app'));
 const NotFoundRoute = lazy(() => import('@shared/components/not-found-route'));
-const Home = lazy(() => import('@modules/home'));
-const ServiceProvider = lazy(() => import('@modules/service-provider'));
-const Dashboard = lazy(() => import('@modules/service-provider/dashboard'));
+const LandingPage = lazy(() => import('@modules/landing-page'));
+const ClientHome = lazy(() => import('@modules/client-home'));
+const ClientRegister = lazy(() => import('@modules/client-register'));
+const GarageHome = lazy(() => import('@modules/garage-home'));
+const Dashboard = lazy(() => import('@modules/garage-home/dashboard'));
 const ConsultLicense = lazy(() => import('@modules/consult-license/index'));
-const AddCar = lazy(() => import('@modules/service-provider/add-car'));
-const Budget = lazy(() => import('@modules/service-provider/budget'));
-const RegisterProviderForm = lazy(() => import('@modules/register-provider-form'));
+const AddCar = lazy(() => import('@modules/garage-home/add-car'));
+const Budget = lazy(() => import('@modules/garage-home/budget'));
+const GarageRegister = lazy(() => import('@modules/garage-register'));
 const ProtectedRoute = lazy(() => import('./protected-route'));
 const Login = lazy(() => import('@modules/auth/login'));
-const Logout = lazy(() => import('@modules/auth/logout'));
 
 const router = createBrowserRouter([
   {
-    id: 'login',
-    path: ROUTES_PATH.login,
     element: (
       <Suspense fallback={<BigSpinner open={true} />}>
-        <Login />
-      </Suspense>
-    ),
-  },
-  {
-    element: (
-      <Suspense fallback={<BigSpinner open={true} />}>
-        <BodyApp />
+        <ProtectedRoute isPrivate={false} />
       </Suspense>
     ),
     children: [
       {
+        id: 'login',
+        path: ROUTES_PATH.login,
+        element: <Login />,
+      },
+
+      {
         id: 'root',
-        path: ROUTES_PATH.root,
-        Component: Home,
+        path: ROUTES_PATH.landingPage,
+        Component: LandingPage,
       },
       {
-        path: ROUTES_PATH.all,
-        Component: NotFoundRoute,
+        path: ROUTES_PATH.garageRegister,
+        Component: GarageRegister,
       },
       {
-        path: ROUTES_PATH.logout,
-        Component: Logout,
+        path: ROUTES_PATH.clientRegister,
+        Component: ClientRegister,
       },
+    ],
+  },
+  {
+    element: (
+      <Suspense fallback={<BigSpinner open={true} />}>
+        <ProtectedRoute isPrivate routeUserType="garage" />
+      </Suspense>
+    ),
+    children: [
       {
-        path: ROUTES_PATH.cadastroPrestadorServico,
-        Component: RegisterProviderForm,
-      },
-      {
-        path: ROUTES_PATH.prestadorServico,
-        element: (
-          <ProtectedRoute>
-            <ServiceProvider />
-          </ProtectedRoute>
-        ),
+        element: <BodyApp />,
         children: [
           {
-            path: `${ROUTES_PATH.dashboard}/:license?`,
-            Component: Dashboard,
-          },
-          {
-            path: ROUTES_PATH.addVeiculo,
-            Component: AddCar,
-          },
-          {
-            path: ROUTES_PATH.orcamento,
-            Component: Budget,
+            path: ROUTES_PATH.garageHome,
+            element: <GarageHome />,
+            children: [
+              {
+                index: true,
+                path: `${ROUTES_PATH.dashboard}/:license?`,
+                Component: Dashboard,
+              },
+              {
+                path: ROUTES_PATH.addVeiculo,
+                Component: AddCar,
+              },
+              {
+                path: ROUTES_PATH.orcamento,
+                Component: Budget,
+              },
+            ],
           },
         ],
       },
+    ],
+  },
+  {
+    element: (
+      <Suspense fallback={<BigSpinner open={true} />}>
+        <ProtectedRoute isPrivate routeUserType="client" />
+      </Suspense>
+    ),
+    children: [
       {
-        path: ROUTES_PATH.consultaPlaca,
-        Component: ConsultLicense,
+        path: ROUTES_PATH.clientHome,
+        element: <ClientHome />,
+        children: [
+          {
+            path: ROUTES_PATH.consultaPlaca,
+            Component: ConsultLicense,
+          },
+        ],
       },
     ],
+  },
+  {
+    path: ROUTES_PATH.all,
+    Component: NotFoundRoute,
   },
 ]);
 

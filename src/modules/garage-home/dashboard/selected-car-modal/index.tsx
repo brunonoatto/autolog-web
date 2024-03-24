@@ -12,7 +12,7 @@ import Form from '@layout/form';
 import InputForm from '@shared/components/form/input';
 import InputNumberForm from '@shared/components/form/inputNumber';
 import { DashboardItem } from '@core/models/dashboard';
-import StatusBadge from '@modules/service-provider/dashboard/status-badge';
+import StatusBadge from '@modules/garage-home/dashboard/status-badge';
 
 const statusAction: { [key in StatusCarEnum]: string } = {
   [StatusCarEnum.WaitingBudget]: 'Enviar orçamento',
@@ -46,12 +46,12 @@ const CarModal = () => {
 
   const [items, setItems] = useState<TBudgetItemFormType[]>([
     {
-      description: 'cs dsf a',
+      description: 'item1',
       price: 1,
       quantity: 1,
     },
     {
-      description: 'cs dsf a',
+      description: 'item2',
       price: 1,
       quantity: 1,
     },
@@ -116,15 +116,17 @@ const CarModal = () => {
         <h2>Orçamento</h2>
         <table className="w-full">
           <thead>
-            <th scope="col">Descrição</th>
-            <th scope="col">Qtd.</th>
-            <th scope="col">Preço</th>
-            <th scope="col">Total</th>
+            <tr>
+              <th scope="col">Descrição</th>
+              <th scope="col">Qtd.</th>
+              <th scope="col">Preço</th>
+              <th scope="col">Total</th>
+            </tr>
           </thead>
           <tbody>
-            {items.map(({ description, quantity, price }, index) => {
+            {items.map(({ description, quantity, price }) => {
               return (
-                <tr key={index}>
+                <tr key={description}>
                   <td>{description}</td>
                   <td>{quantity}</td>
                   <td>{price}</td>

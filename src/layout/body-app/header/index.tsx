@@ -1,12 +1,12 @@
 import { ROUTES_PATH } from '@core/router/consts';
-import { useAuthStore } from '@core/store/hooks';
+import useAuth from '@core/store/context/hooks/useAuth';
 import LinkButton from '@shared/design-system/link-button';
 import HomeLink from './home-link';
 import HeaderActions from './header-actions';
 import styles from './styles.module.css';
 
 const Header = () => {
-  const isAuthenticated = useAuthStore((props) => props.isAuthenticated);
+  const { isAuthenticated } = useAuth();
 
   return (
     <header className={styles.content}>

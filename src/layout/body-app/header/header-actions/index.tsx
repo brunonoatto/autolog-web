@@ -1,9 +1,9 @@
 import { ROUTES_PATH } from '@core/router/consts';
-import { useAuthStore } from '@core/store/hooks';
+import useAuth from '@core/store/context/hooks/useAuth';
 import MenuContent from '@shared/design-system/menu-content';
 
 const HeaderActions = () => {
-  const garage = useAuthStore((props) => props.garage);
+  const { logout, getTokenData } = useAuth();
 
   return (
     <div>
@@ -11,10 +11,10 @@ const HeaderActions = () => {
         className="float-end"
         items={[
           { route: ROUTES_PATH.consultaPlaca, title: 'Consultar Placa' },
-          { route: ROUTES_PATH.logout, title: 'Sair', dividerTop: true },
+          { onClick: () => logout(), title: 'Sair', dividerTop: true },
         ]}
       />
-      <div className="text-xs">Usuário: {garage?.email}</div>
+      <div className="text-xs">Usuário: {getTokenData().name}</div>
     </div>
   );
 };

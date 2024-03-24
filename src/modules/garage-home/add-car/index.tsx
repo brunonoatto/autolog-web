@@ -10,7 +10,7 @@ import { StatusCarEnum } from '@shared/types/statusCar';
 import Textarea from '@shared/design-system/textarea';
 import { useAddBudget } from '@core/service/budget';
 import { useLoadingStore } from '@core/store/hooks';
-import CarInfos from '@modules/service-provider/add-car/card-infos';
+import CarInfos from '@modules/garage-home/add-car/card-infos';
 import { useListBrands, useListModelsBrand } from '@core/service/fipe';
 
 const schema = yup
@@ -47,11 +47,11 @@ export default function AddCar() {
   const { data: listModels } = useListModelsBrand(brandId);
 
   const handleSuccess = () => {
-    navigate('/prestador-servico/dashboard');
+    navigate('/garage/dashboard');
   };
 
   const onSubmit: SubmitHandler<TRegisterCarFormType> = async (formValues) => {
-    console.log('onSubmit');
+    console.log('onSubmit', { formValues });
     loading(true);
 
     // TODO: transformar essa lógica em hook
@@ -83,8 +83,9 @@ export default function AddCar() {
         <CarStatusSelect label="Status" {...register('status')} />
         <Textarea
           labelProps={{ className: 'col-span-full' }}
-          {...{ className: 'h-20', ...register('observation') }}
+          className="h-20"
           label="Observação"
+          {...register('observation')}
         />
       </div>
     </Form>

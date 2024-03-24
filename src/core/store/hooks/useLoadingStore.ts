@@ -1,4 +1,4 @@
-import createStore from '..';
+import createStore from './createStore';
 
 type TLoadingStore = { isLoading: boolean; loading: (value: boolean) => void };
 export const useLoadingStore = createStore<TLoadingStore>((setState) => ({

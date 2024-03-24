@@ -1,5 +1,4 @@
 export type TAddBudgetParams = {
-  garageId: string;
   license: string;
   status: number;
   name: string;

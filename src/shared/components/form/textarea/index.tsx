@@ -5,7 +5,7 @@ import { useFormState } from 'react-hook-form';
 import Textarea, { type TTextareaProps } from '@shared/design-system/textarea';
 
 const TextareaForm = forwardRef<HTMLTextAreaElement, TTextareaProps>((props, ref) => {
-  const { name } = props?.inputProps || {};
+  const { name } = props || {};
   const formState = useFormState({ name });
 
   if (!name) return null;

@@ -21,6 +21,7 @@ type TMenuContentItem = {
   title: string;
   dividerTop?: boolean;
 };
+
 type TMenuContentProps = React.HTMLAttributes<HTMLButtonElement> & {
   items: TMenuContentItem[];
 };
@@ -61,7 +62,7 @@ const MenuContent = ({ items, ...otherPops }: TMenuContentProps) => {
       >
         {items.map(({ title, route, dividerTop, onClick }) => (
           <div
-            key={route}
+            key={title}
             data-divider-top={dividerTop}
             className="py-1 data-[divider-top=true]:border-t-2 data-[divider-top=true]:border-teal-800"
           >

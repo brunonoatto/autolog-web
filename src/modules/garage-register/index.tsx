@@ -24,7 +24,7 @@ const schema = yup
 
 type TRegisterProvicerFormType = yup.InferType<typeof schema>;
 
-export default function RegisterProviderForm() {
+export default function GarageRegister() {
   const form = useForm({
     mode: 'onChange',
     resolver: yupResolver(schema),

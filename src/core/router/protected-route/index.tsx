@@ -1,15 +1,39 @@
-import type { PropsWithChildren } from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
 
-import { Navigate } from 'react-router-dom';
+import { ROUTES_PATH } from '@core/router/consts';
+import useAuth from '@core/store/context/hooks/useAuth';
+import type { TUserType } from '@core/api/auth/types';
 
-import { useAuthStore } from '@core/store/hooks';
+type TProtectedRouteParams = {
+  isPrivate: boolean;
+  routeUserType?: TUserType;
+};
 
-export default function ProtectedRoute({ children }: PropsWithChildren) {
-  const user = useAuthStore((props) => props.garage);
+export default function ProtectedRoute({ isPrivate, routeUserType }: TProtectedRouteParams) {
+  const { isAuthenticated, getTokenData } = useAuth();
 
-  if (!user?.email) {
-    return <Navigate to="/" />;
+  if (isAuthenticated) {
+    const tokenData = getTokenData();
+    if (isPrivate) {
+      if (routeUserType !== tokenData.type) {
+        if (tokenData.type === 'client') {
+          return <Navigate to={ROUTES_PATH.clientHome} replace />;
+        }
+
+        return <Navigate to={ROUTES_PATH.garageHome} replace />;
+      }
+    } else {
+      if (tokenData.type === 'client') {
+        return <Navigate to={ROUTES_PATH.clientHome} replace />;
+      }
+
+      return <Navigate to={ROUTES_PATH.garageHome} replace />;
+    }
   }
 
-  return children;
+  if (!isAuthenticated && isPrivate) {
+    return <Navigate to={ROUTES_PATH.login} />;
+  }
+
+  return <Outlet />;
 }

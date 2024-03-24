@@ -3,15 +3,14 @@ import { forwardRef } from 'react';
 import styles from '../styles.module.css';
 import { twMerge } from 'tailwind-merge';
 
-export type TTextareaProps = {
+export type TTextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
   labelProps?: React.LabelHTMLAttributes<HTMLLabelElement>;
-  inputProps?: React.TextareaHTMLAttributes<HTMLTextAreaElement>;
   label: string;
   error?: string;
 };
 
 const Textarea = forwardRef<HTMLTextAreaElement, TTextareaProps>(
-  ({ label, error, labelProps = {}, inputProps = {} }, ref) => {
+  ({ label, error, labelProps = {}, ...inputProps }, ref) => {
     const { className: inputClass, ...otherInputProps } = inputProps;
     const { className: labelClass, ...otherLabelProps } = labelProps;
 

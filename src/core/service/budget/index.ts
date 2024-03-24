@@ -2,14 +2,11 @@ import { DefaultError, useMutation } from '@tanstack/react-query';
 
 import { ServiceApi } from '@core/api';
 import type { TAddBudgetParams, TBudget } from '@core/api/budget/types';
-import { useAuthStore } from '@core/store/hooks';
 
 export const useAddBudget = () => {
-  const { id: garageId } = useAuthStore((props) => props.garage);
-
-  return useMutation<TBudget, DefaultError, Omit<TAddBudgetParams, 'garageId'>>({
+  return useMutation<TBudget, DefaultError, TAddBudgetParams>({
     mutationFn: async (data) => {
-      const response = await ServiceApi.BudgetApi.addBudget({ ...data, garageId });
+      const response = await ServiceApi.BudgetApi.addBudget(data);
       return response.data;
     },
   });

@@ -8,7 +8,7 @@ import InputForm from '@shared/components/form/input';
 import BrandSelect from '@shared/components/selects/brand-select';
 import ModelSelect from '@shared/components/selects/model-select';
 import InputNumberForm from '@shared/components/form/inputNumber';
-import type { TRegisterCarFormType } from '@modules/service-provider/add-car';
+import type { TRegisterCarFormType } from '@modules/garage-home/add-car';
 import { ServiceApi } from '@core/api';
 import type { TCar } from '@core/api/car/types';
 import Input from '@shared/design-system/input';

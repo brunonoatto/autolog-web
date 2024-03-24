@@ -1,11 +1,8 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { ROUTES_PATH } from '@core/router/consts';
-import { useAuthStore, useLoadingStore } from '@core/store/hooks';
-import { useLogin } from '@core/service/auth';
-import type { TGarage } from '@core/api/garage/types';
+import { useLoadingStore } from '@core/store/hooks';
+import useAuth from '@core/store/context/hooks/useAuth';
 import { yup, yupValidators } from '@shared/form-validations';
 import Form from '@layout/form';
 import InputForm from '@shared/components/form/input';
@@ -20,10 +17,8 @@ const schema = yup
 type TLoginType = yup.InferType<typeof schema>;
 
 export default function Login() {
-  const navigate = useNavigate();
-  const { mutate } = useLogin();
   const loading = useLoadingStore((props) => props.loading);
-  const signin = useAuthStore((props) => props.signin);
+  const { login } = useAuth();
 
   const form = useForm({
     mode: 'onChange',
@@ -31,18 +26,13 @@ export default function Login() {
   });
   const { register } = form;
 
-  const handleSuccess = async (result: TGarage) => {
-    await signin(result);
-    navigate(ROUTES_PATH.dashboard);
-  };
-
-  const onSubmit: SubmitHandler<TLoginType> = async (data) => {
+  const onSubmit: SubmitHandler<TLoginType> = async ({ email, password }) => {
     loading(true);
 
-    mutate(data, {
-      onSuccess: handleSuccess,
-      onSettled: () => loading(false),
-    });
+    await login(email, password);
+
+    // TODO: se der erro chega aqui?
+    loading(false);
   };
 
   return (

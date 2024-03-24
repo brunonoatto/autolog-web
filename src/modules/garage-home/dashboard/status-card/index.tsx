@@ -1,7 +1,7 @@
 import IdentificationCar from './identification-car';
 import styles from './styles.module.css';
 import { DashboardItem } from '@core/models/dashboard';
-import StatusBadge from '@modules/service-provider/dashboard/status-badge';
+import StatusBadge from '@modules/garage-home/dashboard/status-badge';
 
 type TStatusCardProps = { car: DashboardItem; onClick: () => void };
 const StatusCard = ({ onClick, car }: TStatusCardProps) => {

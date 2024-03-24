@@ -2,16 +2,13 @@ import { useQuery } from '@tanstack/react-query';
 
 import { ServiceApi } from '@core/api';
 import { DashboardItem } from '@core/models/dashboard';
-import { useAuthStore } from '@core/store/hooks';
 
 export const useListDashboard = (enabled = true) => {
-  const { id: garageId } = useAuthStore((props) => props.garage);
-
   return useQuery({
     enabled,
-    queryKey: ['useListDashboard', garageId],
+    queryKey: ['useListDashboard'],
     queryFn: async () => {
-      const { data } = await ServiceApi.DashboardApi.getDashboard(garageId);
+      const { data } = await ServiceApi.DashboardApi.getDashboard();
 
       return data.map((item) => new DashboardItem(item));
     },
