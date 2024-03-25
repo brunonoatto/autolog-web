@@ -46,7 +46,7 @@ export default function AddCar() {
   const { data: listModels } = useListModelsBrand(brandId);
 
   const handleSuccessConfirm = () => {
-    navigate(`${ROUTES_PATH.bugget}/${generateOS}`);
+    navigate(`${ROUTES_PATH.garageBudgetView}/${generateOS}`);
   };
 
   const handleSuccessCancel = () => {

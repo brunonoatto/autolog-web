@@ -15,7 +15,7 @@ export default function RemakeBudget({ os }: TSendForApprovalProps) {
   const [openModal, setOpenModal] = useState(false);
 
   const handleGoToBudget = () => {
-    navigate(`${ROUTES_PATH.bugget}/${os}`);
+    navigate(`${ROUTES_PATH.garageBudgetView}/${os}`);
   };
 
   const handleGoToDashboard = () => {

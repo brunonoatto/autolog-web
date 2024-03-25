@@ -8,7 +8,7 @@ export default function ListBudgets() {
   const { data } = useListBudgets();
 
   const handleBudgetSelected = (os: string) => {
-    navigate(`${ROUTES_PATH.bugget}/${os}`);
+    navigate(`${ROUTES_PATH.garageBudgetView}/${os}`);
   };
 
   return (

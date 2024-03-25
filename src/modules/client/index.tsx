@@ -10,7 +10,7 @@ export default function ClientHome() {
         menus={[
           {
             title: 'Orçamentos',
-            route: ROUTES_PATH.clientBudgets,
+            route: ROUTES_PATH.clientBudgetSearch,
           },
           {
             title: 'Transferir veiculo',

@@ -12,7 +12,7 @@ export default function Dashboard() {
   const { data: cars, isLoading, isRefetching } = useListDashboard();
 
   const handleSelectCar = (item: DashboardItem) => {
-    navigate(`${ROUTES_PATH.bugget}/${item.os}`);
+    navigate(`${ROUTES_PATH.garageBudgetView}/${item.os}`);
   };
 
   return (

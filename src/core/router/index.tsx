@@ -18,7 +18,8 @@ const GarageAddCar = lazy(() => import('@modules/garage/add-car'));
 const GarageBudgetSearch = lazy(() => import('@modules/garage/budget-search'));
 const GarageBudgetView = lazy(() => import('@modules/garage/budget-view'));
 const Client = lazy(() => import('@modules/client'));
-const ClientBudgets = lazy(() => import('@modules/client/budgets'));
+const ClientBudgetSearch = lazy(() => import('@modules/client/budget-search'));
+const ClientBudgetView = lazy(() => import('@modules/client/budget-view'));
 const ClientTransferCar = lazy(() => import('@modules/client/transfer-car'));
 const NotFoundRoute = lazy(() => import('@shared/components/not-found-route'));
 
@@ -74,15 +75,15 @@ const router = createBrowserRouter([
                 Component: GarageDashboard,
               },
               {
-                path: ROUTES_PATH.addVeiculo,
+                path: ROUTES_PATH.garageAddVeiculo,
                 Component: GarageAddCar,
               },
               {
-                path: `${ROUTES_PATH.bugget}/:os?`,
+                path: `${ROUTES_PATH.garageBudgetView}/:os?`,
                 Component: GarageBudgetView,
               },
               {
-                path: ROUTES_PATH.buggetsSearch,
+                path: ROUTES_PATH.garageBuggetSearch,
                 Component: GarageBudgetSearch,
               },
             ],
@@ -106,8 +107,12 @@ const router = createBrowserRouter([
             Component: Client,
             children: [
               {
-                path: ROUTES_PATH.clientBudgets,
-                Component: ClientBudgets,
+                path: ROUTES_PATH.clientBudgetSearch,
+                Component: ClientBudgetSearch,
+              },
+              {
+                path: `${ROUTES_PATH.clientBudgetView}/:os?`,
+                Component: ClientBudgetView,
               },
               {
                 path: ROUTES_PATH.clientTransfer,

@@ -14,11 +14,11 @@ export default function GarageHome() {
           },
           {
             title: 'Adicionar veiculo',
-            route: ROUTES_PATH.addVeiculo,
+            route: ROUTES_PATH.garageAddVeiculo,
           },
           {
             title: 'Orçamentos',
-            route: ROUTES_PATH.buggetsSearch,
+            route: ROUTES_PATH.garageBuggetSearch,
           },
         ]}
       />

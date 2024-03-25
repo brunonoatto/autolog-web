@@ -19,7 +19,7 @@ const schema = yup
 
 export type TBudgetItemFormType = yup.InferType<typeof schema>;
 
-export default function BudgetView() {
+export default function GarageBudgetView() {
   const { data: budget } = useGetBudget();
 
   const { os, status, car, items } = budget || {};
