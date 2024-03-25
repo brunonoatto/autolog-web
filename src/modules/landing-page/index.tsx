@@ -1,5 +1,6 @@
 import Header from '@layout/body-app/header';
 import HomeCard from './home-card';
+import { ROUTES_PATH } from '@core/router/consts';
 
 export default function LandingPage() {
   return (
@@ -31,7 +32,7 @@ export default function LandingPage() {
                 Preço: <div className="font-bold text-xl text-teal-400">GRÁTIS</div>
               </>
             }
-            linkRoute="consulta-placa"
+            linkRoute={ROUTES_PATH.garageRegister}
             linkText="Consultar"
           />
         </div>

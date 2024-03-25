@@ -17,8 +17,6 @@ export const AuthContext = createContext({} as TAuthContextValue);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const { mutate: mutateLogin } = useLogin();
-  // const [userData, setUserData] = useState<TLoginResponse | null>(null);
-  // const [userType, setUserType] = useState<TUserType | ''>('');
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem(authStorageKey));
 
   const login = useCallback(

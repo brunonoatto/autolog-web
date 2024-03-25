@@ -18,7 +18,7 @@ export default function GarageHome() {
           },
           {
             title: 'Orçamentos',
-            route: ROUTES_PATH.buggetSearch,
+            route: ROUTES_PATH.buggetsSearch,
           },
         ]}
       />

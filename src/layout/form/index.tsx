@@ -4,7 +4,7 @@ import { FormProvider, type SubmitHandler, type UseFormReturn } from 'react-hook
 
 import Button from '@shared/design-system/button';
 import Container from '@shared/components/container';
-import { TIcons } from '@shared/design-system/assets/icons/types';
+import type { TIcons } from '@shared/design-system/assets/icons/types';
 import IconButton from '@shared/design-system/icon-button';
 
 type TForm = PropsWithChildren & {
@@ -15,6 +15,7 @@ type TForm = PropsWithChildren & {
   confirmButtonText?: string;
   iconButton?: TIcons;
   className?: string;
+  icon?: TIcons;
 };
 
 const Form: FunctionComponent<TForm> = ({
@@ -25,15 +26,16 @@ const Form: FunctionComponent<TForm> = ({
   iconButton,
   children,
   className,
+  icon,
 }) => {
   const { handleSubmit } = form;
 
   return (
     <FormProvider {...form}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Container className={className} title={title}>
-          <div className="my-2">{children}</div>
+      <Container className={className} title={title} icon={icon}>
+        <div className="my-2">{children}</div>
 
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="text-right ">
             {iconButton ? (
               <IconButton icon={iconButton}>{confirmButtonText}</IconButton>
@@ -41,8 +43,8 @@ const Form: FunctionComponent<TForm> = ({
               <Button>{confirmButtonText}</Button>
             )}
           </div>
-        </Container>
-      </form>
+        </form>
+      </Container>
     </FormProvider>
   );
 };

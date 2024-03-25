@@ -10,7 +10,7 @@ const Header = () => {
 
   return (
     <header className={styles.content}>
-      <HomeLink isAuthenticated={isAuthenticated} />
+      <HomeLink />
       {isAuthenticated ? <HeaderActions /> : <LinkButton to={ROUTES_PATH.login}>Login</LinkButton>}
     </header>
   );

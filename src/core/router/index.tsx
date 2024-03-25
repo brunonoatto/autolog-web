@@ -5,20 +5,22 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ROUTES_PATH } from './consts';
 import BigSpinner from '@layout/body-app/big-spinner';
 
-const BodyApp = lazy(() => import('@layout/body-app'));
-const NotFoundRoute = lazy(() => import('@shared/components/not-found-route'));
-const LandingPage = lazy(() => import('@modules/landing-page'));
-const Client = lazy(() => import('@modules/client'));
-const ClientRegister = lazy(() => import('@modules/client-register'));
-const Garage = lazy(() => import('@modules/garage'));
-const Dashboard = lazy(() => import('@modules/garage/dashboard'));
-const ConsultLicense = lazy(() => import('@modules/consult-license/index'));
-const AddCar = lazy(() => import('@modules/garage/add-car'));
-const BudgetSearch = lazy(() => import('@modules/garage/budget-search'));
-const BudgetView = lazy(() => import('@modules/garage/budget-view'));
-const GarageRegister = lazy(() => import('@modules/garage-register'));
 const ProtectedRoute = lazy(() => import('./protected-route'));
 const Login = lazy(() => import('@modules/auth/login'));
+const LandingPage = lazy(() => import('@modules/landing-page'));
+const GarageRegister = lazy(() => import('@modules/garage-register'));
+const ClientRegister = lazy(() => import('@modules/client-register'));
+const ConsultLicense = lazy(() => import('@modules/consult-license/index'));
+const BodyApp = lazy(() => import('@layout/body-app'));
+const Garage = lazy(() => import('@modules/garage'));
+const GarageDashboard = lazy(() => import('@modules/garage/dashboard'));
+const GarageAddCar = lazy(() => import('@modules/garage/add-car'));
+const GarageBudgetSearch = lazy(() => import('@modules/garage/budget-search'));
+const GarageBudgetView = lazy(() => import('@modules/garage/budget-view'));
+const Client = lazy(() => import('@modules/client'));
+const ClientBudgets = lazy(() => import('@modules/client/budgets'));
+const ClientTransferCar = lazy(() => import('@modules/client/transfer-car'));
+const NotFoundRoute = lazy(() => import('@shared/components/not-found-route'));
 
 const router = createBrowserRouter([
   {
@@ -31,9 +33,8 @@ const router = createBrowserRouter([
       {
         id: 'login',
         path: ROUTES_PATH.login,
-        element: <Login />,
+        Component: Login,
       },
-
       {
         id: 'root',
         path: ROUTES_PATH.landingPage,
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
         path: ROUTES_PATH.clientRegister,
         Component: ClientRegister,
       },
+      {
+        path: ROUTES_PATH.consultaPlaca,
+        Component: ConsultLicense,
+      },
     ],
   },
   {
@@ -57,28 +62,28 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        element: <BodyApp />,
+        Component: BodyApp,
         children: [
           {
             path: ROUTES_PATH.garageHome,
-            element: <Garage />,
+            Component: Garage,
             children: [
               {
                 index: true,
                 path: `${ROUTES_PATH.garageDashboard}/:license?`,
-                Component: Dashboard,
+                Component: GarageDashboard,
               },
               {
                 path: ROUTES_PATH.addVeiculo,
-                Component: AddCar,
+                Component: GarageAddCar,
               },
               {
                 path: `${ROUTES_PATH.bugget}/:os?`,
-                Component: BudgetView,
+                Component: GarageBudgetView,
               },
               {
-                path: ROUTES_PATH.buggetSearch,
-                Component: BudgetSearch,
+                path: ROUTES_PATH.buggetsSearch,
+                Component: GarageBudgetSearch,
               },
             ],
           },
@@ -94,12 +99,21 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: ROUTES_PATH.clientHome,
-        element: <Client />,
+        Component: BodyApp,
         children: [
           {
-            path: ROUTES_PATH.consultaPlaca,
-            Component: ConsultLicense,
+            path: ROUTES_PATH.clientHome,
+            Component: Client,
+            children: [
+              {
+                path: ROUTES_PATH.clientBudgets,
+                Component: ClientBudgets,
+              },
+              {
+                path: ROUTES_PATH.clientTransfer,
+                Component: ClientTransferCar,
+              },
+            ],
           },
         ],
       },

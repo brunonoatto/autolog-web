@@ -71,7 +71,12 @@ export default function AddCar() {
 
   return (
     <>
-      <Form form={form} onSubmit={handleSubmit(handleValid)} title="Adicionar veiculo">
+      <Form
+        form={form}
+        onSubmit={handleSubmit(handleValid)}
+        title="Adicionar Orçamento"
+        icon="BudgetLoadingIcon"
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <InputForm
             label="Nome Cliente"

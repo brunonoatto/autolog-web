@@ -6,16 +6,19 @@ const HeaderActions = () => {
   const { logout, getTokenData } = useAuth();
 
   return (
-    <div>
+    <div className="flex gap-2">
+      <div className="text-xs">
+        <div>Usuário: </div>
+        <div>{getTokenData().name}</div>
+      </div>
+
       <MenuContent
-        className="float-end"
         icon="ArrowDownLineIcon"
         items={[
           { route: ROUTES_PATH.consultaPlaca, title: 'Consultar Placa' },
           { onClick: () => logout(), title: 'Sair', dividerTop: true },
         ]}
       />
-      <div className="text-xs">Usuário: {getTokenData().name}</div>
     </div>
   );
 };
