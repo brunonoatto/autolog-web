@@ -1,5 +1,5 @@
 import type { TCar } from '@core/api/car/types';
-import StatusBadge from '@modules/garage/dashboard/status-badge';
+import StatusBadge from '@shared/components/status-badge';
 import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
 type TTitleProps = {

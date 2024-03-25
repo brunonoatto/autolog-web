@@ -22,6 +22,7 @@ export type TBudget = {
   phone: string;
   cpf_cnpj: string;
   observation?: string;
+  car: TCar;
 };
 
 export type TGetBudgetResponse = TBudget & {

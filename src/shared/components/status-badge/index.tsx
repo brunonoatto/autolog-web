@@ -1,8 +1,9 @@
 import { ReactNode } from 'react';
 
+import { twMerge } from 'tailwind-merge';
+
 import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 import Icon from '@shared/design-system/Icon';
-import { twMerge } from 'tailwind-merge';
 import { getStatusCarDescription } from '@shared/helpers/string';
 
 const statusIcon: { [key in BudgetStatusEnum]: ReactNode } = {
@@ -32,12 +33,12 @@ const StatusBadge = ({ status, className }: TStatusBadgeProps) => {
   return (
     <div
       className={twMerge(
-        'inline-block space-x-2 px-2 py-1 rounded-lg border-2 border-teal-800',
+        'inline-block space-x-2 px-2 py-1 rounded-lg border-2 border-teal-800 whitespace-nowrap',
         className,
       )}
     >
       {statusIcon[status]}
-      <div className="inline">{getStatusCarDescription(status)}</div>
+      <div className="inline whitespace-nowrap">{getStatusCarDescription(status)}</div>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { DashboardItem } from '@core/models/dashboard';
-import StatusBadge from '@modules/garage/dashboard/status-badge';
+import StatusBadge from '@shared/components/status-badge';
 import IdentificationCar from './identification-car';
 import styles from './styles.module.css';
 

@@ -1,6 +1,6 @@
 import { ROUTES_PATH } from '@core/router/consts';
 import { useListBudgets } from '@core/service/budget';
-import StatusBadge from '@modules/garage/dashboard/status-badge';
+import StatusBadge from '@shared/components/status-badge';
 import { useNavigate } from 'react-router-dom';
 
 export default function ListBudgets() {
