@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import useOutsideClick from '@shared/hooks/useOutsideClick';
-import IconButton from '../icon-button';
+import IconButton, { type TIconButtonProps } from '../icon-button';
 
 const handleToogleContentClick = () => {
   const menuList = document.getElementById('menu-content');
@@ -22,7 +22,7 @@ type TMenuContentItem = {
   dividerTop?: boolean;
 };
 
-type TMenuContentProps = React.HTMLAttributes<HTMLButtonElement> & {
+type TMenuContentProps = TIconButtonProps & {
   items: TMenuContentItem[];
 };
 
@@ -51,8 +51,8 @@ const MenuContent = ({ items, ...otherPops }: TMenuContentProps) => {
     <div ref={ref}>
       <IconButton
         id="menu-content-button"
-        icon="ArrowDownLineIcon"
         onClick={handleToogleContentClick}
+        size="small"
         {...otherPops}
       />
 

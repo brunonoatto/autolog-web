@@ -9,6 +9,7 @@ const HeaderActions = () => {
     <div>
       <MenuContent
         className="float-end"
+        icon="ArrowDownLineIcon"
         items={[
           { route: ROUTES_PATH.consultaPlaca, title: 'Consultar Placa' },
           { onClick: () => logout(), title: 'Sair', dividerTop: true },

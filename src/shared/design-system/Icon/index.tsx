@@ -1,12 +1,11 @@
+import { TSize } from '@shared/design-system/_types';
 import * as icons from '@shared/design-system/assets/icons';
 import { TIcons } from '@shared/design-system/assets/icons/types';
 
-type TSize = 'small' | 'medium' | 'large';
-
 const sizeData: { [key in TSize]: number } = {
-  small: 24,
-  medium: 32,
-  large: 46,
+  small: 20,
+  medium: 26,
+  large: 34,
 };
 
 export type TIconProps = Omit<React.SVGProps<SVGSVGElement>, 'size'> & {

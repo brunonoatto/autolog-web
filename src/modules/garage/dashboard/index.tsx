@@ -1,26 +1,22 @@
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useListDashboard } from '@core/service/dashboard';
 import { DashboardItem } from '@core/models/dashboard';
+import { ROUTES_PATH } from '@core/router/consts';
 import LinkButton from '@shared/design-system/link-button';
-import SelectedCarModal from './selected-car-modal';
 import StatusCard from './status-card';
 import StatusCardSkeleton from './status-card-skeleton';
-import styles from './styles.module.css';
 
 export default function Dashboard() {
-  // TODO: add regra para esse eslint para não dar erro com underscore
-  const [_, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const { data: cars, isLoading, isRefetching } = useListDashboard();
 
-  const handleSelectCar = (car: DashboardItem) => {
-    const newSearchParam = new URLSearchParams();
-    newSearchParam.set('license', car.license);
-    setSearchParams(newSearchParam);
+  const handleSelectCar = (item: DashboardItem) => {
+    navigate(`${ROUTES_PATH.bugget}/${item.os}`);
   };
 
   return (
-    <div className={styles.container}>
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
       {isLoading || isRefetching ? (
         <>
           <StatusCardSkeleton />
@@ -38,8 +34,6 @@ export default function Dashboard() {
           {cars?.map((car) => (
             <StatusCard key={car.license} car={car} onClick={() => handleSelectCar(car)} />
           ))}
-
-          <SelectedCarModal />
         </>
       )}
     </div>

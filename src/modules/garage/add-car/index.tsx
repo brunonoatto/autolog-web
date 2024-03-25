@@ -50,11 +50,10 @@ export default function AddCar() {
   };
 
   const handleSuccessCancel = () => {
-    navigate(ROUTES_PATH.dashboard);
+    navigate(ROUTES_PATH.garageDashboard);
   };
 
   const handleValid: SubmitHandler<TRegisterCarFormType> = async (formValues) => {
-    console.log('onSubmit', { formValues });
     loading(true);
 
     // TODO: transformar essa lógica em hook
@@ -72,12 +71,7 @@ export default function AddCar() {
 
   return (
     <>
-      <Form
-        form={form}
-        onSubmit={handleSubmit(handleValid)}
-        title="Adicionar veiculo"
-        className="m-2 md:m-6"
-      >
+      <Form form={form} onSubmit={handleSubmit(handleValid)} title="Adicionar veiculo">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <InputForm
             label="Nome Cliente"
@@ -97,6 +91,7 @@ export default function AddCar() {
           />
         </div>
       </Form>
+
       <Modal
         open={!!generateOS}
         title="Veículo cadastrado com sucesso!"

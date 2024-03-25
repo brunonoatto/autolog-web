@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Form from '@layout/form';
 import InputForm from '@shared/components/form/input';
 import { yup, yupValidators } from '@shared/form-validations';
+import ListBudgets from '@modules/garage/budget-search/list';
 
 const schema = yup
   .object({
@@ -14,7 +15,7 @@ const schema = yup
 
 export type TSearchBuggetFormType = yup.InferType<typeof schema>;
 
-export default function SearchBudgets() {
+export default function BudgetSearch() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const form = useForm({
@@ -34,16 +35,20 @@ export default function SearchBudgets() {
   };
 
   return (
-    <Form form={form} onSubmit={handleValid} title="Adicionar veiculo" className="m-2 md:m-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <InputForm
-          label="Placa"
-          labelProps={{ className: 'col-span-full' }}
-          className="w-36 h-8 text-xl font-bold uppercase"
-          maxLength={10}
-          {...register('license')}
-        />
-      </div>
-    </Form>
+    <>
+      <Form form={form} onSubmit={handleValid} title="Adicionar veiculo">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <InputForm
+            label="Placa"
+            labelProps={{ className: 'col-span-full' }}
+            className="w-36 h-8 text-xl font-bold uppercase"
+            maxLength={10}
+            {...register('license')}
+          />
+        </div>
+      </Form>
+
+      <ListBudgets />
+    </>
   );
 }

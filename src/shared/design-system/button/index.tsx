@@ -7,15 +7,21 @@ const buttonVariants = tv({
       primary: 'bg-teal-800 hover:bg-teal-700',
       secondary: 'ring-1 ring-white hover:ring-teal-300 hover:text-teal-300',
     },
+    size: {
+      small: 'p-1',
+      medium: 'py-2 px-4',
+      large: 'p-4',
+    },
   },
   defaultVariants: {
     color: 'primary',
+    size: 'medium',
   },
 });
-
-type TButtonProps = React.HTMLAttributes<HTMLButtonElement> & VariantProps<typeof buttonVariants>;
-const Button = ({ className, color = 'primary', ...otherProps }: TButtonProps) => {
-  return <button className={buttonVariants({ color, className })} {...otherProps} />;
+export type TButtonProps = React.HTMLAttributes<HTMLButtonElement> &
+  VariantProps<typeof buttonVariants>;
+const Button = ({ className, color, size, ...otherProps }: TButtonProps) => {
+  return <button className={buttonVariants({ color, size, className })} {...otherProps} />;
 };
 
 export default Button;

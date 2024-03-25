@@ -3,15 +3,15 @@ import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useDebouncedCallback } from 'use-debounce';
 
-import Card from '@layout/card';
 import InputForm from '@shared/components/form/input';
 import BrandSelect from '@shared/components/selects/brand-select';
 import ModelSelect from '@shared/components/selects/model-select';
 import InputNumberForm from '@shared/components/form/inputNumber';
+import Input from '@shared/design-system/input';
+import Container from '@shared/components/container';
 import type { TRegisterCarFormType } from '@modules/garage/add-car';
 import { ServiceApi } from '@core/api';
 import type { TCar } from '@core/api/car/types';
-import Input from '@shared/design-system/input';
 
 export default function CarInfos() {
   // TODO: fazer o loading enquanto pesquisa pela placa
@@ -47,7 +47,7 @@ export default function CarInfos() {
   };
 
   return (
-    <Card className="col-span-full" title="Dados do veículo">
+    <Container className="col-span-full" title="Dados do veículo">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <InputForm
           label="Placa"
@@ -70,6 +70,6 @@ export default function CarInfos() {
           </>
         )}
       </div>
-    </Card>
+    </Container>
   );
 }

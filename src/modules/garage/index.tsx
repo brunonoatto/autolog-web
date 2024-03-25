@@ -10,7 +10,7 @@ export default function GarageHome() {
         menus={[
           {
             title: 'Dashboard',
-            route: ROUTES_PATH.dashboard,
+            route: ROUTES_PATH.garageDashboard,
           },
           {
             title: 'Adicionar veiculo',
@@ -18,11 +18,11 @@ export default function GarageHome() {
           },
           {
             title: 'Orçamentos',
-            route: ROUTES_PATH.bugget,
+            route: ROUTES_PATH.buggetSearch,
           },
         ]}
       />
-      <div className="md:overflow-y-auto">
+      <div className="md:overflow-y-auto p-2 md:p-4">
         <Outlet />
       </div>
     </div>

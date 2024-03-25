@@ -61,7 +61,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const responseInterceptorId = httpClient.interceptors.response.use(
       (response) => response,
       async (error) => {
-        console.log('reponse', { error });
         if (error.response?.status === 401) {
           setIsAuthenticated(false);
           localStorage.clear();

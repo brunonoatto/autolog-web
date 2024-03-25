@@ -1,21 +1,26 @@
 import { twMerge } from 'tailwind-merge';
 import Icon, { type TIconProps } from '../Icon';
+import Button, { type TButtonProps } from '@shared/design-system/button';
 
-type TIconButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
+export type TIconButtonProps = TButtonProps & {
   icon: TIconProps['name'];
   iconProps?: Omit<TIconProps, 'name'>;
 };
 
-const IconButton = ({ icon, className, iconProps = {}, ...otherProps }: TIconButtonProps) => {
+const IconButton = ({ children, size, icon, iconProps = {}, ...otherProps }: TIconButtonProps) => {
   const { className: classNameIcon, ...otherIconProps } = iconProps;
   return (
-    <button className={twMerge('rounded', className)} {...otherProps}>
-      <Icon
-        name={icon}
-        className={twMerge('hover:fill-teal-500', classNameIcon)}
-        {...otherIconProps}
-      />
-    </button>
+    <Button size={size} {...otherProps}>
+      <div className="flex gap-2 items-center">
+        <Icon
+          name={icon}
+          className={twMerge('hover:fill-teal-500', classNameIcon)}
+          size={size}
+          {...otherIconProps}
+        />
+        {children}
+      </div>
+    </Button>
   );
 };
 

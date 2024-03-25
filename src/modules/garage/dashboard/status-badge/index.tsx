@@ -1,30 +1,33 @@
 import { ReactNode } from 'react';
 
-import { StatusCarEnum } from '@shared/types/statusCar';
+import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 import Icon from '@shared/design-system/Icon';
 import { twMerge } from 'tailwind-merge';
 import { getStatusCarDescription } from '@shared/helpers/string';
 
-const statusIcon: { [key in StatusCarEnum]: ReactNode } = {
-  [StatusCarEnum.WaitingBudget]: (
+const statusIcon: { [key in BudgetStatusEnum]: ReactNode } = {
+  [BudgetStatusEnum.MakingBudget]: (
     <Icon name="BudgetLoadingIcon" height={26} width={26} className="fill-teal-500 inline" />
   ),
-  [StatusCarEnum.WaitingBudgetApproval]: (
+  [BudgetStatusEnum.WaitingBudgetApproval]: (
     <Icon name="HourglassIcon" height={26} width={26} className="fill-amber-400 inline" />
   ),
-  [StatusCarEnum.ApprovedBudget]: (
+  [BudgetStatusEnum.ApprovedBudget]: (
     <Icon name="CheckCircleIcon" height={26} width={26} className="fill-green-500 inline" />
   ),
-  [StatusCarEnum.BudgetRejected]: (
+  [BudgetStatusEnum.BudgetRejected]: (
     <Icon name="ThumbDownIcon" height={26} width={26} className="fill-red-400 inline" />
   ),
-  [StatusCarEnum.RunningService]: (
+  [BudgetStatusEnum.RunningService]: (
     <Icon name="ProgressWrenchIcon" height={26} width={26} className="fill-amber-400 inline" />
   ),
-  [StatusCarEnum.Finished]: null,
+  [BudgetStatusEnum.CarReady]: (
+    <Icon name="CarDoneIcon" height={26} width={26} className="fill-amber-400 inline" />
+  ),
+  [BudgetStatusEnum.Finished]: null,
 };
 
-type TStatusBadgeProps = { status: StatusCarEnum; className?: string };
+type TStatusBadgeProps = { status: BudgetStatusEnum; className?: string };
 const StatusBadge = ({ status, className }: TStatusBadgeProps) => {
   return (
     <div

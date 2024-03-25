@@ -1,13 +1,14 @@
-import { StatusCarEnum } from '@shared/types/statusCar';
+import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
-export const getStatusCarDescription = (status: StatusCarEnum): string => {
+export const getStatusCarDescription = (status: BudgetStatusEnum): string => {
   const values = {
-    [StatusCarEnum.WaitingBudget]: 'Realizando orçamento',
-    [StatusCarEnum.WaitingBudgetApproval]: 'Aguardando aprovação',
-    [StatusCarEnum.ApprovedBudget]: 'Orçamento aprovado',
-    [StatusCarEnum.BudgetRejected]: 'Orçamento rejeitado',
-    [StatusCarEnum.RunningService]: 'Serviço em execução',
-    [StatusCarEnum.Finished]: 'Serviço Finalizado',
+    [BudgetStatusEnum.MakingBudget]: 'Realizando orçamento',
+    [BudgetStatusEnum.WaitingBudgetApproval]: 'Aguardando aprovação',
+    [BudgetStatusEnum.ApprovedBudget]: 'Orçamento aprovado',
+    [BudgetStatusEnum.BudgetRejected]: 'Orçamento rejeitado',
+    [BudgetStatusEnum.RunningService]: 'Serviço em execução',
+    [BudgetStatusEnum.CarReady]: 'Veículo pronto',
+    [BudgetStatusEnum.Finished]: 'Serviço Finalizado',
   };
 
   return values[status];

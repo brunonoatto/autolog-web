@@ -14,7 +14,8 @@ const Garage = lazy(() => import('@modules/garage'));
 const Dashboard = lazy(() => import('@modules/garage/dashboard'));
 const ConsultLicense = lazy(() => import('@modules/consult-license/index'));
 const AddCar = lazy(() => import('@modules/garage/add-car'));
-const Budget = lazy(() => import('@modules/garage/budget'));
+const BudgetSearch = lazy(() => import('@modules/garage/budget-search'));
+const BudgetView = lazy(() => import('@modules/garage/budget-view'));
 const GarageRegister = lazy(() => import('@modules/garage-register'));
 const ProtectedRoute = lazy(() => import('./protected-route'));
 const Login = lazy(() => import('@modules/auth/login'));
@@ -64,7 +65,7 @@ const router = createBrowserRouter([
             children: [
               {
                 index: true,
-                path: `${ROUTES_PATH.dashboard}/:license?`,
+                path: `${ROUTES_PATH.garageDashboard}/:license?`,
                 Component: Dashboard,
               },
               {
@@ -73,7 +74,11 @@ const router = createBrowserRouter([
               },
               {
                 path: `${ROUTES_PATH.bugget}/:os?`,
-                Component: Budget,
+                Component: BudgetView,
+              },
+              {
+                path: ROUTES_PATH.buggetSearch,
+                Component: BudgetSearch,
               },
             ],
           },

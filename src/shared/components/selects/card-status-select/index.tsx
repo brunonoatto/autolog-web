@@ -2,30 +2,30 @@ import { forwardRef } from 'react';
 
 import Select from '@shared/components/form/select';
 import type { TSelectDefaultProps, TSelectOption } from '@shared/design-system/select';
-import { StatusCarEnum } from '@shared/types/statusCar';
+import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 import { getStatusCarDescription } from '@shared/helpers/string';
 
 const CarStatusSelect = forwardRef<HTMLSelectElement, TSelectDefaultProps>((props, ref) => {
   const options: TSelectOption[] = [
     {
-      value: StatusCarEnum.WaitingBudget,
-      title: getStatusCarDescription(StatusCarEnum.WaitingBudget),
+      value: BudgetStatusEnum.MakingBudget,
+      title: getStatusCarDescription(BudgetStatusEnum.MakingBudget),
     },
     {
-      value: StatusCarEnum.WaitingBudgetApproval,
-      title: getStatusCarDescription(StatusCarEnum.WaitingBudgetApproval),
+      value: BudgetStatusEnum.WaitingBudgetApproval,
+      title: getStatusCarDescription(BudgetStatusEnum.WaitingBudgetApproval),
     },
     {
-      value: StatusCarEnum.ApprovedBudget,
-      title: getStatusCarDescription(StatusCarEnum.ApprovedBudget),
+      value: BudgetStatusEnum.ApprovedBudget,
+      title: getStatusCarDescription(BudgetStatusEnum.ApprovedBudget),
     },
     {
-      value: StatusCarEnum.BudgetRejected,
-      title: getStatusCarDescription(StatusCarEnum.BudgetRejected),
+      value: BudgetStatusEnum.BudgetRejected,
+      title: getStatusCarDescription(BudgetStatusEnum.BudgetRejected),
     },
     {
-      value: StatusCarEnum.RunningService,
-      title: getStatusCarDescription(StatusCarEnum.RunningService),
+      value: BudgetStatusEnum.RunningService,
+      title: getStatusCarDescription(BudgetStatusEnum.RunningService),
     },
   ];
 

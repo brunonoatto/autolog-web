@@ -15,8 +15,8 @@ export default function ListBudgets() {
     <>
       <h2>Orçamentos ({data?.length || 0})</h2>
       <table className="w-full">
-        <thead className="text-left">
-          <tr>
+        <thead>
+          <tr className="text-left">
             <th scope="col">Placa</th>
             <th scope="col">Nome</th>
             <th scope="col">Modelo</th>

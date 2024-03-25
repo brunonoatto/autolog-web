@@ -1,13 +1,49 @@
 import { DefaultError, useMutation, useQuery } from '@tanstack/react-query';
 
 import { ServiceApi } from '@core/api';
-import type { TAddBudgetParams, TBudget } from '@core/api/budget/types';
-import { useSearchParams } from 'react-router-dom';
+import type { TNewBudgetParams, TBudget, TGetBudgetResponse } from '@core/api/budget/types';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 export const useAddBudget = () => {
-  return useMutation<TBudget, DefaultError, TAddBudgetParams>({
+  return useMutation<TBudget, DefaultError, TNewBudgetParams>({
     mutationFn: async (data) => {
       const response = await ServiceApi.BudgetApi.addBudget(data);
+      return response.data;
+    },
+  });
+};
+
+export const useApproveBudget = () => {
+  return useMutation<boolean, DefaultError, string>({
+    mutationFn: async (data) => {
+      const response = await ServiceApi.BudgetApi.approveBudget(data);
+      return response.data;
+    },
+  });
+};
+
+export const useStartServiceBudget = () => {
+  return useMutation<boolean, DefaultError, string>({
+    mutationFn: async (data) => {
+      const response = await ServiceApi.BudgetApi.approveBudget(data);
+      return response.data;
+    },
+  });
+};
+
+export const useRemakeBudget = () => {
+  return useMutation<boolean, DefaultError, string>({
+    mutationFn: async (data) => {
+      const response = await ServiceApi.BudgetApi.remakeBudget(data);
+      return response.data;
+    },
+  });
+};
+
+export const useCompletedBudget = () => {
+  return useMutation<boolean, DefaultError, string>({
+    mutationFn: async (data) => {
+      const response = await ServiceApi.BudgetApi.completedBudget(data);
       return response.data;
     },
   });
@@ -22,6 +58,24 @@ export const useListBudgets = () => {
     queryKey: ['useListBudgets', license],
     queryFn: async () => {
       const { data } = await ServiceApi.BudgetApi.listBudgets(license);
+
+      return data;
+    },
+  });
+};
+
+export const useGetBudget = () => {
+  const { os: osParam } = useParams();
+
+  return useQuery({
+    enabled: !!osParam,
+    queryKey: ['useGetBudget', osParam],
+    queryFn: async () => {
+      if (!osParam) {
+        return {} as TGetBudgetResponse;
+      }
+
+      const { data } = await ServiceApi.BudgetApi.getBudget(osParam);
 
       return data;
     },
