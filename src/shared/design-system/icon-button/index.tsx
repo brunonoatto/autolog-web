@@ -1,6 +1,5 @@
-import { twMerge } from 'tailwind-merge';
-import Icon, { type TIconProps } from '../Icon';
 import Button, { type TButtonProps } from '@shared/design-system/button';
+import Icon, { type TIconProps } from '../Icon';
 
 export type TIconButtonProps = TButtonProps & {
   icon: TIconProps['name'];
@@ -12,12 +11,7 @@ const IconButton = ({ children, size, icon, iconProps = {}, ...otherProps }: TIc
   return (
     <Button size={size} {...otherProps}>
       <div className="flex gap-2 items-center">
-        <Icon
-          name={icon}
-          className={twMerge('hover:fill-teal-500', classNameIcon)}
-          size={size}
-          {...otherIconProps}
-        />
+        <Icon name={icon} className={classNameIcon} size={size} {...otherIconProps} />
         {children}
       </div>
     </Button>

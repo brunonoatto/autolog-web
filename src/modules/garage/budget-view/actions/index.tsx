@@ -7,9 +7,11 @@ import SendForApproval from '@modules/garage/budget-view/actions/send-for-approv
 import RemakeBudget from '@modules/garage/budget-view/actions/remake-budget';
 import CompletedService from '@modules/garage/budget-view/actions/completed-budget';
 
+const BackToBudget = () => <Button>Voltar para realizar orçamento</Button>;
+
 const actionsByStatus: { [key in BudgetStatusEnum]: (os: string) => React.ReactNode } = {
   [BudgetStatusEnum.MakingBudget]: (os: string) => <SendForApproval os={os} />,
-  [BudgetStatusEnum.WaitingBudgetApproval]: () => <Button>Voltar para realizar orçamento</Button>,
+  [BudgetStatusEnum.WaitingBudgetApproval]: () => <BackToBudget />,
   [BudgetStatusEnum.ApprovedBudget]: (os) => <StartService os={os} />,
   [BudgetStatusEnum.BudgetRejected]: (os) => (
     <>
@@ -17,7 +19,12 @@ const actionsByStatus: { [key in BudgetStatusEnum]: (os: string) => React.ReactN
       <RemakeBudget os={os} />
     </>
   ),
-  [BudgetStatusEnum.RunningService]: (os) => <CompletedService os={os} />,
+  [BudgetStatusEnum.RunningService]: (os) => (
+    <>
+      <BackToBudget />
+      <CompletedService os={os} />
+    </>
+  ),
   [BudgetStatusEnum.CarReady]: () => <>Veículo entregue</>,
   [BudgetStatusEnum.Finished]: () => <></>,
 };

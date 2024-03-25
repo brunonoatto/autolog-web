@@ -25,6 +25,11 @@ export const approveBudget = async (os: string): Promise<AxiosResponse<boolean>>
   return response;
 };
 
+export const sendForApproveBudget = async (os: string): Promise<AxiosResponse<boolean>> => {
+  const response = await httpClient.patch<boolean>(`${BASE_URL}/send-for-approve/${os}`);
+  return response;
+};
+
 export const startServiceBudget = async (os: string): Promise<AxiosResponse<boolean>> => {
   const response = await httpClient.patch<boolean>(`${BASE_URL}/start/${os}`);
   return response;

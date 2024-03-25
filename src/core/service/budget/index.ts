@@ -22,10 +22,19 @@ export const useApproveBudget = () => {
   });
 };
 
+export const useSendForApproveBudget = () => {
+  return useMutation<boolean, DefaultError, string>({
+    mutationFn: async (data) => {
+      const response = await ServiceApi.BudgetApi.sendForApproveBudget(data);
+      return response.data;
+    },
+  });
+};
+
 export const useStartServiceBudget = () => {
   return useMutation<boolean, DefaultError, string>({
     mutationFn: async (data) => {
-      const response = await ServiceApi.BudgetApi.approveBudget(data);
+      const response = await ServiceApi.BudgetApi.startServiceBudget(data);
       return response.data;
     },
   });

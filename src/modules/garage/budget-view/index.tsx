@@ -24,20 +24,20 @@ export default function GarageBudgetView() {
 
   const { os, status, car, items } = budget || {};
 
+  const allowEditBudget = status === BudgetStatusEnum.MakingBudget;
+  const showActions = status && os && !!items?.length;
+
   const form = useForm({
     defaultValues: { qtd: 1, price: 0 },
     resolver: yupResolver(schema),
   });
 
-  const allowEditBudget = status === BudgetStatusEnum.MakingBudget;
-  const showActions = status && os && !!items?.length;
-
   return (
     <div className="space-y-2">
-      <BudgetTitle car={car} status={status} />
+      {car && status && <BudgetTitle car={car} status={status} />}
 
       <FormProvider {...form}>
-        {allowEditBudget && <BudgetViewForm os={os || ''} />}
+        {allowEditBudget && os && <BudgetViewForm os={os} />}
 
         <BudgetViewTable allowActions={allowEditBudget} />
       </FormProvider>

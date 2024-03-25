@@ -6,6 +6,7 @@ const buttonVariants = tv({
     color: {
       primary: 'bg-teal-800 hover:bg-teal-700',
       secondary: 'ring-1 ring-white hover:ring-teal-300 hover:text-teal-300',
+      cancel: 'bg-red-600 hover:bg-red-500',
     },
     size: {
       small: 'p-1',

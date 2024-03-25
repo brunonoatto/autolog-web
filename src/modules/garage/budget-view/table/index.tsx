@@ -6,13 +6,15 @@ import IconButton from '@shared/design-system/icon-button';
 import { useFormContext } from 'react-hook-form';
 
 type TBudgetViewTableProps = {
-  allowActions: boolean;
+  allowActions?: boolean;
 };
 
-export default function BudgetViewTable({ allowActions }: TBudgetViewTableProps) {
+export default function BudgetViewTable({ allowActions = false }: TBudgetViewTableProps) {
   const { data: budget, refetch } = useGetBudget();
   const { mutate: mutateDeleteBudgetItem } = useDeleteBudgetItem();
-  const { reset } = useFormContext<TBudgetItemFormType>();
+
+  const form = useFormContext<TBudgetItemFormType>();
+  const { reset } = form || {};
 
   const handleDeleteBudgetItem = async (id: string) => {
     mutateDeleteBudgetItem(id, {

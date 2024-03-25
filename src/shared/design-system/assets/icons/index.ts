@@ -12,4 +12,5 @@ export { default as MenuIcon } from './components/MenuIcon';
 export { default as ProgressWrenchIcon } from './components/ProgressWrenchIcon';
 export { default as SendIcon } from './components/SendIcon';
 export { default as ThumbDownIcon } from './components/ThumbDownIcon';
+export { default as ThumbUpIcon } from './components/ThumbUpIcon';
 export { default as TrashIcon } from './components/TrashIcon';

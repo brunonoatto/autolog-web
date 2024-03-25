@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ROUTES_PATH } from '@core/router/consts';
-import { useApproveBudget } from '@core/service/budget';
+import { useSendForApproveBudget } from '@core/service/budget';
 import IconButton from '@shared/design-system/icon-button';
 import Modal from '@shared/design-system/modal';
 
@@ -11,7 +11,7 @@ type TSendForApprovalProps = { os: string };
 
 export default function SendForApproval({ os }: TSendForApprovalProps) {
   const navigate = useNavigate();
-  const { mutate } = useApproveBudget();
+  const { mutate } = useSendForApproveBudget();
   const [openModal, setOpenModal] = useState(false);
 
   const handleGoToDashboard = () => {

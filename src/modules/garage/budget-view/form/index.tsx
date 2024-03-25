@@ -16,7 +16,7 @@ export default function BudgetViewForm({ os }: BudgetViewFormProps) {
   const { refetch } = useGetBudget();
 
   const form = useFormContext<TBudgetItemFormType>();
-  const { register, reset, handleSubmit } = form;
+  const { register, reset, handleSubmit, setFocus } = form;
 
   const handleAddBudgetItem: SubmitHandler<TBudgetItemFormType> = async (formValues) => {
     const newData: TNewBudgetItem = {
@@ -27,7 +27,13 @@ export default function BudgetViewForm({ os }: BudgetViewFormProps) {
     mutateAddBudgetItem(newData, {
       onSuccess: () => {
         refetch();
-        reset();
+        reset({
+          description: '',
+          qtd: 0,
+          price: 0,
+        });
+        // TODO: Não funciona
+        setFocus('description');
       },
     });
   };
