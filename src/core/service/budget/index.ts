@@ -58,6 +58,15 @@ export const useCompletedBudget = () => {
   });
 };
 
+export const useFinishBudget = () => {
+  return useMutation<boolean, DefaultError, string>({
+    mutationFn: async (data) => {
+      const response = await ServiceApi.BudgetApi.finishBudget(data);
+      return response.data;
+    },
+  });
+};
+
 export const useListBudgets = () => {
   const [params] = useSearchParams();
 

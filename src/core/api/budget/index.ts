@@ -45,3 +45,8 @@ export const completedBudget = async (os: string): Promise<AxiosResponse<boolean
   const response = await httpClient.patch<boolean>(`${BASE_URL}/completed/${os}`);
   return response;
 };
+
+export const finishBudget = async (os: string): Promise<AxiosResponse<boolean>> => {
+  const response = await httpClient.patch<boolean>(`${BASE_URL}/finish/${os}`);
+  return response;
+};

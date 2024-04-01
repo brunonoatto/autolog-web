@@ -3,14 +3,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { ROUTES_PATH } from '@core/router/consts';
 import { useApproveBudget } from '@core/service/budget';
+import type { TActionButtonProps } from '@modules/client/budget-view/action-buttons/types';
 import IconButton from '@shared/design-system/icon-button';
 import Modal from '@shared/design-system/modal';
 
-type TApproveButtonProps = {
-  os: string;
-};
-
-export default function ApproveButton({ os }: TApproveButtonProps) {
+export default function ApproveButton({ os }: TActionButtonProps) {
   const navigate = useNavigate();
   const { mutate } = useApproveBudget();
   const [openModal, setOpenModal] = useState(false);
