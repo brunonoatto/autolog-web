@@ -5,30 +5,14 @@ import type { TSelectDefaultProps, TSelectOption } from '@shared/design-system/s
 import { getStatusCarDescription } from '@shared/helpers/string';
 import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
-const CarStatusSelect = forwardRef<HTMLSelectElement, TSelectDefaultProps>((props, ref) => {
-  const options: TSelectOption[] = [
-    {
-      value: BudgetStatusEnum.MakingBudget,
-      title: getStatusCarDescription(BudgetStatusEnum.MakingBudget),
-    },
-    {
-      value: BudgetStatusEnum.WaitingBudgetApproval,
-      title: getStatusCarDescription(BudgetStatusEnum.WaitingBudgetApproval),
-    },
-    {
-      value: BudgetStatusEnum.ApprovedBudget,
-      title: getStatusCarDescription(BudgetStatusEnum.ApprovedBudget),
-    },
-    {
-      value: BudgetStatusEnum.BudgetRejected,
-      title: getStatusCarDescription(BudgetStatusEnum.BudgetRejected),
-    },
-    {
-      value: BudgetStatusEnum.RunningService,
-      title: getStatusCarDescription(BudgetStatusEnum.RunningService),
-    },
-  ];
+const statusIds = Object.values(BudgetStatusEnum).filter((v) => !isNaN(v as number));
 
+const options: TSelectOption[] = statusIds.map((s) => ({
+  value: s,
+  title: getStatusCarDescription(s as BudgetStatusEnum),
+}));
+
+const CarStatusSelect = forwardRef<HTMLSelectElement, TSelectDefaultProps>((props, ref) => {
   return <Select options={options} ref={ref} {...props} />;
 });
 
