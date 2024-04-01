@@ -1,8 +1,8 @@
 import { DefaultError, useMutation, useQuery } from '@tanstack/react-query';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 import { ServiceApi } from '@core/api';
-import type { TNewBudgetParams, TBudget, TGetBudgetResponse } from '@core/api/budget/types';
-import { useParams, useSearchParams } from 'react-router-dom';
+import type { TBudget, TGetBudgetResponse, TNewBudgetParams } from '@core/api/budget/types';
 
 export const useAddBudget = () => {
   return useMutation<TBudget, DefaultError, TNewBudgetParams>({

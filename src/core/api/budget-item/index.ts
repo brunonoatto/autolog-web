@@ -1,6 +1,7 @@
 import { type AxiosResponse } from 'axios';
 
 import httpClient from '@core/api/HttpClient';
+
 import type { TBudgetItem, TNewBudgetItem } from './types';
 
 const BASE_URL = '/budget-item';

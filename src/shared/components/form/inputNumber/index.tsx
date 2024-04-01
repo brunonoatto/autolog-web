@@ -1,5 +1,4 @@
 import { forwardRef } from 'react';
-
 import { useFormState } from 'react-hook-form';
 
 import type { TInputProps } from '@shared/design-system/input';

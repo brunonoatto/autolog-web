@@ -1,17 +1,16 @@
 import { useState } from 'react';
-
 import { useFormContext } from 'react-hook-form';
 import { useDebouncedCallback } from 'use-debounce';
 
-import InputForm from '@shared/components/form/input';
-import BrandSelect from '@shared/components/selects/brand-select';
-import ModelSelect from '@shared/components/selects/model-select';
-import InputNumberForm from '@shared/components/form/inputNumber';
-import Input from '@shared/design-system/input';
-import Container from '@shared/components/container';
-import type { TRegisterCarFormType } from '@modules/garage/add-car';
 import { ServiceApi } from '@core/api';
 import type { TCar } from '@core/api/car/types';
+import type { TRegisterCarFormType } from '@modules/garage/add-car';
+import Container from '@shared/components/container';
+import InputForm from '@shared/components/form/input';
+import InputNumberForm from '@shared/components/form/inputNumber';
+import BrandSelect from '@shared/components/selects/brand-select';
+import ModelSelect from '@shared/components/selects/model-select';
+import Input from '@shared/design-system/input';
 
 export default function CarInfos() {
   // TODO: fazer o loading enquanto pesquisa pela placa

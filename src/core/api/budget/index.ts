@@ -1,7 +1,8 @@
 import { type AxiosResponse } from 'axios';
 
 import httpClient from '@core/api/HttpClient';
-import type { TNewBudgetParams, TBudget, TGetBudgetResponse } from './types';
+
+import type { TBudget, TGetBudgetResponse, TNewBudgetParams } from './types';
 
 const BASE_URL = '/budget';
 

@@ -1,7 +1,7 @@
 import { DefaultError, useMutation } from '@tanstack/react-query';
 
-import type { TLoginParams, TLoginResponse } from '@core/api/auth/types';
 import { ServiceApi } from '@core/api';
+import type { TLoginParams, TLoginResponse } from '@core/api/auth/types';
 
 export const useLogin = () => {
   return useMutation<TLoginResponse, DefaultError, TLoginParams>({

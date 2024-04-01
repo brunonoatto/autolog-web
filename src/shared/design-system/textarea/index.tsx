@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 import styles from '../styles.module.css';
-import { twMerge } from 'tailwind-merge';
 
 export type TTextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
   labelProps?: React.LabelHTMLAttributes<HTMLLabelElement>;

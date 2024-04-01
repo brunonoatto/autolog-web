@@ -1,12 +1,12 @@
-import { FormProvider, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { FormProvider, useForm } from 'react-hook-form';
 
 import { useGetBudget } from '@core/service/budget';
-import { yup, yupValidators } from '@shared/form-validations';
-import BudgetTitle from '@modules/garage/budget-view/title';
 import BudgetActions from '@modules/garage/budget-view/actions';
 import BudgetViewForm from '@modules/garage/budget-view/form';
 import BudgetViewTable from '@modules/garage/budget-view/table';
+import BudgetTitle from '@modules/garage/budget-view/title';
+import { yup, yupValidators } from '@shared/form-validations';
 import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
 const schema = yup

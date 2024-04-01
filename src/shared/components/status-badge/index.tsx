@@ -1,10 +1,9 @@
 import { ReactNode } from 'react';
-
 import { twMerge } from 'tailwind-merge';
 
-import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 import Icon from '@shared/design-system/Icon';
 import { getStatusCarDescription } from '@shared/helpers/string';
+import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
 const statusIcon: { [key in BudgetStatusEnum]: ReactNode } = {
   [BudgetStatusEnum.MakingBudget]: (

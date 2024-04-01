@@ -1,5 +1,4 @@
 import { forwardRef } from 'react';
-
 import { useFormState } from 'react-hook-form';
 
 import Select, { type TSelectProps } from '@shared/design-system/select';

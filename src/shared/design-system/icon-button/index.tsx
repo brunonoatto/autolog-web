@@ -1,4 +1,5 @@
 import Button, { type TButtonProps } from '@shared/design-system/button';
+
 import Icon, { type TIconProps } from '../Icon';
 
 export type TIconButtonProps = TButtonProps & {

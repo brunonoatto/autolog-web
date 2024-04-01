@@ -1,10 +1,9 @@
 import { FunctionComponent, PropsWithChildren } from 'react';
-
 import { FormProvider, type SubmitHandler, type UseFormReturn } from 'react-hook-form';
 
-import Button from '@shared/design-system/button';
 import Container from '@shared/components/container';
 import type { TIcons } from '@shared/design-system/assets/icons/types';
+import Button from '@shared/design-system/button';
 import IconButton from '@shared/design-system/icon-button';
 
 type TForm = PropsWithChildren & {

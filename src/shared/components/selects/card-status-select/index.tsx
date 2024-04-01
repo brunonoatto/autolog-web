@@ -2,8 +2,8 @@ import { forwardRef } from 'react';
 
 import Select from '@shared/components/form/select';
 import type { TSelectDefaultProps, TSelectOption } from '@shared/design-system/select';
-import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 import { getStatusCarDescription } from '@shared/helpers/string';
+import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
 const CarStatusSelect = forwardRef<HTMLSelectElement, TSelectDefaultProps>((props, ref) => {
   const options: TSelectOption[] = [

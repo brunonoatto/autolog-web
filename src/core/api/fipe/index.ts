@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import type { TListBrandModelsResponse, TListCarsBrandsResponse } from './types';
 
 const httpFipeClient = axios.create({ baseURL: 'https://parallelum.com.br/fipe/api/v2' });

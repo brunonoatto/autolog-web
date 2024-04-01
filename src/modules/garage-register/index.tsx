@@ -1,10 +1,10 @@
-import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { yup, yupValidators } from '@shared/form-validations/index';
-import InputNumberForm from '@shared/components/form/inputNumber';
-import InputForm from '@shared/components/form/input';
 import Form from '@layout/form';
+import InputForm from '@shared/components/form/input';
+import InputNumberForm from '@shared/components/form/inputNumber';
+import { yup, yupValidators } from '@shared/form-validations/index';
 
 const schema = yup
   .object({

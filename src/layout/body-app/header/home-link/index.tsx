@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
+import { twMerge } from 'tailwind-merge';
 
 import useAuth from '@core/store/context/hooks/useAuth';
-import { twMerge } from 'tailwind-merge';
 
 type THomeLink = { className?: string };
 const HomeLink = ({ className }: THomeLink) => {

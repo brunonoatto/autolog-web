@@ -1,9 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 
-import { useListDashboard } from '@core/service/dashboard';
 import { DashboardItem } from '@core/models/dashboard';
 import { ROUTES_PATH } from '@core/router/consts';
+import { useListDashboard } from '@core/service/dashboard';
 import LinkButton from '@shared/design-system/link-button';
+
 import StatusCard from './status-card';
 import StatusCardSkeleton from './status-card-skeleton';
 

@@ -1,6 +1,9 @@
 import createStore from './createStore';
 
-type TLoadingStore = { isLoading: boolean; loading: (value: boolean) => void };
+type TLoadingStore = {
+  isLoading: boolean;
+  loading: (value: boolean) => void;
+};
 export const useLoadingStore = createStore<TLoadingStore>((setState) => ({
   isLoading: false,
   loading: (isLoading) => {

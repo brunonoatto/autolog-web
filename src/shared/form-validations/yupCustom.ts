@@ -1,4 +1,5 @@
 import * as yup from 'yup';
+
 import { INTEGER_INVALID_MSG, REQUIRED_MSG } from './consts';
 
 yup.setLocale({

@@ -1,6 +1,7 @@
-import Icon from '@shared/design-system/Icon';
-import { TIcons } from '@shared/design-system/assets/icons/types';
 import { twMerge } from 'tailwind-merge';
+
+import { TIcons } from '@shared/design-system/assets/icons/types';
+import Icon from '@shared/design-system/Icon';
 
 type TContainerProps = {
   children: React.ReactNode;

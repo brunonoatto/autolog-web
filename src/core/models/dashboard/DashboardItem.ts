@@ -1,6 +1,6 @@
 import type { TDashboardItem } from '@core/api/dashboard/types';
-import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 import { getStatusCarDescription } from '@shared/helpers/string';
+import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
 export class DashboardItem {
   os: string;

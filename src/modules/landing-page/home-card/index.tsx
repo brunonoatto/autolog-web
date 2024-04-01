@@ -1,7 +1,8 @@
+import React from 'react';
+
 import LinkButton from '@shared/design-system/link-button';
 
 import styles from './styles.module.css';
-import React from 'react';
 
 type TCardProps = {
   title: string;

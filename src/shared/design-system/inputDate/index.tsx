@@ -1,8 +1,8 @@
 import { forwardRef } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 import type { TInputProps } from '../input';
 import styles from '../styles.module.css';
-import { twMerge } from 'tailwind-merge';
 
 const InputDate = forwardRef<HTMLInputElement, TInputProps>(
   ({ label, error, labelProps = {}, ...inputProps }, ref) => {

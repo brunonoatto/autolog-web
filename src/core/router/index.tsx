@@ -1,9 +1,9 @@
-import { Suspense, lazy } from 'react';
+import { lazy, Suspense } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import BigSpinner from '@layout/body-app/big-spinner';
 
 import { ROUTES_PATH } from './consts';
-import BigSpinner from '@layout/body-app/big-spinner';
 
 const ProtectedRoute = lazy(() => import('./protected-route'));
 const Login = lazy(() => import('@modules/auth/login'));

@@ -1,11 +1,11 @@
 import React from 'react';
 
+import CompletedService from '@modules/garage/budget-view/actions/completed-budget';
+import RemakeBudget from '@modules/garage/budget-view/actions/remake-budget';
+import SendForApproval from '@modules/garage/budget-view/actions/send-for-approval';
+import StartService from '@modules/garage/budget-view/actions/start-service';
 import Button from '@shared/design-system/button';
 import { BudgetStatusEnum } from '@shared/types/budgetStatus';
-import StartService from '@modules/garage/budget-view/actions/start-service';
-import SendForApproval from '@modules/garage/budget-view/actions/send-for-approval';
-import RemakeBudget from '@modules/garage/budget-view/actions/remake-budget';
-import CompletedService from '@modules/garage/budget-view/actions/completed-budget';
 
 const BackToBudget = () => <Button>Voltar para realizar orçamento</Button>;
 

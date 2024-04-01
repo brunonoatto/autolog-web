@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 
-import httpClient from '@core/api/HttpClient';
 import type { TCar } from '@core/api/car/types';
+import httpClient from '@core/api/HttpClient';
 
 const BASE_URL = '/car';
 

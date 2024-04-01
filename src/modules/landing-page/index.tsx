@@ -1,6 +1,7 @@
-import Header from '@layout/body-app/header';
-import HomeCard from './home-card';
 import { ROUTES_PATH } from '@core/router/consts';
+import Header from '@layout/body-app/header';
+
+import HomeCard from './home-card';
 
 export default function LandingPage() {
   return (

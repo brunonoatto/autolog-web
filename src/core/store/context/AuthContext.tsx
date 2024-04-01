@@ -1,7 +1,7 @@
 import { createContext, useCallback, useLayoutEffect, useState } from 'react';
 
-import httpClient from '@core/api/HttpClient';
 import { TLoginResponse } from '@core/api/auth/types';
+import httpClient from '@core/api/HttpClient';
 import { useLogin } from '@core/service/auth';
 
 const authStorageKey = 'autolog-auth';

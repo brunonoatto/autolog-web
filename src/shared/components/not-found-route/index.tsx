@@ -1,4 +1,5 @@
 import LinkButton from '@shared/design-system/link-button';
+
 import GoBackButton from '../go-back-button';
 
 export default function NotFoundRoute() {

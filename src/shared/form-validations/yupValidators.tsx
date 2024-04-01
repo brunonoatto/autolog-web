@@ -1,4 +1,3 @@
-import yup from './yupCustom';
 import {
   BYRTHDAY_INVALID_MSG,
   DATE_INVALID_MSG,
@@ -6,6 +5,7 @@ import {
   MAX_INVALID_MSG,
   NUMBER_INVALID_MSG,
 } from './consts';
+import yup from './yupCustom';
 
 type TStringValidator = { size: number };
 export const StringValidator = ({ size }: TStringValidator = { size: 150 }) =>

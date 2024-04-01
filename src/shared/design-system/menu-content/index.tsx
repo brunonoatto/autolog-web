@@ -1,8 +1,8 @@
 import { useRef } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 
 import useOutsideClick from '@shared/hooks/useOutsideClick';
+
 import IconButton, { type TIconButtonProps } from '../icon-button';
 
 const handleToogleContentClick = () => {

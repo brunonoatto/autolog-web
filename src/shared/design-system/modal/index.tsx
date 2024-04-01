@@ -1,8 +1,9 @@
-import { ReactNode, type PropsWithChildren } from 'react';
+import { type PropsWithChildren, ReactNode } from 'react';
 
-import Portal from '../portal';
-import IconButton from '../icon-button';
 import Button from '@shared/design-system/button';
+
+import IconButton from '../icon-button';
+import Portal from '../portal';
 
 type TModalProps = PropsWithChildren & {
   open: boolean;

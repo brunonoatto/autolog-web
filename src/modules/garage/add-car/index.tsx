@@ -1,19 +1,18 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
-
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { yupResolver } from '@hookform/resolvers/yup';
 
-import { useLoadingStore } from '@core/store/hooks';
-import { useListBrands, useListModelsBrand } from '@core/service/fipe';
 import { ROUTES_PATH } from '@core/router/consts';
-import Form from '@layout/form';
-import { yup, yupValidators } from '@shared/form-validations/index';
-import InputForm from '@shared/components/form/input';
-import Textarea from '@shared/design-system/textarea';
-import Modal from '@shared/design-system/modal';
 import { useAddBudget } from '@core/service/budget';
+import { useListBrands, useListModelsBrand } from '@core/service/fipe';
+import { useLoadingStore } from '@core/store/hooks';
+import Form from '@layout/form';
 import CarInfos from '@modules/garage/add-car/card-infos';
+import InputForm from '@shared/components/form/input';
+import Modal from '@shared/design-system/modal';
+import Textarea from '@shared/design-system/textarea';
+import { yup, yupValidators } from '@shared/form-validations/index';
 
 const schema = yup
   .object({

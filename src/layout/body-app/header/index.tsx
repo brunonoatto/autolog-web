@@ -1,8 +1,9 @@
 import { ROUTES_PATH } from '@core/router/consts';
 import useAuth from '@core/store/context/hooks/useAuth';
 import LinkButton from '@shared/design-system/link-button';
-import HomeLink from './home-link';
+
 import HeaderActions from './header-actions';
+import HomeLink from './home-link';
 import styles from './styles.module.css';
 
 const Header = () => {

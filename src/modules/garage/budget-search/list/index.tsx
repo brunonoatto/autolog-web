@@ -1,7 +1,8 @@
+import { useNavigate } from 'react-router-dom';
+
 import { ROUTES_PATH } from '@core/router/consts';
 import { useListBudgets } from '@core/service/budget';
 import StatusBadge from '@shared/components/status-badge';
-import { useNavigate } from 'react-router-dom';
 
 export default function ListBudgets() {
   const navigate = useNavigate();

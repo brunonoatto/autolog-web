@@ -1,8 +1,8 @@
 import { forwardRef } from 'react';
 
 import { useListModelsBrand } from '@core/service/fipe';
-import { TSelectDefaultProps } from '@shared/design-system/select';
 import Select from '@shared/components/form/select';
+import { TSelectDefaultProps } from '@shared/design-system/select';
 import { buildSelectOptions } from '@shared/design-system/select/helpers';
 
 type TModelSelectProps = TSelectDefaultProps & { brandId: string };

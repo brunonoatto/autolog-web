@@ -1,12 +1,12 @@
-import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { useLoadingStore } from '@core/store/hooks';
 import useAuth from '@core/store/context/hooks/useAuth';
-import { yup, yupValidators } from '@shared/form-validations';
+import { useLoadingStore } from '@core/store/hooks';
+import HomeLink from '@layout/body-app/header/home-link';
 import Form from '@layout/form';
 import InputForm from '@shared/components/form/input';
-import HomeLink from '@layout/body-app/header/home-link';
+import { yup, yupValidators } from '@shared/form-validations';
 
 const schema = yup
   .object({
