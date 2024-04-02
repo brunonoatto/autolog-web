@@ -33,7 +33,7 @@ export default function AddCar() {
   const [generateOS, setGenerateOS] = useState('');
   const navigate = useNavigate();
   const { mutate } = useAddBudget();
-  const loading = useLoadingStore((props) => props.loading);
+  const loading = useLoadingStore((state) => state.loading);
 
   const form = useForm({
     resolver: yupResolver(schema),

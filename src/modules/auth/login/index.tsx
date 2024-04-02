@@ -18,7 +18,7 @@ const schema = yup
 type TLoginType = yup.InferType<typeof schema>;
 
 export default function Login() {
-  const loading = useLoadingStore((props) => props.loading);
+  const loading = useLoadingStore((state) => state.loading);
   const { login } = useAuth();
 
   const form = useForm({

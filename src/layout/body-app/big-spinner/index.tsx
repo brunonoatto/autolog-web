@@ -5,7 +5,7 @@ import Portal from '@shared/design-system/portal';
 type TBigSpinnerProps = { open?: boolean };
 
 export default function BigSpinner({ open }: TBigSpinnerProps) {
-  const isLoading = useLoadingStore((props) => props.isLoading);
+  const isLoading = useLoadingStore((state) => state.isLoading);
 
   return (
     <Portal open={open || isLoading}>
