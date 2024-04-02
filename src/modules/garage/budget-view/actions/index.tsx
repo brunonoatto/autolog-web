@@ -1,17 +1,22 @@
 import React from 'react';
 
+import BackToBudget from '@modules/garage/budget-view/actions/back-to-budget';
 import CompletedService from '@modules/garage/budget-view/actions/completed-budget';
 import RemakeBudget from '@modules/garage/budget-view/actions/remake-budget';
 import SendForApproval from '@modules/garage/budget-view/actions/send-for-approval';
+import SendWhatsApp from '@modules/garage/budget-view/actions/send-whats-app';
 import StartService from '@modules/garage/budget-view/actions/start-service';
 import Button from '@shared/design-system/button';
 import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
-const BackToBudget = () => <Button>Voltar para realizar orçamento</Button>;
-
 const actionsByStatus: { [key in BudgetStatusEnum]: (os: string) => React.ReactNode } = {
   [BudgetStatusEnum.MakingBudget]: (os: string) => <SendForApproval os={os} />,
-  [BudgetStatusEnum.WaitingBudgetApproval]: () => <BackToBudget />,
+  [BudgetStatusEnum.WaitingBudgetApproval]: (os: string) => (
+    <>
+      <SendWhatsApp os={os} />
+      <BackToBudget os={os} />
+    </>
+  ),
   [BudgetStatusEnum.ApprovedBudget]: (os) => <StartService os={os} />,
   [BudgetStatusEnum.BudgetRejected]: (os) => (
     <>
@@ -21,7 +26,7 @@ const actionsByStatus: { [key in BudgetStatusEnum]: (os: string) => React.ReactN
   ),
   [BudgetStatusEnum.RunningService]: (os) => (
     <>
-      <BackToBudget />
+      <BackToBudget os={os} />
       <CompletedService os={os} />
     </>
   ),
@@ -29,11 +34,11 @@ const actionsByStatus: { [key in BudgetStatusEnum]: (os: string) => React.ReactN
   [BudgetStatusEnum.Finished]: () => <></>,
 };
 
-type TBudgetActions = {
+type TBudgetActionsParams = {
   os: string;
   status: BudgetStatusEnum;
 };
 
-export default function BudgetActions({ os, status }: TBudgetActions) {
-  return <div className="flex gao-2 justify-end">{actionsByStatus[status](os)}</div>;
+export default function BudgetActions({ os, status }: TBudgetActionsParams) {
+  return <div className="flex gap-2 justify-end">{actionsByStatus[status](os)}</div>;
 }

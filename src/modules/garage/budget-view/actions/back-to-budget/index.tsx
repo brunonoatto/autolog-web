@@ -7,20 +7,16 @@ import type { TBudgetActionParams } from '@modules/garage/budget-view/actions/ty
 import IconButton from '@shared/design-system/icon-button';
 import Modal from '@shared/design-system/modal';
 
-export default function RemakeBudget({ os }: TBudgetActionParams) {
+export default function BackToBudget({ os }: TBudgetActionParams) {
   const navigate = useNavigate();
   const { mutate } = useRemakeBudget();
   const [openModal, setOpenModal] = useState(false);
-
-  const handleGoToBudget = () => {
-    navigate(`${ROUTES_PATH.garageBudgetView}/${os}`);
-  };
 
   const handleGoToDashboard = () => {
     navigate(ROUTES_PATH.garageDashboard);
   };
 
-  const handleRemake = () => {
+  const handleSendForApproval = () => {
     mutate(os, {
       onSuccess: () => {
         setOpenModal(true);
@@ -30,20 +26,16 @@ export default function RemakeBudget({ os }: TBudgetActionParams) {
 
   return (
     <>
-      <IconButton icon="BudgetLoadingIcon" color="primary" onClick={handleRemake}>
-        Refazer Orçamento
+      <IconButton icon="BudgetLoadingIcon" color="primary" onClick={handleSendForApproval}>
+        Voltar para realizar orçamento
       </IconButton>
 
       <Modal
         open={openModal}
-        title="Orçamento enviado para Realizando Orçamento!"
-        confirmText="Sim"
-        onConfirmClick={handleGoToBudget}
-        cancelText="Não"
-        onCancelClick={handleGoToDashboard}
-      >
-        Deseja ir para o orçamento do veículo?
-      </Modal>
+        title="Carro aguardando o Orçamento novamente."
+        confirmText="Continuar"
+        onConfirmClick={handleGoToDashboard}
+      />
     </>
   );
 }
