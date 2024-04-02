@@ -77,13 +77,17 @@ export default function AddCar() {
         icon="BudgetLoadingIcon"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <InputForm label="CPF/CNPJ" {...register('cpf_cnpj')} />
           <InputForm
             label="Nome Cliente"
-            labelProps={{ className: 'col-span-full' }}
+            labelProps={{ className: 'lg:row-start-2 md:col-span-2' }}
             {...register('name')}
           />
-          <InputForm label="CPF/CNPJ" {...register('cpf_cnpj')} />
-          <InputForm label="Telefone" {...register('phone')} />
+          <InputForm
+            label="Telefone"
+            labelProps={{ className: 'lg:row-start-2' }}
+            {...register('phone')}
+          />
 
           <CarInfos />
 
