@@ -1,4 +1,4 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useLocation, useSearchParams } from 'react-router-dom';
 
 import type { TUserType } from '@core/api/auth/types';
 import { ROUTES_PATH } from '@core/router/consts';
@@ -11,6 +11,13 @@ type TProtectedRouteParams = {
 
 export default function ProtectedRoute({ isPrivate, routeUserType }: TProtectedRouteParams) {
   const { isAuthenticated, getTokenData } = useAuth();
+  const { pathname } = useLocation();
+  const [searchParams] = useSearchParams();
+
+  const goto = searchParams.get('goto');
+  if (isAuthenticated && goto && pathname.includes('login')) {
+    return <Navigate to={goto} replace />;
+  }
 
   if (isAuthenticated) {
     const tokenData = getTokenData();
@@ -32,7 +39,8 @@ export default function ProtectedRoute({ isPrivate, routeUserType }: TProtectedR
   }
 
   if (!isAuthenticated && isPrivate) {
-    return <Navigate to={ROUTES_PATH.login} />;
+    // TODO: ao clicar em sair, não deve enviar o goto
+    return <Navigate to={`${ROUTES_PATH.login}?goto=${pathname}`} />;
   }
 
   return <Outlet />;
