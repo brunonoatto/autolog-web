@@ -18,14 +18,19 @@ export type TBudget = {
   garageId: string;
   license: string;
   status: BudgetStatusEnum;
-  name: string;
-  phone: string;
-  cpf_cnpj: string;
+  clientId: string;
   observation?: string;
+  clientName: string;
+  clientPhone: string;
+  clientCpf_cnpj: string;
   car: TCar;
 };
 
 export type TGetBudgetResponse = TBudget & {
   car: TCar;
   items: TBudgetItem[];
+};
+
+export type TGetWhatsLinkResponse = {
+  link: string;
 };

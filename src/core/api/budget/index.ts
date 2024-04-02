@@ -2,7 +2,7 @@ import { type AxiosResponse } from 'axios';
 
 import httpClient from '@core/api/HttpClient';
 
-import type { TBudget, TGetBudgetResponse, TNewBudgetParams } from './types';
+import type { TBudget, TGetBudgetResponse, TGetWhatsLinkResponse, TNewBudgetParams } from './types';
 
 const BASE_URL = '/budget';
 
@@ -48,5 +48,10 @@ export const completedBudget = async (os: string): Promise<AxiosResponse<boolean
 
 export const finishBudget = async (os: string): Promise<AxiosResponse<boolean>> => {
   const response = await httpClient.patch<boolean>(`${BASE_URL}/finish/${os}`);
+  return response;
+};
+
+export const getWhatsLink = async (os: string): Promise<AxiosResponse<TGetWhatsLinkResponse>> => {
+  const response = await httpClient.get<TGetWhatsLinkResponse>(`${BASE_URL}/whats/${os}`);
   return response;
 };
