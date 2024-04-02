@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FunctionComponent, PropsWithChildren } from 'react';
 import { FormProvider, type SubmitHandler, type UseFormReturn } from 'react-hook-form';
 
