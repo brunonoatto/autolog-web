@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
+import { ServiceApi } from '@core/api';
+import { TClientResponse } from '@core/api/client/types';
 import { ROUTES_PATH } from '@core/router/consts';
 import { useAddBudget } from '@core/service/budget';
 import { useListBrands, useListModelsBrand } from '@core/service/fipe';
@@ -30,6 +32,7 @@ const schema = yup
 export type TRegisterCarFormType = yup.InferType<typeof schema>;
 
 export default function AddCar() {
+  const [selectedClient, setSelectedClient] = useState<TClientResponse | undefined>();
   const [generateOS, setGenerateOS] = useState('');
   const navigate = useNavigate();
   const { mutate } = useAddBudget();
@@ -38,11 +41,17 @@ export default function AddCar() {
   const form = useForm({
     resolver: yupResolver(schema),
   });
-  const { register, watch, handleSubmit } = form;
+  const { register, watch, handleSubmit, getValues, setValue } = form;
 
   const brandId = watch('brand');
   const { data: listBrands } = useListBrands();
   const { data: listModels } = useListModelsBrand(brandId);
+
+  const handleClearClientSelected = () => {
+    setValue('name', '');
+    setValue('phone', '');
+    setSelectedClient(undefined);
+  };
 
   const handleSuccessConfirm = () => {
     navigate(`${ROUTES_PATH.garageBudgetView}/${generateOS}`);
@@ -68,6 +77,23 @@ export default function AddCar() {
     );
   };
 
+  const handleCpfBlur = async () => {
+    const { cpf_cnpj } = getValues();
+    if (cpf_cnpj.length === 11) {
+      try {
+        const { data: clientData } = await ServiceApi.ClientApi.get({ cpf: cpf_cnpj });
+        setSelectedClient(clientData);
+
+        setValue('name', clientData.name);
+        setValue('phone', clientData.phone);
+      } catch {
+        handleClearClientSelected();
+      }
+    } else {
+      handleClearClientSelected();
+    }
+  };
+
   return (
     <>
       <Form
@@ -77,15 +103,17 @@ export default function AddCar() {
         icon="BudgetLoadingIcon"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <InputForm label="CPF/CNPJ" {...register('cpf_cnpj')} />
+          <InputForm label="CPF/CNPJ" {...register('cpf_cnpj', { onBlur: handleCpfBlur })} />
           <InputForm
             label="Nome Cliente"
             labelProps={{ className: 'lg:row-start-2 md:col-span-2' }}
+            disabled={!!selectedClient}
             {...register('name')}
           />
           <InputForm
             label="Telefone"
             labelProps={{ className: 'lg:row-start-2' }}
+            disabled={!!selectedClient}
             {...register('phone')}
           />
 
