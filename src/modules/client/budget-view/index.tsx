@@ -1,10 +1,11 @@
 import { useGetBudget } from '@core/service/budget';
+import { BudgetViewProvider } from '@core/store/context/BudgetViewContext';
 import BudgetActionButtons from '@modules/client/budget-view/action-buttons';
-import BudgetViewTable from '@modules/garage/budget-view/table';
 import BudgetCard from '@shared/components/budget-card';
+import BudgetTable from '@shared/components/budget-table';
 import Container from '@shared/components/container';
 
-export default function ClientBudgetView() {
+function ClientBudgetViewContent() {
   const { data: budget } = useGetBudget();
 
   const { status, car } = budget || {};
@@ -17,9 +18,17 @@ export default function ClientBudgetView() {
     <Container title="Orçamento">
       <BudgetCard status={status} car={car} />
 
-      <BudgetViewTable />
+      <BudgetTable />
 
       <BudgetActionButtons />
     </Container>
+  );
+}
+
+export default function GarageBudgetView() {
+  return (
+    <BudgetViewProvider>
+      <ClientBudgetViewContent />
+    </BudgetViewProvider>
   );
 }
