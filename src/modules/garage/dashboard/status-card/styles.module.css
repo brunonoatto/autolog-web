@@ -1,5 +1,5 @@
 .container {
-  @apply min-h-28 md:min-h-36 bg-neutral-700 rounded-lg p-2;
+  @apply min-h-32 md:min-h-40 bg-neutral-700 rounded-lg p-2;
   @apply hover:bg-neutral-600 hover:ring-2 hover:ring-teal-500 focus:ring-4 focus:ring-teal-300 focus:outline-none;
   @apply flex flex-col justify-between;
 }
