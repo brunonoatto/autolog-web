@@ -21,7 +21,7 @@ const schema = yup
     name: yupValidators.StringValidator().required(),
     phone: yupValidators.StringValidator().required(),
     cpf_cnpj: yupValidators.StringValidator().required(),
-    license: yupValidators.StringValidator().required(),
+    license: yupValidators.StringValidator().uppercase().required(),
     brand: yupValidators.StringValidator().required(),
     model: yupValidators.StringValidator().required(),
     year: yupValidators.NumberValidator().required().integer(),
