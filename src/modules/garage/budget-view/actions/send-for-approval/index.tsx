@@ -4,14 +4,17 @@ import { useNavigate } from 'react-router-dom';
 import { ServiceApi } from '@core/api';
 import { ROUTES_PATH } from '@core/router/consts';
 import { useSendForApproveBudget } from '@core/service/budget';
-import type { TBudgetActionParams } from '@modules/garage/budget-view/actions/types';
+import useGarageBudgetView from '@core/store/context/hooks/useGarageBudgetViewContext';
 import IconButton from '@shared/design-system/icon-button';
 import Modal from '@shared/design-system/modal';
 
-export default function SendForApproval({ os }: TBudgetActionParams) {
+export default function SendForApproval() {
+  const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
   const { mutate } = useSendForApproveBudget();
-  const [openModal, setOpenModal] = useState(false);
+
+  const { budget } = useGarageBudgetView();
+  const { os = '' } = budget || {};
 
   const handleGoToDashboard = () => {
     navigate(ROUTES_PATH.garageDashboard);

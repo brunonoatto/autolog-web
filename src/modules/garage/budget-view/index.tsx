@@ -31,6 +31,10 @@ function GarageBudgetViewContent() {
     resolver: yupResolver(schema),
   });
 
+  if (!budget) {
+    return <>Loading...</>;
+  }
+
   return (
     <div className="space-y-2">
       <BudgetViewTitle />

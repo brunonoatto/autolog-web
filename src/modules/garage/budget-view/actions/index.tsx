@@ -10,38 +10,36 @@ import StartService from '@modules/garage/budget-view/actions/start-service';
 import Button from '@shared/design-system/button';
 import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
-const actionsByStatus: { [key in BudgetStatusEnum]: (os: string) => React.ReactNode } = {
-  [BudgetStatusEnum.MakingBudget]: (os: string) => <SendForApproval os={os} />,
-  [BudgetStatusEnum.WaitingBudgetApproval]: (os: string) => (
+const actionsByStatus: { [key in BudgetStatusEnum]?: React.ReactNode } = {
+  [BudgetStatusEnum.MakingBudget]: <SendForApproval />,
+  [BudgetStatusEnum.WaitingBudgetApproval]: (
     <>
-      <SendWhatsApp os={os} />
-      <BackToBudget os={os} />
+      <SendWhatsApp />
+      <BackToBudget />
     </>
   ),
-  [BudgetStatusEnum.ApprovedBudget]: (os) => <StartService os={os} />,
-  [BudgetStatusEnum.BudgetRejected]: (os) => (
+  [BudgetStatusEnum.ApprovedBudget]: <StartService />,
+  [BudgetStatusEnum.BudgetRejected]: (
     <>
       <Button>Cancelar orçamento</Button>
-      <RemakeBudget os={os} />
+      <RemakeBudget />
     </>
   ),
-  [BudgetStatusEnum.RunningService]: (os) => (
+  [BudgetStatusEnum.RunningService]: (
     <>
-      <BackToBudget os={os} />
-      <CompletedService os={os} />
+      <BackToBudget />
+      <CompletedService />
     </>
   ),
-  [BudgetStatusEnum.CarReady]: () => <>Veículo entregue</>,
-  [BudgetStatusEnum.Finished]: () => <></>,
 };
 
 export default function BudgetViewActions() {
   const { budget } = useGarageBudgetView();
-  const { os, status, items } = budget || {};
+  const { status, items } = budget || {};
 
-  const showActions = status && os && !!items?.length;
+  const showActions = status && !!items?.length;
 
   if (!showActions) return null;
 
-  return <div className="flex gap-2 justify-end">{actionsByStatus[status](os)}</div>;
+  return <div className="flex gap-2 justify-end">{actionsByStatus[status]}</div>;
 }

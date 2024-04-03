@@ -1,8 +1,11 @@
 import { ServiceApi } from '@core/api';
-import type { TBudgetActionParams } from '@modules/garage/budget-view/actions/types';
+import useGarageBudgetView from '@core/store/context/hooks/useGarageBudgetViewContext';
 import IconButton from '@shared/design-system/icon-button';
 
-export default function SendWhatsApp({ os }: TBudgetActionParams) {
+export default function SendWhatsApp() {
+  const { budget } = useGarageBudgetView();
+  const { os = '' } = budget || {};
+
   const handleSendWhatsApp = async () => {
     // TODO: pensar em um local compartilhado para guardar essa ação
     const { data } = await ServiceApi.BudgetApi.getWhatsLink(os);

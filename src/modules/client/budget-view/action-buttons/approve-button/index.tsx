@@ -4,16 +4,19 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTES_PATH } from '@core/router/consts';
 import { useApproveBudget } from '@core/service/budget';
 import useAuth from '@core/store/context/hooks/useAuth';
-import type { TActionButtonProps } from '@modules/client/budget-view/action-buttons/types';
+import useGarageBudgetView from '@core/store/context/hooks/useGarageBudgetViewContext';
 import IconButton from '@shared/design-system/icon-button';
 import Modal from '@shared/design-system/modal';
 
-export default function ApproveButton({ os }: TActionButtonProps) {
+export default function ApproveButton() {
+  const [openConfirmModal, setOpenConfirmModal] = useState(false);
+  const [openSuccessModal, setOpenSuccessModal] = useState(false);
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
   const { mutate } = useApproveBudget();
-  const [openConfirmModal, setOpenConfirmModal] = useState(false);
-  const [openSuccessModal, setOpenSuccessModal] = useState(false);
+
+  const { budget } = useGarageBudgetView();
+  const { os = '' } = budget || {};
 
   const handleGoToBudgets = () => {
     if (isAuthenticated) {

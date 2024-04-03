@@ -3,14 +3,17 @@ import { useNavigate } from 'react-router-dom';
 
 import { ROUTES_PATH } from '@core/router/consts';
 import { useFinishBudget } from '@core/service/budget';
-import type { TActionButtonProps } from '@modules/client/budget-view/action-buttons/types';
+import useGarageBudgetView from '@core/store/context/hooks/useGarageBudgetViewContext';
 import IconButton from '@shared/design-system/icon-button';
 import Modal from '@shared/design-system/modal';
 
-export default function ReceiveButton({ os }: TActionButtonProps) {
+export default function ReceiveButton() {
+  const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
   const { mutate } = useFinishBudget();
-  const [openModal, setOpenModal] = useState(false);
+
+  const { budget } = useGarageBudgetView();
+  const { os = '' } = budget || {};
 
   const handleGoToBudgets = () => {
     navigate(ROUTES_PATH.clientBudgetSearch);

@@ -11,15 +11,13 @@ export default function ClientBudgetView() {
     return <>Loading...</>;
   }
 
-  const { os, status, car } = budget;
-
   return (
     <Container title="Orçamento">
-      <BudgetCard status={status} car={car} />
+      <BudgetCard />
 
       <BudgetViewTable />
 
-      <BudgetActionButtons status={status} os={os} />
+      <BudgetActionButtons />
     </Container>
   );
 }
