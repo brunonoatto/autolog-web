@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { ServiceApi } from '@core/api';
-import { TClientResponse } from '@core/api/client/types';
+import type { TClientResponse } from '@core/api/client/types';
 import { ROUTES_PATH } from '@core/router/consts';
 import { useAddBudget } from '@core/service/budget';
 import { useListBrands, useListModelsBrand } from '@core/service/fipe';

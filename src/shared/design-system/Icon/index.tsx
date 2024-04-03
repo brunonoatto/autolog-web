@@ -1,6 +1,6 @@
-import { TSize } from '@shared/design-system/_types';
+import type { TSize } from '@shared/design-system/_types';
 import * as icons from '@shared/design-system/assets/icons';
-import { TIcons } from '@shared/design-system/assets/icons/types';
+import type { TIcons } from '@shared/design-system/assets/icons/types';
 
 const sizeData: { [key in TSize]: number } = {
   small: 20,

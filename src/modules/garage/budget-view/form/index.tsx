@@ -1,6 +1,6 @@
 import { SubmitHandler, useFormContext } from 'react-hook-form';
 
-import { TNewBudgetItem } from '@core/api/budget-item/types';
+import type { TNewBudgetItem } from '@core/api/budget-item/types';
 import { useGetBudget } from '@core/service/budget';
 import { useAddBudgetItem } from '@core/service/budget-items';
 import Form from '@layout/form';

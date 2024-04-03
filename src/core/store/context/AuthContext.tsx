@@ -1,6 +1,6 @@
 import { createContext, useCallback, useLayoutEffect, useState } from 'react';
 
-import { TLoginResponse } from '@core/api/auth/types';
+import type { TLoginResponse } from '@core/api/auth/types';
 import httpClient from '@core/api/HttpClient';
 import { useLogin } from '@core/service/auth';
 

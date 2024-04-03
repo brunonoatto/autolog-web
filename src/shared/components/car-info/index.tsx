@@ -1,6 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 
-import { TCar } from '@core/api/car/types';
+import type { TCar } from '@core/api/car/types';
 
 type TCarInfoProps = TCar & { className?: string };
 
