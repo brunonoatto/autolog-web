@@ -5,8 +5,9 @@ import { BudgetViewProvider } from '@core/store/context/BudgetViewContext';
 import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
 import BudgetViewActions from '@modules/garage/budget-view/actions';
 import BudgetViewForm from '@modules/garage/budget-view/form';
-import BudgetViewTable from '@modules/garage/budget-view/table';
-import BudgetViewTitle from '@modules/garage/budget-view/title';
+import BudgetCard from '@shared/components/budget-card';
+import BudgetTable from '@shared/components/budget-table';
+import Container from '@shared/components/container';
 import { yup, yupValidators } from '@shared/form-validations';
 import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
@@ -22,7 +23,7 @@ export type TBudgetItemFormType = yup.InferType<typeof schema>;
 
 function GarageBudgetViewContent() {
   const { budget } = useBudgetView();
-  const { status } = budget || {};
+  const { status, car } = budget || {};
 
   const allowEditBudget = status === BudgetStatusEnum.MakingBudget;
 
@@ -36,17 +37,19 @@ function GarageBudgetViewContent() {
   }
 
   return (
-    <div className="space-y-2">
-      <BudgetViewTitle />
+    <Container title="Orçamento">
+      <div className="space-y-2">
+        <BudgetCard status={status} car={car} />
 
-      <FormProvider {...form}>
-        {allowEditBudget && <BudgetViewForm />}
+        <FormProvider {...form}>
+          {allowEditBudget && <BudgetViewForm />}
 
-        <BudgetViewTable allowActions={allowEditBudget} />
-      </FormProvider>
+          <BudgetTable allowActions={allowEditBudget} />
+        </FormProvider>
 
-      <BudgetViewActions />
-    </div>
+        <BudgetViewActions />
+      </div>
+    </Container>
   );
 }
 

@@ -32,7 +32,7 @@ const Form: FunctionComponent<TForm> = ({
 
   return (
     <FormProvider {...form}>
-      <Container className={className} title={title} icon={icon}>
+      <Container border className={className} title={title} icon={icon}>
         <div className="my-2">{children}</div>
 
         <form onSubmit={handleSubmit(onSubmit)}>

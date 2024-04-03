@@ -14,7 +14,7 @@ const actionsByStatus: { [key in BudgetStatusEnum]?: React.ReactNode } = {
   [BudgetStatusEnum.CarReady]: <ReceiveButton />,
 };
 
-export default function BudgetActionButtons() {
+export default function BudgetViewActionButtons() {
   const { budget } = useBudgetView();
   const { status } = budget || {};
 

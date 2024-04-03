@@ -10,7 +10,7 @@ type TBudgetViewTableProps = {
   allowActions?: boolean;
 };
 
-export default function BudgetViewTable({ allowActions = false }: TBudgetViewTableProps) {
+export default function BudgetTable({ allowActions = false }: TBudgetViewTableProps) {
   const { budget, refetch } = useBudgetView();
   const { mutate: mutateDeleteBudgetItem } = useDeleteBudgetItem();
 

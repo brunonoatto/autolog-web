@@ -1,6 +1,6 @@
 import { useGetBudget } from '@core/service/budget';
 import { BudgetViewProvider } from '@core/store/context/BudgetViewContext';
-import BudgetActionButtons from '@modules/client/budget-view/action-buttons';
+import BudgetViewActionButtons from '@modules/client/budget-view/action-buttons';
 import BudgetCard from '@shared/components/budget-card';
 import BudgetTable from '@shared/components/budget-table';
 import Container from '@shared/components/container';
@@ -20,7 +20,7 @@ function ClientBudgetViewContent() {
 
       <BudgetTable />
 
-      <BudgetActionButtons />
+      <BudgetViewActionButtons />
     </Container>
   );
 }
