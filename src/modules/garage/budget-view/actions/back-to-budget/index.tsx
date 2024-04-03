@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { ROUTES_PATH } from '@core/router/consts';
 import { useRemakeBudget } from '@core/service/budget';
-import useGarageBudgetView from '@core/store/context/hooks/useGarageBudgetViewContext';
+import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
 import IconButton from '@shared/design-system/icon-button';
 import Modal from '@shared/design-system/modal';
 
@@ -12,7 +12,7 @@ export default function BackToBudget() {
   const navigate = useNavigate();
   const { mutate } = useRemakeBudget();
 
-  const { budget } = useGarageBudgetView();
+  const { budget } = useBudgetView();
   const { os = '' } = budget || {};
 
   const handleGoToDashboard = () => {

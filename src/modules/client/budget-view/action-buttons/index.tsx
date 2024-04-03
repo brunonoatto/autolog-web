@@ -1,4 +1,4 @@
-import useGarageBudgetView from '@core/store/context/hooks/useGarageBudgetViewContext';
+import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
 import ApproveButton from '@modules/client/budget-view/action-buttons/approve-button';
 import ReceiveButton from '@modules/client/budget-view/action-buttons/receive-car';
 import RejectButton from '@modules/client/budget-view/action-buttons/reject-button';
@@ -15,7 +15,7 @@ const actionsByStatus: { [key in BudgetStatusEnum]?: React.ReactNode } = {
 };
 
 export default function BudgetActionButtons() {
-  const { budget } = useGarageBudgetView();
+  const { budget } = useBudgetView();
   const { status } = budget || {};
 
   const statusActions = status && actionsByStatus[status];

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ServiceApi } from '@core/api';
 import { ROUTES_PATH } from '@core/router/consts';
 import { useSendForApproveBudget } from '@core/service/budget';
-import useGarageBudgetView from '@core/store/context/hooks/useGarageBudgetViewContext';
+import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
 import IconButton from '@shared/design-system/icon-button';
 import Modal from '@shared/design-system/modal';
 
@@ -13,7 +13,7 @@ export default function SendForApproval() {
   const navigate = useNavigate();
   const { mutate } = useSendForApproveBudget();
 
-  const { budget } = useGarageBudgetView();
+  const { budget } = useBudgetView();
   const { os = '' } = budget || {};
 
   const handleGoToDashboard = () => {

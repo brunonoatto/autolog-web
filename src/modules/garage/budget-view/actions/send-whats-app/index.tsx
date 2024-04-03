@@ -1,9 +1,9 @@
 import { ServiceApi } from '@core/api';
-import useGarageBudgetView from '@core/store/context/hooks/useGarageBudgetViewContext';
+import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
 import IconButton from '@shared/design-system/icon-button';
 
 export default function SendWhatsApp() {
-  const { budget } = useGarageBudgetView();
+  const { budget } = useBudgetView();
   const { os = '' } = budget || {};
 
   const handleSendWhatsApp = async () => {

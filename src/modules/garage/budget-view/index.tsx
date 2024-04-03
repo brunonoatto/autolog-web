@@ -1,8 +1,8 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import { GarageBudgetViewProvider } from '@core/store/context/GarageBudgetViewContext';
-import useGarageBudgetView from '@core/store/context/hooks/useGarageBudgetViewContext';
+import { BudgetViewProvider } from '@core/store/context/BudgetViewContext';
+import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
 import BudgetViewActions from '@modules/garage/budget-view/actions';
 import BudgetViewForm from '@modules/garage/budget-view/form';
 import BudgetViewTable from '@modules/garage/budget-view/table';
@@ -21,7 +21,7 @@ const schema = yup
 export type TBudgetItemFormType = yup.InferType<typeof schema>;
 
 function GarageBudgetViewContent() {
-  const { budget } = useGarageBudgetView();
+  const { budget } = useBudgetView();
   const { status } = budget || {};
 
   const allowEditBudget = status === BudgetStatusEnum.MakingBudget;
@@ -52,8 +52,8 @@ function GarageBudgetViewContent() {
 
 export default function GarageBudgetView() {
   return (
-    <GarageBudgetViewProvider>
+    <BudgetViewProvider>
       <GarageBudgetViewContent />
-    </GarageBudgetViewProvider>
+    </BudgetViewProvider>
   );
 }

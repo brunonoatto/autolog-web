@@ -1,9 +1,9 @@
-import useGarageBudgetView from '@core/store/context/hooks/useGarageBudgetViewContext';
+import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
 import CarInfo from '@shared/components/car-info';
 import StatusBadge from '@shared/components/status-badge';
 
 export default function BudgetViewTitle() {
-  const { budget } = useGarageBudgetView();
+  const { budget } = useBudgetView();
   const { status, car } = budget || {};
 
   return (

@@ -3,7 +3,7 @@ import { SubmitHandler, useFormContext } from 'react-hook-form';
 import type { TNewBudgetItem } from '@core/api/budget-item/types';
 import { useGetBudget } from '@core/service/budget';
 import { useAddBudgetItem } from '@core/service/budget-items';
-import useGarageBudgetView from '@core/store/context/hooks/useGarageBudgetViewContext';
+import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
 import Form from '@layout/form';
 import type { TBudgetItemFormType } from '@modules/garage/budget-view';
 import InputForm from '@shared/components/form/input';
@@ -13,7 +13,7 @@ export default function BudgetViewForm() {
   const { mutate: mutateAddBudgetItem } = useAddBudgetItem();
   const { refetch } = useGetBudget();
 
-  const { budget } = useGarageBudgetView();
+  const { budget } = useBudgetView();
   const { os = '' } = budget || {};
 
   const form = useFormContext<TBudgetItemFormType>();

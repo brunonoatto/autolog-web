@@ -30,7 +30,7 @@ export default function ListBudgets() {
           </tr>
         </thead>
         <tbody>
-          {data?.map(({ os, license, name, status }) => {
+          {data?.map(({ os, license, clientName, status, car: { model } }) => {
             return (
               <tr
                 key={os}
@@ -38,8 +38,8 @@ export default function ListBudgets() {
                 onClick={() => handleBudgetSelected(os)}
               >
                 <td>{license}</td>
-                <td>{name}</td>
-                <td>{'MODELO'}</td>
+                <td>{clientName}</td>
+                <td>{model}</td>
                 <td className="text-right">{'DATA'}</td>
                 <td className="text-right">
                   <StatusBadge status={status} />

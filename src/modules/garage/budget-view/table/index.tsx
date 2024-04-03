@@ -1,7 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 
 import { useDeleteBudgetItem } from '@core/service/budget-items';
-import useGarageBudgetView from '@core/store/context/hooks/useGarageBudgetViewContext';
+import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
 import type { TBudgetItemFormType } from '@modules/garage/budget-view';
 import Container from '@shared/components/container';
 import IconButton from '@shared/design-system/icon-button';
@@ -11,7 +11,7 @@ type TBudgetViewTableProps = {
 };
 
 export default function BudgetViewTable({ allowActions = false }: TBudgetViewTableProps) {
-  const { budget, refetch } = useGarageBudgetView();
+  const { budget, refetch } = useBudgetView();
   const { mutate: mutateDeleteBudgetItem } = useDeleteBudgetItem();
 
   const form = useFormContext<TBudgetItemFormType>();

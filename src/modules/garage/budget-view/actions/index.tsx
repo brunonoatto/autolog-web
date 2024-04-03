@@ -1,6 +1,6 @@
 import React from 'react';
 
-import useGarageBudgetView from '@core/store/context/hooks/useGarageBudgetViewContext';
+import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
 import BackToBudget from '@modules/garage/budget-view/actions/back-to-budget';
 import CompletedService from '@modules/garage/budget-view/actions/completed-budget';
 import RemakeBudget from '@modules/garage/budget-view/actions/remake-budget';
@@ -34,7 +34,7 @@ const actionsByStatus: { [key in BudgetStatusEnum]?: React.ReactNode } = {
 };
 
 export default function BudgetViewActions() {
-  const { budget } = useGarageBudgetView();
+  const { budget } = useBudgetView();
   const { status, items } = budget || {};
 
   const showActions = status && !!items?.length;
