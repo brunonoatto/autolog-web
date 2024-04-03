@@ -26,7 +26,7 @@ const Modal = ({
 }: TModalProps) => {
   return (
     <Portal open={open}>
-      <div className="relative m-auto w-full h-full md:h-5/6 md:w-2/3 md:top-10 bg-neutral-800 rounded-xl p-4 flex flex-col">
+      <div className="m-auto w-full h-full md:h-auto md:w-2/3 bg-neutral-800 rounded-xl p-4 md:p-6 flex flex-col space-y-4">
         <div>
           {onClose && (
             <div className="text-right">
@@ -40,7 +40,7 @@ const Modal = ({
           <h2 className="font-semibold">{title}</h2>
         </div>
         <div className="overflow-auto">{children}</div>
-        <div className="text-right space-x-4 pt-2">
+        <div className="text-right space-x-4 ">
           {onCancelClick && (
             <Button color="secondary" onClick={onCancelClick}>
               {cancelText}
