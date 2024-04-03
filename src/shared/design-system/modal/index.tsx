@@ -1,6 +1,6 @@
 import { type PropsWithChildren, ReactNode } from 'react';
 
-import Button from '@shared/design-system/button';
+import Button, { TButtonProps } from '@shared/design-system/button';
 
 import IconButton from '../icon-button';
 import Portal from '../portal';
@@ -10,19 +10,23 @@ type TModalProps = PropsWithChildren & {
   title?: ReactNode;
   confirmText?: string;
   cancelText?: string;
-  onClose?: () => void;
+  confirmColor?: TButtonProps['color'];
+  cancelColor?: TButtonProps['color'];
   onCancelClick?: () => void;
   onConfirmClick?: () => void;
+  onClose?: () => void;
 };
 const Modal = ({
   children,
   open,
   title,
-  cancelText = 'Voltar',
   confirmText = 'Confirmar',
-  onClose,
+  cancelText = 'Voltar',
+  confirmColor = 'primary',
+  cancelColor = 'secondary',
   onCancelClick,
   onConfirmClick,
+  onClose,
 }: TModalProps) => {
   return (
     <Portal open={open}>
@@ -42,11 +46,15 @@ const Modal = ({
         <div className="overflow-auto">{children}</div>
         <div className="text-right space-x-4 ">
           {onCancelClick && (
-            <Button color="secondary" onClick={onCancelClick}>
+            <Button color={cancelColor} onClick={onCancelClick}>
               {cancelText}
             </Button>
           )}
-          {onConfirmClick && <Button onClick={onConfirmClick}>{confirmText}</Button>}
+          {onConfirmClick && (
+            <Button color={confirmColor} onClick={onConfirmClick}>
+              {confirmText}
+            </Button>
+          )}
         </div>
       </div>
     </Portal>
