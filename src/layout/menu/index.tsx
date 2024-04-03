@@ -41,7 +41,7 @@ const Menu = ({ menus }: TMenuProps) => {
   return (
     <nav className={styles.content}>
       <div className="flex justify-end md:hidden" aria-label="Menu" aria-expanded="false">
-        <IconButton icon="MenuIcon" onClick={handleMobileMenuClick} />
+        <IconButton color="secondary" icon="MenuIcon" onClick={handleMobileMenuClick} />
       </div>
       <div id="menu-list" className="hidden md:flex flex-col gap-6 pt-6">
         {menus.map((menu) => (
