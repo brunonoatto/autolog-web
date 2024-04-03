@@ -10,7 +10,9 @@ const StatusCard = ({ onClick, item }: TStatusCardProps) => {
 
   return (
     <button className={styles.container} onClick={onClick}>
-      <p className="text-xs">{clientName}</p>
+      <p className="w-full text-left text-xs whitespace-nowrap overflow-hidden text-ellipsis">
+        {clientName}
+      </p>
 
       <IdentificationCar license={license} brand={brand} model={model} year={year} />
 
