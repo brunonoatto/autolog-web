@@ -4,6 +4,7 @@ import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
 export class DashboardItem {
   os: string;
+  clientName: string;
   license: string;
   brand: string;
   model: string;
@@ -13,6 +14,7 @@ export class DashboardItem {
 
   constructor(obj: TDashboardItem) {
     this.os = obj.os;
+    this.clientName = obj.clientName;
     this.license = obj.license;
     this.brand = obj.brand;
     this.model = obj.model;

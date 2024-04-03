@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 
-import { DashboardItem } from '@core/models/dashboard';
 import { ROUTES_PATH } from '@core/router/consts';
 import { useListDashboard } from '@core/service/dashboard';
 import LinkButton from '@shared/design-system/link-button';
@@ -10,10 +9,10 @@ import StatusCardSkeleton from './status-card-skeleton';
 
 export default function Dashboard() {
   const navigate = useNavigate();
-  const { data: cars, isLoading, isRefetching } = useListDashboard();
+  const { data: dashboardItem, isLoading, isRefetching } = useListDashboard();
 
-  const handleSelectCar = (item: DashboardItem) => {
-    navigate(`${ROUTES_PATH.garageBudgetView}/${item.os}`);
+  const handleSelectCar = (os: string) => {
+    navigate(`${ROUTES_PATH.garageBudgetView}/${os}`);
   };
 
   return (
@@ -32,8 +31,8 @@ export default function Dashboard() {
             <h3>Adicionar veiculo</h3>
           </LinkButton>
 
-          {cars?.map((car) => (
-            <StatusCard key={car.license} car={car} onClick={() => handleSelectCar(car)} />
+          {dashboardItem?.map((item) => (
+            <StatusCard key={item.license} item={item} onClick={() => handleSelectCar(item.os)} />
           ))}
         </>
       )}

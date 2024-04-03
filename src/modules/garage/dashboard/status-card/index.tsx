@@ -4,13 +4,17 @@ import StatusBadge from '@shared/components/status-badge';
 import IdentificationCar from './identification-car';
 import styles from './styles.module.css';
 
-type TStatusCardProps = { car: DashboardItem; onClick: () => void };
-const StatusCard = ({ onClick, car }: TStatusCardProps) => {
+type TStatusCardProps = { item: DashboardItem; onClick: () => void };
+const StatusCard = ({ onClick, item }: TStatusCardProps) => {
+  const { clientName, status, license, brand, model, year } = item;
+
   return (
     <button className={styles.container} onClick={onClick}>
-      <IdentificationCar {...car} />
+      <p className="text-xs">{clientName}</p>
 
-      <StatusBadge className="self-end" status={car.status} />
+      <IdentificationCar license={license} brand={brand} model={model} year={year} />
+
+      <StatusBadge className="self-end" status={status} />
     </button>
   );
 };
