@@ -27,8 +27,10 @@ const statusIcon: { [key in BudgetStatusEnum]: ReactNode } = {
   [BudgetStatusEnum.Finished]: null,
 };
 
-type TStatusBadgeProps = { status: BudgetStatusEnum; className?: string };
+type TStatusBadgeProps = { status?: BudgetStatusEnum; className?: string };
 const StatusBadge = ({ status, className }: TStatusBadgeProps) => {
+  if (!status) return null;
+
   return (
     <div
       className={twMerge(

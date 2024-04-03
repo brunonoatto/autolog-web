@@ -1,11 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import { useGetBudget } from '@core/service/budget';
-import BudgetActions from '@modules/garage/budget-view/actions';
+import { GarageBudgetViewProvider } from '@core/store/context/GarageBudgetViewContext';
+import useGarageBudgetView from '@core/store/context/hooks/useGarageBudgetViewContext';
+import BudgetViewActions from '@modules/garage/budget-view/actions';
 import BudgetViewForm from '@modules/garage/budget-view/form';
 import BudgetViewTable from '@modules/garage/budget-view/table';
-import BudgetTitle from '@modules/garage/budget-view/title';
+import BudgetViewTitle from '@modules/garage/budget-view/title';
 import { yup, yupValidators } from '@shared/form-validations';
 import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
@@ -19,13 +20,11 @@ const schema = yup
 
 export type TBudgetItemFormType = yup.InferType<typeof schema>;
 
-export default function GarageBudgetView() {
-  const { data: budget } = useGetBudget();
-
-  const { os, status, car, items } = budget || {};
+function GarageBudgetViewContent() {
+  const { budget } = useGarageBudgetView();
+  const { status } = budget || {};
 
   const allowEditBudget = status === BudgetStatusEnum.MakingBudget;
-  const showActions = status && os && !!items?.length;
 
   const form = useForm({
     defaultValues: { qtd: 1, price: 0 },
@@ -34,15 +33,23 @@ export default function GarageBudgetView() {
 
   return (
     <div className="space-y-2">
-      {car && status && <BudgetTitle car={car} status={status} />}
+      <BudgetViewTitle />
 
       <FormProvider {...form}>
-        {allowEditBudget && os && <BudgetViewForm os={os} />}
+        {allowEditBudget && <BudgetViewForm />}
 
         <BudgetViewTable allowActions={allowEditBudget} />
       </FormProvider>
 
-      {showActions && <BudgetActions status={status} os={os} />}
+      <BudgetViewActions />
     </div>
+  );
+}
+
+export default function GarageBudgetView() {
+  return (
+    <GarageBudgetViewProvider>
+      <GarageBudgetViewContent />
+    </GarageBudgetViewProvider>
   );
 }

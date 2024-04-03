@@ -1,5 +1,6 @@
 import React from 'react';
 
+import useGarageBudgetView from '@core/store/context/hooks/useGarageBudgetViewContext';
 import BackToBudget from '@modules/garage/budget-view/actions/back-to-budget';
 import CompletedService from '@modules/garage/budget-view/actions/completed-budget';
 import RemakeBudget from '@modules/garage/budget-view/actions/remake-budget';
@@ -34,11 +35,13 @@ const actionsByStatus: { [key in BudgetStatusEnum]: (os: string) => React.ReactN
   [BudgetStatusEnum.Finished]: () => <></>,
 };
 
-type TBudgetActionsParams = {
-  os: string;
-  status: BudgetStatusEnum;
-};
+export default function BudgetViewActions() {
+  const { budget } = useGarageBudgetView();
+  const { os, status, items } = budget || {};
 
-export default function BudgetActions({ os, status }: TBudgetActionsParams) {
+  const showActions = status && os && !!items?.length;
+
+  if (!showActions) return null;
+
   return <div className="flex gap-2 justify-end">{actionsByStatus[status](os)}</div>;
 }
