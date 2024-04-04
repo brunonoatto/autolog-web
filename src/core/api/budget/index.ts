@@ -2,7 +2,13 @@ import { type AxiosResponse } from 'axios';
 
 import httpClient from '@core/api/HttpClient';
 
-import type { TBudget, TGetBudgetResponse, TGetWhatsLinkResponse, TNewBudgetParams } from './types';
+import type {
+  TBudget,
+  TBudgetListItemResponse,
+  TGetBudgetResponse,
+  TGetWhatsLinkResponse,
+  TNewBudgetParams,
+} from './types';
 
 const BASE_URL = '/budget';
 
@@ -11,8 +17,12 @@ export const addBudget = async (data: TNewBudgetParams): Promise<AxiosResponse<T
   return response;
 };
 
-export const listBudgets = async (license: string | null): Promise<AxiosResponse<TBudget[]>> => {
-  const response = await httpClient.get<TBudget[]>(BASE_URL, { params: { license } });
+export const listBudgets = async (
+  license: string | null,
+): Promise<AxiosResponse<TBudgetListItemResponse[]>> => {
+  const response = await httpClient.get<TBudgetListItemResponse[]>(BASE_URL, {
+    params: { license },
+  });
   return response;
 };
 

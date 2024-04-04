@@ -36,7 +36,7 @@ export default function BudgetSearch() {
 
   return (
     <>
-      <Form form={form} onSubmit={handleValid} title="Adicionar veículo">
+      <Form form={form} onSubmit={handleValid} title="Buscar orçamento">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <InputForm
             label="Placa"

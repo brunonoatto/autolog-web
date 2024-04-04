@@ -3,6 +3,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 
 import { ServiceApi } from '@core/api';
 import type { TBudget, TGetBudgetResponse, TNewBudgetParams } from '@core/api/budget/types';
+import { BudgetListItem } from '@core/models/budget/BudgetListItem';
 
 export const useAddBudget = () => {
   return useMutation<TBudget, DefaultError, TNewBudgetParams>({
@@ -77,7 +78,7 @@ export const useListBudgets = () => {
     queryFn: async () => {
       const { data } = await ServiceApi.BudgetApi.listBudgets(license);
 
-      return data;
+      return data.map((item) => new BudgetListItem(item));
     },
   });
 };

@@ -2,25 +2,24 @@ import { useNavigate } from 'react-router-dom';
 
 import { ROUTES_PATH } from '@core/router/consts';
 import { useListBudgets } from '@core/service/budget';
+import Container from '@shared/components/container';
 import StatusBadge from '@shared/components/status-badge';
 
 export default function ListBudgets() {
   const navigate = useNavigate();
-  const { data } = useListBudgets();
+  const { data: budgets } = useListBudgets();
 
   const handleBudgetSelected = (os: string) => {
     navigate(`${ROUTES_PATH.garageBudgetView}/${os}`);
   };
 
   return (
-    <>
-      <h2>Orçamentos ({data?.length || 0})</h2>
-      <table className="w-full">
+    <Container border title={`Orçamentos (${budgets?.length || 0})`}>
+      <table className="text-sm border-separate border-spacing-y-2 border-y-teal-700">
         <thead>
-          <tr className="text-left">
-            <th scope="col">Placa</th>
+          <tr className="border-y-2 border-teal-800 text-left">
+            <th scope="col">Automóvel</th>
             <th scope="col">Nome</th>
-            <th scope="col">Modelo</th>
             <th scope="col" className="text-right">
               Data entrada
             </th>
@@ -30,17 +29,18 @@ export default function ListBudgets() {
           </tr>
         </thead>
         <tbody>
-          {data?.map(({ os, license, clientName, status, car: { model } }) => {
+          {budgets?.map(({ os, createdDate, license, clientName, status, car: { model } }) => {
             return (
               <tr
                 key={os}
-                className="hover:bg-opacity-20 hover:bg-teal-500 hover:cursor-pointer"
+                className="border-b-2 border-teal-800 hover:bg-opacity-20 hover:bg-teal-500 hover:cursor-pointer"
                 onClick={() => handleBudgetSelected(os)}
               >
-                <td>{license}</td>
+                <td>
+                  {license} - {model}
+                </td>
                 <td>{clientName}</td>
-                <td>{model}</td>
-                <td className="text-right">{'DATA'}</td>
+                <td className="text-right">{createdDate}</td>
                 <td className="text-right">
                   <StatusBadge status={status} />
                 </td>
@@ -49,6 +49,6 @@ export default function ListBudgets() {
           })}
         </tbody>
       </table>
-    </>
+    </Container>
   );
 }

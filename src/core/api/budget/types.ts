@@ -20,10 +20,17 @@ export type TBudget = {
   status: BudgetStatusEnum;
   clientId: string;
   observation?: string;
+  createdDate: string;
+};
+
+export type TBudgetListItemResponse = {
+  os: string;
+  garageId: string;
+  createdDate: string;
+  license: string;
+  status: BudgetStatusEnum;
   clientName: string;
-  clientPhone: string;
-  clientCpf_cnpj: string;
-  car: TCar;
+  car: Omit<TCar, 'license'>;
 };
 
 export type TGetBudgetResponse = TBudget & {
