@@ -7,6 +7,7 @@ export { default as DoneAllIcon } from './components/DoneAllIcon';
 export { default as CarDoneIcon } from './components/CarDoneIcon';
 export { default as EditIcon } from './components/EditIcon';
 export { default as HourglassIcon } from './components/HourglassIcon';
+export { default as InfoIcon } from './components/InfoIcon';
 export { default as LoadingIcon } from './components/LoadingIcon';
 export { default as MenuIcon } from './components/MenuIcon';
 export { default as ProgressWrenchIcon } from './components/ProgressWrenchIcon';
