@@ -1,12 +1,14 @@
 import { DashboardItem } from '@core/models/dashboard';
 import StatusBadge from '@shared/components/status-badge';
+import Icon from '@shared/design-system/Icon';
+import Tooltip from '@shared/design-system/tooltip';
 
 import IdentificationCar from './identification-car';
 import styles from './styles.module.css';
 
 type TStatusCardProps = { item: DashboardItem; onClick: () => void };
 const StatusCard = ({ onClick, item }: TStatusCardProps) => {
-  const { clientName, status, license, brand, model, year } = item;
+  const { clientName, observation, status, license, brand, model, year } = item;
 
   return (
     <button className={styles.container} onClick={onClick}>
@@ -16,7 +18,23 @@ const StatusCard = ({ onClick, item }: TStatusCardProps) => {
 
       <IdentificationCar license={license} brand={brand} model={model} year={year} />
 
-      <StatusBadge className="self-end" status={status} />
+      <div
+        className={`w-full flex items-center ${observation ? 'justify-between' : 'justify-end'} `}
+      >
+        {observation && (
+          <Tooltip
+            title={
+              <>
+                <b>Observação:</b> {observation}
+              </>
+            }
+          >
+            <Icon name="InfoIcon" className="text-teal-600" />
+          </Tooltip>
+        )}
+
+        <StatusBadge status={status} />
+      </div>
     </button>
   );
 };
