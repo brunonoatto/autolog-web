@@ -21,6 +21,11 @@ export default function ProtectedRoute({ isPrivate, routeUserType }: TProtectedR
 
   if (isAuthenticated) {
     const tokenData = getTokenData();
+
+    if (!tokenData) {
+      return <Navigate to={ROUTES_PATH.login} />;
+    }
+
     if (isPrivate) {
       if (routeUserType !== tokenData.type) {
         if (tokenData.type === 'client') {

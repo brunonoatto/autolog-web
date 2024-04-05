@@ -10,7 +10,7 @@ type TAuthContextValue = {
   isAuthenticated: boolean;
   login(email: string, password: string): Promise<void>;
   logout(): void;
-  getTokenData: () => TLoginResponse;
+  getTokenData: () => TLoginResponse | null;
 };
 
 export const AuthContext = createContext({} as TAuthContextValue);
@@ -40,9 +40,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const getTokenData = useCallback(() => {
-    return JSON.parse(
-      atob((localStorage.getItem(authStorageKey) || '.').split('.')[1]),
-    ) as TLoginResponse;
+    const storageKey = localStorage.getItem(authStorageKey);
+
+    if (!storageKey) return null;
+
+    const storageKeyArr = storageKey.split('.');
+
+    if (storageKeyArr.length < 2) return null;
+
+    const decriptStorageKey = atob(storageKeyArr[1]);
+
+    return JSON.parse(decriptStorageKey) as TLoginResponse;
   }, []);
 
   useLayoutEffect(() => {

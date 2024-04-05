@@ -5,11 +5,13 @@ import MenuContent from '@shared/design-system/menu-content';
 const HeaderActions = () => {
   const { logout, getTokenData } = useAuth();
 
+  const { name = '' } = getTokenData() || {};
+
   return (
     <div className="flex gap-2">
       <div className="text-xs">
         <div>Usuário: </div>
-        <div>{getTokenData().name}</div>
+        <div>{name}</div>
       </div>
 
       <MenuContent
