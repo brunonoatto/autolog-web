@@ -28,7 +28,7 @@ type TRegisterProvicerFormType = yup.InferType<typeof schema>;
 
 export default function GarageRegister() {
   const form = useForm({
-    mode: 'onChange',
+    mode: 'onSubmit',
     resolver: yupResolver(schema),
   });
   const { register, handleSubmit } = form;
@@ -42,7 +42,7 @@ export default function GarageRegister() {
       <Form
         form={form}
         onSubmit={handleSubmit(handleValid)}
-        title="Dados para Cadastro"
+        title="Dados para Cadastro de Mecânica"
         contentDefaultGrid={false}
       >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

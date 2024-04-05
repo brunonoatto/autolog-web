@@ -22,7 +22,7 @@ export default function Login() {
   const { login } = useAuth();
 
   const form = useForm({
-    mode: 'onChange',
+    mode: 'onSubmit',
     resolver: yupResolver(schema),
   });
   const { register, handleSubmit } = form;

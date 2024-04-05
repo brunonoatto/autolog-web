@@ -15,7 +15,7 @@ export default function ListBudgets() {
 
   return (
     <div className="space-y-4">
-      <Title>Orçamentos (${budgets?.length || 0})</Title>
+      <Title>Orçamentos ({budgets?.length || 0})</Title>
       {budgets?.map(({ os, createdDate, status, clientName, car }) => {
         return (
           <button key={os} className="w-full" onClick={() => handleBudgetSelected(os)}>

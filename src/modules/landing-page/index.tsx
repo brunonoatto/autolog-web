@@ -21,20 +21,24 @@ export default function LandingPage() {
                 Preço: <div className="font-semibold text-teal-400">R$ 99,99 p/ mês</div>
               </>
             }
-            linkRoute="cadastro"
+            linkRoute={ROUTES_PATH.garageRegister}
             linkText="Quero me cadastrar"
           />
 
           <HomeCard
-            title="Consultar Placa"
-            infos={['Consulte o histórico de manutenção de um veículo pela placa.']}
+            title="Sistema para clientes"
+            infos={[
+              'Aprove ou Rejeite os orçamentos on-line.',
+              'Organize todas revisões de seu carro em um só lugar.',
+              'Consulte o histórico de manutenção de outros veículos pela placa.',
+            ]}
             price={
               <>
                 Preço: <div className="font-bold text-xl text-teal-400">GRÁTIS</div>
               </>
             }
-            linkRoute={ROUTES_PATH.garageRegister}
-            linkText="Consultar"
+            linkRoute={ROUTES_PATH.clientRegister}
+            linkText="Quero me cadastrar"
           />
         </div>
       </div>

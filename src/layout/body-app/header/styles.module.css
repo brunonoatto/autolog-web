@@ -1,5 +1,5 @@
 .content {
-  @apply text-center px-4 shadow shadow-teal-700;
+  @apply text-center p-4 shadow shadow-teal-700;
   @apply flex justify-between items-center;
 
   grid-area: header;
