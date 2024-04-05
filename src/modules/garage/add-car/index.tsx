@@ -102,30 +102,28 @@ export default function AddCar() {
         title="Adicionar Orçamento"
         icon="BudgetLoadingIcon"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <InputForm label="CPF/CNPJ" {...register('cpf_cnpj', { onBlur: handleCpfBlur })} />
-          <InputForm
-            label="Nome Cliente"
-            labelProps={{ className: 'lg:row-start-2 md:col-span-2' }}
-            disabled={!!selectedClient}
-            {...register('name')}
-          />
-          <InputForm
-            label="Telefone"
-            labelProps={{ className: 'lg:row-start-2' }}
-            disabled={!!selectedClient}
-            {...register('phone')}
-          />
+        <InputForm label="CPF/CNPJ" {...register('cpf_cnpj', { onBlur: handleCpfBlur })} />
+        <InputForm
+          label="Nome Cliente"
+          labelProps={{ className: 'lg:row-start-2 md:col-span-2' }}
+          disabled={!!selectedClient}
+          {...register('name')}
+        />
+        <InputForm
+          label="Telefone"
+          labelProps={{ className: 'lg:row-start-2' }}
+          disabled={!!selectedClient}
+          {...register('phone')}
+        />
 
-          <CarInfos />
+        <CarInfos />
 
-          <Textarea
-            labelProps={{ className: 'col-span-full' }}
-            className="h-20"
-            label="Observação"
-            {...register('observation')}
-          />
-        </div>
+        <Textarea
+          labelProps={{ className: 'col-span-full' }}
+          className="h-20"
+          label="Observação"
+          {...register('observation')}
+        />
       </Form>
 
       <Modal

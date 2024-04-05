@@ -35,20 +35,18 @@ export default function BudgetSearch() {
   };
 
   return (
-    <>
+    <div className="flex flex-col gap-y-4">
       <Form form={form} onSubmit={handleValid} title="Buscar orçamento">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <InputForm
-            label="Placa"
-            labelProps={{ className: 'col-span-full' }}
-            className="w-36 h-8 text-xl font-bold uppercase"
-            maxLength={10}
-            {...register('license')}
-          />
-        </div>
+        <InputForm
+          label="Placa"
+          labelProps={{ className: 'col-span-full' }}
+          className="w-36 h-8 text-xl font-bold uppercase"
+          maxLength={10}
+          {...register('license')}
+        />
       </Form>
 
       <ListBudgets />
-    </>
+    </div>
   );
 }

@@ -2,8 +2,9 @@ import { DefaultError, useMutation, useQuery } from '@tanstack/react-query';
 import { useParams, useSearchParams } from 'react-router-dom';
 
 import { ServiceApi } from '@core/api';
-import type { TBudget, TGetBudgetResponse, TNewBudgetParams } from '@core/api/budget/types';
-import { BudgetListItem } from '@core/models/budget/BudgetListItem';
+import type { TBudget, TBudgetCompleteResponse, TNewBudgetParams } from '@core/api/budget/types';
+import { BudgetComplete } from '@core/models/budget/BudgetComplete';
+import { BudgetListItem } from '@core/models/budget/BudgetListItem copy';
 
 export const useAddBudget = () => {
   return useMutation<TBudget, DefaultError, TNewBudgetParams>({
@@ -91,12 +92,12 @@ export const useGetBudget = () => {
     queryKey: ['useGetBudget', osParam],
     queryFn: async () => {
       if (!osParam) {
-        return {} as TGetBudgetResponse;
+        return {} as TBudgetCompleteResponse;
       }
 
       const { data } = await ServiceApi.BudgetApi.getBudget(osParam);
 
-      return data;
+      return new BudgetComplete(data);
     },
   });
 };

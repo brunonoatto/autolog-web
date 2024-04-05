@@ -1,29 +1,27 @@
 import { Outlet } from 'react-router-dom';
 
 import { ROUTES_PATH } from '@core/router/consts';
-import Menu from '@layout/menu';
+import BodyApp from '@layout/body-app';
 
-export default function GarageHome() {
+export default function GarageContent() {
   return (
-    <div className="md:h-full md:grid md:grid-cols-[15rem_auto]">
-      <Menu
-        menus={[
-          {
-            title: 'Dashboard',
-            route: ROUTES_PATH.garageDashboard,
-          },
-          {
-            title: 'Adicionar veiculo',
-            route: ROUTES_PATH.garageAddVeiculo,
-          },
-          {
-            title: 'Orçamentos',
-            route: ROUTES_PATH.garageBuggetSearch,
-          },
-        ]}
-      />
-
+    <BodyApp
+      menus={[
+        {
+          title: 'Dashboard',
+          route: ROUTES_PATH.garageDashboard,
+        },
+        {
+          title: 'Adicionar veiculo',
+          route: ROUTES_PATH.garageAddVeiculo,
+        },
+        {
+          title: 'Orçamentos',
+          route: ROUTES_PATH.garageBuggetSearch,
+        },
+      ]}
+    >
       <Outlet />
-    </div>
+    </BodyApp>
   );
 }

@@ -6,7 +6,7 @@ import HeaderActions from './header-actions';
 import HomeLink from './home-link';
 import styles from './styles.module.css';
 
-const Header = () => {
+export default function Header() {
   const { isAuthenticated } = useAuth();
 
   return (
@@ -15,6 +15,4 @@ const Header = () => {
       {isAuthenticated ? <HeaderActions /> : <LinkButton to={ROUTES_PATH.login}>Login</LinkButton>}
     </header>
   );
-};
-
-export default Header;
+}

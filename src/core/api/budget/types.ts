@@ -33,7 +33,7 @@ export type TBudgetListItemResponse = {
   car: Omit<TCar, 'license'>;
 };
 
-export type TGetBudgetResponse = TBudget & {
+export type TBudgetCompleteResponse = TBudget & {
   car: TCar;
   items: TBudgetItem[];
 };

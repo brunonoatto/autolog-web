@@ -8,7 +8,7 @@ import Container from '@shared/components/container';
 function ClientBudgetViewContent() {
   const { data: budget } = useGetBudget();
 
-  const { status, car } = budget || {};
+  const { createdDate, status, car } = budget || {};
 
   if (!budget) {
     return <>Loading...</>;
@@ -17,7 +17,7 @@ function ClientBudgetViewContent() {
   return (
     <Container title="Orçamento">
       <Container.Content>
-        <BudgetCard status={status} car={car} />
+        <BudgetCard createdDate={createdDate} status={status} car={car} />
 
         <BudgetTable />
       </Container.Content>

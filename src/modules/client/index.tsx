@@ -1,25 +1,23 @@
 import { Outlet } from 'react-router-dom';
 
 import { ROUTES_PATH } from '@core/router/consts';
-import Menu from '@layout/menu';
+import BodyApp from '@layout/body-app';
 
-export default function ClientHome() {
+export default function ClientContent() {
   return (
-    <div className="md:h-full md:grid md:grid-cols-[15rem_auto]">
-      <Menu
-        menus={[
-          {
-            title: 'Orçamentos',
-            route: ROUTES_PATH.clientBudgetSearch,
-          },
-          {
-            title: 'Transferir veiculo',
-            route: ROUTES_PATH.clientTransfer,
-          },
-        ]}
-      />
-
+    <BodyApp
+      menus={[
+        {
+          title: 'Orçamentos',
+          route: ROUTES_PATH.clientBudgetSearch,
+        },
+        {
+          title: 'Transferir veiculo',
+          route: ROUTES_PATH.clientTransfer,
+        },
+      ]}
+    >
       <Outlet />
-    </div>
+    </BodyApp>
   );
 }

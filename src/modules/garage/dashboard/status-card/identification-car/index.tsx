@@ -8,7 +8,7 @@ type TIdentificationCarProps = {
 // TODO: trocar pelo componentes CarInfo
 const IdentificationCar = ({ license, brand, model, year }: TIdentificationCarProps) => {
   return (
-    <div className="w-full flex flex-col md:flex-row md:justify-between flex-1">
+    <div className="w-full flex flex-col md:flex-row md:justify-between ">
       <h3>{license}</h3>
       <div className="hidden md:block text-right">
         <h5> {brand}</h5>

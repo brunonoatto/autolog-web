@@ -16,6 +16,7 @@ type TForm = PropsWithChildren & {
   iconButton?: TIcons;
   className?: string;
   icon?: TIcons;
+  contentDefaultGrid?: boolean;
 };
 
 const Form: FunctionComponent<TForm> = ({
@@ -27,25 +28,34 @@ const Form: FunctionComponent<TForm> = ({
   children,
   className,
   icon,
+  contentDefaultGrid = true,
 }) => {
   const { handleSubmit } = form;
 
   return (
-    <FormProvider {...form}>
-      <Container border className={className} title={title} icon={icon}>
-        <div className="my-2">{children}</div>
-
+    <Container border className={className} title={title} icon={icon}>
+      <FormProvider {...form}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="text-right ">
-            {iconButton ? (
-              <IconButton icon={iconButton}>{confirmButtonText}</IconButton>
+          <Container.Content>
+            {contentDefaultGrid ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">{children}</div>
             ) : (
-              <Button>{confirmButtonText}</Button>
+              children
             )}
-          </div>
+          </Container.Content>
+
+          <Container.Footer>
+            <div className="text-right ">
+              {iconButton ? (
+                <IconButton icon={iconButton}>{confirmButtonText}</IconButton>
+              ) : (
+                <Button>{confirmButtonText}</Button>
+              )}
+            </div>
+          </Container.Footer>
         </form>
-      </Container>
-    </FormProvider>
+      </FormProvider>
+    </Container>
   );
 };
 

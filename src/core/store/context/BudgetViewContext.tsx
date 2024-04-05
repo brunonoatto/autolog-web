@@ -1,14 +1,14 @@
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
 import { createContext } from 'react';
 
-import type { TGetBudgetResponse } from '@core/api/budget/types';
+import type { TBudgetCompleteResponse } from '@core/api/budget/types';
 import { useGetBudget } from '@core/service/budget';
 
 type TBudgetViewValue = {
-  budget?: TGetBudgetResponse;
+  budget?: TBudgetCompleteResponse;
   refetch: (
     options?: RefetchOptions | undefined,
-  ) => Promise<QueryObserverResult<TGetBudgetResponse, Error>>;
+  ) => Promise<QueryObserverResult<TBudgetCompleteResponse, Error>>;
 };
 
 export const BudgetViewContext = createContext({} as TBudgetViewValue);

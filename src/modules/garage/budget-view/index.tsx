@@ -38,7 +38,7 @@ function GarageBudgetViewContent() {
 
   return (
     <Container title="Orçamento">
-      <div className="space-y-2">
+      <Container.Content>
         <BudgetCard status={status} car={car} />
 
         <FormProvider {...form}>
@@ -48,7 +48,7 @@ function GarageBudgetViewContent() {
         </FormProvider>
 
         <BudgetViewActions />
-      </div>
+      </Container.Content>
     </Container>
   );
 }

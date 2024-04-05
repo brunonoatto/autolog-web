@@ -32,3 +32,23 @@
 #root {
   @apply h-screen bg-neutral-800 text-neutral-100 antialiased;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #71717a;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #0d9488;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #14b8a6;
+}

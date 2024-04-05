@@ -1,5 +1,5 @@
 .content {
-  @apply overflow-y-auto;
+  @apply overflow-auto md:overflow-hidden;
 
   grid-area: main;
 }

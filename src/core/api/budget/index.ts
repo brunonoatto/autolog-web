@@ -4,8 +4,8 @@ import httpClient from '@core/api/HttpClient';
 
 import type {
   TBudget,
+  TBudgetCompleteResponse,
   TBudgetListItemResponse,
-  TGetBudgetResponse,
   TGetWhatsLinkResponse,
   TNewBudgetParams,
 } from './types';
@@ -26,8 +26,8 @@ export const listBudgets = async (
   return response;
 };
 
-export const getBudget = async (os: string): Promise<AxiosResponse<TGetBudgetResponse>> => {
-  const response = await httpClient.get<TGetBudgetResponse>(`${BASE_URL}/${os}`);
+export const getBudget = async (os: string): Promise<AxiosResponse<TBudgetCompleteResponse>> => {
+  const response = await httpClient.get<TBudgetCompleteResponse>(`${BASE_URL}/${os}`);
   return response;
 };
 

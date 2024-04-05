@@ -40,7 +40,13 @@ export default function Login() {
     <div className="pt-10 flex flex-col items-center space-y-6">
       <HomeLink />
 
-      <Form form={form} onSubmit={handleSubmit(onSubmit)} title="Login" className="w-full md:w-1/2">
+      <Form
+        form={form}
+        onSubmit={handleSubmit(onSubmit)}
+        title="Login"
+        contentDefaultGrid={false}
+        className="w-full md:w-1/2"
+      >
         <InputForm label="Email" {...register('email')} />
         <InputForm label="Senha" type="password" {...register('password')} />
       </Form>

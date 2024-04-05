@@ -6,7 +6,5 @@ type TContainerFooterProps = {
 };
 
 export default function ContainerContent({ children, className }: TContainerFooterProps) {
-  return (
-    <div className={twMerge('grow space-y-4 overflow-y-auto px-4 py-2', className)}>{children}</div>
-  );
+  return <div className={twMerge('space-y-4', className)}>{children}</div>;
 }

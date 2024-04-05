@@ -39,7 +39,7 @@ export default function BudgetTable({ allowActions = false }: TBudgetViewTablePr
 
   return (
     <>
-      <Title title="Itens do Orçamento" />
+      <Title>Itens do Orçamento</Title>
       <table className="w-full">
         <thead>
           <tr className="text-left">
@@ -63,23 +63,229 @@ export default function BudgetTable({ allowActions = false }: TBudgetViewTablePr
         <tbody>
           {budget?.items.map(({ id, description, qtd, price }) => {
             return (
-              <tr key={description}>
-                <td>{description}</td>
-                <td className="text-right">{qtd}</td>
-                <td className="text-right">{price}</td>
-                <td className="text-right">{qtd * price}</td>
-                {allowActions && (
-                  <td className="flex justify-end space-x-2">
-                    <IconButton icon="EditIcon" size="small" color="secondary" />
-                    <IconButton
-                      icon="TrashIcon"
-                      size="small"
-                      color="secondary"
-                      onClick={() => handleDeleteBudgetItem(id)}
-                    />
-                  </td>
-                )}
-              </tr>
+              <>
+                <tr key={description}>
+                  <td>{description}</td>
+                  <td className="text-right">{qtd}</td>
+                  <td className="text-right">{price}</td>
+                  <td className="text-right">{qtd * price}</td>
+                  {allowActions && (
+                    <td className="flex justify-end space-x-2">
+                      <IconButton icon="EditIcon" size="small" color="secondary" />
+                      <IconButton
+                        icon="TrashIcon"
+                        size="small"
+                        color="secondary"
+                        onClick={() => handleDeleteBudgetItem(id)}
+                      />
+                    </td>
+                  )}
+                </tr>
+                {/* <tr key={description}>
+                  <td>{description}</td>
+                  <td className="text-right">{qtd}</td>
+                  <td className="text-right">{price}</td>
+                  <td className="text-right">{qtd * price}</td>
+                  {allowActions && (
+                    <td className="flex justify-end space-x-2">
+                      <IconButton icon="EditIcon" size="small" color="secondary" />
+                      <IconButton
+                        icon="TrashIcon"
+                        size="small"
+                        color="secondary"
+                        onClick={() => handleDeleteBudgetItem(id)}
+                      />
+                    </td>
+                  )}
+                </tr>
+                <tr key={description}>
+                  <td>{description}</td>
+                  <td className="text-right">{qtd}</td>
+                  <td className="text-right">{price}</td>
+                  <td className="text-right">{qtd * price}</td>
+                  {allowActions && (
+                    <td className="flex justify-end space-x-2">
+                      <IconButton icon="EditIcon" size="small" color="secondary" />
+                      <IconButton
+                        icon="TrashIcon"
+                        size="small"
+                        color="secondary"
+                        onClick={() => handleDeleteBudgetItem(id)}
+                      />
+                    </td>
+                  )}
+                </tr>
+                <tr key={description}>
+                  <td>{description}</td>
+                  <td className="text-right">{qtd}</td>
+                  <td className="text-right">{price}</td>
+                  <td className="text-right">{qtd * price}</td>
+                  {allowActions && (
+                    <td className="flex justify-end space-x-2">
+                      <IconButton icon="EditIcon" size="small" color="secondary" />
+                      <IconButton
+                        icon="TrashIcon"
+                        size="small"
+                        color="secondary"
+                        onClick={() => handleDeleteBudgetItem(id)}
+                      />
+                    </td>
+                  )}
+                </tr>
+                <tr key={description}>
+                  <td>{description}</td>
+                  <td className="text-right">{qtd}</td>
+                  <td className="text-right">{price}</td>
+                  <td className="text-right">{qtd * price}</td>
+                  {allowActions && (
+                    <td className="flex justify-end space-x-2">
+                      <IconButton icon="EditIcon" size="small" color="secondary" />
+                      <IconButton
+                        icon="TrashIcon"
+                        size="small"
+                        color="secondary"
+                        onClick={() => handleDeleteBudgetItem(id)}
+                      />
+                    </td>
+                  )}
+                </tr>
+                <tr key={description}>
+                  <td>{description}</td>
+                  <td className="text-right">{qtd}</td>
+                  <td className="text-right">{price}</td>
+                  <td className="text-right">{qtd * price}</td>
+                  {allowActions && (
+                    <td className="flex justify-end space-x-2">
+                      <IconButton icon="EditIcon" size="small" color="secondary" />
+                      <IconButton
+                        icon="TrashIcon"
+                        size="small"
+                        color="secondary"
+                        onClick={() => handleDeleteBudgetItem(id)}
+                      />
+                    </td>
+                  )}
+                </tr>
+                <tr key={description}>
+                  <td>{description}</td>
+                  <td className="text-right">{qtd}</td>
+                  <td className="text-right">{price}</td>
+                  <td className="text-right">{qtd * price}</td>
+                  {allowActions && (
+                    <td className="flex justify-end space-x-2">
+                      <IconButton icon="EditIcon" size="small" color="secondary" />
+                      <IconButton
+                        icon="TrashIcon"
+                        size="small"
+                        color="secondary"
+                        onClick={() => handleDeleteBudgetItem(id)}
+                      />
+                    </td>
+                  )}
+                </tr>
+                <tr key={description}>
+                  <td>{description}</td>
+                  <td className="text-right">{qtd}</td>
+                  <td className="text-right">{price}</td>
+                  <td className="text-right">{qtd * price}</td>
+                  {allowActions && (
+                    <td className="flex justify-end space-x-2">
+                      <IconButton icon="EditIcon" size="small" color="secondary" />
+                      <IconButton
+                        icon="TrashIcon"
+                        size="small"
+                        color="secondary"
+                        onClick={() => handleDeleteBudgetItem(id)}
+                      />
+                    </td>
+                  )}
+                </tr>
+                <tr key={description}>
+                  <td>{description}</td>
+                  <td className="text-right">{qtd}</td>
+                  <td className="text-right">{price}</td>
+                  <td className="text-right">{qtd * price}</td>
+                  {allowActions && (
+                    <td className="flex justify-end space-x-2">
+                      <IconButton icon="EditIcon" size="small" color="secondary" />
+                      <IconButton
+                        icon="TrashIcon"
+                        size="small"
+                        color="secondary"
+                        onClick={() => handleDeleteBudgetItem(id)}
+                      />
+                    </td>
+                  )}
+                </tr>
+                <tr key={description}>
+                  <td>{description}</td>
+                  <td className="text-right">{qtd}</td>
+                  <td className="text-right">{price}</td>
+                  <td className="text-right">{qtd * price}</td>
+                  {allowActions && (
+                    <td className="flex justify-end space-x-2">
+                      <IconButton icon="EditIcon" size="small" color="secondary" />
+                      <IconButton
+                        icon="TrashIcon"
+                        size="small"
+                        color="secondary"
+                        onClick={() => handleDeleteBudgetItem(id)}
+                      />
+                    </td>
+                  )}
+                </tr>
+                <tr key={description}>
+                  <td>{description}</td>
+                  <td className="text-right">{qtd}</td>
+                  <td className="text-right">{price}</td>
+                  <td className="text-right">{qtd * price}</td>
+                  {allowActions && (
+                    <td className="flex justify-end space-x-2">
+                      <IconButton icon="EditIcon" size="small" color="secondary" />
+                      <IconButton
+                        icon="TrashIcon"
+                        size="small"
+                        color="secondary"
+                        onClick={() => handleDeleteBudgetItem(id)}
+                      />
+                    </td>
+                  )}
+                </tr>
+                <tr key={description}>
+                  <td>{description}</td>
+                  <td className="text-right">{qtd}</td>
+                  <td className="text-right">{price}</td>
+                  <td className="text-right">{qtd * price}</td>
+                  {allowActions && (
+                    <td className="flex justify-end space-x-2">
+                      <IconButton icon="EditIcon" size="small" color="secondary" />
+                      <IconButton
+                        icon="TrashIcon"
+                        size="small"
+                        color="secondary"
+                        onClick={() => handleDeleteBudgetItem(id)}
+                      />
+                    </td>
+                  )}
+                </tr>
+                <tr key={description}>
+                  <td>{description}</td>
+                  <td className="text-right">{qtd}</td>
+                  <td className="text-right">{price}</td>
+                  <td className="text-right">{qtd * price}</td>
+                  {allowActions && (
+                    <td className="flex justify-end space-x-2">
+                      <IconButton icon="EditIcon" size="small" color="secondary" />
+                      <IconButton
+                        icon="TrashIcon"
+                        size="small"
+                        color="secondary"
+                        onClick={() => handleDeleteBudgetItem(id)}
+                      />
+                    </td>
+                  )}
+                </tr> */}
+              </>
             );
           })}
         </tbody>

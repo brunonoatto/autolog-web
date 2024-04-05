@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTES_PATH } from '@core/router/consts';
 import { useListBudgets } from '@core/service/budget';
 import BudgetCard from '@shared/components/budget-card';
-import Container from '@shared/components/container';
+import Title from '@shared/components/title';
 
 export default function ListBudgets() {
   const navigate = useNavigate();
@@ -14,7 +14,8 @@ export default function ListBudgets() {
   };
 
   return (
-    <Container className="px-0" title={`Orçamentos (${budgets?.length || 0})`}>
+    <div className="space-y-4">
+      <Title>Orçamentos (${budgets?.length || 0})</Title>
       {budgets?.map(({ os, createdDate, status, clientName, car }) => {
         return (
           <button key={os} className="w-full" onClick={() => handleBudgetSelected(os)}>
@@ -28,6 +29,6 @@ export default function ListBudgets() {
           </button>
         );
       })}
-    </Container>
+    </div>
   );
 }

@@ -13,13 +13,12 @@ const LandingPage = lazy(() => import('@modules/landing-page'));
 const GarageRegister = lazy(() => import('@modules/garage-register'));
 const ClientRegister = lazy(() => import('@modules/client-register'));
 const ConsultLicense = lazy(() => import('@modules/consult-license/index'));
-const BodyApp = lazy(() => import('@layout/body-app'));
-const Garage = lazy(() => import('@modules/garage'));
+const GarageContent = lazy(() => import('@modules/garage'));
 const GarageDashboard = lazy(() => import('@modules/garage/dashboard'));
 const GarageAddCar = lazy(() => import('@modules/garage/add-car'));
 const GarageBudgetSearch = lazy(() => import('@modules/garage/budget-search'));
 const GarageBudgetView = lazy(() => import('@modules/garage/budget-view'));
-const Client = lazy(() => import('@modules/client'));
+const ClientContent = lazy(() => import('@modules/client'));
 const ClientBudgetSearch = lazy(() => import('@modules/client/budget-search'));
 const ClientBudgetView = lazy(() => import('@modules/client/budget-view'));
 const ClientTransferCar = lazy(() => import('@modules/client/transfer-car'));
@@ -77,30 +76,25 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        Component: BodyApp,
+        path: ROUTES_PATH.garageHome,
+        Component: GarageContent,
         children: [
           {
-            path: ROUTES_PATH.garageHome,
-            Component: Garage,
-            children: [
-              {
-                index: true,
-                path: `${ROUTES_PATH.garageDashboard}/:license?`,
-                Component: GarageDashboard,
-              },
-              {
-                path: ROUTES_PATH.garageAddVeiculo,
-                Component: GarageAddCar,
-              },
-              {
-                path: `${ROUTES_PATH.garageBudgetView}/:os?`,
-                Component: GarageBudgetView,
-              },
-              {
-                path: ROUTES_PATH.garageBuggetSearch,
-                Component: GarageBudgetSearch,
-              },
-            ],
+            index: true,
+            path: `${ROUTES_PATH.garageDashboard}/:license?`,
+            Component: GarageDashboard,
+          },
+          {
+            path: ROUTES_PATH.garageAddVeiculo,
+            Component: GarageAddCar,
+          },
+          {
+            path: `${ROUTES_PATH.garageBudgetView}/:os?`,
+            Component: GarageBudgetView,
+          },
+          {
+            path: ROUTES_PATH.garageBuggetSearch,
+            Component: GarageBudgetSearch,
           },
         ],
       },
@@ -114,25 +108,20 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        Component: BodyApp,
+        path: ROUTES_PATH.clientHome,
+        Component: ClientContent,
         children: [
           {
-            path: ROUTES_PATH.clientHome,
-            Component: Client,
-            children: [
-              {
-                path: ROUTES_PATH.clientBudgetSearch,
-                Component: ClientBudgetSearch,
-              },
-              {
-                path: `${ROUTES_PATH.clientBudgetView}/:os?`,
-                Component: ClientBudgetView,
-              },
-              {
-                path: ROUTES_PATH.clientTransfer,
-                Component: ClientTransferCar,
-              },
-            ],
+            path: ROUTES_PATH.clientBudgetSearch,
+            Component: ClientBudgetSearch,
+          },
+          {
+            path: `${ROUTES_PATH.clientBudgetView}/:os?`,
+            Component: ClientBudgetView,
+          },
+          {
+            path: ROUTES_PATH.clientTransfer,
+            Component: ClientTransferCar,
           },
         ],
       },

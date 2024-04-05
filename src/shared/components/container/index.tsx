@@ -10,7 +10,7 @@ type TContainerProps = {
   className?: string;
   border?: boolean;
   icon?: TIcons;
-  title: string;
+  title?: string;
 };
 
 function Container({ children, className, border, icon, title }: TContainerProps) {
@@ -18,13 +18,13 @@ function Container({ children, className, border, icon, title }: TContainerProps
     <div
       data-border={border}
       className={twMerge(
-        'rounded-lg data-[border=true]:ring-2 data-[border=true]:ring-teal-700 p-2 space-y-4 flex flex-col',
+        'rounded-lg data-[border=true]:ring-2 data-[border=true]:ring-teal-700 p-2 flex flex-col gap-y-2 px-2',
         className,
       )}
     >
       {title && (
-        <div className="px-4 py-2">
-          <Title title={title} icon={icon} />
+        <div className="pt-2 ">
+          <Title icon={icon}>{title}</Title>
         </div>
       )}
       {children}
