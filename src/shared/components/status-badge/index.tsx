@@ -10,7 +10,7 @@ const statusIcon: { [key in BudgetStatusEnum]: ReactNode } = {
     <Icon name="BudgetLoadingIcon" height={26} width={26} className="fill-teal-500 inline" />
   ),
   [BudgetStatusEnum.WaitingBudgetApproval]: (
-    <Icon name="HourglassIcon" height={26} width={26} className="fill-amber-400 inline" />
+    <Icon name="HourglassIcon" height={26} width={26} className="fill-sky-400 inline" />
   ),
   [BudgetStatusEnum.ApprovedBudget]: (
     <Icon name="CheckCircleIcon" height={26} width={26} className="fill-green-500 inline" />
@@ -19,10 +19,10 @@ const statusIcon: { [key in BudgetStatusEnum]: ReactNode } = {
     <Icon name="ThumbDownIcon" height={26} width={26} className="fill-red-400 inline" />
   ),
   [BudgetStatusEnum.RunningService]: (
-    <Icon name="ProgressWrenchIcon" height={26} width={26} className="fill-amber-400 inline" />
+    <Icon name="ProgressWrenchIcon" height={26} width={26} className="fill-yellow-400 inline" />
   ),
   [BudgetStatusEnum.CarReady]: (
-    <Icon name="CarDoneIcon" height={26} width={26} className="fill-amber-400 inline" />
+    <Icon name="CarDoneIcon" height={26} width={26} className="fill-green-500 inline" />
   ),
   [BudgetStatusEnum.Finished]: null,
 };
