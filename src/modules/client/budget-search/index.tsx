@@ -7,7 +7,7 @@ import Container from '@shared/components/container';
 
 export default function ClientBudgetSearch() {
   const navigate = useNavigate();
-  const { data: budgets } = useListBudgets();
+  const { data: budgets = [] } = useListBudgets();
 
   const handleGoToBudget = (os: string) => {
     navigate(`${ROUTES_PATH.clientBudgetView}/${os}`);
@@ -15,7 +15,7 @@ export default function ClientBudgetSearch() {
 
   return (
     <Container title="Orçamentos">
-      <div className="space-y-4">
+      <Container.Content>
         {budgets?.map(({ os, createdDate, status, car }) => {
           return (
             <button key={os} className="w-full" onClick={() => handleGoToBudget(os)}>
@@ -23,7 +23,7 @@ export default function ClientBudgetSearch() {
             </button>
           );
         })}
-      </div>
+      </Container.Content>
     </Container>
   );
 }

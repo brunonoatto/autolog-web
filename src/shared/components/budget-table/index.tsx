@@ -3,7 +3,7 @@ import { useFormContext } from 'react-hook-form';
 import { useDeleteBudgetItem } from '@core/service/budget-items';
 import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
 import type { TBudgetItemFormType } from '@modules/garage/budget-view';
-import Container from '@shared/components/container';
+import Title from '@shared/components/title';
 import IconButton from '@shared/design-system/icon-button';
 
 type TBudgetViewTableProps = {
@@ -38,7 +38,8 @@ export default function BudgetTable({ allowActions = false }: TBudgetViewTablePr
   }
 
   return (
-    <Container title="Itens do Orçamento">
+    <>
+      <Title title="Itens do Orçamento" />
       <table className="w-full">
         <thead>
           <tr className="text-left">
@@ -95,6 +96,6 @@ export default function BudgetTable({ allowActions = false }: TBudgetViewTablePr
           </tr>
         </tfoot>
       </table>
-    </Container>
+    </>
   );
 }
