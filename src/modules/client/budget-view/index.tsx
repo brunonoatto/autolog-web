@@ -16,11 +16,15 @@ function ClientBudgetViewContent() {
 
   return (
     <Container title="Orçamento">
-      <BudgetCard status={status} car={car} />
+      <Container.Content>
+        <BudgetCard status={status} car={car} />
 
-      <BudgetTable />
+        <BudgetTable />
+      </Container.Content>
 
-      <BudgetViewActionButtons />
+      <Container.Footer>
+        <BudgetViewActionButtons />
+      </Container.Footer>
     </Container>
   );
 }

@@ -18,9 +18,8 @@ export default function ClientHome() {
           },
         ]}
       />
-      <div className="md:overflow-y-auto p-2 md:p-4">
-        <Outlet />
-      </div>
+
+      <Outlet />
     </div>
   );
 }

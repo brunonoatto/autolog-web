@@ -1,5 +1,7 @@
 import { twMerge } from 'tailwind-merge';
 
+import ContainerContent from '@shared/components/container-content';
+import ContainerFooter from '@shared/components/container-footer';
 import type { TIcons } from '@shared/design-system/assets/icons/types';
 import Icon from '@shared/design-system/Icon';
 
@@ -11,12 +13,12 @@ type TContainerProps = {
   title: string;
 };
 
-export default function Container({ children, className, border, icon, title }: TContainerProps) {
+function Container({ children, className, border, icon, title }: TContainerProps) {
   return (
     <div
       data-border={border}
       className={twMerge(
-        'rounded-lg data-[border=true]:ring-2 data-[border=true]:ring-teal-700 p-2 space-y-4',
+        'rounded-lg data-[border=true]:ring-2 data-[border=true]:ring-teal-700 m-2 mt-1 p-2 pt-1 space-y-4 flex flex-col',
         className,
       )}
     >
@@ -30,3 +32,8 @@ export default function Container({ children, className, border, icon, title }: 
     </div>
   );
 }
+
+Container.Content = ContainerContent;
+Container.Footer = ContainerFooter;
+
+export default Container;
