@@ -30,7 +30,9 @@ export default function BudgetTable({ allowActions = false }: TBudgetViewTablePr
     return (
       <div className="border-2 border-teal-600 rounded-xl w-3/4 m-auto">
         <h3 className="text-center">Nenhum item adicionado no orçamento ainda.</h3>
-        <h4 className="text-center">Preencha o formulário acima para adicionar um item.</h4>
+        {allowActions && (
+          <h4 className="text-center">Preencha o formulário acima para adicionar um item.</h4>
+        )}
       </div>
     );
   }
