@@ -30,12 +30,12 @@ export default function ReceiveButton() {
   return (
     <>
       <IconButton icon="CarDoneIcon" onClick={handleRejectBudget}>
-        Carro recebido
+        Veículo recebido
       </IconButton>
 
       <Modal
         open={openModal}
-        title="Oba, ficamos felizes que recebeu seu carro."
+        title="Oba, ficamos felizes que recebeu seu veículo."
         confirmText="Continuar"
         onConfirmClick={handleGoToBudgets}
       />

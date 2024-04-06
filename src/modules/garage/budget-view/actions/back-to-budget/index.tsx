@@ -35,7 +35,7 @@ export default function BackToBudget() {
 
       <Modal
         open={openModal}
-        title="Carro aguardando o Orçamento novamente."
+        title="Veículo aguardando o Orçamento novamente."
         confirmText="Continuar"
         onConfirmClick={handleGoToDashboard}
       />

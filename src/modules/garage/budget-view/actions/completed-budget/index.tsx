@@ -35,7 +35,7 @@ export default function CompletedService() {
 
       <Modal
         open={openModal}
-        title="Carro enviado para iniciar o serviço!"
+        title="Veículo enviado para iniciar o serviço!"
         confirmText="Continuar"
         onConfirmClick={handleGoToDashboard}
       />

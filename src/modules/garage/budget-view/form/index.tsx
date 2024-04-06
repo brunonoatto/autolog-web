@@ -43,19 +43,17 @@ export default function BudgetViewForm() {
     <Form
       form={form}
       onSubmit={handleSubmit(handleAddBudgetItem)}
-      title="Aicionar Item no Orçamento"
+      title="Adicionar Item no Orçamento"
       confirmButtonText="Adicionar"
       iconButton="AddItemIcon"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-        <InputForm
-          label="Descrição"
-          labelProps={{ className: 'col-span-full' }}
-          {...register('description')}
-        />
-        <InputNumberForm label="Quantidade" {...register('qtd')} />
-        <InputNumberForm label="Preço Unitário" {...register('price')} />
-      </div>
+      <InputForm
+        label="Descrição"
+        labelProps={{ className: 'col-span-full' }}
+        {...register('description')}
+      />
+      <InputNumberForm label="Quantidade" {...register('qtd')} />
+      <InputNumberForm label="Preço Unitário" {...register('price')} />
     </Form>
   );
 }

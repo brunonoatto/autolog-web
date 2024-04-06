@@ -1,12 +1,11 @@
-// import axios, { type AxiosResponse } from 'axios';
+import { type AxiosResponse } from 'axios';
 
-// import type { TLogin } from '@core/api/auth/types';
+import type { TNewGarage } from '@core/api/garage/types';
+import httpClient from '@core/api/HttpClient';
 
-// const BASE_URL = '/garage';
+const BASE_URL = '/garage';
 
-// export const login = async (data: TLogin): Promise<AxiosResponse<boolean>> => {
-//   const response = await src/core/api/dashboard/index.ts.post<boolean>(`${BASE_URL}/login`, data);
-//   return response;
-// };
-
-export const get = () => {};
+export const post = async (newClient: TNewGarage): Promise<AxiosResponse<boolean>> => {
+  const response = await httpClient.post<boolean>(BASE_URL, newClient);
+  return response;
+};

@@ -26,7 +26,7 @@ const schema = yup
   })
   .required();
 
-type TRegisterProvicerFormType = yup.InferType<typeof schema>;
+type TRegisterClientFormType = yup.InferType<typeof schema>;
 
 export default function ClientRegister() {
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
@@ -40,7 +40,7 @@ export default function ClientRegister() {
   });
   const { register, handleSubmit } = form;
 
-  const handleValid: SubmitHandler<TRegisterProvicerFormType> = (formData) => {
+  const handleValid: SubmitHandler<TRegisterClientFormType> = (formData) => {
     const { passwordConfirm, ...newClientData } = formData;
 
     loading(true);

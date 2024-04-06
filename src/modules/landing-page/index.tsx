@@ -13,7 +13,7 @@ export default function LandingPage() {
           <HomeCard
             title="Sistema para mecânicas"
             infos={[
-              'Visualização geral dos carros que estão na oficina e facilidade de encontrar informações.',
+              'Visualização geral dos veículos que estão na oficina e facilidade de encontrar informações.',
               'Gere o Orçamento e envie o link para o cliente revisar e aprovar pelo site.',
             ]}
             price={
@@ -29,7 +29,7 @@ export default function LandingPage() {
             title="Sistema para clientes"
             infos={[
               'Aprove ou Rejeite os orçamentos on-line.',
-              'Organize todas revisões de seu carro em um só lugar.',
+              'Organize todas revisões de seu veículo em um só lugar.',
               'Consulte o histórico de manutenção de outros veículos pela placa.',
             ]}
             price={
