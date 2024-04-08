@@ -1,4 +1,4 @@
-import { type AxiosResponse } from 'axios';
+import type { AxiosResponse } from 'axios';
 
 import type { TNewGarage } from '@core/api/garage/types';
 import httpClient from '@core/api/HttpClient';

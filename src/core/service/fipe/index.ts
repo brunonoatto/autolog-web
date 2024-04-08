@@ -20,7 +20,7 @@ export const useListModelsBrand = (brandId: string) => {
       const data = await ServiceApi.FipeApi.listModelsBrand(brandId);
       return data;
     },
-    enabled: !!brandId,
+    enabled: !!brandId && !!Number(brandId),
     staleTime: Infinity,
   });
 };

@@ -1,7 +1,7 @@
 import { DefaultError, useMutation } from '@tanstack/react-query';
 
 import { ServiceApi } from '@core/api';
-import { TNewGarage } from '@core/api/garage/types';
+import type { TNewGarage } from '@core/api/garage/types';
 
 export const useCreateGarage = () => {
   return useMutation<boolean, DefaultError, TNewGarage>({

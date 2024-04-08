@@ -1,5 +1,5 @@
 import type { TBudget, TBudgetCompleteResponse } from '@core/api/budget/types';
-import { TBudgetItem } from '@core/api/budget-item/types';
+import type { TBudgetItem } from '@core/api/budget-item/types';
 import type { TCar } from '@core/api/car/types';
 import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 

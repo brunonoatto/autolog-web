@@ -1,7 +1,7 @@
 import { DefaultError, useMutation } from '@tanstack/react-query';
 
 import { ServiceApi } from '@core/api';
-import { TNewClient } from '@core/api/client/types';
+import type { TNewClient } from '@core/api/client/types';
 
 export const useCreateClient = () => {
   return useMutation<boolean, DefaultError, TNewClient>({

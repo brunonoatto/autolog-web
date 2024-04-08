@@ -1,4 +1,4 @@
-import { type AxiosResponse } from 'axios';
+import type { AxiosResponse } from 'axios';
 
 import type { TClientResponse, TGetClientParams, TNewClient } from '@core/api/client/types';
 import httpClient from '@core/api/HttpClient';
@@ -13,7 +13,10 @@ export const post = async (newClient: TNewClient): Promise<AxiosResponse<boolean
 export const get = async ({
   cpf,
   email,
+  withCars = false,
 }: TGetClientParams): Promise<AxiosResponse<TClientResponse>> => {
-  const response = await httpClient.get<TClientResponse>(BASE_URL, { params: { cpf, email } });
+  const response = await httpClient.get<TClientResponse>(BASE_URL, {
+    params: { cpf, email, withCars },
+  });
   return response;
 };

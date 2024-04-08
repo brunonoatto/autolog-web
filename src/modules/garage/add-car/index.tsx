@@ -1,57 +1,45 @@
-import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { SubmitHandler, useFormContext } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { ServiceApi } from '@core/api';
-import type { TClientResponse } from '@core/api/client/types';
 import { ROUTES_PATH } from '@core/router/consts';
 import { useAddBudget } from '@core/service/budget';
 import { useListBrands, useListModelsBrand } from '@core/service/fipe';
+import {
+  GarageAddCarProvider,
+  type TGarageAddCarFormType,
+} from '@core/store/context/GarageAddCarContext';
+import useGarageAddCarContext from '@core/store/context/hooks/useGarageAddCar';
 import { useLoadingStore } from '@core/store/hooks';
 import Form from '@layout/form';
-import CarInfos from '@modules/garage/add-car/card-infos';
+import CarFields from '@modules/garage/add-car/car-fields';
 import InputForm from '@shared/components/form/input';
 import Modal from '@shared/design-system/modal';
 import Textarea from '@shared/design-system/textarea';
-import { yup, yupValidators } from '@shared/form-validations/index';
 
-const schema = yup
-  .object({
-    name: yupValidators.StringValidator().required(),
-    phone: yupValidators.StringValidator().required(),
-    cpf_cnpj: yupValidators.StringValidator().required(),
-    license: yupValidators.StringValidator().uppercase().required(),
-    brand: yupValidators.StringValidator().required(),
-    model: yupValidators.StringValidator().required(),
-    year: yupValidators.NumberValidator().required().integer(),
-    observation: yupValidators.StringValidator(),
-  })
-  .required();
-
-export type TRegisterCarFormType = yup.InferType<typeof schema>;
-
-export default function AddCar() {
-  const [selectedClient, setSelectedClient] = useState<TClientResponse | undefined>();
+function AddCarContent() {
   const [generateOS, setGenerateOS] = useState('');
   const navigate = useNavigate();
   const { mutate } = useAddBudget();
   const loading = useLoadingStore((state) => state.loading);
 
-  const form = useForm({
-    resolver: yupResolver(schema),
-  });
-  const { register, watch, handleSubmit, getValues, setValue } = form;
+  const handleClearClientSelected = useGarageAddCarContext(
+    (prop) => prop.handleClearSelectedClient,
+  );
+  const selectedClient = useGarageAddCarContext((prop) => prop.selectedClient);
+  const handleClearSelectedClient = useGarageAddCarContext(
+    (prop) => prop.handleClearSelectedClient,
+  );
+  const handleSelectedClient = useGarageAddCarContext((prop) => prop.handleSelectedClient);
+
+  const form = useFormContext<TGarageAddCarFormType>();
+  const { getValues, watch, setValue, handleSubmit, register } = form;
 
   const brandId = watch('brand');
+
   const { data: listBrands } = useListBrands();
   const { data: listModels } = useListModelsBrand(brandId);
-
-  const handleClearClientSelected = () => {
-    setValue('name', '');
-    setValue('phone', '');
-    setSelectedClient(undefined);
-  };
 
   const handleSuccessConfirm = () => {
     navigate(`${ROUTES_PATH.garageBudgetView}/${generateOS}`);
@@ -61,7 +49,7 @@ export default function AddCar() {
     navigate(ROUTES_PATH.garageDashboard);
   };
 
-  const handleValid: SubmitHandler<TRegisterCarFormType> = async (formValues) => {
+  const handleValid: SubmitHandler<TGarageAddCarFormType> = async (formValues) => {
     loading(true);
 
     // TODO: transformar essa lógica em hook
@@ -77,12 +65,23 @@ export default function AddCar() {
     );
   };
 
+  const handleCpfChange = async () => {
+    if (selectedClient) {
+      handleClearSelectedClient();
+    }
+  };
+
   const handleCpfBlur = async () => {
     const { cpf_cnpj } = getValues();
+
     if (cpf_cnpj.length === 11) {
       try {
-        const { data: clientData } = await ServiceApi.ClientApi.get({ cpf: cpf_cnpj });
-        setSelectedClient(clientData);
+        const { data: clientData } = await ServiceApi.ClientApi.get({
+          cpf: cpf_cnpj,
+          withCars: true,
+        });
+
+        handleSelectedClient(clientData);
 
         setValue('name', clientData.name);
         setValue('phone', clientData.phone);
@@ -102,7 +101,10 @@ export default function AddCar() {
         title="Adicionar Orçamento"
         icon="BudgetLoadingIcon"
       >
-        <InputForm label="CPF/CNPJ" {...register('cpf_cnpj', { onBlur: handleCpfBlur })} />
+        <InputForm
+          label="CPF/CNPJ"
+          {...register('cpf_cnpj', { onChange: handleCpfChange, onBlur: handleCpfBlur })}
+        />
         <InputForm
           label="Nome Cliente"
           labelProps={{ className: 'lg:row-start-2 md:col-span-2' }}
@@ -116,7 +118,7 @@ export default function AddCar() {
           {...register('phone')}
         />
 
-        <CarInfos />
+        <CarFields />
 
         <Textarea
           labelProps={{ className: 'col-span-full' }}
@@ -137,5 +139,13 @@ export default function AddCar() {
         <p>Você deseja editar o Orçamento?</p>
       </Modal>
     </>
+  );
+}
+
+export default function AddCar() {
+  return (
+    <GarageAddCarProvider>
+      <AddCarContent />
+    </GarageAddCarProvider>
   );
 }

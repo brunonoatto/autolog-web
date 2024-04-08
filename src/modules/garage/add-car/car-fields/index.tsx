@@ -3,9 +3,9 @@ import { useFormContext } from 'react-hook-form';
 import { useDebouncedCallback } from 'use-debounce';
 
 import { ServiceApi } from '@core/api';
-import type { TCar } from '@core/api/car/types';
-import type { TRegisterCarFormType } from '@modules/garage/add-car';
-import Container from '@shared/components/container';
+import type { TGarageAddCarFormType } from '@core/store/context/GarageAddCarContext';
+import useGarageAddCarContext from '@core/store/context/hooks/useGarageAddCar';
+import ClientCars from '@modules/garage/add-car/car-fields/client-cars';
 import InputForm from '@shared/components/form/input';
 import InputNumberForm from '@shared/components/form/inputNumber';
 import BrandSelect from '@shared/components/selects/brand-select';
@@ -13,11 +13,17 @@ import ModelSelect from '@shared/components/selects/model-select';
 import Title from '@shared/components/title';
 import Input from '@shared/design-system/input';
 
-export default function CarInfos() {
+export default function CarFields() {
+  const selectedCar = useGarageAddCarContext((prop) => prop.selectedCar);
+  const handleSelectedClientCar = useGarageAddCarContext((prop) => prop.handleSelectedClientCar);
+  const handleClearSelectedClientCar = useGarageAddCarContext(
+    (prop) => prop.handleClearSelectedClientCar,
+  );
+
   // TODO: fazer o loading enquanto pesquisa pela placa
   const [_loading, setLoading] = useState(false);
-  const [selectedCar, setSelectedCar] = useState<TCar>();
-  const { register, watch, reset } = useFormContext<TRegisterCarFormType>();
+
+  const { register, watch, reset } = useFormContext<TGarageAddCarFormType>();
 
   const brandId = watch('brand');
 
@@ -26,7 +32,7 @@ export default function CarInfos() {
 
     try {
       const { data } = await ServiceApi.CarApi.get(license);
-      setSelectedCar(data);
+      handleSelectedClientCar(data);
 
       reset({
         brand: data?.brand,
@@ -43,6 +49,8 @@ export default function CarInfos() {
   const handleLicenseChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
 
+    handleClearSelectedClientCar();
+
     if (value?.length >= 7) debounce(value);
   };
 
@@ -50,6 +58,8 @@ export default function CarInfos() {
     <div className="col-span-full">
       <Title>Dados do veículo</Title>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <ClientCars />
+
         <InputForm
           label="Placa"
           labelProps={{ className: 'col-span-full' }}
@@ -57,6 +67,7 @@ export default function CarInfos() {
           maxLength={10}
           {...register('license', { onChange: handleLicenseChange })}
         />
+
         {selectedCar ? (
           <>
             <Input label="Montadora" disabled value={selectedCar.brand} />

@@ -1,4 +1,4 @@
-import { type AxiosResponse } from 'axios';
+import type { AxiosResponse } from 'axios';
 
 import httpClient from '@core/api/HttpClient';
 
