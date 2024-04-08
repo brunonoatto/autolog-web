@@ -36,15 +36,18 @@
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
+  @apply rounded-xl;
   background: #71717a;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
+  @apply rounded-xl;
   background: #0d9488;
 }
 
