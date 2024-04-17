@@ -14,14 +14,14 @@ const actionsByStatus: { [key in BudgetStatusEnum]?: React.ReactNode } = {
   [BudgetStatusEnum.MakingBudget]: <SendForApproval />,
   [BudgetStatusEnum.WaitingBudgetApproval]: (
     <>
-      <SendWhatsApp />
       <BackToBudget />
+      <SendWhatsApp />
     </>
   ),
   [BudgetStatusEnum.ApprovedBudget]: <StartService />,
   [BudgetStatusEnum.BudgetRejected]: (
     <>
-      <Button>Cancelar orçamento</Button>
+      <Button color="secondary">Cancelar orçamento</Button>
       <RemakeBudget />
     </>
   ),
@@ -41,5 +41,5 @@ export default function BudgetViewActions() {
 
   if (!showActions) return null;
 
-  return <div className="flex gap-2 justify-end">{actionsByStatus[status]}</div>;
+  return <div className="flex gap-2 justify-end">{actionsByStatus[2]}</div>;
 }

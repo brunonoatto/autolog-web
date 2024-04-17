@@ -29,7 +29,7 @@ export default function BackToBudget() {
 
   return (
     <>
-      <IconButton icon="BudgetLoadingIcon" color="primary" onClick={handleSendForApproval}>
+      <IconButton icon="BudgetLoadingIcon" color="secondary" onClick={handleSendForApproval}>
         Voltar para realizar orçamento
       </IconButton>
 

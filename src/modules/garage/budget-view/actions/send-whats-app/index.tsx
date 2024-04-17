@@ -15,7 +15,7 @@ export default function SendWhatsApp() {
   };
 
   return (
-    <IconButton icon="WhatsAppIcon" color="secondary" onClick={handleSendWhatsApp}>
+    <IconButton icon="WhatsAppIcon" onClick={handleSendWhatsApp}>
       Enviar Whats App
     </IconButton>
   );
