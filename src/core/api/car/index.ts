@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 
-import type { TCar } from '@core/api/car/types';
+import type { TCar, TCarGetResponse, TGetByClientParams } from '@core/api/car/types';
 import httpClient from '@core/api/HttpClient';
 
 const BASE_URL = '/car';
@@ -10,8 +10,13 @@ export const get = async (license: string): Promise<AxiosResponse<TCar>> => {
   return response;
 };
 
-export const getByClient = async (clientId?: string): Promise<AxiosResponse<TCar[]>> => {
-  const response = await httpClient.get<TCar[]>(`${BASE_URL}/client/${clientId}`);
+export const getByClient = async ({
+  clientId,
+  transfereds,
+}: TGetByClientParams): Promise<AxiosResponse<TCarGetResponse[]>> => {
+  const response = await httpClient.get<TCarGetResponse[]>(`${BASE_URL}/client/${clientId}`, {
+    params: { transfereds },
+  });
   return response;
 };
 
