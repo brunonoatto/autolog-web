@@ -1,7 +1,7 @@
 const LoadingIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
-      className="m-auto stroke-teal-600"
+      className="stroke-teal-600"
       width="80"
       height="80"
       viewBox="0 0 24 24"
