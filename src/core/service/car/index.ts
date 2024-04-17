@@ -1,6 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
+import { DefaultError, useMutation, useQuery } from '@tanstack/react-query';
 
 import { ServiceApi } from '@core/api';
+import { TUseTransferCarParams } from '@core/service/car/type';
 
 export const useGetCar = (license: string) => {
   return useQuery({
@@ -10,6 +11,15 @@ export const useGetCar = (license: string) => {
       const { data } = await ServiceApi.CarApi.get(license);
 
       return data;
+    },
+  });
+};
+
+export const useTransferCar = () => {
+  return useMutation<boolean, DefaultError, TUseTransferCarParams>({
+    mutationFn: async (data) => {
+      const response = await ServiceApi.CarApi.transferCar(data.license, data.cpfToTrasnfer);
+      return response.data;
     },
   });
 };

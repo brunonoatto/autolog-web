@@ -14,3 +14,13 @@ export const getByClient = async (clientId?: string): Promise<AxiosResponse<TCar
   const response = await httpClient.get<TCar[]>(`${BASE_URL}/client/${clientId}`);
   return response;
 };
+
+export const transferCar = async (
+  license: string,
+  cpfToTrasnfer: string,
+): Promise<AxiosResponse<boolean>> => {
+  const response = await httpClient.patch<boolean>(
+    `${BASE_URL}/${license}/transfer/${cpfToTrasnfer}`,
+  );
+  return response;
+};
