@@ -1,19 +1,30 @@
+import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import ContainerContent from '@shared/components/container-content';
-import ContainerFooter from '@shared/components/container-footer';
+import ContainerContent from '@shared/components/container/container-content';
+import ContainerFooter from '@shared/components/container/container-footer';
 import Title from '@shared/components/title';
 import type { TIcons } from '@shared/design-system/assets/icons/types';
 
 type TContainerProps = {
   children: React.ReactNode;
   className?: string;
+  titleClassName?: string;
+  bodyClassName?: string;
   border?: boolean;
   icon?: TIcons;
-  title?: string;
+  title?: React.ReactNode;
 };
 
-function Container({ children, className, border, icon, title }: TContainerProps) {
+function Container({
+  children,
+  className,
+  titleClassName,
+  bodyClassName = '',
+  border,
+  icon,
+  title,
+}: TContainerProps) {
   return (
     <div
       data-border={border}
@@ -23,11 +34,11 @@ function Container({ children, className, border, icon, title }: TContainerProps
       )}
     >
       {title && (
-        <div className="pt-2 ">
+        <div className={twMerge('pt-2', titleClassName)}>
           <Title icon={icon}>{title}</Title>
         </div>
       )}
-      {children}
+      <div className={bodyClassName}>{children}</div>
     </div>
   );
 }
