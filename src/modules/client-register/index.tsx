@@ -16,7 +16,7 @@ import { yup, yupValidators } from '@shared/form-validations/index';
 const schema = yup
   .object({
     name: yupValidators.StringValidator().required().min(5),
-    cpf: yupValidators.CnpjValidator().required(),
+    cpf: yupValidators.CpfValidator().required(),
     phone: yupValidators.StringValidator().required(),
     email: yupValidators.EmailValidator().required(),
     password: yupValidators.StringValidator({ size: 25 }).required(),
