@@ -8,7 +8,9 @@ import { useDebouncedCallback } from 'use-debounce';
 import { ServiceApi } from '@core/api';
 import { TCar } from '@core/api/car/types';
 import { TClientResponse } from '@core/api/client/types';
+import { useTransferCar } from '@core/service/car';
 import { useClientCar } from '@core/service/client';
+import { useLoadingStore } from '@core/store/hooks';
 import Form from '@layout/form';
 import CarCard from '@modules/client/transfer-car/car-card';
 import Container from '@shared/components/container';
@@ -32,13 +34,15 @@ export default function ClientTransferCar() {
   const [openModal, setOpenModal] = useState(false);
   const [cpfIsLoading, setCpfIsLoading] = useState(false);
   const [clientToTrasnferData, setClientToTrasnferData] = useState<TClientResponse>();
+  const loading = useLoadingStore((prop) => prop.loading);
   const { data: clientCars } = useClientCar();
+  const { mutate } = useTransferCar();
 
   const form = useForm<TTransferCarForm>({
     mode: 'onSubmit',
     resolver: yupResolver(transferCarSchema),
   });
-  const { setValue, register, watch } = form;
+  const { setValue, register, watch, setError, getValues } = form;
 
   const licenseSelected = watch('license');
 
@@ -47,7 +51,20 @@ export default function ClientTransferCar() {
     [clientCars, licenseSelected],
   );
 
-  const handleTrasnferCar = () => {};
+  const handleTrasnferCar = () => {
+    loading(true);
+
+    const formValues = getValues();
+
+    mutate(formValues, {
+      onSuccess: () => {
+        // toaster "Transferência realizada com sucesso"
+      },
+      onSettled: () => {
+        loading(false);
+      },
+    });
+  };
 
   const handleGetClient = async (cpf: string) => {
     setCpfIsLoading(true);
@@ -71,7 +88,15 @@ export default function ClientTransferCar() {
     if (value?.length >= 11) debounce(value);
   };
 
-  const handleSubmitForm = (formValues) => {};
+  const handleSubmitForm = (formValues) => {
+    if (!clientToTrasnferData) {
+      // toaster "Cliente para transferência não encontrado"
+      setError('cpfToTransfer', { message: 'Insira um cpf que estejá cadastrado.' });
+      return;
+    }
+
+    setOpenModal(true);
+  };
 
   const handleRemoveSelectedCar = () => {
     setValue('license', '');

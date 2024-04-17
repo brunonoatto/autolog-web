@@ -18,7 +18,7 @@ export const useGetCar = (license: string) => {
 export const useTransferCar = () => {
   return useMutation<boolean, DefaultError, TUseTransferCarParams>({
     mutationFn: async (data) => {
-      const response = await ServiceApi.CarApi.transferCar(data.license, data.cpfToTrasnfer);
+      const response = await ServiceApi.CarApi.transferCar(data.license, data.cpfToTransfer);
       return response.data;
     },
   });
