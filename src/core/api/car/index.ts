@@ -9,3 +9,8 @@ export const get = async (license: string): Promise<AxiosResponse<TCar>> => {
   const response = await httpClient.get<TCar>(`${BASE_URL}/${license}`);
   return response;
 };
+
+export const getByClient = async (clientId?: string): Promise<AxiosResponse<TCar[]>> => {
+  const response = await httpClient.get<TCar[]>(`${BASE_URL}/client/${clientId}`);
+  return response;
+};

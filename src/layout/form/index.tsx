@@ -45,7 +45,7 @@ const Form: FunctionComponent<TForm> = ({
           </Container.Content>
 
           <Container.Footer>
-            <div className="text-right ">
+            <div className="text-right">
               {iconButton ? (
                 <IconButton icon={iconButton}>{confirmButtonText}</IconButton>
               ) : (
