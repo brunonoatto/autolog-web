@@ -11,7 +11,7 @@ import { TCar } from '@core/api/car/types';
 import { TClientResponse } from '@core/api/client/types';
 import { ROUTES_PATH } from '@core/router/consts';
 import { useTransferCar } from '@core/service/car';
-import { useClientCar } from '@core/service/client';
+import { useClientCars } from '@core/service/client';
 import { useLoadingStore } from '@core/store/hooks';
 import Form from '@layout/form';
 import CarCard from '@modules/client/transfer-car/car-card';
@@ -39,7 +39,7 @@ export default function ClientTransferCar() {
   const [clientToTrasnferData, setClientToTrasnferData] = useState<TClientResponse>();
   const navigate = useNavigate();
   const loading = useLoadingStore((prop) => prop.loading);
-  const { data: clientCars } = useClientCar();
+  const { data: clientCars } = useClientCars();
   const { mutate } = useTransferCar();
 
   const form = useForm<TTransferCarForm>({
