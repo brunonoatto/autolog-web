@@ -39,7 +39,6 @@ export default function GarageRegister() {
   const navigate = useNavigate();
 
   const form = useForm({
-    mode: 'onSubmit',
     resolver: yupResolver(schema),
   });
   const { register } = form;
