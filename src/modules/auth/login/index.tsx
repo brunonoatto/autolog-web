@@ -25,9 +25,9 @@ export default function Login() {
     mode: 'onSubmit',
     resolver: yupResolver(schema),
   });
-  const { register, handleSubmit } = form;
+  const { register } = form;
 
-  const onSubmit: SubmitHandler<TLoginType> = async ({ email, password }) => {
+  const handleValid: SubmitHandler<TLoginType> = async ({ email, password }) => {
     loading(true);
 
     await login(email, password);
@@ -42,9 +42,9 @@ export default function Login() {
 
       <Form
         form={form}
-        onSubmit={handleSubmit(onSubmit)}
+        onValid={handleValid}
         title="Login"
-        contentDefaultGrid={false}
+        useDefaultGrid={false}
         className="w-full md:w-1/2"
       >
         <InputForm label="Email" {...register('email')} />

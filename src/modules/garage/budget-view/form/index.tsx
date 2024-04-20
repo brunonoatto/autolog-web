@@ -17,7 +17,7 @@ export default function BudgetViewForm() {
   const { os = '' } = budget || {};
 
   const form = useFormContext<TBudgetItemFormType>();
-  const { register, reset, handleSubmit, setFocus } = form;
+  const { register, reset, setFocus } = form;
 
   const handleAddBudgetItem: SubmitHandler<TBudgetItemFormType> = async (formValues) => {
     const newData: TNewBudgetItem = {
@@ -42,7 +42,7 @@ export default function BudgetViewForm() {
   return (
     <Form
       form={form}
-      onSubmit={handleSubmit(handleAddBudgetItem)}
+      onValid={handleAddBudgetItem}
       title="Adicionar Item no Orçamento"
       confirmButtonText="Adicionar"
       iconButton="AddItemIcon"

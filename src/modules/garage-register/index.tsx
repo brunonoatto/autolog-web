@@ -42,7 +42,7 @@ export default function GarageRegister() {
     mode: 'onSubmit',
     resolver: yupResolver(schema),
   });
-  const { register, handleSubmit } = form;
+  const { register } = form;
 
   const handleValid: SubmitHandler<TRegisterGarageFormType> = (formData) => {
     const { passwordConfirm, ...newGarageData } = formData;
@@ -66,9 +66,9 @@ export default function GarageRegister() {
 
         <Form
           form={form}
-          onSubmit={handleSubmit(handleValid)}
+          onValid={handleValid}
           title="Dados para Cadastro de Mecânica"
-          contentDefaultGrid={false}
+          useDefaultGrid={false}
         >
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <InputForm label="Nome" {...register('name')} />

@@ -34,7 +34,7 @@ function AddCarContent() {
   const handleSelectedClient = useGarageAddCarContext((prop) => prop.handleSelectedClient);
 
   const form = useFormContext<TGarageAddCarFormType>();
-  const { getValues, watch, setValue, handleSubmit, register } = form;
+  const { getValues, watch, setValue, register } = form;
 
   const brandId = watch('brand');
 
@@ -95,12 +95,7 @@ function AddCarContent() {
 
   return (
     <>
-      <Form
-        form={form}
-        onSubmit={handleSubmit(handleValid)}
-        title="Adicionar Orçamento"
-        icon="BudgetLoadingIcon"
-      >
+      <Form form={form} onValid={handleValid} title="Adicionar Orçamento" icon="BudgetLoadingIcon">
         <InputForm
           label="CPF/CNPJ"
           {...register('cpf_cnpj', { onChange: handleCpfChange, onBlur: handleCpfBlur })}

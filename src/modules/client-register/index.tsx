@@ -38,7 +38,7 @@ export default function ClientRegister() {
     mode: 'onSubmit',
     resolver: yupResolver(schema),
   });
-  const { register, handleSubmit } = form;
+  const { register } = form;
 
   const handleValid: SubmitHandler<TRegisterClientFormType> = (formData) => {
     const { passwordConfirm, ...newClientData } = formData;
@@ -62,9 +62,9 @@ export default function ClientRegister() {
 
         <Form
           form={form}
-          onSubmit={handleSubmit(handleValid)}
+          onValid={handleValid}
           title="Dados para Cadastro de Cliente"
-          contentDefaultGrid={false}
+          useDefaultGrid={false}
         >
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <InputForm label="Nome" {...register('name')} />

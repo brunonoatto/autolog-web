@@ -36,7 +36,7 @@ export default function BudgetSearch() {
 
   return (
     <div className="flex flex-col gap-y-4">
-      <Form form={form} onSubmit={handleValid} title="Buscar orçamento">
+      <Form form={form} onValid={handleValid} title="Buscar orçamento">
         <InputForm
           label="Placa"
           labelProps={{ className: 'col-span-full' }}
