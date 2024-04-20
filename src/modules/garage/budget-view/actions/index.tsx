@@ -41,5 +41,5 @@ export default function BudgetViewActions() {
 
   if (!showActions) return null;
 
-  return <div className="flex gap-2 justify-end">{actionsByStatus[2]}</div>;
+  return <div className="flex gap-2 justify-end">{actionsByStatus[status]}</div>;
 }
