@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ServiceApi } from '@core/api';
 import { ROUTES_PATH } from '@core/router/consts';
 import { useSendForApproveBudget } from '@core/service/budget';
 import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
+import useSendWhatApp from '@modules/garage/budget-view/hooks/useSendWhatsApp';
 import IconButton from '@shared/design-system/icon-button';
 import Modal from '@shared/design-system/modal';
 
@@ -12,6 +12,7 @@ export default function SendForApproval() {
   const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
   const { mutate } = useSendForApproveBudget();
+  const { sendWhatsApp } = useSendWhatApp();
 
   const { budget } = useBudgetView();
   const { os = '' } = budget || {};
@@ -21,11 +22,7 @@ export default function SendForApproval() {
   };
 
   const handleSendWhatsApp = async () => {
-    // TODO: pensar em um local compartilhado para guardar essa ação
-    const { data } = await ServiceApi.BudgetApi.getWhatsLink(os);
-    const { link } = data;
-
-    link && window.open(link, '_blank')?.focus();
+    await sendWhatsApp(os);
 
     handleGoToDashboard();
   };

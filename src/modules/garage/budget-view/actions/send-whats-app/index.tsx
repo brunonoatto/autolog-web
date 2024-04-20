@@ -1,17 +1,14 @@
-import { ServiceApi } from '@core/api';
 import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
+import useSendWhatApp from '@modules/garage/budget-view/hooks/useSendWhatsApp';
 import IconButton from '@shared/design-system/icon-button';
 
 export default function SendWhatsApp() {
+  const { sendWhatsApp } = useSendWhatApp();
   const { budget } = useBudgetView();
   const { os = '' } = budget || {};
 
   const handleSendWhatsApp = async () => {
-    // TODO: pensar em um local compartilhado para guardar essa ação
-    const { data } = await ServiceApi.BudgetApi.getWhatsLink(os);
-    const { link } = data;
-
-    link && window.open(link, '_blank')?.focus();
+    await sendWhatsApp(os);
   };
 
   return (
