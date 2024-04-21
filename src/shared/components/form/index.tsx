@@ -1,10 +1,15 @@
-// TODO: deletar após substituir tudo pelo novo
 import { PropsWithChildren } from 'react';
 import { FieldValues, FormProvider, type SubmitHandler, type UseFormReturn } from 'react-hook-form';
 
-import Container from '@shared/components/container';
+import { Button } from '@shared/design-system/ui/button';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@shared/design-system/ui/card';
 import type { TIcons } from '@shared/design-system_old/assets/icons/types';
-import Button from '@shared/design-system_old/button';
 import IconButton from '@shared/design-system_old/icon-button';
 
 type TForm<T extends FieldValues> = PropsWithChildren & {
@@ -33,27 +38,30 @@ export default function Form<T extends FieldValues>({
 
   return (
     <FormProvider {...form}>
-      <Container border className={className} title={title} icon={icon}>
-        <form onSubmit={handleSubmit(onValid)}>
-          <Container.Content>
+      <form className={className} onSubmit={handleSubmit(onValid)}>
+        <Card>
+          <CardHeader>
+            <CardTitle icon={icon}>{title}</CardTitle>
+            {/* <CardDescription>Card Description</CardDescription> */}
+          </CardHeader>
+
+          <CardContent>
             {useDefaultGrid ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">{children}</div>
             ) : (
-              children
+              <div className="space-y-4">{children}</div>
             )}
-          </Container.Content>
+          </CardContent>
 
-          <Container.Footer>
-            <div className="text-right">
-              {iconButton ? (
-                <IconButton icon={iconButton}>{confirmButtonText}</IconButton>
-              ) : (
-                <Button>{confirmButtonText}</Button>
-              )}
-            </div>
-          </Container.Footer>
-        </form>
-      </Container>
+          <CardFooter>
+            {iconButton ? (
+              <IconButton icon={iconButton}>{confirmButtonText}</IconButton>
+            ) : (
+              <Button>{confirmButtonText}</Button>
+            )}
+          </CardFooter>
+        </Card>
+      </form>
     </FormProvider>
   );
 }
