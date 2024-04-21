@@ -4,8 +4,9 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import useAuth from '@core/store/context/hooks/useAuth';
 import { useLoadingStore } from '@core/store/hooks';
 import HomeLink from '@layout/body-app/header/home-link';
-import Form from '@layout/form';
-import InputForm from '@shared/components/form/input';
+import Form from '@shared/components/form';
+import FormField from '@shared/components/form/form-field';
+import { Input } from '@shared/design-system/ui/input';
 import { yup, yupValidators } from '@shared/form-validations';
 
 const schema = yup
@@ -24,7 +25,7 @@ export default function Login() {
   const form = useForm({
     resolver: yupResolver(schema),
   });
-  const { register } = form;
+  const { control } = form;
 
   const handleValid: SubmitHandler<TLoginType> = async ({ email, password }) => {
     loading(true);
@@ -36,18 +37,23 @@ export default function Login() {
   };
 
   return (
-    <div className="pt-10 flex flex-col items-center space-y-6">
+    <div className="px-6 pt-10 flex flex-col items-center space-y-6">
       <HomeLink />
 
       <Form
+        className="w-full md:w-1/2"
         form={form}
-        onValid={handleValid}
         title="Login"
         useDefaultGrid={false}
-        className="w-full md:w-1/2"
+        onValid={handleValid}
       >
-        <InputForm label="Email" {...register('email')} />
-        <InputForm label="Senha" type="password" {...register('password')} />
+        <FormField control={control} name="email" label="Email">
+          <Input />
+        </FormField>
+
+        <FormField control={control} name="password" label="Senha">
+          <Input type="password" />
+        </FormField>
       </Form>
     </div>
   );
