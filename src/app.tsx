@@ -3,6 +3,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import Router from '@core/router';
 import { AuthProvider } from '@core/store/context/AuthContext';
+import { ThemeProvider } from '@core/store/context/ThemeProvider';
 import BigSpinner from '@layout/body-app/big-spinner';
 
 const queryClient = new QueryClient({
@@ -17,13 +18,15 @@ const queryClient = new QueryClient({
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <BigSpinner />
+      <ThemeProvider defaultTheme="dark" storageKey="autolog-theme">
+        <BigSpinner />
 
-      <AuthProvider>
-        <Router />
-      </AuthProvider>
+        <AuthProvider>
+          <Router />
+        </AuthProvider>
 
-      <ReactQueryDevtools buttonPosition="bottom-left" />
+        <ReactQueryDevtools buttonPosition="bottom-left" />
+      </ThemeProvider>
     </QueryClientProvider>
   );
 };
