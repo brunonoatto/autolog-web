@@ -7,7 +7,7 @@ import RemakeBudget from '@modules/garage/budget-view/actions/remake-budget';
 import SendForApproval from '@modules/garage/budget-view/actions/send-for-approval';
 import SendWhatsApp from '@modules/garage/budget-view/actions/send-whats-app';
 import StartService from '@modules/garage/budget-view/actions/start-service';
-import Button from '@shared/design-system/button';
+import Button from '@shared/design-system_old/button';
 import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
 const actionsByStatus: { [key in BudgetStatusEnum]?: React.ReactNode } = {

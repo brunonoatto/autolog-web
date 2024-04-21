@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
 import Select from '@shared/components/form/select';
-import type { TSelectDefaultProps, TSelectOption } from '@shared/design-system/select';
+import type { TSelectDefaultProps, TSelectOption } from '@shared/design-system_old/select';
 import { getStatusCarDescription } from '@shared/helpers/string';
 import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 

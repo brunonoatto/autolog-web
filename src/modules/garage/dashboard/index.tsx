@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { ROUTES_PATH } from '@core/router/consts';
 import { useListDashboard } from '@core/service/dashboard';
-import LinkButton from '@shared/design-system/link-button';
+import LinkButton from '@shared/design-system_old/link-button';
 
 import StatusCard from './status-card';
 import StatusCardSkeleton from './status-card-skeleton';

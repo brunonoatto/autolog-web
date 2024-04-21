@@ -3,7 +3,7 @@ import { useFormContext } from 'react-hook-form';
 import type { TCar } from '@core/api/car/types';
 import type { TGarageAddCarFormType } from '@core/store/context/GarageAddCarContext';
 import useGarageAddCarContext from '@core/store/context/hooks/useGarageAddCar';
-import Button from '@shared/design-system/button';
+import Button from '@shared/design-system_old/button';
 
 export default function ClientCars() {
   const handleSelectedClientCar = useGarageAddCarContext((prop) => prop.handleSelectedClientCar);

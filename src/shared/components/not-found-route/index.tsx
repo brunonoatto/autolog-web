@@ -1,4 +1,4 @@
-import LinkButton from '@shared/design-system/link-button';
+import LinkButton from '@shared/design-system_old/link-button';
 
 import GoBackButton from '../go-back-button';
 

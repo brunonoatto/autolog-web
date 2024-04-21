@@ -1,6 +1,6 @@
 import { ROUTES_PATH } from '@core/router/consts';
 import useAuth from '@core/store/context/hooks/useAuth';
-import LinkButton from '@shared/design-system/link-button';
+import LinkButton from '@shared/design-system_old/link-button';
 
 import HeaderActions from './header-actions';
 import HomeLink from './home-link';

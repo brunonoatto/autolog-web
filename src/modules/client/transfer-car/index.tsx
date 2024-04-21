@@ -19,9 +19,9 @@ import CarInfo from '@shared/components/car-info';
 import Container from '@shared/components/container';
 import ContainerSelected from '@shared/components/container-selected';
 import InputForm from '@shared/components/form/input';
-import Button from '@shared/design-system/button';
-import Icon from '@shared/design-system/Icon';
-import Modal from '@shared/design-system/modal';
+import Button from '@shared/design-system_old/button';
+import Icon from '@shared/design-system_old/Icon';
+import Modal from '@shared/design-system_old/modal';
 import { yup, yupValidators } from '@shared/form-validations';
 
 const transferCarSchema = yup

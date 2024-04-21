@@ -11,7 +11,7 @@ import Form from '@layout/form';
 import InputForm from '@shared/components/form/input';
 import InputNumberForm from '@shared/components/form/inputNumber';
 import Title from '@shared/components/title';
-import Modal from '@shared/design-system/modal';
+import Modal from '@shared/design-system_old/modal';
 import { yup, yupValidators } from '@shared/form-validations/index';
 
 const schema = yup

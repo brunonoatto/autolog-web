@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import Icon from '@shared/design-system/Icon';
+import Icon from '@shared/design-system_old/Icon';
 import { getStatusCarDescription } from '@shared/helpers/string';
 import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 

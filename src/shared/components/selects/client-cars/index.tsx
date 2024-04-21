@@ -1,8 +1,8 @@
 import { forwardRef } from 'react';
 
 import { useClientCars } from '@core/service/client';
-import Select, { type TSelectDefaultProps } from '@shared/design-system/select';
-import { buildSelectOptions } from '@shared/design-system/select/helpers';
+import Select, { type TSelectDefaultProps } from '@shared/design-system_old/select';
+import { buildSelectOptions } from '@shared/design-system_old/select/helpers';
 
 const ClientCarSelect = forwardRef<HTMLSelectElement, TSelectDefaultProps>((props, ref) => {
   const { data: clientCars } = useClientCars({ transfereds: true });

@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import { useFormState } from 'react-hook-form';
 
-import Textarea, { type TTextareaProps } from '@shared/design-system/textarea';
+import Textarea, { type TTextareaProps } from '@shared/design-system_old/textarea';
 
 const TextareaForm = forwardRef<HTMLTextAreaElement, TTextareaProps>((props, ref) => {
   const { name } = props || {};

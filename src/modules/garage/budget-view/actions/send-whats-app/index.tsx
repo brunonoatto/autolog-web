@@ -1,6 +1,6 @@
 import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
 import useSendWhatApp from '@modules/garage/budget-view/hooks/useSendWhatsApp';
-import IconButton from '@shared/design-system/icon-button';
+import IconButton from '@shared/design-system_old/icon-button';
 
 export default function SendWhatsApp() {
   const { sendWhatsApp } = useSendWhatApp();

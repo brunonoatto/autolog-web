@@ -1,4 +1,4 @@
-import Button, { type TButtonProps } from '@shared/design-system/button';
+import Button, { type TButtonProps } from '@shared/design-system_old/button';
 
 import Icon, { type TIconProps } from '../Icon';
 

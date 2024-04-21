@@ -2,8 +2,8 @@ import { forwardRef } from 'react';
 
 import { useListBrands } from '@core/service/fipe';
 import Select from '@shared/components/form/select';
-import type { TSelectDefaultProps } from '@shared/design-system/select';
-import { buildSelectOptions } from '@shared/design-system/select/helpers';
+import type { TSelectDefaultProps } from '@shared/design-system_old/select';
+import { buildSelectOptions } from '@shared/design-system_old/select/helpers';
 
 const BrandSelect = forwardRef<HTMLSelectElement, TSelectDefaultProps>((props, ref) => {
   const { data: listBrands } = useListBrands();

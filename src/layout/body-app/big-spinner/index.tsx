@@ -1,6 +1,6 @@
 import { useLoadingStore } from '@core/store/hooks';
-import Icon from '@shared/design-system/Icon';
-import Portal from '@shared/design-system/portal';
+import Icon from '@shared/design-system_old/Icon';
+import Portal from '@shared/design-system_old/portal';
 
 type TBigSpinnerProps = { open?: boolean };
 

@@ -1,6 +1,6 @@
 import type { PropsWithChildren, ReactNode } from 'react';
 
-import Button, { TButtonProps } from '@shared/design-system/button';
+import Button, { TButtonProps } from '@shared/design-system_old/button';
 
 import IconButton from '../icon-button';
 import Portal from '../portal';

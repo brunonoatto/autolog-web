@@ -4,7 +4,7 @@ import { useDeleteBudgetItem } from '@core/service/budget-items';
 import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
 import type { TBudgetItemFormType } from '@modules/garage/budget-view';
 import Title from '@shared/components/title';
-import IconButton from '@shared/design-system/icon-button';
+import IconButton from '@shared/design-system_old/icon-button';
 
 type TBudgetViewTableProps = {
   allowActions?: boolean;

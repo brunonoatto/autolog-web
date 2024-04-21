@@ -1,5 +1,5 @@
-import type { TIcons } from '@shared/design-system/assets/icons/types';
-import Icon from '@shared/design-system/Icon';
+import type { TIcons } from '@shared/design-system_old/assets/icons/types';
+import Icon from '@shared/design-system_old/Icon';
 
 type TTitleProps = {
   children: React.ReactNode;

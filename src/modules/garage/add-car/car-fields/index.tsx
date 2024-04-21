@@ -11,7 +11,7 @@ import InputNumberForm from '@shared/components/form/inputNumber';
 import BrandSelect from '@shared/components/selects/brand-select';
 import ModelSelect from '@shared/components/selects/model-select';
 import Title from '@shared/components/title';
-import Input from '@shared/design-system/input';
+import Input from '@shared/design-system_old/input';
 
 export default function CarFields() {
   const selectedCar = useGarageAddCarContext((prop) => prop.selectedCar);

@@ -2,9 +2,9 @@ import { PropsWithChildren } from 'react';
 import { FieldValues, FormProvider, type SubmitHandler, type UseFormReturn } from 'react-hook-form';
 
 import Container from '@shared/components/container';
-import type { TIcons } from '@shared/design-system/assets/icons/types';
-import Button from '@shared/design-system/button';
-import IconButton from '@shared/design-system/icon-button';
+import type { TIcons } from '@shared/design-system_old/assets/icons/types';
+import Button from '@shared/design-system_old/button';
+import IconButton from '@shared/design-system_old/icon-button';
 
 type TForm<T extends FieldValues> = PropsWithChildren & {
   form: UseFormReturn<T>;

@@ -1,7 +1,7 @@
 import { DashboardItem } from '@core/models/dashboard';
 import StatusBadge from '@shared/components/status-badge';
-import Icon from '@shared/design-system/Icon';
-import Tooltip from '@shared/design-system/tooltip';
+import Icon from '@shared/design-system_old/Icon';
+import Tooltip from '@shared/design-system_old/tooltip';
 
 import IdentificationCar from './identification-car';
 import styles from './styles.module.css';

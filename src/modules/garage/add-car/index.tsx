@@ -15,8 +15,8 @@ import { useLoadingStore } from '@core/store/hooks';
 import Form from '@layout/form';
 import CarFields from '@modules/garage/add-car/car-fields';
 import InputForm from '@shared/components/form/input';
-import Modal from '@shared/design-system/modal';
-import Textarea from '@shared/design-system/textarea';
+import Modal from '@shared/design-system_old/modal';
+import Textarea from '@shared/design-system_old/textarea';
 
 function AddCarContent() {
   const [generateOS, setGenerateOS] = useState('');

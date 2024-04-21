@@ -1,6 +1,6 @@
 import { ROUTES_PATH } from '@core/router/consts';
 import useAuth from '@core/store/context/hooks/useAuth';
-import MenuContent from '@shared/design-system/menu-content';
+import MenuContent from '@shared/design-system_old/menu-content';
 
 const HeaderActions = () => {
   const { logout, getTokenData } = useAuth();

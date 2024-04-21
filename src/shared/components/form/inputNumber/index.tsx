@@ -1,8 +1,8 @@
 import { forwardRef } from 'react';
 import { useFormState } from 'react-hook-form';
 
-import type { TInputProps } from '@shared/design-system/input';
-import InputNumber from '@shared/design-system/inputNumber';
+import type { TInputProps } from '@shared/design-system_old/input';
+import InputNumber from '@shared/design-system_old/inputNumber';
 
 const InputNumberForm = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
   const { name } = props || {};

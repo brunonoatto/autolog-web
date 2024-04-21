@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge';
 import ContainerContent from '@shared/components/container/container-content';
 import ContainerFooter from '@shared/components/container/container-footer';
 import Title from '@shared/components/title';
-import type { TIcons } from '@shared/design-system/assets/icons/types';
+import type { TIcons } from '@shared/design-system_old/assets/icons/types';
 
 type TContainerProps = {
   children: React.ReactNode;

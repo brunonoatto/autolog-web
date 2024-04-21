@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LinkButton from '@shared/design-system/link-button';
+import LinkButton from '@shared/design-system_old/link-button';
 
 import styles from './styles.module.css';
 
