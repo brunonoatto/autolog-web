@@ -23,6 +23,10 @@ export default function Login() {
   const { login } = useAuth();
 
   const form = useForm({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
     resolver: yupResolver(schema),
   });
   const { control } = form;
