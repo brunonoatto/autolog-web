@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { PropsWithChildren, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { Control, FieldPath, FieldValues, useFormContext } from 'react-hook-form';
 
 import {
@@ -27,7 +27,6 @@ type TInputFormProps<T extends FieldValues> = {
 };
 
 const handleEvents = (event1: TEvent, event2: TEvent, ...params: any) => {
-  console.log({ event1, event2, params });
   event1?.(...params);
   event2?.(...params);
 };
