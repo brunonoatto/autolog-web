@@ -5,7 +5,7 @@ import { ROUTES_PATH } from '@core/router/consts';
 import { useApproveBudget } from '@core/service/budget';
 import useAuth from '@core/store/context/hooks/useAuth';
 import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
-import IconButton from '@shared/design-system_old/icon-button';
+import IconButton from '@shared/design-system/ui/icon-button';
 import Modal from '@shared/design-system_old/modal';
 
 export default function ApproveButton() {
@@ -38,7 +38,7 @@ export default function ApproveButton() {
 
   return (
     <>
-      <IconButton icon="ThumbUpIcon" onClick={() => setOpenConfirmModal(true)}>
+      <IconButton icon="thumbs-up" onClick={() => setOpenConfirmModal(true)}>
         Aprovar orçamento
       </IconButton>
 

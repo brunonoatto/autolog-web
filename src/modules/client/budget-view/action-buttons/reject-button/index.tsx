@@ -5,7 +5,7 @@ import { ROUTES_PATH } from '@core/router/consts';
 import { useRemakeBudget } from '@core/service/budget';
 import useAuth from '@core/store/context/hooks/useAuth';
 import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
-import IconButton from '@shared/design-system_old/icon-button';
+import IconButton from '@shared/design-system/ui/icon-button';
 import Modal from '@shared/design-system_old/modal';
 
 export default function RejectButton() {
@@ -38,7 +38,11 @@ export default function RejectButton() {
 
   return (
     <>
-      <IconButton icon="ThumbDownIcon" color="cancel" onClick={() => setOpenConfirmModal(true)}>
+      <IconButton
+        icon="thumbs-down"
+        variant="destructive"
+        onClick={() => setOpenConfirmModal(true)}
+      >
         Rejeitar orçamento
       </IconButton>
 
