@@ -1,4 +1,6 @@
+import { cva } from 'class-variance-authority';
 import React from 'react';
+import { VariantProps } from 'tailwind-variants';
 
 import Icon, { TIcons } from '@shared/design-system/ui/icon';
 import { cn } from '@shared/design-system-utils';
@@ -21,19 +23,27 @@ const CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDiv
 );
 CardHeader.displayName = 'CardHeader';
 
+const cardTitleVariants = cva('font-semibold leading-none tracking-tight', {
+  variants: {
+    size: {
+      default: 'text-2xl',
+      lg: 'text-lg',
+    },
+  },
+  defaultVariants: {
+    size: 'default',
+  },
+});
 const CardTitle = React.forwardRef<
   HTMLParagraphElement,
-  React.HTMLAttributes<HTMLHeadingElement> & { icon?: TIcons }
->(({ className, icon, children, ...props }, ref) => (
+  React.HTMLAttributes<HTMLHeadingElement> &
+    VariantProps<typeof cardTitleVariants> & { icon?: TIcons }
+>(({ className, icon, size, children, ...props }, ref) => (
   <div className="flex gap-2 border-b-[1px] border-primary w-11/12 md:w-3/4 pb-2">
     {icon && <Icon name={icon} />}
-    <h3
-      ref={ref}
-      className={cn('text-2xl font-semibold leading-none tracking-tight', className)}
-      {...props}
-    >
+    <div ref={ref} className={cn(cardTitleVariants({ size, className }))} {...props}>
       {children}
-    </h3>
+    </div>
   </div>
 ));
 CardTitle.displayName = 'CardTitle';
