@@ -36,6 +36,10 @@ export type TComboboxProps<T extends FieldValues> = TComboboxDefaultProps<T> & {
   items: TComboboxItem[];
 };
 
+/* 
+  Este componente obrigatóriamente deve pertencer a um formulário.
+  Caso precise de um sem formulário renomear esse para ComboboxForm e criar outro com o mesmo nome.
+*/
 export default function Combobox<T extends FieldValues>({
   control,
   name,
