@@ -5,7 +5,7 @@ import { ROUTES_PATH } from '@core/router/consts';
 import { useSendForApproveBudget } from '@core/service/budget';
 import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
 import useSendWhatApp from '@modules/garage/budget-view/hooks/useSendWhatsApp';
-import IconButton from '@shared/design-system_old/icon-button';
+import IconButton from '@shared/design-system/ui/icon-button';
 import Modal from '@shared/design-system_old/modal';
 
 export default function SendForApproval() {
@@ -37,7 +37,7 @@ export default function SendForApproval() {
 
   return (
     <>
-      <IconButton icon="SendIcon" color="primary" onClick={handleSendForApproval}>
+      <IconButton icon="send" onClick={handleSendForApproval}>
         Enviar para aprovação
       </IconButton>
 

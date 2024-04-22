@@ -7,7 +7,7 @@ import RemakeBudget from '@modules/garage/budget-view/actions/remake-budget';
 import SendForApproval from '@modules/garage/budget-view/actions/send-for-approval';
 import SendWhatsApp from '@modules/garage/budget-view/actions/send-whats-app';
 import StartService from '@modules/garage/budget-view/actions/start-service';
-import Button from '@shared/design-system_old/button';
+import IconButton from '@shared/design-system/ui/icon-button';
 import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
 const actionsByStatus: { [key in BudgetStatusEnum]?: React.ReactNode } = {
@@ -21,7 +21,9 @@ const actionsByStatus: { [key in BudgetStatusEnum]?: React.ReactNode } = {
   [BudgetStatusEnum.ApprovedBudget]: <StartService />,
   [BudgetStatusEnum.BudgetRejected]: (
     <>
-      <Button color="secondary">Cancelar orçamento</Button>
+      <IconButton icon="circle-off" variant="outline">
+        Cancelar orçamento
+      </IconButton>
       <RemakeBudget />
     </>
   ),
