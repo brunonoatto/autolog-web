@@ -10,7 +10,7 @@ import HomeLink from '@layout/body-app/header/home-link';
 import Form from '@layout/form';
 import InputForm from '@shared/components/form/input';
 import InputNumberForm from '@shared/components/form/inputNumber';
-import Title from '@shared/components/title';
+import { CardTitle } from '@shared/design-system/ui/card';
 import Modal from '@shared/design-system_old/modal';
 import { yup, yupValidators } from '@shared/form-validations/index';
 
@@ -79,7 +79,7 @@ export default function GarageRegister() {
             <InputForm label="Complemento" {...register('complement')} />
           </div>
 
-          <Title>Defina uma senha de acesso</Title>
+          <CardTitle>Defina uma senha de acesso</CardTitle>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <InputForm label="Senha" type="password" {...register('password')} />
             <InputForm label="Confirmação Senha" type="password" {...register('passwordConfirm')} />

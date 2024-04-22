@@ -9,7 +9,7 @@ import ClientCars from '@modules/garage/add-car/car-fields/client-cars';
 import BrandCombobox from '@shared/components/combobox/brand-combobox';
 import ModelCombobox from '@shared/components/combobox/model-combobox';
 import FormField from '@shared/components/form/form-field';
-import Title from '@shared/components/title';
+import { CardTitle } from '@shared/design-system/ui/card';
 import { Input } from '@shared/design-system/ui/input';
 
 export default function CarFields() {
@@ -59,7 +59,7 @@ export default function CarFields() {
 
   return (
     <div className="col-span-full space-y-2">
-      <Title>Dados do veículo</Title>
+      <CardTitle icon="car">Dados do veículo</CardTitle>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <ClientCars />
 

@@ -66,13 +66,7 @@ function AddCarContent() {
     );
   };
 
-  const handleCpfChange = async () => {
-    if (selectedClient) {
-      handleClearSelectedClient();
-    }
-  };
-
-  const handleCpfBlur = async () => {
+  const loadClientCars = async () => {
     const { cpf_cnpj } = getValues();
 
     if (cpf_cnpj.length === 11) {
@@ -94,11 +88,19 @@ function AddCarContent() {
     }
   };
 
+  const handleCpfChange = async () => {
+    if (selectedClient) {
+      handleClearSelectedClient();
+    }
+
+    loadClientCars();
+  };
+
   return (
     <>
       <Form form={form} onValid={handleValid} title="Adicionar Orçamento" icon="circle-dollar-sign">
         <FormField control={control} name="cpf_cnpj" label="CPF/CNPJ">
-          <Input onChange={handleCpfChange} onBlur={handleCpfBlur} />
+          <Input onChange={handleCpfChange} onBlur={loadClientCars} />
         </FormField>
 
         <FormField

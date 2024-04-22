@@ -1,6 +1,6 @@
 import { useDeleteBudgetItem } from '@core/service/budget-items';
 import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
-import Title from '@shared/components/title';
+import { CardTitle } from '@shared/design-system/ui/card';
 import IconButton from '@shared/design-system/ui/icon-button';
 
 type TBudgetViewTableProps = {
@@ -33,7 +33,7 @@ export default function BudgetTable({ allowActions = false }: TBudgetViewTablePr
 
   return (
     <>
-      <Title>Itens do Orçamento</Title>
+      <CardTitle>Itens do Orçamento</CardTitle>
       <table className="w-full">
         <thead>
           <tr className="text-left">
