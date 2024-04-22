@@ -33,7 +33,7 @@ export type TSelectFormProps<T extends FieldValues> = {
 
 export type TCustomSelectFormProps<T extends FieldValues> = Omit<TSelectFormProps<T>, 'items'>;
 
-export default function SelectForm<T extends FieldValues>(props: TSelectFormProps<T>) {
+export default function FormFieldSelect<T extends FieldValues>(props: TSelectFormProps<T>) {
   const { name, label, items, description, placeholder } = props;
   const { control } = useFormContext();
 

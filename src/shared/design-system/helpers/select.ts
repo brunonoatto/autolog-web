@@ -1,4 +1,4 @@
-import type { TSelectItem } from '@shared/components/form/select-form';
+import type { TSelectItem } from '@shared/components/form/form-field-select';
 
 export const buildSelectOptions = <T>(
   options: T[] | undefined,

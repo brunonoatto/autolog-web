@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Check, ChevronsUpDown, Command } from 'lucide-react';
 import { Control, FieldPath, FieldValues, useFormContext } from 'react-hook-form';
 
-import type { TSelectItem } from '@shared/components/form/select-form';
+import type { TSelectItem } from '@shared/components/form/form-field-select';
 import { Button } from '@shared/design-system/ui/button';
 import {
   CommandEmpty,
