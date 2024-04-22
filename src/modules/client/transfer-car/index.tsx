@@ -4,29 +4,24 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { useDebouncedCallback } from 'use-debounce';
 
-import { ServiceApi } from '@core/api';
 import { TCar } from '@core/api/car/types';
 import { TClientResponse } from '@core/api/client/types';
 import { ROUTES_PATH } from '@core/router/consts';
 import { useTransferCar } from '@core/service/car';
 import { useClientCars } from '@core/service/client';
 import { useLoadingStore } from '@core/store/hooks';
-import Form from '@layout/form';
-import CarCard from '@modules/client/transfer-car/car-card';
+import SelectCarToTransfer from '@modules/client/transfer-car/select-car';
+import SelectCpfToTransfer from '@modules/client/transfer-car/select-cpf';
 import CarInfo from '@shared/components/car-info';
-import Container from '@shared/components/container';
-import ContainerSelected from '@shared/components/container-selected';
-import InputForm from '@shared/components/form/input';
-import Button from '@shared/design-system_old/button';
-import Icon from '@shared/design-system_old/Icon';
+import Form from '@shared/components/form';
+import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
 import Modal from '@shared/design-system_old/modal';
 import { yup, yupValidators } from '@shared/form-validations';
 
 const transferCarSchema = yup
   .object({
-    license: yupValidators.StringValidator().required(),
+    license: yupValidators.StringValidator().required('Selecione um veículo seu'),
     cpfToTransfer: yupValidators.CpfValidator().required(),
   })
   .strict();
@@ -35,18 +30,18 @@ export type TTransferCarForm = yup.InferType<typeof transferCarSchema>;
 
 export default function ClientTransferCar() {
   const [openModal, setOpenModal] = useState(false);
-  const [cpfIsLoading, setCpfIsLoading] = useState(false);
+
   const [clientToTrasnferData, setClientToTrasnferData] = useState<TClientResponse>();
   const navigate = useNavigate();
   const loading = useLoadingStore((prop) => prop.loading);
   const { data: clientCars } = useClientCars();
   const { mutate } = useTransferCar();
 
-  const form = useForm<TTransferCarForm>({
+  const form = useForm({
     mode: 'onSubmit',
     resolver: yupResolver(transferCarSchema),
   });
-  const { setValue, register, watch, setError, getValues } = form;
+  const { watch, setError, getValues } = form;
 
   const licenseSelected = watch('license');
 
@@ -71,28 +66,6 @@ export default function ClientTransferCar() {
     });
   };
 
-  const handleGetClient = async (cpf: string) => {
-    setCpfIsLoading(true);
-
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      const { data: clientData } = await ServiceApi.ClientApi.get({ cpf });
-      setClientToTrasnferData(clientData);
-    } finally {
-      setCpfIsLoading(false);
-    }
-  };
-
-  const debounce = useDebouncedCallback(handleGetClient, 500);
-
-  const handleCpfChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-
-    setClientToTrasnferData(undefined);
-
-    if (value?.length >= 11) debounce(value);
-  };
-
   const handleValid = () => {
     if (!clientToTrasnferData) {
       // toaster "Cliente para transferência não encontrado"
@@ -103,50 +76,22 @@ export default function ClientTransferCar() {
     setOpenModal(true);
   };
 
-  const handleRemoveSelectedCar = () => {
-    setValue('license', '');
-  };
-
   return (
     <>
       <Form
         form={form}
         title="Transferência de veículo"
+        icon="folder-sync"
         confirmButtonText="Continuar"
         onValid={handleValid}
         useDefaultGrid={false}
       >
-        <Container
-          title={
-            <>
-              Selecione o carro que deseja transferir
-              {selectedCar && (
-                <Button type="button" size="small" onClick={handleRemoveSelectedCar}>
-                  Remover seleção
-                </Button>
-              )}
-            </>
-          }
-        >
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {clientCars?.map((car) => {
-              return <CarCard key={car.license} car={car} />;
-            })}
-          </div>
-        </Container>
-        <Container bodyClassName="flex gap-4" title="Selecione para quem você quer transferir">
-          <InputForm
-            className="md:w-40"
-            label="CPF"
-            {...register('cpfToTransfer', { onChange: handleCpfChange })}
-          />
-          {cpfIsLoading && <Icon name="LoadingIcon" />}
-          {clientToTrasnferData && !cpfIsLoading && (
-            <ContainerSelected title="Nome do Usuário Selecionado">
-              <p>Nome: {clientToTrasnferData?.name}</p>
-            </ContainerSelected>
-          )}
-        </Container>
+        <SelectCarToTransfer />
+
+        <SelectCpfToTransfer
+          clientData={clientToTrasnferData}
+          setClient={setClientToTrasnferData}
+        />
       </Form>
 
       <Modal
@@ -156,13 +101,28 @@ export default function ClientTransferCar() {
         onConfirmClick={handleTrasnferCar}
         onCancelClick={() => setOpenModal(false)}
       >
-        <Container title="Automóvel:">
-          <CarInfo {...(selectedCar as TCar)} />
-        </Container>
-        <Container title="Transferir para:">
-          <div>CPF: {clientToTrasnferData?.cpf}</div>
-          <div>Nome: {clientToTrasnferData?.name}</div>
-        </Container>
+        <div className="inline md:flex justify-evenly space-y-4 md:space-y-0">
+          <Card>
+            <CardHeader>
+              <CardTitle>Automóvel:</CardTitle>
+            </CardHeader>
+
+            <CardContent>
+              <CarInfo {...(selectedCar as TCar)} />
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Transferir para:</CardTitle>
+            </CardHeader>
+
+            <CardContent>
+              <div>CPF: {clientToTrasnferData?.cpf}</div>
+              <div>Nome: {clientToTrasnferData?.name}</div>
+            </CardContent>
+          </Card>
+        </div>
       </Modal>
     </>
   );

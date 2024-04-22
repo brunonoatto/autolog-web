@@ -1,5 +1,6 @@
 import type { PropsWithChildren, ReactNode } from 'react';
 
+import { CardTitle } from '@shared/design-system/ui/card';
 import Button, { TButtonProps } from '@shared/design-system_old/button';
 
 import IconButton from '../icon-button';
@@ -30,7 +31,7 @@ const Modal = ({
 }: TModalProps) => {
   return (
     <Portal open={open}>
-      <div className="m-auto w-full h-full md:h-auto md:w-2/3 bg-neutral-800 rounded-xl p-4 md:p-6 flex flex-col space-y-4">
+      <div className="m-auto w-full h-full md:h-auto md:w-2/3 bg-background rounded-xl p-4 md:p-6 flex flex-col space-y-4">
         <div>
           {onClose && (
             <div className="text-right">
@@ -41,7 +42,7 @@ const Modal = ({
               />
             </div>
           )}
-          <h2 className="font-semibold">{title}</h2>
+          <CardTitle>{title}</CardTitle>
         </div>
         <div className="overflow-auto">{children}</div>
         <div className="text-right space-x-4 ">
