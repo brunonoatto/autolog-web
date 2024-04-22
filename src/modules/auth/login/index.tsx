@@ -45,18 +45,18 @@ export default function Login() {
       <HomeLink />
 
       <Form
-        className="w-full md:w-1/2"
+        className="w-full sm:w-1/2 lg:w-1/3"
         form={form}
         title="Login"
         useDefaultGrid={false}
         onValid={handleValid}
       >
         <FormField control={control} name="email" label="Email">
-          <Input />
+          <Input placeholder="Informe seu e-mail" />
         </FormField>
 
         <FormField control={control} name="password" label="Senha">
-          <Input type="password" />
+          <Input type="password" placeholder="Informe sua senha" />
         </FormField>
       </Form>
     </div>
