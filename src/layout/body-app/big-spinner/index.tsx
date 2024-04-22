@@ -1,5 +1,5 @@
 import { useLoadingStore } from '@core/store/hooks';
-import Icon from '@shared/design-system_old/Icon';
+import LoadingIcon from '@shared/components/loading-icon';
 import Portal from '@shared/design-system_old/portal';
 
 type TBigSpinnerProps = { open?: boolean };
@@ -9,9 +9,9 @@ export default function BigSpinner({ open }: TBigSpinnerProps) {
 
   return (
     <Portal open={open || isLoading}>
-      <div className="relative top-1/3 m-auto w-48 bg-neutral-800 text-center rounded-xl py-4">
-        <Icon name="LoadingIcon" />
-        <div className="text-teal-400">Carregando...</div>
+      <div className="m-auto w-48 bg-background text-center rounded-xl p-6 space-y-4">
+        <LoadingIcon />
+        <div className="text-primary text-xl">Carregando...</div>
       </div>
     </Portal>
   );
