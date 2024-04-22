@@ -36,13 +36,12 @@ const cardTitleVariants = cva(
   'flex items-center gap-2 border-b-[1px] border-primary w-11/12 md:w-3/4 pb-2',
   {
     variants: {
+      size: {
+        lg: 'pb-0',
+      },
       alignTitle: {
-        default: '',
         center: 'w-full md:w-full justify-center',
       },
-    },
-    defaultVariants: {
-      alignTitle: 'default',
     },
   },
 );
@@ -63,8 +62,8 @@ const CardTitle = React.forwardRef<
     VariantProps<typeof cardTitleVariants> &
     VariantProps<typeof cardTitleTextVariants> & { icon?: TIcons }
 >(({ className, icon, size, alignTitle, children, ...props }, ref) => (
-  <div className={cn(cardTitleVariants({ className, alignTitle }))}>
-    {icon && <Icon name={icon} size="22" />}
+  <div className={cn(cardTitleVariants({ className, alignTitle, size }))}>
+    {icon && <Icon name={icon} size={size === 'lg' ? 18 : 22} />}
     <div ref={ref} className={cn(cardTitleTextVariants({ size }))} {...props}>
       {children}
     </div>
