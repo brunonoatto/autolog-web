@@ -13,8 +13,8 @@ export default function ContainerSelected({
   title = 'Selecionado',
 }: TContainerSelectedProps) {
   return (
-    <div className={twMerge('md:w-fit rounded-lg border-2 border-teal-700', className)}>
-      <div className="px-4 rounded-top-lg bg-teal-700 text-center text-sm">{title}</div>
+    <div className={twMerge('rounded-lg border-2 border-border', className)}>
+      <div className="px-4 rounded-top-lg bg-border text-center text-sm">{title}</div>
       <div className="p-2">{children}</div>
     </div>
   );
