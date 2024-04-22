@@ -51,8 +51,9 @@ const MenuContent = ({ items, ...otherPops }: TMenuContentProps) => {
     <div ref={ref}>
       <IconButton
         id="menu-content-button"
-        onClick={handleToogleContentClick}
+        variant="outline"
         size="sm"
+        onClick={handleToogleContentClick}
         {...otherPops}
       />
 
