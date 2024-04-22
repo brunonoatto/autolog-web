@@ -1,8 +1,13 @@
 import React from 'react';
 
-import LinkButton from '@shared/design-system_old/link-button';
-
-import styles from './styles.module.css';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@shared/design-system/ui/card';
+import LinkButton from '@shared/design-system/ui/link-button';
 
 type TCardProps = {
   title: string;
@@ -13,22 +18,28 @@ type TCardProps = {
 };
 const HomeCard = ({ title, infos, price, linkRoute, linkText }: TCardProps) => {
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>{title}</div>
+    <>
+      <Card className="w-full md:w-2/3">
+        <CardHeader>
+          <CardTitle alignTitle="center">{title}</CardTitle>
+        </CardHeader>
 
-      <ul className={styles.infos}>
-        {infos.map((info) => (
-          <li key={info}>{info}</li>
-        ))}
-      </ul>
+        <CardContent>
+          <ul className="list-disc p-6 pr-1 flex-1">
+            {infos.map((info) => (
+              <li key={info}>{info}</li>
+            ))}
+          </ul>
+        </CardContent>
 
-      <div className={styles.price}>
-        {price}
-        <LinkButton to={linkRoute} className="block">
-          {linkText}
-        </LinkButton>
-      </div>
-    </div>
+        <CardFooter className="flex-col" align="center">
+          <div>{price}</div>
+          <LinkButton to={linkRoute} className="w-full">
+            {linkText}
+          </LinkButton>
+        </CardFooter>
+      </Card>
+    </>
   );
 };
 
