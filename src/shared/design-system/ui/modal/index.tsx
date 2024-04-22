@@ -1,18 +1,17 @@
 import type { PropsWithChildren, ReactNode } from 'react';
 
+import { Button, TButtonProps } from '@shared/design-system/ui/button';
 import { CardTitle } from '@shared/design-system/ui/card';
-import Button, { TButtonProps } from '@shared/design-system_old/button';
-
-import IconButton from '../icon-button';
-import Portal from '../portal';
+import IconButton from '@shared/design-system/ui/icon-button';
+import Portal from '@shared/design-system/ui/portal';
 
 type TModalProps = PropsWithChildren & {
   open: boolean;
   title?: ReactNode;
   confirmText?: string;
   cancelText?: string;
-  confirmColor?: TButtonProps['color'];
-  cancelColor?: TButtonProps['color'];
+  confirmVariant?: TButtonProps['variant'];
+  cancelVariant?: TButtonProps['variant'];
   onCancelClick?: () => void;
   onConfirmClick?: () => void;
   onClose?: () => void;
@@ -23,8 +22,8 @@ const Modal = ({
   title,
   confirmText = 'Confirmar',
   cancelText = 'Voltar',
-  confirmColor = 'primary',
-  cancelColor = 'secondary',
+  confirmVariant = 'default',
+  cancelVariant = 'outline',
   onCancelClick,
   onConfirmClick,
   onClose,
@@ -35,11 +34,7 @@ const Modal = ({
         <div>
           {onClose && (
             <div className="text-right">
-              <IconButton
-                icon="CloseCircleIcon"
-                onClick={onClose}
-                iconProps={{ width: 25, height: 25 }}
-              />
+              <IconButton icon="circle-x" variant="ghost" size="icon" onClick={onClose} />
             </div>
           )}
           <CardTitle>{title}</CardTitle>
@@ -47,12 +42,12 @@ const Modal = ({
         <div className="overflow-auto">{children}</div>
         <div className="text-right space-x-4 ">
           {onCancelClick && (
-            <Button color={cancelColor} onClick={onCancelClick}>
+            <Button variant={cancelVariant} onClick={onCancelClick}>
               {cancelText}
             </Button>
           )}
           {onConfirmClick && (
-            <Button color={confirmColor} onClick={onConfirmClick}>
+            <Button variant={confirmVariant} onClick={onConfirmClick}>
               {confirmText}
             </Button>
           )}

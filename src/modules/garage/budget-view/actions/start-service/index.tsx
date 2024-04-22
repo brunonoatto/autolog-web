@@ -5,7 +5,7 @@ import { ROUTES_PATH } from '@core/router/consts';
 import { useStartServiceBudget } from '@core/service/budget';
 import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
 import IconButton from '@shared/design-system/ui/icon-button';
-import Modal from '@shared/design-system_old/modal';
+import Modal from '@shared/design-system/ui/modal';
 
 export default function StartService() {
   const [openModal, setOpenModal] = useState(false);

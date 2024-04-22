@@ -16,8 +16,8 @@ import CarFields from '@modules/garage/add-car/car-fields';
 import Form from '@shared/components/form';
 import FormField from '@shared/components/form/form-field';
 import { Input } from '@shared/design-system/ui/input';
+import Modal from '@shared/design-system/ui/modal';
 import { Textarea } from '@shared/design-system/ui/textarea';
-import Modal from '@shared/design-system_old/modal';
 
 function AddCarContent() {
   const [generateOS, setGenerateOS] = useState('');

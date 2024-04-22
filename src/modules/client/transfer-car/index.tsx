@@ -16,7 +16,7 @@ import SelectCpfToTransfer from '@modules/client/transfer-car/select-cpf';
 import CarInfo from '@shared/components/car-info';
 import Form from '@shared/components/form';
 import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
-import Modal from '@shared/design-system_old/modal';
+import Modal from '@shared/design-system/ui/modal';
 import { yup, yupValidators } from '@shared/form-validations';
 
 const transferCarSchema = yup

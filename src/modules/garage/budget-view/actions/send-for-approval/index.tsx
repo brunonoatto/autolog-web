@@ -6,7 +6,7 @@ import { useSendForApproveBudget } from '@core/service/budget';
 import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
 import useSendWhatApp from '@modules/garage/budget-view/hooks/useSendWhatsApp';
 import IconButton from '@shared/design-system/ui/icon-button';
-import Modal from '@shared/design-system_old/modal';
+import Modal from '@shared/design-system/ui/modal';
 
 export default function SendForApproval() {
   const [openModal, setOpenModal] = useState(false);
