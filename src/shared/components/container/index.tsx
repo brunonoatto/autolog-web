@@ -9,7 +9,6 @@ import { TIcons } from '@shared/design-system/ui/icon';
 type TContainerProps = {
   children: React.ReactNode;
   className?: string;
-  titleClassName?: string;
   bodyClassName?: string;
   border?: boolean;
   icon?: TIcons;
@@ -19,7 +18,6 @@ type TContainerProps = {
 function Container({
   children,
   className,
-  titleClassName = '',
   bodyClassName = '',
   border,
   icon,
@@ -33,11 +31,7 @@ function Container({
         className,
       )}
     >
-      {title && (
-        <CardTitle className={titleClassName} icon={icon}>
-          {title}
-        </CardTitle>
-      )}
+      {title && <CardTitle icon={icon}>{title}</CardTitle>}
 
       <div className={bodyClassName}>{children}</div>
     </div>
