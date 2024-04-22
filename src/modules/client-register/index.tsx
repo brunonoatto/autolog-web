@@ -63,7 +63,8 @@ export default function ClientRegister() {
         <Form
           form={form}
           onValid={handleValid}
-          title="Dados para Cadastro de Cliente"
+          title="Cadastro de Cliente"
+          icon="circle-user-round"
           useDefaultGrid={false}
           border
         >

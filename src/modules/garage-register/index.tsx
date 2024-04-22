@@ -66,7 +66,8 @@ export default function GarageRegister() {
         <Form
           form={form}
           onValid={handleValid}
-          title="Dados para Cadastro de Mecânica"
+          title="Cadastro de Mecânica"
+          icon="warehouse"
           useDefaultGrid={false}
           border
         >
