@@ -15,7 +15,7 @@ const HeaderActions = () => {
       </div>
 
       <MenuContent
-        icon="ArrowDownLineIcon"
+        icon="chevron-down"
         items={[
           { route: ROUTES_PATH.consultaPlaca, title: 'Consultar Placa' },
           { onClick: () => logout(), title: 'Sair', dividerTop: true },
