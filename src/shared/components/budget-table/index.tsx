@@ -33,7 +33,9 @@ export default function BudgetTable({ allowActions = false }: TBudgetViewTablePr
 
   return (
     <>
-      <CardTitle>Itens do Orçamento</CardTitle>
+      <CardTitle icon="list-ordered" size="lg">
+        Itens do Orçamento
+      </CardTitle>
       <table className="w-full">
         <thead>
           <tr className="text-left">
