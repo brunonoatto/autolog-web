@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { ROUTES_PATH } from '@core/router/consts';
 import { useListDashboard } from '@core/service/dashboard';
-import LinkButton from '@shared/design-system_old/link-button';
+import LinkButton from '@shared/design-system/ui/link-button';
 
 import StatusCard from './status-card';
 import StatusCardSkeleton from './status-card-skeleton';
@@ -28,7 +28,7 @@ export default function Dashboard() {
       ) : (
         <>
           <LinkButton to="/garage/add-veiculo" className="md:hidden h-20 md:h-32">
-            <h3>Adicionar veiculo</h3>
+            Adicionar veiculo
           </LinkButton>
 
           {dashboardItem?.map((item) => (

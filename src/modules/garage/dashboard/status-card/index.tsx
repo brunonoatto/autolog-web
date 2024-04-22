@@ -1,7 +1,12 @@
 import { DashboardItem } from '@core/models/dashboard';
 import StatusBadge from '@shared/components/status-badge';
-import Icon from '@shared/design-system_old/Icon';
-import Tooltip from '@shared/design-system_old/tooltip';
+import Icon from '@shared/design-system/ui/icon';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@shared/design-system/ui/tooltip';
 
 import IdentificationCar from './identification-car';
 import styles from './styles.module.css';
@@ -22,15 +27,16 @@ const StatusCard = ({ onClick, item }: TStatusCardProps) => {
         className={`w-full flex items-center ${observation ? 'justify-between' : 'justify-end'} `}
       >
         {observation && (
-          <Tooltip
-            title={
-              <>
+          <TooltipProvider delayDuration={200}>
+            <Tooltip>
+              <TooltipTrigger>
+                <Icon name="info" className="text-teal-600" />
+              </TooltipTrigger>
+              <TooltipContent className="max-w-80">
                 <b>Observação:</b> {observation}
-              </>
-            }
-          >
-            <Icon name="InfoIcon" className="text-teal-600" />
-          </Tooltip>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         )}
 
         <StatusBadge status={status} />
