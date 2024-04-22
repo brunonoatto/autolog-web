@@ -19,7 +19,7 @@ type TContainerProps = {
 function Container({
   children,
   className,
-  titleClassName,
+  titleClassName = '',
   bodyClassName = '',
   border,
   icon,
@@ -29,15 +29,16 @@ function Container({
     <div
       data-border={border}
       className={twMerge(
-        'rounded-lg data-[border=true]:ring-2 data-[border=true]:ring-teal-700 p-2 flex flex-col gap-y-2 px-2',
+        'rounded-lg data-[border=true]:ring-2 data-[border=true]:ring-primary p-2 flex flex-col gap-y-4 px-2',
         className,
       )}
     >
       {title && (
-        <div className={twMerge('pt-2', titleClassName)}>
-          <Title icon={icon}>{title}</Title>
-        </div>
+        <Title className={titleClassName} icon={icon}>
+          {title}
+        </Title>
       )}
+
       <div className={bodyClassName}>{children}</div>
     </div>
   );
