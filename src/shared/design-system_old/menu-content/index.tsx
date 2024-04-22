@@ -1,9 +1,9 @@
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { Button } from '@shared/design-system/ui/button';
+import IconButton, { TIconButtonProps } from '@shared/design-system/ui/icon-button';
 import useOutsideClick from '@shared/hooks/useOutsideClick';
-
-import IconButton, { type TIconButtonProps } from '../icon-button';
 
 const handleToogleContentClick = () => {
   const menuList = document.getElementById('menu-content');
@@ -52,7 +52,7 @@ const MenuContent = ({ items, ...otherPops }: TMenuContentProps) => {
       <IconButton
         id="menu-content-button"
         onClick={handleToogleContentClick}
-        size="small"
+        size="sm"
         {...otherPops}
       />
 
@@ -66,12 +66,9 @@ const MenuContent = ({ items, ...otherPops }: TMenuContentProps) => {
             data-divider-top={dividerTop}
             className="py-1 data-[divider-top=true]:border-t-2 data-[divider-top=true]:border-teal-800"
           >
-            <button
-              className="block w-full p-2 rounded-lg ring-teal-300 hover:ring-2"
-              onClick={handleMenuClick(route, onClick)}
-            >
+            <Button className="w-full" variant={'ghost'} onClick={handleMenuClick(route, onClick)}>
               {title}
-            </button>
+            </Button>
           </div>
         ))}
       </div>
