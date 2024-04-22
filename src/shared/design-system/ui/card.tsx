@@ -32,17 +32,20 @@ const CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDiv
 );
 CardHeader.displayName = 'CardHeader';
 
-const cardTitleVariants = cva('flex gap-2 border-b-[1px] border-primary w-11/12 md:w-3/4 pb-2', {
-  variants: {
-    alignTitle: {
-      default: '',
-      center: 'w-full md:w-full justify-center',
+const cardTitleVariants = cva(
+  'flex items-center gap-2 border-b-[1px] border-primary w-11/12 md:w-3/4 pb-2',
+  {
+    variants: {
+      alignTitle: {
+        default: '',
+        center: 'w-full md:w-full justify-center',
+      },
+    },
+    defaultVariants: {
+      alignTitle: 'default',
     },
   },
-  defaultVariants: {
-    alignTitle: 'default',
-  },
-});
+);
 const cardTitleTextVariants = cva('font-semibold leading-none tracking-tight', {
   variants: {
     size: {
