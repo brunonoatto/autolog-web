@@ -96,7 +96,7 @@ function AddCarContent() {
 
   return (
     <>
-      <Form form={form} onValid={handleValid} title="Adicionar Orçamento" icon="BudgetLoadingIcon">
+      <Form form={form} onValid={handleValid} title="Adicionar Orçamento" icon="circle-dollar-sign">
         <FormField control={control} name="cpf_cnpj" label="CPF/CNPJ">
           <Input onChange={handleCpfChange} onBlur={handleCpfBlur} />
         </FormField>
