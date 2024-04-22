@@ -5,16 +5,22 @@ import { VariantProps } from 'tailwind-variants';
 import Icon, { TIcons } from '@shared/design-system/ui/icon';
 import { cn } from '@shared/design-system-utils';
 
-const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={cn(
-        'flex flex-col rounded-lg border bg-card text-card-foreground shadow-sm',
-        className,
-      )}
-      {...props}
-    />
+const cardVariants = cva('flex flex-col rounded-lg bg-card text-card-foreground shadow-sm', {
+  variants: {
+    border: {
+      true: 'border',
+    },
+  },
+  defaultVariants: {
+    border: false,
+  },
+});
+
+type TCardProps = React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof cardVariants>;
+
+const Card = React.forwardRef<HTMLDivElement, TCardProps>(
+  ({ className, border, ...props }, ref) => (
+    <div ref={ref} className={cardVariants({ className, border })} {...props} />
   ),
 );
 Card.displayName = 'Card';
@@ -26,7 +32,7 @@ const CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDiv
 );
 CardHeader.displayName = 'CardHeader';
 
-const cardVariants = cva('flex gap-2 border-b-[1px] border-primary w-11/12 md:w-3/4 pb-2', {
+const cardTitleVariants = cva('flex gap-2 border-b-[1px] border-primary w-11/12 md:w-3/4 pb-2', {
   variants: {
     alignTitle: {
       default: '',
@@ -37,7 +43,7 @@ const cardVariants = cva('flex gap-2 border-b-[1px] border-primary w-11/12 md:w-
     alignTitle: 'default',
   },
 });
-const cardTitleVariants = cva('font-semibold leading-none tracking-tight', {
+const cardTitleTextVariants = cva('font-semibold leading-none tracking-tight', {
   variants: {
     size: {
       default: 'text-2xl',
@@ -51,12 +57,12 @@ const cardTitleVariants = cva('font-semibold leading-none tracking-tight', {
 const CardTitle = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLHeadingElement> &
-    VariantProps<typeof cardVariants> &
-    VariantProps<typeof cardTitleVariants> & { icon?: TIcons }
+    VariantProps<typeof cardTitleVariants> &
+    VariantProps<typeof cardTitleTextVariants> & { icon?: TIcons }
 >(({ className, icon, size, alignTitle, children, ...props }, ref) => (
-  <div className={cn(cardVariants({ className, alignTitle }))}>
+  <div className={cn(cardTitleVariants({ className, alignTitle }))}>
     {icon && <Icon name={icon} />}
-    <div ref={ref} className={cn(cardTitleVariants({ size }))} {...props}>
+    <div ref={ref} className={cn(cardTitleTextVariants({ size }))} {...props}>
       {children}
     </div>
   </div>
