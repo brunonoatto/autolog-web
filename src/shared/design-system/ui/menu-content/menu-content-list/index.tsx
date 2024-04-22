@@ -35,7 +35,7 @@ export default function MenuContentList({ items }: TMenuContentListProps) {
   return (
     <div
       id={MENU_CONTENT_ID}
-      className="absolute hidden min-w-36 top-14 right-3 p-4 text-md font-semibold border-2 border-border bg-background space-y-1 rounded-lg"
+      className="absolute hidden min-w-36 top-15 right-3 p-4 text-md font-semibold ring-1 ring-border bg-background space-y-1 rounded-lg"
     >
       {items.map(({ title, route, dividerTop, onClick }) => (
         <div key={title}>
