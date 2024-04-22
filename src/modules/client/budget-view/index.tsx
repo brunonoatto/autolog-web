@@ -3,7 +3,13 @@ import { BudgetViewProvider } from '@core/store/context/BudgetViewContext';
 import BudgetViewActionButtons from '@modules/client/budget-view/action-buttons';
 import BudgetCard from '@shared/components/budget-card';
 import BudgetTable from '@shared/components/budget-table';
-import Container from '@shared/components/container';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@shared/design-system/ui/card';
 
 function ClientBudgetViewContent() {
   const { data: budget } = useGetBudget();
@@ -15,17 +21,21 @@ function ClientBudgetViewContent() {
   }
 
   return (
-    <Container title="Orçamento">
-      <Container.Content>
+    <Card>
+      <CardHeader>
+        <CardTitle icon="receipt">Orçamento</CardTitle>
+      </CardHeader>
+
+      <CardContent>
         <BudgetCard createdDate={createdDate} status={status} car={car} />
 
         <BudgetTable />
-      </Container.Content>
+      </CardContent>
 
-      <Container.Footer>
+      <CardFooter>
         <BudgetViewActionButtons />
-      </Container.Footer>
-    </Container>
+      </CardFooter>
+    </Card>
   );
 }
 
