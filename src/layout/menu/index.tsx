@@ -6,7 +6,7 @@ import IconButton from '@shared/design-system/ui/icon-button';
 import MenuItem from './menu-item';
 import type { TMenu } from './types';
 
-type TMenuProps = { menus: TMenu[] };
+type TMenuProps = { items: TMenu[] };
 
 const toogleMenu = () => {
   const menuList = document.getElementById('menu-list');
@@ -23,7 +23,7 @@ const closeMenu = () => {
   menuList?.classList.remove('flex');
 };
 
-const Menu = ({ menus }: TMenuProps) => {
+const Menu = ({ items }: TMenuProps) => {
   const { pathname } = useLocation();
 
   const handleMobileMenuClick = () => {
@@ -43,7 +43,7 @@ const Menu = ({ menus }: TMenuProps) => {
         <IconButton variant="outline" icon="menu" onClick={handleMobileMenuClick} />
       </div>
       <div id="menu-list" className="hidden md:flex flex-col gap-6 pt-6 px-4">
-        {menus.map((menu) => (
+        {items.map((menu) => (
           <MenuItem key={menu.route} isActive={pathname.includes(menu.route)} {...menu} />
         ))}
       </div>

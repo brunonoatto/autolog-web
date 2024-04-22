@@ -15,6 +15,10 @@ export default function ClientContent() {
           title: 'Transferir veiculo',
           route: ROUTES_PATH.clientTransfer,
         },
+        {
+          title: 'Consultar Placa',
+          route: ROUTES_PATH.clientConsultationLicense,
+        },
       ]}
     >
       <Outlet />

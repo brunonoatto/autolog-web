@@ -22,7 +22,7 @@ export default function BodyApp({ children, menus }: TBodyAppProps) {
 
       <Main>
         <div className="md:h-full md:grid md:grid-cols-[15rem_auto]">
-          <Menu menus={menus} />
+          <Menu items={menus} />
 
           <div className="overflow-hidden md:overflow-auto p-3">{children}</div>
         </div>

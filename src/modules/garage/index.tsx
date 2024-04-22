@@ -19,6 +19,10 @@ export default function GarageContent() {
           title: 'Orçamentos',
           route: ROUTES_PATH.garageBuggetSearch,
         },
+        {
+          title: 'Consultar Placa',
+          route: ROUTES_PATH.garageConsultationLicense,
+        },
       ]}
     >
       <Outlet />

@@ -62,10 +62,6 @@ const router = createBrowserRouter([
         path: ROUTES_PATH.clientRegister,
         Component: ClientRegister,
       },
-      {
-        path: ROUTES_PATH.consultaPlaca,
-        Component: ConsultLicense,
-      },
     ],
   },
   {
@@ -96,6 +92,10 @@ const router = createBrowserRouter([
             path: ROUTES_PATH.garageBuggetSearch,
             Component: GarageBudgetSearch,
           },
+          {
+            path: ROUTES_PATH.garageConsultationLicense,
+            Component: ConsultLicense,
+          },
         ],
       },
     ],
@@ -118,6 +118,10 @@ const router = createBrowserRouter([
           {
             path: `${ROUTES_PATH.clientBudgetView}/:os?`,
             Component: ClientBudgetView,
+          },
+          {
+            path: ROUTES_PATH.clientConsultationLicense,
+            Component: ConsultLicense,
           },
           {
             path: ROUTES_PATH.clientTransfer,
