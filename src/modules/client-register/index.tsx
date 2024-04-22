@@ -7,9 +7,10 @@ import { ROUTES_PATH } from '@core/router/consts';
 import { useCreateClient } from '@core/service/client';
 import { useLoadingStore } from '@core/store/hooks';
 import HomeLink from '@layout/body-app/header/home-link';
-import Form from '@layout/form';
-import InputForm from '@shared/components/form/input';
+import Form from '@shared/components/form';
+import FormField from '@shared/components/form/form-field';
 import { CardTitle } from '@shared/design-system/ui/card';
+import { Input } from '@shared/design-system/ui/input';
 import Modal from '@shared/design-system_old/modal';
 import { yup, yupValidators } from '@shared/form-validations/index';
 
@@ -37,7 +38,7 @@ export default function ClientRegister() {
   const form = useForm({
     resolver: yupResolver(schema),
   });
-  const { register } = form;
+  const { control } = form;
 
   const handleValid: SubmitHandler<TRegisterClientFormType> = (formData) => {
     const { passwordConfirm, ...newClientData } = formData;
@@ -65,17 +66,29 @@ export default function ClientRegister() {
           title="Dados para Cadastro de Cliente"
           useDefaultGrid={false}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <InputForm label="Nome" {...register('name')} />
-            <InputForm label="Telefone" {...register('phone')} />
-            <InputForm label="CPF" {...register('cpf')} />
-            <InputForm label="E-mail" {...register('email')} />
+          <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
+            <FormField control={control} name="name" label="Nome">
+              <Input />
+            </FormField>
+            <FormField control={control} name="cpf" label="CPF">
+              <Input />
+            </FormField>
+            <FormField control={control} name="email" label="E-mail">
+              <Input />
+            </FormField>
+            <FormField control={control} name="phone" label="Telefone">
+              <Input />
+            </FormField>
           </div>
 
-          <CardTitle>Defina uma senha de acesso</CardTitle>
+          <CardTitle size="lg">Defina uma senha de acesso</CardTitle>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <InputForm label="Senha" type="password" {...register('password')} />
-            <InputForm label="Confirmação Senha" type="password" {...register('passwordConfirm')} />
+            <FormField control={control} name="password" label="Senha">
+              <Input type="password" />
+            </FormField>
+            <FormField control={control} name="passwordConfirm" label="Confirmação Senha">
+              <Input type="password" />
+            </FormField>
           </div>
         </Form>
       </div>
