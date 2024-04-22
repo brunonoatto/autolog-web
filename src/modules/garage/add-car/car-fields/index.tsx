@@ -6,12 +6,11 @@ import { ServiceApi } from '@core/api';
 import type { TGarageAddCarFormType } from '@core/store/context/GarageAddCarContext';
 import useGarageAddCarContext from '@core/store/context/hooks/useGarageAddCar';
 import ClientCars from '@modules/garage/add-car/car-fields/client-cars';
-import InputForm from '@shared/components/form/input';
-import InputNumberForm from '@shared/components/form/inputNumber';
-import BrandSelect from '@shared/components/selects/brand-select';
-import ModelSelect from '@shared/components/selects/model-select';
+import BrandCombobox from '@shared/components/combobox/brand-combobox';
+import ModelCombobox from '@shared/components/combobox/model-combobox';
+import FormField from '@shared/components/form/form-field';
 import Title from '@shared/components/title';
-import Input from '@shared/design-system_old/input';
+import { Input } from '@shared/design-system/ui/input';
 
 export default function CarFields() {
   const selectedCar = useGarageAddCarContext((prop) => prop.selectedCar);
@@ -23,7 +22,7 @@ export default function CarFields() {
   // TODO: fazer o loading enquanto pesquisa pela placa
   const [_loading, setLoading] = useState(false);
 
-  const { register, watch, reset } = useFormContext<TGarageAddCarFormType>();
+  const { control, watch, reset, setValue } = useFormContext<TGarageAddCarFormType>();
 
   const brandId = watch('brand');
 
@@ -54,31 +53,41 @@ export default function CarFields() {
     if (value?.length >= 7) debounce(value);
   };
 
+  const handleBrandChanged = () => {
+    setValue('model', '');
+  };
+
   return (
-    <div className="col-span-full">
+    <div className="col-span-full space-y-2">
       <Title>Dados do veículo</Title>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <ClientCars />
 
-        <InputForm
-          label="Placa"
-          labelProps={{ className: 'col-span-full' }}
-          className="w-36 h-8 text-xl font-bold uppercase"
-          maxLength={10}
-          {...register('license', { onChange: handleLicenseChange })}
-        />
+        <FormField className="col-span-full w-36" control={control} name="license" label="Placa">
+          <Input
+            className="text-xl font-bold uppercase"
+            maxLength={10}
+            onChange={handleLicenseChange}
+          />
+        </FormField>
 
         {selectedCar ? (
-          <>
-            <Input label="Montadora" disabled value={selectedCar.brand} />
-            <Input label="Modelo" disabled value={selectedCar.model} />
-            <Input label="Ano" disabled value={selectedCar.year} />
-          </>
+          <p className="col-span-full">
+            {selectedCar.brand} - {selectedCar.model} {selectedCar.year}
+          </p>
         ) : (
           <>
-            <BrandSelect label="Montadora" {...register('brand')} />
-            <ModelSelect label="Modelo" brandId={brandId} {...register('model')} />
-            <InputNumberForm label="Ano" {...{ ...register('year') }} />
+            <BrandCombobox
+              control={control}
+              name="brand"
+              label="Montadora"
+              onChange={handleBrandChanged}
+            />
+            <ModelCombobox control={control} name="model" label="Modelo" brandId={brandId} />
+
+            <FormField control={control} name="year" label="Ano">
+              <Input type="number" />
+            </FormField>
           </>
         )}
       </div>

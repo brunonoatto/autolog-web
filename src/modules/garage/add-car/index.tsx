@@ -12,11 +12,12 @@ import {
 } from '@core/store/context/GarageAddCarContext';
 import useGarageAddCarContext from '@core/store/context/hooks/useGarageAddCar';
 import { useLoadingStore } from '@core/store/hooks';
-import Form from '@layout/form';
 import CarFields from '@modules/garage/add-car/car-fields';
-import InputForm from '@shared/components/form/input';
+import Form from '@shared/components/form';
+import FormField from '@shared/components/form/form-field';
+import { Input } from '@shared/design-system/ui/input';
+import { Textarea } from '@shared/design-system/ui/textarea';
 import Modal from '@shared/design-system_old/modal';
-import Textarea from '@shared/design-system_old/textarea';
 
 function AddCarContent() {
   const [generateOS, setGenerateOS] = useState('');
@@ -34,7 +35,7 @@ function AddCarContent() {
   const handleSelectedClient = useGarageAddCarContext((prop) => prop.handleSelectedClient);
 
   const form = useFormContext<TGarageAddCarFormType>();
-  const { getValues, watch, setValue, register } = form;
+  const { control, getValues, watch, setValue } = form;
 
   const brandId = watch('brand');
 
@@ -96,31 +97,33 @@ function AddCarContent() {
   return (
     <>
       <Form form={form} onValid={handleValid} title="Adicionar Orçamento" icon="BudgetLoadingIcon">
-        <InputForm
-          label="CPF/CNPJ"
-          {...register('cpf_cnpj', { onChange: handleCpfChange, onBlur: handleCpfBlur })}
-        />
-        <InputForm
+        <FormField control={control} name="cpf_cnpj" label="CPF/CNPJ">
+          <Input onChange={handleCpfChange} onBlur={handleCpfBlur} />
+        </FormField>
+
+        <FormField
+          className="lg:row-start-2 md:col-span-2"
+          control={control}
+          name="name"
           label="Nome Cliente"
-          labelProps={{ className: 'lg:row-start-2 md:col-span-2' }}
-          disabled={!!selectedClient}
-          {...register('name')}
-        />
-        <InputForm
-          label="Telefone"
-          labelProps={{ className: 'lg:row-start-2' }}
-          disabled={!!selectedClient}
-          {...register('phone')}
-        />
+        >
+          <Input disabled={!!selectedClient} />
+        </FormField>
+
+        <FormField className="lg:row-start-2" control={control} name="phone" label="Telefone">
+          <Input disabled={!!selectedClient} />
+        </FormField>
 
         <CarFields />
 
-        <Textarea
-          labelProps={{ className: 'col-span-full' }}
-          className="h-20"
+        <FormField
+          className="col-span-full"
+          control={control}
+          name="observation"
           label="Observação"
-          {...register('observation')}
-        />
+        >
+          <Textarea rows={5} />
+        </FormField>
       </Form>
 
       <Modal

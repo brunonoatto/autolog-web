@@ -3,7 +3,7 @@ import { useFormContext } from 'react-hook-form';
 import type { TCar } from '@core/api/car/types';
 import type { TGarageAddCarFormType } from '@core/store/context/GarageAddCarContext';
 import useGarageAddCarContext from '@core/store/context/hooks/useGarageAddCar';
-import Button from '@shared/design-system_old/button';
+import { Button } from '@shared/design-system/ui/button';
 
 export default function ClientCars() {
   const handleSelectedClientCar = useGarageAddCarContext((prop) => prop.handleSelectedClientCar);
@@ -24,8 +24,8 @@ export default function ClientCars() {
 
   return (
     <div className="col-span-full">
-      <div className="">Carros do Cliente:</div>
-      <div className=" flex gap-2 p-2 overflow-x-auto">
+      <div>Carros do Cliente:</div>
+      <div className="flex gap-2 pt-2 overflow-x-auto">
         {selectedClient?.cars?.map((car) => {
           return (
             // <Tooltip
@@ -38,9 +38,8 @@ export default function ClientCars() {
             // >
             <Button
               key={car.license}
-              type="button"
-              color={selectedLicense === car.license ? 'active' : 'secondary'}
-              size="medium"
+              variant={selectedLicense === car.license ? 'outline-active' : 'outline'}
+              size="sm"
               onClick={handleSelectedCar(car)}
             >
               {car.license}
