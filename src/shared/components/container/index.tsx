@@ -3,7 +3,8 @@ import { twMerge } from 'tailwind-merge';
 
 import ContainerContent from '@shared/components/container/container-content';
 import ContainerFooter from '@shared/components/container/container-footer';
-import type { TIcons } from '@shared/design-system_old/assets/icons/types';
+import { CardTitle } from '@shared/design-system/ui/card';
+import { TIcons } from '@shared/design-system/ui/icon';
 
 type TContainerProps = {
   children: React.ReactNode;
@@ -32,11 +33,11 @@ function Container({
         className,
       )}
     >
-      {
-        title
-        // <CardTitle className={titleClassName} icon={icon}>
-        // </CardTitle>
-      }
+      {title && (
+        <CardTitle className={titleClassName} icon={icon}>
+          {title}
+        </CardTitle>
+      )}
 
       <div className={bodyClassName}>{children}</div>
     </div>
