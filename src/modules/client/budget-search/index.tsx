@@ -3,8 +3,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ROUTES_PATH } from '@core/router/consts';
 import { useListBudgets } from '@core/service/budget';
 import BudgetCard from '@shared/components/budget-card';
-import Container from '@shared/components/container';
 import ClientCarSelect from '@shared/components/selects/client-cars';
+import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
 
 export default function ClientBudgetSearch() {
   const navigate = useNavigate();
@@ -24,8 +24,12 @@ export default function ClientBudgetSearch() {
   };
 
   return (
-    <Container title="Orçamentos">
-      <Container.Content>
+    <Card>
+      <CardHeader>
+        <CardTitle icon="receipt">Orçamentos</CardTitle>
+      </CardHeader>
+
+      <CardContent>
         <ClientCarSelect label="Carro" onValueChange={handleLicenseFilterChange} />
 
         {budgets?.map(({ os, createdDate, status, car }) => {
@@ -35,7 +39,7 @@ export default function ClientBudgetSearch() {
             </button>
           );
         })}
-      </Container.Content>
-    </Container>
+      </CardContent>
+    </Card>
   );
 }
