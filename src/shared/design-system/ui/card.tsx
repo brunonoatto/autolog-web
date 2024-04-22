@@ -8,7 +8,7 @@ import { cn } from '@shared/design-system-utils';
 const cardVariants = cva('flex flex-col rounded-lg bg-card text-card-foreground shadow-sm', {
   variants: {
     border: {
-      true: 'border',
+      true: 'border border-primary',
     },
   },
   defaultVariants: {
@@ -64,7 +64,7 @@ const CardTitle = React.forwardRef<
     VariantProps<typeof cardTitleTextVariants> & { icon?: TIcons }
 >(({ className, icon, size, alignTitle, children, ...props }, ref) => (
   <div className={cn(cardTitleVariants({ className, alignTitle }))}>
-    {icon && <Icon name={icon} />}
+    {icon && <Icon name={icon} size="22" />}
     <div ref={ref} className={cn(cardTitleTextVariants({ size }))} {...props}>
       {children}
     </div>
