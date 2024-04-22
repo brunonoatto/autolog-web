@@ -1,10 +1,8 @@
-import { RefObject, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
-type TUseOutsideClickProps = {
-  ref: RefObject<HTMLDivElement>;
-  action: () => void;
-};
-const useOutsideClick = ({ ref, action }: TUseOutsideClickProps) => {
+export default function useOutsideClick<T extends HTMLDivElement>(action: () => void) {
+  const ref = useRef<T>(null);
+
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       if (ref.current && !ref.current.contains(event.target as HTMLDivElement)) {
@@ -17,6 +15,6 @@ const useOutsideClick = ({ ref, action }: TUseOutsideClickProps) => {
       document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, [action, ref]);
-};
 
-export default useOutsideClick;
+  return ref;
+}

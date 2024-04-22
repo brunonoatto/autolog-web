@@ -5,7 +5,7 @@ import MenuContent from '@shared/design-system/ui/menu-content';
 const HeaderActions = () => {
   const { logout, getTokenData } = useAuth();
 
-  const { name = '' } = getTokenData() || {};
+  const { name } = getTokenData() || {};
 
   return (
     <div className="flex gap-2">
