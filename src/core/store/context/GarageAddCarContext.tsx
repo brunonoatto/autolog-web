@@ -38,6 +38,16 @@ export function GarageAddCarProvider({ children }: { children: React.ReactNode }
   const [selectedCar, setSelectedCar] = useState<TCar | undefined>();
 
   const form = useForm({
+    defaultValues: {
+      name: '',
+      phone: '',
+      cpf_cnpj: '',
+      license: '',
+      brand: '',
+      model: '',
+      year: 0,
+      observation: '',
+    },
     resolver: yupResolver(garageAddCarSchema),
   });
   const { setValue } = form;
