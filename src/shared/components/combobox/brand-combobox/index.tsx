@@ -1,8 +1,8 @@
 import { FieldValues } from 'react-hook-form';
 
 import { useListBrands } from '@core/service/fipe';
+import { buildSelectOptions } from '@shared/design-system/helpers/select';
 import Combobox, { TComboboxDefaultProps } from '@shared/design-system/ui/combobox';
-import { buildSelectOptions } from '@shared/design-system_old/select/helpers';
 
 export default function BrandCombobox<T extends FieldValues>(props: TComboboxDefaultProps<T>) {
   const { data: listBrands } = useListBrands();

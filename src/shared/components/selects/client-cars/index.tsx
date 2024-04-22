@@ -1,6 +1,7 @@
 import type { SelectProps } from '@radix-ui/react-select';
 
 import { useClientCars } from '@core/service/client';
+import { buildSelectOptions } from '@shared/design-system/helpers/select';
 import { Label } from '@shared/design-system/ui/label';
 import {
   Select,
@@ -10,7 +11,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@shared/design-system/ui/select';
-import { buildSelectOptions } from '@shared/design-system_old/select/helpers';
 
 type TClientCarSelect = SelectProps & {
   label: string;
