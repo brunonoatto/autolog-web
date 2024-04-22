@@ -21,6 +21,7 @@ type TForm<T extends FieldValues> = PropsWithChildren & {
   className?: string;
   icon?: TIcons;
   useDefaultGrid?: boolean;
+  border?: boolean;
 };
 
 export default function Form<T extends FieldValues>({
@@ -33,13 +34,14 @@ export default function Form<T extends FieldValues>({
   className,
   icon,
   useDefaultGrid = true,
+  border = false,
 }: TForm<T>) {
   const { handleSubmit } = form;
 
   return (
     <FormProvider {...form}>
       <form className={className} onSubmit={handleSubmit(onValid)}>
-        <Card>
+        <Card border={border}>
           <CardHeader>
             <CardTitle icon={icon}>{title}</CardTitle>
             {/* <CardDescription>Card Description</CardDescription> */}
