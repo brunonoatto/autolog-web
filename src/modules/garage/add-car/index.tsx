@@ -15,6 +15,7 @@ import { useLoadingStore } from '@core/store/hooks';
 import CarFields from '@modules/garage/add-car/car-fields';
 import Form from '@shared/components/form';
 import FormField from '@shared/components/form/form-field';
+import { CardTitle } from '@shared/design-system/ui/card';
 import { Input } from '@shared/design-system/ui/input';
 import Modal from '@shared/design-system/ui/modal';
 import { Textarea } from '@shared/design-system/ui/textarea';
@@ -99,6 +100,10 @@ function AddCarContent() {
   return (
     <>
       <Form form={form} onValid={handleValid} title="Adicionar Orçamento" icon="circle-dollar-sign">
+        <CardTitle className="col-span-full" icon="user" size="lg">
+          Dados do Cliente
+        </CardTitle>
+
         <FormField control={control} name="cpf_cnpj" label="CPF/CNPJ">
           <Input onChange={handleCpfChange} onBlur={loadClientCars} />
         </FormField>

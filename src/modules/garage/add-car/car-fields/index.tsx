@@ -59,7 +59,9 @@ export default function CarFields() {
 
   return (
     <div className="col-span-full space-y-2">
-      <CardTitle icon="car">Dados do veículo</CardTitle>
+      <CardTitle icon="car" size="lg">
+        Dados do veículo
+      </CardTitle>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <ClientCars />
 
