@@ -9,8 +9,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@shared/design-system/ui/card';
-import type { TIcons } from '@shared/design-system_old/assets/icons/types';
-import IconButton from '@shared/design-system_old/icon-button';
+import type { TIcons } from '@shared/design-system/ui/icon';
+import IconButton from '@shared/design-system/ui/icon-button';
 
 type TForm<T extends FieldValues> = PropsWithChildren & {
   form: UseFormReturn<T>;
