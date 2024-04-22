@@ -1,8 +1,7 @@
 import * as React from 'react';
 
+import Icon, { TIcons } from '@shared/design-system/ui/icon';
 import { cn } from '@shared/design-system-utils';
-import { TIcons } from '@shared/design-system_old/assets/icons/types';
-import Icon from '@shared/design-system_old/Icon';
 
 const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
@@ -26,7 +25,7 @@ const CardTitle = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLHeadingElement> & { icon?: TIcons }
 >(({ className, icon, children, ...props }, ref) => (
-  <div className="flex gap-2">
+  <div className="flex gap-2 border-b-[1px] border-primary w-11/12 md:w-3/4 pb-2">
     {icon && <Icon name={icon} />}
     <h3
       ref={ref}
