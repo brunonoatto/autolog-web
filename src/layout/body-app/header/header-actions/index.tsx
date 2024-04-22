@@ -1,6 +1,5 @@
-import { ROUTES_PATH } from '@core/router/consts';
 import useAuth from '@core/store/context/hooks/useAuth';
-import MenuContent from '@shared/design-system/ui/menu-content';
+import IconButton from '@shared/design-system/ui/icon-button';
 
 const HeaderActions = () => {
   const { logout, getTokenData } = useAuth();
@@ -14,13 +13,7 @@ const HeaderActions = () => {
         <div>{name}</div>
       </div>
 
-      <MenuContent
-        icon="chevron-down"
-        items={[
-          { route: ROUTES_PATH.consultaPlaca, title: 'Consultar Placa' },
-          { onClick: () => logout(), title: 'Sair', dividerTop: true },
-        ]}
-      />
+      <IconButton icon="log-out" variant="ghost" size="icon" title="Sair" onClick={logout} />
     </div>
   );
 };
