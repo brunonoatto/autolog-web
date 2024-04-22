@@ -1,14 +1,13 @@
-import { Link } from 'react-router-dom';
+import LinkButton from '@shared/design-system/ui/link-button';
 
-import styles from './styles.module.css';
 import type { TMenu } from '../types';
 
 type TMenuItemProps = TMenu & { isActive: boolean };
 const MenuItem = ({ route, title, isActive }: TMenuItemProps) => {
   return (
-    <Link key={route} data-active={isActive} className={styles.content} to={route}>
+    <LinkButton to={route} variant={isActive ? 'outline-active' : 'outline'}>
       {title}
-    </Link>
+    </LinkButton>
   );
 };
 

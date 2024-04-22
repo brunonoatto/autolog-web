@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import IconButton from '@shared/design-system_old/icon-button';
+import IconButton from '@shared/design-system/ui/icon-button';
 
 import MenuItem from './menu-item';
-import styles from './styles.module.css';
 import type { TMenu } from './types';
 
 type TMenuProps = { menus: TMenu[] };
@@ -39,11 +38,11 @@ const Menu = ({ menus }: TMenuProps) => {
   }, [pathname]);
 
   return (
-    <nav className={styles.content}>
+    <nav className="p-4 md:p-0 md:w-60 md:border-r-2 md:rounded-xl">
       <div className="flex justify-end md:hidden" aria-label="Menu" aria-expanded="false">
-        <IconButton color="secondary" icon="MenuIcon" onClick={handleMobileMenuClick} />
+        <IconButton variant="outline" icon="menu" onClick={handleMobileMenuClick} />
       </div>
-      <div id="menu-list" className="hidden md:flex flex-col gap-6 pt-6">
+      <div id="menu-list" className="hidden md:flex flex-col gap-6 pt-6 px-4">
         {menus.map((menu) => (
           <MenuItem key={menu.route} isActive={pathname.includes(menu.route)} {...menu} />
         ))}
