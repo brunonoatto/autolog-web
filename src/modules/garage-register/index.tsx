@@ -7,10 +7,10 @@ import { ROUTES_PATH } from '@core/router/consts';
 import { useCreateGarage } from '@core/service/garage';
 import { useLoadingStore } from '@core/store/hooks';
 import HomeLink from '@layout/body-app/header/home-link';
-import Form from '@layout/form';
-import InputForm from '@shared/components/form/input';
-import InputNumberForm from '@shared/components/form/inputNumber';
+import Form from '@shared/components/form';
+import FormField from '@shared/components/form/form-field';
 import { CardTitle } from '@shared/design-system/ui/card';
+import { Input } from '@shared/design-system/ui/input';
 import Modal from '@shared/design-system_old/modal';
 import { yup, yupValidators } from '@shared/form-validations/index';
 
@@ -41,7 +41,7 @@ export default function GarageRegister() {
   const form = useForm({
     resolver: yupResolver(schema),
   });
-  const { register } = form;
+  const { control } = form;
 
   const handleValid: SubmitHandler<TRegisterGarageFormType> = (formData) => {
     const { passwordConfirm, ...newGarageData } = formData;
@@ -69,20 +69,38 @@ export default function GarageRegister() {
           title="Dados para Cadastro de Mecânica"
           useDefaultGrid={false}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <InputForm label="Nome" {...register('name')} />
-            <InputForm label="Telefone" {...register('phone')} />
-            <InputForm label="CNPJ" {...register('cnpj_cpf')} />
-            <InputForm label="E-mail" {...register('email')} />
-            <InputForm label="Endereço" {...register('address')} />
-            <InputNumberForm label="Número" {...register('number')} />
-            <InputForm label="Complemento" {...register('complement')} />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <FormField control={control} name="name" label="Nome">
+              <Input />
+            </FormField>
+            <FormField control={control} name="cnpj_cpf" label="CNPJ">
+              <Input />
+            </FormField>
+            <FormField control={control} name="email" label="E-mail">
+              <Input />
+            </FormField>
+            <FormField control={control} name="phone" label="Telefone">
+              <Input />
+            </FormField>
+            <FormField control={control} name="address" label="Endereço">
+              <Input />
+            </FormField>
+            <FormField control={control} name="number" label="Número">
+              <Input type="number" />
+            </FormField>
+            <FormField control={control} name="complement" label="Complemento">
+              <Input />
+            </FormField>
           </div>
 
-          <CardTitle>Defina uma senha de acesso</CardTitle>
+          <CardTitle size="lg">Defina uma senha de acesso</CardTitle>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <InputForm label="Senha" type="password" {...register('password')} />
-            <InputForm label="Confirmação Senha" type="password" {...register('passwordConfirm')} />
+            <FormField control={control} name="password" label="Senha">
+              <Input type="password" />
+            </FormField>
+            <FormField control={control} name="passwordConfirm" label="Confirmação Senha">
+              <Input type="password" />
+            </FormField>
           </div>
         </Form>
       </div>
