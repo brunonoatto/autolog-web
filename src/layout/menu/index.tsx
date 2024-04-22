@@ -38,7 +38,7 @@ const Menu = ({ menus }: TMenuProps) => {
   }, [pathname]);
 
   return (
-    <nav className="p-4 md:p-0 md:w-60 md:border-r-2 md:rounded-xl">
+    <nav className="p-4 md:p-0 md:w-60 md:border-r-[1px] md:rounded-xl">
       <div className="flex justify-end md:hidden" aria-label="Menu" aria-expanded="false">
         <IconButton variant="outline" icon="menu" onClick={handleMobileMenuClick} />
       </div>

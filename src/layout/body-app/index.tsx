@@ -19,6 +19,7 @@ export default function BodyApp({ children, menus }: TBodyAppProps) {
   return (
     <div className={styles.content}>
       <Header />
+
       <Main>
         <div className="md:h-full md:grid md:grid-cols-[15rem_auto]">
           <Menu menus={menus} />
@@ -26,6 +27,7 @@ export default function BodyApp({ children, menus }: TBodyAppProps) {
           <div className="overflow-hidden md:overflow-auto p-3">{children}</div>
         </div>
       </Main>
+
       <Footer />
     </div>
   );
