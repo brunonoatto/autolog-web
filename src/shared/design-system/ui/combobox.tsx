@@ -2,6 +2,7 @@ import { Check, ChevronsUpDown } from 'lucide-react';
 import { useState } from 'react';
 import { Control, FieldPath, FieldValues, useFormContext } from 'react-hook-form';
 
+import type { TSelectItem } from '@shared/components/form/select-form';
 import { Button } from '@shared/design-system/ui/button';
 import {
   Command,
@@ -21,9 +22,6 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from '@shared/design-system/ui/popover';
 import { cn } from '@shared/design-system-utils';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type TComboboxItem = { value: any; label: string };
-
 export type TComboboxDefaultProps<T extends FieldValues> = {
   control: Control<T>;
   name: FieldPath<T>;
@@ -33,7 +31,7 @@ export type TComboboxDefaultProps<T extends FieldValues> = {
 };
 
 export type TComboboxProps<T extends FieldValues> = TComboboxDefaultProps<T> & {
-  items: TComboboxItem[];
+  items: TSelectItem[];
 };
 
 /* 

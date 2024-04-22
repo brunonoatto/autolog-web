@@ -2,6 +2,7 @@
 import { Check, ChevronsUpDown, Command } from 'lucide-react';
 import { Control, FieldPath, FieldValues, useFormContext } from 'react-hook-form';
 
+import type { TSelectItem } from '@shared/components/form/select-form';
 import { Button } from '@shared/design-system/ui/button';
 import {
   CommandEmpty,
@@ -20,10 +21,8 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from '@shared/design-system/ui/popover';
 import { cn } from '@shared/design-system-utils';
 
-export type TComboboxItem = { value: any; label: string };
-
 type TInputFormProps<T extends FieldValues> = {
-  items: TComboboxItem[];
+  items: TSelectItem[];
   control: Control<T>;
   name: FieldPath<T>;
   label?: string;

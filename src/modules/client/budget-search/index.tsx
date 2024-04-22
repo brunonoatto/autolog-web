@@ -1,4 +1,3 @@
-import { ChangeEventHandler } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { ROUTES_PATH } from '@core/router/consts';
@@ -16,9 +15,9 @@ export default function ClientBudgetSearch() {
     navigate(`${ROUTES_PATH.clientBudgetView}/${os}`);
   };
 
-  const handleLicenseFilterChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
-    if (e.target.value) {
-      setSearchParams({ license: e.target.value });
+  const handleLicenseFilterChange = (value: string) => {
+    if (value) {
+      setSearchParams({ license: value });
     } else {
       setSearchParams();
     }
@@ -27,7 +26,7 @@ export default function ClientBudgetSearch() {
   return (
     <Container title="Orçamentos">
       <Container.Content>
-        <ClientCarSelect label="Carro" onChange={handleLicenseFilterChange} />
+        <ClientCarSelect label="Carro" onValueChange={handleLicenseFilterChange} />
 
         {budgets?.map(({ os, createdDate, status, car }) => {
           return (

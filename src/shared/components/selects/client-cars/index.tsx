@@ -1,16 +1,47 @@
-import { forwardRef } from 'react';
+import type { SelectProps } from '@radix-ui/react-select';
 
-import Select, { type TSelectDefaultProps } from '@shared/design-system_old/select';
+import { useClientCars } from '@core/service/client';
+import { Label } from '@shared/design-system/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@shared/design-system/ui/select';
+import { buildSelectOptions } from '@shared/design-system_old/select/helpers';
 
-const ClientCarSelect = forwardRef<HTMLSelectElement, TSelectDefaultProps>((props, ref) => {
-  // const { data: clientCars } = useClientCars({ transfereds: true });
+type TClientCarSelect = SelectProps & {
+  label: string;
+};
 
-  // const options = buildSelectOptions(clientCars, 'license', (item) => {
-  //   const transferedText = item.isTransfered ? '(Transferido) ' : '';
-  //   return `${transferedText}${item.license} - ${item.brand} ${item.model} ${item.year}`;
-  // });
+export default function ClientCarSelect(props: TClientCarSelect) {
+  const { label, ...otherProps } = props;
+  const { data: clientCars } = useClientCars({ transfereds: true });
 
-  return <Select options={[]} ref={ref} {...props} />;
-});
+  const items = buildSelectOptions(clientCars, 'license', (item) => {
+    const transferedText = item.isTransfered ? '(Transferido) ' : '';
+    return `${transferedText}${item.license} - ${item.brand} ${item.model} ${item.year}`;
+  });
 
-export default ClientCarSelect;
+  return (
+    <div className="space-y-2">
+      <Label>{label}</Label>
+      <Select {...otherProps}>
+        <SelectTrigger>
+          <SelectValue placeholder="Seleciona um item" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            {items.map(({ value, label }) => (
+              <SelectItem key={value} value={value}>
+                {label}
+              </SelectItem>
+            ))}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    </div>
+  );
+}

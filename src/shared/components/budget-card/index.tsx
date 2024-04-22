@@ -23,7 +23,7 @@ export default function BudgetCard({
   return (
     <div
       data-hover={hover}
-      className="w-full rounded-lg ring-1 ring-teal-500 data-[hover=true]:hover:ring-2 p-2 md:p-3 flex flex-col duration-300 data-[hover=true]:hover:scale-[1.01]"
+      className="w-full rounded-lg ring-1 ring-primary data-[hover=true]:hover:ring-2 p-2 md:p-3 flex flex-col duration-300 data-[hover=true]:hover:scale-[1.01]"
     >
       {clientName && createdDate && (
         <div className="flex justify-between text-sm">
