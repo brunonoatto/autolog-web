@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import Icon, { TIcons } from '@shared/design-system/ui/icon';
 import { cn } from '@shared/design-system-utils';
