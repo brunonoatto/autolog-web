@@ -1,3 +1,4 @@
+import { MouseEventHandler } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import type { TCar } from '@core/api/car/types';
@@ -19,7 +20,9 @@ export default function CarCard({ car }: TCarCardProps) {
     setValue('license', car.license);
   };
 
-  const handleClearSelectedCar = () => {
+  const handleClearSelectedCar: MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.stopPropagation();
+
     setValue('license', '');
   };
 
@@ -34,8 +37,8 @@ export default function CarCard({ car }: TCarCardProps) {
       <Button
         type="button"
         variant="outline"
-        data-hover={!licenseSelected}
-        className="block p-0 h-auto border-2 border-border ring-primary rounded-lg focus:outline-primary duration-300 data-[hover=false]:hover:bg-background data-[hover=false]:hover:cursor-default data-[hover=true]:hover:scale-[1.03] data-[hover=true]:hover:md:scale-[1.05]"
+        data-selected={!!licenseSelected}
+        className="block p-0 h-auto border-2 border-border ring-primary rounded-lg focus:outline-primary duration-300 data-[selected=true]:col-span-full data-[selected=true]:hover:bg-background data-[selected=true]:hover:cursor-default data-[selected=false]:hover:scale-[1.03] data-[selected=false]:hover:md:scale-[1.05]"
         onClick={() => handleCardClick()}
       >
         {licenseSelected && (

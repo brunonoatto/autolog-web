@@ -53,8 +53,8 @@ export default function SelectCpfToTransfer({ clientData, setClient }: TSelectCp
 
         {cpfIsLoading && <LoadingIcon />}
         {clientData && !cpfIsLoading && (
-          <ContainerSelected title="Nome do Usuário Selecionado">
-            <p>Nome: {clientData?.name}</p>
+          <ContainerSelected title="Usuário Selecionado" align="center">
+            {clientData?.name}
           </ContainerSelected>
         )}
       </div>
