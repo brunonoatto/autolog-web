@@ -19,7 +19,7 @@ type TCardProps = {
 const HomeCard = ({ title, infos, price, linkRoute, linkText }: TCardProps) => {
   return (
     <>
-      <Card className="w-full md:w-2/3">
+      <Card className="w-full md:w-2/3" border>
         <CardHeader>
           <CardTitle alignTitle="center">{title}</CardTitle>
         </CardHeader>
