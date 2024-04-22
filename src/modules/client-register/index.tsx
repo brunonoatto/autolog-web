@@ -65,6 +65,7 @@ export default function ClientRegister() {
           onValid={handleValid}
           title="Dados para Cadastro de Cliente"
           useDefaultGrid={false}
+          border
         >
           <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
             <FormField control={control} name="name" label="Nome">

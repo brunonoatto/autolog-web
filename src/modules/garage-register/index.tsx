@@ -68,6 +68,7 @@ export default function GarageRegister() {
           onValid={handleValid}
           title="Dados para Cadastro de Mecânica"
           useDefaultGrid={false}
+          border
         >
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <FormField control={control} name="name" label="Nome">
