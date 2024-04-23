@@ -16,7 +16,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {isLoading || isRefetching ? (
         <>
           <StatusCardSkeleton />
@@ -27,7 +27,7 @@ export default function Dashboard() {
         </>
       ) : (
         <>
-          <LinkButton to={ROUTES_PATH.garageAddBudget} className="md:hidden h-20 md:h-32">
+          <LinkButton to={ROUTES_PATH.garageAddBudget} className="md:hidden h-16">
             Adicionar Orçamento
           </LinkButton>
 

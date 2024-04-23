@@ -17,14 +17,14 @@ const StatusCard = ({ onClick, item }: TStatusCardProps) => {
 
   return (
     <button className={styles.container} onClick={onClick}>
-      <p className="w-full text-left text-xs whitespace-nowrap overflow-hidden text-ellipsis">
+      <div className="w-full text-left text-xs whitespace-nowrap overflow-hidden text-ellipsis">
         {clientName}
-      </p>
+      </div>
 
       <IdentificationCar license={license} brand={brand} model={model} year={year} />
 
       <div
-        className={`w-full flex items-center ${observation ? 'justify-between' : 'justify-end'} `}
+        className={`w-full mt-2 flex items-center ${observation ? 'justify-between' : 'justify-end'} `}
       >
         {observation && (
           <TooltipProvider delayDuration={200}>
