@@ -44,7 +44,7 @@ const Menu = ({ items }: TMenuProps) => {
       </div>
       <div id="menu-list" className="hidden md:flex flex-col gap-6 pt-6 px-4">
         {items.map((menu) => (
-          <MenuItem key={menu.route} isActive={pathname.includes(menu.route)} {...menu} />
+          <MenuItem key={menu.route} isActive={pathname.endsWith(menu.route)} {...menu} />
         ))}
       </div>
     </nav>
