@@ -2,12 +2,14 @@ import type { PropsWithChildren, ReactNode } from 'react';
 
 import { Button, TButtonProps } from '@shared/design-system/ui/button';
 import { CardTitle } from '@shared/design-system/ui/card';
+import { TIcons } from '@shared/design-system/ui/icon';
 import IconButton from '@shared/design-system/ui/icon-button';
 import Portal from '@shared/design-system/ui/portal';
 
 type TModalProps = PropsWithChildren & {
   open: boolean;
   title?: ReactNode;
+  icon: TIcons;
   confirmText?: string;
   cancelText?: string;
   confirmVariant?: TButtonProps['variant'];
@@ -20,6 +22,7 @@ const Modal = ({
   children,
   open,
   title,
+  icon,
   confirmText = 'Confirmar',
   cancelText = 'Voltar',
   confirmVariant = 'default',
@@ -37,7 +40,7 @@ const Modal = ({
               <IconButton icon="circle-x" variant="ghost" size="icon" onClick={onClose} />
             </div>
           )}
-          <CardTitle>{title}</CardTitle>
+          <CardTitle icon={icon}>{title}</CardTitle>
         </div>
         <div className="overflow-auto">{children}</div>
         <div className="text-right space-x-4 ">
