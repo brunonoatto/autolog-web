@@ -140,9 +140,7 @@ function AddCarContent() {
         onConfirmClick={handleSuccessConfirm}
         cancelText="Ir para Dashboard"
         onCancelClick={handleSuccessCancel}
-      >
-        <p>Você deseja editar o Orçamento?</p>
-      </Modal>
+      />
     </>
   );
 }

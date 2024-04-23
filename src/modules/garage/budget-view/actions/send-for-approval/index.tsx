@@ -43,7 +43,7 @@ export default function SendForApproval() {
 
       <Modal
         open={openModal}
-        title="Orçamento enviado para Aprovação do cliente"
+        title="Orçamento enviado para Aprovação do cliente!"
         confirmText="Continuar"
         onConfirmClick={handleGoToDashboard}
         cancelText="Enviar WhatsApp e Continuar"

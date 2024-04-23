@@ -17,6 +17,7 @@ import CarInfo from '@shared/components/car-info';
 import Form from '@shared/components/form';
 import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
 import Modal from '@shared/design-system/ui/modal';
+import { useToast } from '@shared/design-system/ui/use-toast';
 import { yup, yupValidators } from '@shared/form-validations';
 
 const transferCarSchema = yup
@@ -30,8 +31,9 @@ export type TTransferCarForm = yup.InferType<typeof transferCarSchema>;
 
 export default function ClientTransferCar() {
   const [openModal, setOpenModal] = useState(false);
-
   const [clientToTrasnferData, setClientToTrasnferData] = useState<TClientResponse>();
+
+  const { toast } = useToast();
   const navigate = useNavigate();
   const loading = useLoadingStore((prop) => prop.loading);
   const { data: clientCars } = useClientCars();
@@ -57,7 +59,7 @@ export default function ClientTransferCar() {
 
     mutate(formValues, {
       onSuccess: () => {
-        // toaster "Transferência realizada com sucesso"
+        toast({ title: 'Transferência realizada com sucesso' });
         navigate(ROUTES_PATH.clientBudgetSearch);
       },
       onSettled: () => {
@@ -68,8 +70,7 @@ export default function ClientTransferCar() {
 
   const handleValid = () => {
     if (!clientToTrasnferData) {
-      // toaster "Cliente para transferência não encontrado"
-      setError('cpfToTransfer', { message: 'Insira um cpf que estejá cadastrado.' });
+      setError('cpfToTransfer', { message: 'Insira um cpf que esteja cadastrado.' });
       return;
     }
 
