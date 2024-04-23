@@ -1,7 +1,7 @@
-import type { TSize } from '@shared/design-system_old/_types';
 import * as icons from '@shared/design-system_old/assets/icons';
 import type { TIcons } from '@shared/design-system_old/assets/icons/types';
 
+type TSize = 'small' | 'medium' | 'large';
 const sizeData: { [key in TSize]: number } = {
   small: 20,
   medium: 26,
