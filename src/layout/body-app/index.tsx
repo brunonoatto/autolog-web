@@ -1,18 +1,14 @@
+import Footer from '@layout/body-app/footer';
+import Header from '@layout/body-app/header';
+import Main from '@layout/body-app/main';
 import Menu from '@layout/menu';
+import { TMenu } from '@layout/menu/types';
 
-import Footer from './footer';
-import Header from './header';
-import Main from './main';
 import styles from './styles.module.css';
-
-type TMenuItem = {
-  title: string;
-  route: string;
-};
 
 type TBodyAppProps = {
   children: React.ReactNode;
-  menus: TMenuItem[];
+  menus: TMenu[];
 };
 
 export default function BodyApp({ children, menus }: TBodyAppProps) {

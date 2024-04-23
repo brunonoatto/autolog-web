@@ -81,7 +81,7 @@ export default function ClientTransferCar() {
       <Form
         form={form}
         title="Transferência de veículo"
-        icon="folder-sync"
+        icon="folder-input"
         confirmButtonText="Continuar"
         onValid={handleValid}
         useDefaultGrid={false}

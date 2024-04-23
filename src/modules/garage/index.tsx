@@ -10,18 +10,22 @@ export default function GarageContent() {
         {
           title: 'Dashboard',
           route: ROUTES_PATH.garageDashboard,
+          icon: 'trello',
         },
         {
           title: 'Adicionar Orçamento',
           route: ROUTES_PATH.garageAddBudget,
+          icon: 'circle-dollar-sign',
         },
         {
           title: 'Orçamentos',
           route: ROUTES_PATH.garageBuggetSearch,
+          icon: 'search',
         },
         {
           title: 'Consultar Placa',
           route: ROUTES_PATH.garageConsultationLicense,
+          icon: 'car',
         },
       ]}
     >
