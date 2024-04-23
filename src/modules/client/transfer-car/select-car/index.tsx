@@ -16,7 +16,7 @@ export default function SelectCarToTransfer() {
 
       <FormField
         control={control}
-        name="cpfToTransfer"
+        name="license"
         render={() => {
           return (
             <FormItem>

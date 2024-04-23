@@ -21,7 +21,7 @@ import { yup, yupValidators } from '@shared/form-validations';
 
 const transferCarSchema = yup
   .object({
-    license: yupValidators.StringValidator().required('Selecione um veículo seu'),
+    license: yupValidators.StringValidator().required('Selecione um veículo'),
     cpfToTransfer: yupValidators.CpfValidator().required(),
   })
   .strict();
