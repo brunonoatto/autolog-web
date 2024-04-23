@@ -5,6 +5,7 @@ import Router from '@core/router';
 import { AuthProvider } from '@core/store/context/AuthContext';
 import { ThemeProvider } from '@core/store/context/ThemeProvider';
 import BigSpinner from '@layout/body-app/big-spinner';
+import { Toaster } from '@shared/design-system/ui/toaster';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,6 +21,7 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider defaultTheme="dark" storageKey="autolog-theme">
         <BigSpinner />
+        <Toaster />
 
         <AuthProvider>
           <Router />
