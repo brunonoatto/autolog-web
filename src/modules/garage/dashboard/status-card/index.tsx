@@ -32,8 +32,12 @@ const StatusCard = ({ onClick, item }: TStatusCardProps) => {
               <TooltipTrigger>
                 <Icon name="info" className="text-teal-600" />
               </TooltipTrigger>
-              <TooltipContent className="max-w-80">
-                <b>Observação:</b> {observation}
+              <TooltipContent className="max-w-80 text-left space-y-2" align="start">
+                <p className="flex justify-start items-center gap-2">
+                  <Icon className="inline" name="notebook-pen" />
+                  <b>Observação:</b>
+                </p>
+                <p>{observation}</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>

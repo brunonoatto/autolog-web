@@ -14,7 +14,7 @@ import {
 function ClientBudgetViewContent() {
   const { data: budget } = useGetBudget();
 
-  const { createdDate, status, car } = budget || {};
+  const { createdDate, status, car, observation } = budget || {};
 
   if (!budget) {
     return <>Loading...</>;
@@ -27,7 +27,7 @@ function ClientBudgetViewContent() {
       </CardHeader>
 
       <CardContent>
-        <BudgetCard createdDate={createdDate} status={status} car={car} />
+        <BudgetCard createdDate={createdDate} status={status} car={car} observation={observation} />
 
         <BudgetTable />
       </CardContent>

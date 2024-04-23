@@ -9,7 +9,7 @@ import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
 function GarageBudgetViewContent() {
   const { budget } = useBudgetView();
-  const { status, car } = budget || {};
+  const { status, car, observation } = budget || {};
 
   const allowEditBudget = status === BudgetStatusEnum.MakingBudget;
 
@@ -20,7 +20,7 @@ function GarageBudgetViewContent() {
   return (
     <Container title="Orçamento">
       <Container.Content>
-        <BudgetCard status={status} car={car} />
+        <BudgetCard status={status} car={car} observation={observation} />
 
         {allowEditBudget && <BudgetViewForm />}
 
