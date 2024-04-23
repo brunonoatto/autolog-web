@@ -17,7 +17,7 @@ export default function CarCard({ car }: TCarCardProps) {
   const licenseSelected = watch('license');
 
   const handleCardClick = () => {
-    setValue('license', car.license);
+    setValue('license', car.license, { shouldValidate: true });
   };
 
   const handleClearSelectedCar: MouseEventHandler<HTMLButtonElement> = (e) => {
