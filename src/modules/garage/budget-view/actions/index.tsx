@@ -1,5 +1,3 @@
-import React from 'react';
-
 import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
 import BackToBudget from '@modules/garage/budget-view/actions/back-to-budget';
 import CompletedService from '@modules/garage/budget-view/actions/completed-budget';

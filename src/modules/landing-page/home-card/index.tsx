@@ -1,5 +1,4 @@
-import React from 'react';
-
+import { TRoute } from '@core/router/consts';
 import {
   Card,
   CardContent,
@@ -13,7 +12,7 @@ type TCardProps = {
   title: string;
   infos: string[];
   price: React.ReactNode;
-  linkRoute: string;
+  linkRoute: TRoute;
   linkText: string;
 };
 const HomeCard = ({ title, infos, price, linkRoute, linkText }: TCardProps) => {

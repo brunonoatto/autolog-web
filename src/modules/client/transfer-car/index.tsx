@@ -3,11 +3,9 @@ import {} from 'module';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 
 import { TCar } from '@core/api/car/types';
 import { TClientResponse } from '@core/api/client/types';
-import { ROUTES_PATH } from '@core/router/consts';
 import { useTransferCar } from '@core/service/car';
 import { useClientCars } from '@core/service/client';
 import { useLoadingStore } from '@core/store/hooks';
@@ -19,6 +17,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/
 import Modal from '@shared/design-system/ui/modal';
 import { useToast } from '@shared/design-system/ui/use-toast';
 import { yup, yupValidators } from '@shared/form-validations';
+import useNavigateApp from '@shared/hooks/useNavigateApp';
 
 const transferCarSchema = yup
   .object({
@@ -34,7 +33,7 @@ export default function ClientTransferCar() {
   const [clientToTrasnferData, setClientToTrasnferData] = useState<TClientResponse>();
 
   const { toast } = useToast();
-  const navigate = useNavigate();
+  const navigate = useNavigateApp();
   const loading = useLoadingStore((prop) => prop.loading);
   const { data: clientCars } = useClientCars();
   const { mutate } = useTransferCar();
@@ -60,7 +59,7 @@ export default function ClientTransferCar() {
     mutate(formValues, {
       onSuccess: () => {
         toast({ title: 'Transferência realizada com sucesso' });
-        navigate(ROUTES_PATH.clientBudgetSearch);
+        navigate('/cliente/orcamentos');
       },
       onSettled: () => {
         loading(false);

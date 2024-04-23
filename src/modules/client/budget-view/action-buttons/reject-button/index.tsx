@@ -1,17 +1,16 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-import { ROUTES_PATH } from '@core/router/consts';
 import { useRemakeBudget } from '@core/service/budget';
 import useAuth from '@core/store/context/hooks/useAuth';
 import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
 import IconButton from '@shared/design-system/ui/icon-button';
 import Modal from '@shared/design-system/ui/modal';
+import useNavigateApp from '@shared/hooks/useNavigateApp';
 
 export default function RejectButton() {
   const [openConfirmModal, setOpenConfirmModal] = useState(false);
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
-  const navigate = useNavigate();
+  const navigate = useNavigateApp();
   const { isAuthenticated } = useAuth();
   const { mutate } = useRemakeBudget();
 
@@ -20,9 +19,9 @@ export default function RejectButton() {
 
   const handleGoToBudgets = () => {
     if (isAuthenticated) {
-      navigate(ROUTES_PATH.clientBudgetSearch);
+      navigate('/cliente/orcamentos');
     } else {
-      navigate(ROUTES_PATH.budgetRejectedWithoutLogin);
+      navigate('/orcamento-rejeitado');
     }
   };
 

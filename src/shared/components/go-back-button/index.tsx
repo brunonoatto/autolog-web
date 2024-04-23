@@ -1,9 +1,8 @@
-import { useNavigate } from 'react-router-dom';
-
 import { Button } from '@shared/design-system/ui/button';
+import useNavigateApp from '@shared/hooks/useNavigateApp';
 
 const GoBackButton = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigateApp();
 
   const handleGoBack = () => {
     navigate(-1);

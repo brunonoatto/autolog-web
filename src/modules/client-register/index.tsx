@@ -1,9 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 
-import { ROUTES_PATH } from '@core/router/consts';
 import { useCreateClient } from '@core/service/client';
 import { useLoadingStore } from '@core/store/hooks';
 import HomeLink from '@layout/body-app/header/home-link';
@@ -13,6 +11,7 @@ import { CardTitle } from '@shared/design-system/ui/card';
 import { Input } from '@shared/design-system/ui/input';
 import Modal from '@shared/design-system/ui/modal';
 import { yup, yupValidators } from '@shared/form-validations/index';
+import useNavigateApp from '@shared/hooks/useNavigateApp';
 
 const schema = yup
   .object({
@@ -33,7 +32,7 @@ export default function ClientRegister() {
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
   const loading = useLoadingStore((state) => state.loading);
   const { mutate } = useCreateClient();
-  const navigate = useNavigate();
+  const navigate = useNavigateApp();
 
   const form = useForm({
     resolver: yupResolver(schema),
@@ -52,7 +51,7 @@ export default function ClientRegister() {
   };
 
   const handleGoToClientLogin = () => {
-    navigate(ROUTES_PATH.login);
+    navigate('/login');
   };
 
   return (

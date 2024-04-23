@@ -1,16 +1,14 @@
-import { useNavigate } from 'react-router-dom';
-
-import { ROUTES_PATH } from '@core/router/consts';
 import { useListBudgets } from '@core/service/budget';
 import BudgetCard from '@shared/components/budget-card';
 import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
+import useNavigateApp from '@shared/hooks/useNavigateApp';
 
 export default function ListBudgets() {
-  const navigate = useNavigate();
+  const navigate = useNavigateApp();
   const { data: budgets } = useListBudgets();
 
   const handleBudgetSelected = (os: string) => {
-    navigate(`${ROUTES_PATH.garageBudgetView}/${os}`);
+    navigate(['/garage/orcamento', os]);
   };
 
   return (

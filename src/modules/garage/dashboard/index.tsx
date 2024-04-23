@@ -1,18 +1,16 @@
-import { useNavigate } from 'react-router-dom';
-
-import { ROUTES_PATH } from '@core/router/consts';
 import { useListDashboard } from '@core/service/dashboard';
 import LinkButton from '@shared/design-system/ui/link-button';
+import useNavigateApp from '@shared/hooks/useNavigateApp';
 
 import StatusCard from './status-card';
 import StatusCardSkeleton from './status-card-skeleton';
 
 export default function Dashboard() {
-  const navigate = useNavigate();
+  const navigate = useNavigateApp();
   const { data: dashboardItem, isLoading, isRefetching } = useListDashboard();
 
   const handleSelectCar = (os: string) => {
-    navigate(`${ROUTES_PATH.garageBudgetView}/${os}`);
+    navigate(['/garage/orcamento', os]);
   };
 
   return (
@@ -27,7 +25,7 @@ export default function Dashboard() {
         </>
       ) : (
         <>
-          <LinkButton to={ROUTES_PATH.garageAddBudget} className="md:hidden h-16">
+          <LinkButton to="/garage/orcamento" className="md:hidden h-16">
             Adicionar Orçamento
           </LinkButton>
 

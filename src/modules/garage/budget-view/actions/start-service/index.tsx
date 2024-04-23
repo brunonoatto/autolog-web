@@ -1,22 +1,21 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-import { ROUTES_PATH } from '@core/router/consts';
 import { useStartServiceBudget } from '@core/service/budget';
 import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
 import IconButton from '@shared/design-system/ui/icon-button';
 import Modal from '@shared/design-system/ui/modal';
+import useNavigateApp from '@shared/hooks/useNavigateApp';
 
 export default function StartService() {
   const [openModal, setOpenModal] = useState(false);
-  const navigate = useNavigate();
+  const navigate = useNavigateApp();
   const { mutate } = useStartServiceBudget();
 
   const { budget } = useBudgetView();
   const { os = '' } = budget || {};
 
   const handleGoToDashboard = () => {
-    navigate(ROUTES_PATH.garageDashboard);
+    navigate('/garage/dashboard');
   };
 
   const handleSendForApproval = () => {

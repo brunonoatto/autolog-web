@@ -1,18 +1,18 @@
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
-import { ROUTES_PATH } from '@core/router/consts';
 import { useListBudgets } from '@core/service/budget';
 import BudgetCard from '@shared/components/budget-card';
 import ClientCarSelect from '@shared/components/selects/client-cars';
 import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
+import useNavigateApp from '@shared/hooks/useNavigateApp';
 
 export default function ClientBudgetSearch() {
-  const navigate = useNavigate();
+  const navigate = useNavigateApp();
   const [, setSearchParams] = useSearchParams();
   const { data: budgets = [] } = useListBudgets();
 
   const handleGoToBudget = (os: string) => {
-    navigate(`${ROUTES_PATH.clientBudgetView}/${os}`);
+    navigate(['/cliente/orcamento', os]);
   };
 
   const handleLicenseFilterChange = (value: string) => {

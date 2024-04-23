@@ -1,5 +1,3 @@
-import { useNavigate } from 'react-router-dom';
-
 import { Button } from '@shared/design-system/ui/button';
 import {
   type TMenuContentItem,
@@ -9,13 +7,14 @@ import {
   handleCloseMenuContent,
   MENU_CONTENT_ID,
 } from '@shared/design-system/ui/menu-content/helpers';
+import useNavigateApp from '@shared/hooks/useNavigateApp';
 
 type TMenuContentListProps = {
   items: TMenuContentProps['items'];
 };
 
 export default function MenuContentList({ items }: TMenuContentListProps) {
-  const navigate = useNavigate();
+  const navigate = useNavigateApp();
 
   const handleMenuClick =
     (

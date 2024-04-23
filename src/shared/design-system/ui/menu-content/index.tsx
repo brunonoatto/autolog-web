@@ -1,4 +1,5 @@
-import IconButton, { TIconButtonProps } from '@shared/design-system/ui/icon-button';
+import type { TRoute } from '@core/router/consts';
+import IconButton, { type TIconButtonProps } from '@shared/design-system/ui/icon-button';
 import {
   handleCloseMenuContent,
   handleToogleMenuContent,
@@ -7,7 +8,7 @@ import MenuContentList from '@shared/design-system/ui/menu-content/menu-content-
 import useOutsideClick from '@shared/hooks/useOutsideClick';
 
 export type TMenuContentItem = {
-  route?: string;
+  route?: TRoute;
   onClick?: React.HTMLAttributes<HTMLButtonElement>['onClick'];
   title: string;
   dividerTop?: boolean;

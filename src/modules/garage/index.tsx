@@ -14,7 +14,7 @@ export default function GarageContent() {
         },
         {
           title: 'Adicionar Orçamento',
-          route: ROUTES_PATH.garageAddBudget,
+          route: ROUTES_PATH.garageBudget,
           icon: 'circle-dollar-sign',
         },
         {

@@ -42,9 +42,9 @@ export default function BudgetViewForm() {
     mutateAddBudgetItem(newData, {
       onSuccess: () => {
         refetch();
-        reset();
-        // TODO: Não funciona
+        // Se este setFocus ficar depois do reset não funciona
         setFocus('description');
+        reset();
       },
     });
   };

@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 
 import { ServiceApi } from '@core/api';
-import { ROUTES_PATH } from '@core/router/consts';
 import { useAddBudget } from '@core/service/budget';
 import { useListBrands, useListModelsBrand } from '@core/service/fipe';
 import {
@@ -19,10 +17,11 @@ import { CardTitle } from '@shared/design-system/ui/card';
 import { Input } from '@shared/design-system/ui/input';
 import Modal from '@shared/design-system/ui/modal';
 import { Textarea } from '@shared/design-system/ui/textarea';
+import useNavigateApp from '@shared/hooks/useNavigateApp';
 
 function AddCarContent() {
   const [generateOS, setGenerateOS] = useState('');
-  const navigate = useNavigate();
+  const navigate = useNavigateApp();
   const { mutate } = useAddBudget();
   const loading = useLoadingStore((state) => state.loading);
 
@@ -44,11 +43,11 @@ function AddCarContent() {
   const { data: listModels } = useListModelsBrand(brandId);
 
   const handleSuccessConfirm = () => {
-    navigate(`${ROUTES_PATH.garageBudgetView}/${generateOS}`);
+    navigate(['/garage/orcamento', generateOS]);
   };
 
   const handleSuccessCancel = () => {
-    navigate(ROUTES_PATH.garageDashboard);
+    navigate('/garage/dashboard');
   };
 
   const handleValid: SubmitHandler<TGarageAddCarFormType> = async (formValues) => {
@@ -109,7 +108,7 @@ function AddCarContent() {
         </FormField>
 
         <FormField
-          className="lg:row-start-2 md:col-span-2"
+          className="lg:row-start-3 md:col-span-2"
           control={control}
           name="name"
           label="Nome Cliente"
@@ -117,7 +116,7 @@ function AddCarContent() {
           <Input disabled={!!selectedClient} />
         </FormField>
 
-        <FormField className="lg:row-start-2" control={control} name="phone" label="Telefone">
+        <FormField className="lg:row-start-3" control={control} name="phone" label="Telefone">
           <Input disabled={!!selectedClient} />
         </FormField>
 

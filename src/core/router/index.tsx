@@ -81,11 +81,11 @@ const router = createBrowserRouter([
             Component: GarageDashboard,
           },
           {
-            path: ROUTES_PATH.garageAddBudget,
+            path: ROUTES_PATH.garageBudget,
             Component: GarageAddCar,
           },
           {
-            path: `${ROUTES_PATH.garageBudgetView}/:os?`,
+            path: `${ROUTES_PATH.garageBudget}/:os?`,
             Component: GarageBudgetView,
           },
           {

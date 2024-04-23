@@ -1,16 +1,15 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-import { ROUTES_PATH } from '@core/router/consts';
 import { useSendForApproveBudget } from '@core/service/budget';
 import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
 import useSendWhatApp from '@modules/garage/budget-view/hooks/useSendWhatsApp';
 import IconButton from '@shared/design-system/ui/icon-button';
 import Modal from '@shared/design-system/ui/modal';
+import useNavigateApp from '@shared/hooks/useNavigateApp';
 
 export default function SendForApproval() {
   const [openModal, setOpenModal] = useState(false);
-  const navigate = useNavigate();
+  const navigate = useNavigateApp();
   const { mutate } = useSendForApproveBudget();
   const { sendWhatsApp } = useSendWhatApp();
 
@@ -18,7 +17,7 @@ export default function SendForApproval() {
   const { os = '' } = budget || {};
 
   const handleGoToDashboard = () => {
-    navigate(ROUTES_PATH.garageDashboard);
+    navigate('/garage/dashboard');
   };
 
   const handleSendWhatsApp = async () => {

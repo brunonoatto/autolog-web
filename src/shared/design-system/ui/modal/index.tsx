@@ -9,7 +9,7 @@ import Portal from '@shared/design-system/ui/portal';
 type TModalProps = PropsWithChildren & {
   open: boolean;
   title?: ReactNode;
-  icon: TIcons;
+  icon?: TIcons;
   confirmText?: string;
   cancelText?: string;
   confirmVariant?: TButtonProps['variant'];
