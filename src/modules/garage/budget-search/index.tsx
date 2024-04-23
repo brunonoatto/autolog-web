@@ -37,7 +37,7 @@ export default function BudgetSearch() {
 
   return (
     <div className="flex flex-col gap-y-2">
-      <Form form={form} onValid={handleValid} title="Buscar orçamento">
+      <Form form={form} onValid={handleValid} title="Buscar orçamento" icon="search">
         <FormField className="col-span-full" control={control} name="license" label="Placa">
           <Input className="w-36 h-8 text-xl font-bold uppercase" maxLength={10} />
         </FormField>
