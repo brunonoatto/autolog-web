@@ -12,7 +12,7 @@ export default function ClientContent() {
           route: ROUTES_PATH.clientBudgetSearch,
         },
         {
-          title: 'Transferir veiculo',
+          title: 'Transferir veículo',
           route: ROUTES_PATH.clientTransfer,
         },
         {

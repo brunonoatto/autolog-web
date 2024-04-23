@@ -9,7 +9,7 @@ export const ROUTES_PATH = {
   garageRegister: '/cadastro-garagem',
   garageHome: '/garage',
   garageDashboard: '/garage/dashboard',
-  garageAddVeiculo: '/garage/add-veiculo',
+  garageAddBudget: '/garage/orcamento',
   garageBuggetSearch: '/garage/orcamentos',
   garageBudgetView: '/garage/orcamento',
   garageConsultationLicense: '/garage/consulta-placa',

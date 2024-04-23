@@ -27,8 +27,8 @@ export default function Dashboard() {
         </>
       ) : (
         <>
-          <LinkButton to="/garage/add-veiculo" className="md:hidden h-20 md:h-32">
-            Adicionar veiculo
+          <LinkButton to={ROUTES_PATH.garageAddBudget} className="md:hidden h-20 md:h-32">
+            Adicionar Orçamento
           </LinkButton>
 
           {dashboardItem?.map((item) => (

@@ -12,8 +12,8 @@ export default function GarageContent() {
           route: ROUTES_PATH.garageDashboard,
         },
         {
-          title: 'Adicionar veiculo',
-          route: ROUTES_PATH.garageAddVeiculo,
+          title: 'Adicionar Orçamento',
+          route: ROUTES_PATH.garageAddBudget,
         },
         {
           title: 'Orçamentos',
