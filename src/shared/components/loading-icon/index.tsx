@@ -1,5 +1,13 @@
+import { twMerge } from 'tailwind-merge';
+
 import Icon from '@shared/design-system/ui/icon';
 
-export default function LoadingIcon() {
-  return <Icon className="inline text-primary animate-spin" name="rotate-cw" />;
+type TLoadingIconProps = {
+  className?: string;
+};
+
+export default function LoadingIcon({ className }: TLoadingIconProps) {
+  return (
+    <Icon className={twMerge('inline text-primary animate-spin', className)} name="rotate-cw" />
+  );
 }
