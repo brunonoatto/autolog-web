@@ -26,14 +26,33 @@ type TInputFormProps<T extends FieldValues> = {
   labelProps?: any;
 };
 
-const handleEvents = (event1: TEvent, event2: TEvent, ...params: any) => {
-  event1?.(...params);
-  event2?.(...params);
+const handleEvents = (event1: TEvent, event2: TEvent, valueAsNumber: boolean, ...params: any[]) => {
+  const [_, ...otherParams] = params;
+  let [event] = params;
+
+  if (valueAsNumber && event?.target && 'value' in event.target) {
+    let newValue: number | string = event.target.value === '' ? NaN : +event.target.value;
+    if (isNaN(newValue)) newValue = '';
+
+    event = {
+      ...event,
+      target: {
+        ...event.target,
+        value: newValue,
+      },
+    };
+  }
+
+  const eventParams = [event, ...otherParams];
+  event1?.(...eventParams);
+  event2?.(...eventParams);
 };
 
 export default function FormField<T extends FieldValues>(props: TInputFormProps<T>) {
   const { className, name, label, description, children } = props;
   const { control } = useFormContext();
+
+  const valueAsNumber = children?.props?.type === 'number';
 
   return (
     <FormFieldUI
@@ -46,9 +65,11 @@ export default function FormField<T extends FieldValues>(props: TInputFormProps<
             <FormControl>
               {React.cloneElement(children, {
                 ...field,
+                value: field?.value ?? '',
                 onChange: (event: any) =>
-                  handleEvents(field.onChange, children.props?.onChange, event),
-                onBlur: (event: any) => handleEvents(field.onBlur, children.props?.onBlur, event),
+                  handleEvents(field.onChange, children.props?.onChange, valueAsNumber, event),
+                onBlur: (event: any) =>
+                  handleEvents(field.onBlur, children.props?.onBlur, valueAsNumber, event),
               })}
             </FormControl>
 
