@@ -6,6 +6,8 @@ export type TCar = {
   year: number;
 };
 
+export type TNewCar = Omit<TCar, 'clientId'>;
+
 export type TCarGetResponse = TCar & {
   isTransfered: boolean;
 };
