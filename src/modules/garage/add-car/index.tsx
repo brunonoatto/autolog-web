@@ -47,7 +47,7 @@ function AddCarContent() {
   };
 
   const handleSuccessCancel = () => {
-    navigate('/garage/dashboard');
+    navigate('/garage');
   };
 
   const handleValid: SubmitHandler<TGarageAddCarFormType> = async (formValues) => {

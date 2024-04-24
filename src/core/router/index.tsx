@@ -78,7 +78,6 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            path: urlJoin(ROUTES_PATH.garageDashboard, ':license?'),
             Component: GarageDashboard,
           },
           {
@@ -113,7 +112,7 @@ const router = createBrowserRouter([
         Component: ClientContent,
         children: [
           {
-            path: ROUTES_PATH.clientBudgetSearch,
+            index: true,
             Component: ClientBudgetSearch,
           },
           {

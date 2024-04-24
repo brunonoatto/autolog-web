@@ -6,7 +6,7 @@ export default function ClientContent() {
       menus={[
         {
           title: 'Orçamentos',
-          route: '/cliente/orcamentos',
+          route: '/cliente',
           icon: 'receipt',
         },
         {

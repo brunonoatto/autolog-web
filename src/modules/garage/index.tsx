@@ -6,7 +6,7 @@ export default function GarageContent() {
       menus={[
         {
           title: 'Dashboard',
-          route: '/garage/dashboard',
+          route: '/garage',
           icon: 'trello',
         },
         {

@@ -19,7 +19,7 @@ export default function RemakeBudget() {
   };
 
   const handleGoToDashboard = () => {
-    navigate('/garage/dashboard');
+    navigate('/garage');
   };
 
   const handleRemake = () => {

@@ -19,7 +19,7 @@ export default function RejectButton() {
 
   const handleGoToBudgets = () => {
     if (isAuthenticated) {
-      navigate('/cliente/orcamentos');
+      navigate('/cliente');
     } else {
       navigate('/orcamento-rejeitado');
     }

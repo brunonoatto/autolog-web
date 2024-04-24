@@ -15,7 +15,7 @@ export default function CompletedService() {
   const { os = '' } = budget || {};
 
   const handleGoToDashboard = () => {
-    navigate('/garage/dashboard');
+    navigate('/garage');
   };
 
   const handleSendForApproval = () => {

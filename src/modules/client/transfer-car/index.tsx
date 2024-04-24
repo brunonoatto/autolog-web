@@ -59,7 +59,7 @@ export default function ClientTransferCar() {
     mutate(formValues, {
       onSuccess: () => {
         toast({ title: 'Transferência realizada com sucesso' });
-        navigate('/cliente/orcamentos');
+        navigate('/cliente');
       },
       onSettled: () => {
         loading(false);

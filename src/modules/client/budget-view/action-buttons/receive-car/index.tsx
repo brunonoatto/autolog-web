@@ -15,7 +15,7 @@ export default function ReceiveButton() {
   const { os = '' } = budget || {};
 
   const handleGoToBudgets = () => {
-    navigate('/cliente/orcamentos');
+    navigate('/cliente');
   };
 
   const handleRejectBudget = () => {

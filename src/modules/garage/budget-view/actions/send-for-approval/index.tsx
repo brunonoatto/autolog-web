@@ -17,7 +17,7 @@ export default function SendForApproval() {
   const { os = '' } = budget || {};
 
   const handleGoToDashboard = () => {
-    navigate('/garage/dashboard');
+    navigate('/garage');
   };
 
   const handleSendWhatsApp = async () => {

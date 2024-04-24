@@ -15,7 +15,7 @@ export default function BackToBudget() {
   const { os = '' } = budget || {};
 
   const handleGoToDashboard = () => {
-    navigate('/garage/dashboard');
+    navigate('/garage');
   };
 
   const handleSendForApproval = () => {
