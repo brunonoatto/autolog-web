@@ -11,11 +11,12 @@ export const get = async (license: string): Promise<AxiosResponse<TCar>> => {
 };
 
 export const getByClient = async ({
-  clientId,
-  transfereds,
+  clientId = '',
+  transfereds = false,
 }: TGetByClientParams): Promise<AxiosResponse<TCarGetResponse[]>> => {
   const response = await httpClient.get<TCarGetResponse[]>(`${BASE_URL}/client/${clientId}`, {
     params: { transfereds },
+    data: { noShowError: true },
   });
   return response;
 };
