@@ -51,14 +51,14 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     return () => {
       httpClient.interceptors.response.eject(responseInterceptorId);
     };
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <AppContext.Provider value={{}}>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider defaultTheme="dark" storageKey="autolog-theme">
-          <BigSpinner />
           <Toaster />
+          <BigSpinner />
 
           <AuthProvider>{children}</AuthProvider>
 
