@@ -21,13 +21,13 @@ export default function SelectCpfToTransfer({ clientData, setClient }: TSelectCp
 
   const { control } = useFormContext<TTransferCarForm>();
 
-  const handleGetClient = async (cpf: string) => {
-    if (cpf.length !== 11 && cpf.length !== 14) return;
+  const handleGetClient = async (cpf_cnpj: string) => {
+    if (cpf_cnpj.length !== 11 && cpf_cnpj.length !== 14) return;
 
     setCpfIsLoading(true);
 
     try {
-      const { data: clientData } = await ServiceApi.ClientApi.get({ cpf_cnpj: cpf });
+      const { data: clientData } = await ServiceApi.ClientApi.get({ cpf_cnpj });
       setClient(clientData);
     } finally {
       setCpfIsLoading(false);
