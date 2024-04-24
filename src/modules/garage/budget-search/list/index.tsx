@@ -1,5 +1,6 @@
 import { useListBudgets } from '@core/service/budget';
 import BudgetCard from '@shared/components/budget-card';
+import { Alert, AlertTitle } from '@shared/design-system/ui/alert';
 import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
 import useNavigateApp from '@shared/hooks/useNavigateApp';
 
@@ -11,8 +12,6 @@ export default function ListBudgets() {
     navigate(['/garage/orcamento', os]);
   };
 
-  // TODO: fazer card para quando não retornar resultados
-
   return (
     <Card>
       <CardHeader>
@@ -20,6 +19,12 @@ export default function ListBudgets() {
       </CardHeader>
 
       <CardContent>
+        {!budgets?.length && (
+          <Alert>
+            <AlertTitle>Nenhum orçamento encontrado!</AlertTitle>
+          </Alert>
+        )}
+
         {budgets?.map(({ os, createdDate, status, clientName, car }) => {
           return (
             <button key={os} className="w-full" onClick={() => handleBudgetSelected(os)}>
