@@ -1,11 +1,10 @@
-import { DefaultError } from '@tanstack/react-query';
+import { DefaultError, useMutation } from '@tanstack/react-query';
 
 import { ServiceApi } from '@core/api';
 import type { TNewGarage } from '@core/api/garage/types';
-import useMutationApp from '@shared/hooks/useMutationApp';
 
 export const useCreateGarage = () => {
-  return useMutationApp<boolean, DefaultError, TNewGarage>({
+  return useMutation<boolean, DefaultError, TNewGarage>({
     mutationFn: async (data) => {
       const response = await ServiceApi.GarageApi.post(data);
 
