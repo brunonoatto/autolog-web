@@ -1,7 +1,7 @@
 export type TGarage = {
   id: string;
   name: string;
-  cnpj_cpf: string;
+  cnpj: string;
   phone: string;
   email: string;
   address: string;

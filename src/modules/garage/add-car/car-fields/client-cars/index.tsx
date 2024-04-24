@@ -1,22 +1,8 @@
-import { useFormContext } from 'react-hook-form';
-
-import type { TCar } from '@core/api/car/types';
-import type { TGarageAddCarFormType } from '@core/store/context/GarageAddCarContext';
 import useGarageAddCarContext from '@core/store/context/hooks/useGarageAddCar';
-import { Button } from '@shared/design-system/ui/button';
+import ClientCarButton from '@modules/garage/add-car/car-fields/client-cars/client-car-button';
 
 export default function ClientCars() {
-  const handleSelectedClientCar = useGarageAddCarContext((prop) => prop.handleSelectedClientCar);
   const selectedClient = useGarageAddCarContext((prop) => prop.selectedClient);
-
-  const { watch } = useFormContext<TGarageAddCarFormType>();
-
-  const selectedLicense = watch('license');
-
-  const handleSelectedCar = (car: TCar) => (event: React.MouseEvent) => {
-    event?.preventDefault();
-    handleSelectedClientCar(car);
-  };
 
   if (!selectedClient || !selectedClient.cars?.length) {
     return null;
@@ -26,7 +12,7 @@ export default function ClientCars() {
     <div className="col-span-full">
       <div>Carros do Cliente:</div>
       <div className="flex gap-2 pt-2 overflow-x-auto">
-        {selectedClient?.cars?.map((car) => {
+        {selectedClient.cars.map((car) => {
           return (
             // <Tooltip
             //   key={license}
@@ -36,14 +22,7 @@ export default function ClientCars() {
             //     </>
             //   }
             // >
-            <Button
-              key={car.license}
-              variant={selectedLicense === car.license ? 'outline-active' : 'outline'}
-              size="sm"
-              onClick={handleSelectedCar(car)}
-            >
-              {car.license}
-            </Button>
+            <ClientCarButton key={car.license} car={car} />
             // </Tooltip>
           );
         })}

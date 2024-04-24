@@ -11,12 +11,12 @@ export const post = async (newClient: TNewClient): Promise<AxiosResponse<boolean
 };
 
 export const get = async ({
-  cpf,
+  cpf_cnpj,
   email,
   withCars = false,
 }: TGetClientParams): Promise<AxiosResponse<TClientResponse>> => {
   const response = await httpClient.get<TClientResponse>(BASE_URL, {
-    params: { cpf, email, withCars },
+    params: { cpf_cnpj, email, withCars },
   });
   return response;
 };

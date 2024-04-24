@@ -1,5 +1,6 @@
-import { yupResolver } from '@hookform/resolvers/yup';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import z from 'zod';
 
 import useAuth from '@core/store/context/hooks/useAuth';
 import { useLoadingStore } from '@core/store/hooks';
@@ -7,27 +8,23 @@ import HomeLink from '@layout/body-app/header/home-link';
 import Form from '@shared/components/form';
 import FormField from '@shared/components/form/form-field';
 import { Input } from '@shared/design-system/ui/input';
-import { yup, yupValidators } from '@shared/form-validations';
+import { zodValidators } from '@shared/form-validations';
 
-const schema = yup
+const loginFormSchema = z
   .object({
-    email: yupValidators.EmailValidator().required(),
-    password: yupValidators.StringValidator().required(),
+    email: zodValidators.Email(),
+    password: zodValidators.String(),
   })
-  .required();
+  .strict();
 
-type TLoginType = yup.InferType<typeof schema>;
+type TLoginType = z.infer<typeof loginFormSchema>;
 
 export default function Login() {
   const loading = useLoadingStore((state) => state.loading);
   const { login } = useAuth();
 
-  const form = useForm({
-    defaultValues: {
-      email: '',
-      password: '',
-    },
-    resolver: yupResolver(schema),
+  const form = useForm<TLoginType>({
+    resolver: zodResolver(loginFormSchema),
   });
   const { control } = form;
 

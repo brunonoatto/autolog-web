@@ -1,8 +1,7 @@
-import {} from 'module';
-
-import { yupResolver } from '@hookform/resolvers/yup';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import z from 'zod';
 
 import { TCar } from '@core/api/car/types';
 import { TClientResponse } from '@core/api/client/types';
@@ -14,19 +13,20 @@ import SelectCpfToTransfer from '@modules/client/transfer-car/select-cpf';
 import CarInfo from '@shared/components/car-info';
 import Form from '@shared/components/form';
 import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
+import IconButton from '@shared/design-system/ui/icon-button';
 import Modal from '@shared/design-system/ui/modal';
 import { useToast } from '@shared/design-system/ui/use-toast';
-import { yup, yupValidators } from '@shared/form-validations';
+import { zodValidators } from '@shared/form-validations';
 import useNavigateApp from '@shared/hooks/useNavigateApp';
 
-const transferCarSchema = yup
+const transferCarSchema = z
   .object({
-    license: yupValidators.StringValidator().required('Selecione um veículo'),
-    cpfToTransfer: yupValidators.CpfValidator().required(),
+    license: zodValidators.String({ requiredMessage: 'Selecione um veículo' }),
+    cpfOrCnpjToTransfer: zodValidators.CpfOrCnpj(),
   })
   .strict();
 
-export type TTransferCarForm = yup.InferType<typeof transferCarSchema>;
+export type TTransferCarForm = z.infer<typeof transferCarSchema>;
 
 export default function ClientTransferCar() {
   const [openModal, setOpenModal] = useState(false);
@@ -38,9 +38,9 @@ export default function ClientTransferCar() {
   const { data: clientCars } = useClientCars();
   const { mutate } = useTransferCar();
 
-  const form = useForm({
+  const form = useForm<TTransferCarForm>({
     mode: 'onSubmit',
-    resolver: yupResolver(transferCarSchema),
+    resolver: zodResolver(transferCarSchema),
   });
   const { watch, setError, getValues } = form;
 
@@ -67,14 +67,35 @@ export default function ClientTransferCar() {
     });
   };
 
+  const handleGotoRegisterCar = () => {
+    // navigate('/cliente/cadastrar-veiculo');
+  };
+
   const handleValid = () => {
     if (!clientToTrasnferData) {
-      setError('cpfToTransfer', { message: 'Insira um cpf que esteja cadastrado.' });
+      setError('cpfOrCnpjToTransfer', { message: 'Insira um cpf que esteja cadastrado' });
       return;
     }
 
     setOpenModal(true);
   };
+
+  if (!clientCars?.length) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle icon="folder-input">Transferência de veículo</CardTitle>
+        </CardHeader>
+
+        <CardContent>
+          <p>Você não tem nenhum veículo cadastrado para transferir.</p>
+          <IconButton icon="car" onClick={handleGotoRegisterCar}>
+            Cadastrar seu veículo
+          </IconButton>
+        </CardContent>
+      </Card>
+    );
+  }
 
   return (
     <>
@@ -118,7 +139,7 @@ export default function ClientTransferCar() {
             </CardHeader>
 
             <CardContent>
-              <div>CPF: {clientToTrasnferData?.cpf}</div>
+              <div>CPF: {clientToTrasnferData?.cpf_cnpj}</div>
               <div>Nome: {clientToTrasnferData?.name}</div>
             </CardContent>
           </Card>

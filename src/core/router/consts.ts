@@ -15,6 +15,7 @@ export enum ROUTES_PATH {
   clientBudgetView = '/cliente/orcamento',
   clientConsultationLicense = '/cliente/consulta-placa',
   clientTransfer = '/cliente/transferir',
+  clientRegisterCar = '/cliente/cadastrar-veiculo',
 }
 
 export type TRoute = `${ROUTES_PATH}`;

@@ -22,42 +22,47 @@ export default function SelectCpfToTransfer({ clientData, setClient }: TSelectCp
   const { control } = useFormContext<TTransferCarForm>();
 
   const handleGetClient = async (cpf: string) => {
+    if (cpf.length !== 11 && cpf.length !== 14) return;
+
     setCpfIsLoading(true);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      const { data: clientData } = await ServiceApi.ClientApi.get({ cpf });
+      const { data: clientData } = await ServiceApi.ClientApi.get({ cpf_cnpj: cpf });
       setClient(clientData);
     } finally {
       setCpfIsLoading(false);
     }
   };
 
-  const debounce = useDebouncedCallback(handleGetClient, 500);
+  const getClientDebounce = useDebouncedCallback(handleGetClient, 300);
 
   const handleCpfChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
+    if (clientData) setClient(undefined);
 
-    setClient(undefined);
-
-    if (value?.length >= 11) debounce(value);
+    getClientDebounce(e.target.value);
   };
 
   return (
     <>
       <CardTitle size="lg">Selecione para quem você quer transferir</CardTitle>
-      <div className="space-y-4 md:space-y-0 md:flex gap-4">
-        <FormField control={control} name="cpfToTransfer" label="CPF">
-          <Input className="md:w-40" onChange={handleCpfChange} />
+      <div className="flex items-start gap-2">
+        <FormField control={control} name="cpfOrCnpjToTransfer" label="CPF/CNPJ">
+          <Input
+            className="w-64"
+            onChange={handleCpfChange}
+            maxLength={14}
+            placeholder="Informe o CPF/CNPJ do destinatário"
+          />
         </FormField>
 
-        {cpfIsLoading && <LoadingIcon />}
-        {clientData && !cpfIsLoading && (
-          <ContainerSelected title="Usuário Selecionado" align="center">
-            {clientData?.name}
-          </ContainerSelected>
-        )}
+        {cpfIsLoading && <LoadingIcon className="mt-10" />}
       </div>
+
+      {clientData && !cpfIsLoading && (
+        <ContainerSelected title="Usuário Selecionado" align="center">
+          {clientData?.name}
+        </ContainerSelected>
+      )}
     </>
   );
 }

@@ -1,6 +1,7 @@
-import { yupResolver } from '@hookform/resolvers/yup';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 import { useCreateGarage } from '@core/service/garage';
 import { useLoadingStore } from '@core/store/hooks';
@@ -10,26 +11,23 @@ import FormField from '@shared/components/form/form-field';
 import { CardTitle } from '@shared/design-system/ui/card';
 import { Input } from '@shared/design-system/ui/input';
 import Modal from '@shared/design-system/ui/modal';
-import { yup, yupValidators } from '@shared/form-validations/index';
+import { zodValidators } from '@shared/form-validations/index';
+import { PasswordSchema } from '@shared/form-validations/validators';
 import useNavigateApp from '@shared/hooks/useNavigateApp';
 
-const schema = yup
+const registerGarageSchema = z
   .object({
-    name: yupValidators.StringValidator().required(),
-    cnpj_cpf: yupValidators.CnpjValidator().required(),
-    phone: yupValidators.StringValidator().required(),
-    email: yupValidators.EmailValidator().required(),
-    address: yupValidators.StringValidator().required(),
-    number: yupValidators.NumberValidator().required(),
-    complement: yupValidators.StringValidator({ size: 50 }),
-    password: yupValidators.StringValidator({ size: 25 }).required(),
-    passwordConfirm: yupValidators
-      .StringValidator({ size: 25 })
-      .oneOf([yup.ref('password')], 'Confirmação da senha inválida.'),
+    name: zodValidators.String({ minLength: 5 }),
+    cnpj: zodValidators.Cnpj(),
+    phone: zodValidators.String(),
+    email: zodValidators.Email(),
+    address: zodValidators.String(),
+    number: zodValidators.Number(),
+    complement: zodValidators.String({ maxLength: 50 }).optional(),
   })
-  .required();
+  .and(PasswordSchema);
 
-type TRegisterGarageFormType = yup.InferType<typeof schema>;
+type TRegisterGarageFormType = z.infer<typeof registerGarageSchema>;
 
 export default function GarageRegister() {
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
@@ -37,8 +35,8 @@ export default function GarageRegister() {
   const { mutate } = useCreateGarage();
   const navigate = useNavigateApp();
 
-  const form = useForm({
-    resolver: yupResolver(schema),
+  const form = useForm<TRegisterGarageFormType>({
+    resolver: zodResolver(registerGarageSchema),
   });
   const { control } = form;
 
@@ -74,7 +72,7 @@ export default function GarageRegister() {
             <FormField control={control} name="name" label="Nome">
               <Input />
             </FormField>
-            <FormField control={control} name="cnpj_cpf" label="CNPJ">
+            <FormField control={control} name="cnpj" label="CNPJ">
               <Input />
             </FormField>
             <FormField control={control} name="email" label="E-mail">

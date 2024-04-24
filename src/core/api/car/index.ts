@@ -22,10 +22,10 @@ export const getByClient = async ({
 
 export const transferCar = async (
   license: string,
-  cpfToTransfer: string,
+  cpfOrCnpjToTransfer: string,
 ): Promise<AxiosResponse<boolean>> => {
   const response = await httpClient.patch<boolean>(
-    `${BASE_URL}/${license}/transfer/${cpfToTransfer}`,
+    `${BASE_URL}/${license}/transfer/${cpfOrCnpjToTransfer}`,
   );
   return response;
 };

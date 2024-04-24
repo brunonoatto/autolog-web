@@ -29,7 +29,7 @@ export default function ClientBudgetSearch() {
         <CardTitle icon="receipt">Orçamentos</CardTitle>
       </CardHeader>
 
-      <CardContent>
+      <CardContent className="space-y-4">
         <ClientCarSelect label="Carro" onValueChange={handleLicenseFilterChange} />
 
         {budgets?.map(({ os, createdDate, status, car }) => {

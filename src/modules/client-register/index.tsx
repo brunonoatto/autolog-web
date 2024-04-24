@@ -1,6 +1,7 @@
-import { yupResolver } from '@hookform/resolvers/yup';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import z from 'zod';
 
 import { useCreateClient } from '@core/service/client';
 import { useLoadingStore } from '@core/store/hooks';
@@ -10,23 +11,20 @@ import FormField from '@shared/components/form/form-field';
 import { CardTitle } from '@shared/design-system/ui/card';
 import { Input } from '@shared/design-system/ui/input';
 import Modal from '@shared/design-system/ui/modal';
-import { yup, yupValidators } from '@shared/form-validations/index';
+import { zodValidators } from '@shared/form-validations/index';
+import { PasswordSchema } from '@shared/form-validations/validators';
 import useNavigateApp from '@shared/hooks/useNavigateApp';
 
-const schema = yup
+const registerClientSchema = z
   .object({
-    name: yupValidators.StringValidator().required().min(5),
-    cpf: yupValidators.CpfValidator().required(),
-    phone: yupValidators.StringValidator().required(),
-    email: yupValidators.EmailValidator().required(),
-    password: yupValidators.StringValidator({ size: 25 }).required(),
-    passwordConfirm: yupValidators
-      .StringValidator({ size: 25 })
-      .oneOf([yup.ref('password')], 'Confirmação da senha inválida.'),
+    name: zodValidators.String({ minLength: 5 }),
+    cpf_cnpj: zodValidators.CpfOrCnpj(),
+    phone: zodValidators.String(),
+    email: zodValidators.Email(),
   })
-  .required();
+  .and(PasswordSchema);
 
-type TRegisterClientFormType = yup.InferType<typeof schema>;
+type TRegisterClientFormType = z.infer<typeof registerClientSchema>;
 
 export default function ClientRegister() {
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
@@ -34,8 +32,8 @@ export default function ClientRegister() {
   const { mutate } = useCreateClient();
   const navigate = useNavigateApp();
 
-  const form = useForm({
-    resolver: yupResolver(schema),
+  const form = useForm<TRegisterClientFormType>({
+    resolver: zodResolver(registerClientSchema),
   });
   const { control } = form;
 
@@ -71,7 +69,7 @@ export default function ClientRegister() {
             <FormField control={control} name="name" label="Nome">
               <Input />
             </FormField>
-            <FormField control={control} name="cpf" label="CPF">
+            <FormField control={control} name="cpf_cnpj" label="CPF">
               <Input />
             </FormField>
             <FormField control={control} name="email" label="E-mail">

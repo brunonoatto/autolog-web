@@ -1,29 +1,30 @@
-import { yupResolver } from '@hookform/resolvers/yup';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { URLSearchParamsInit, useSearchParams } from 'react-router-dom';
+import z from 'zod';
 
 import ListBudgets from '@modules/garage/budget-search/list';
 import Form from '@shared/components/form';
 import FormField from '@shared/components/form/form-field';
 import { Input } from '@shared/design-system/ui/input';
-import { yup, yupValidators } from '@shared/form-validations';
+import { zodValidators } from '@shared/form-validations';
 
-const schema = yup
+const schema = z
   .object({
-    license: yupValidators.StringValidator(),
+    license: zodValidators.StringOptional(),
   })
-  .required();
+  .strict();
 
-export type TSearchBuggetFormType = yup.InferType<typeof schema>;
+export type TSearchBuggetFormType = z.infer<typeof schema>;
 
 export default function BudgetSearch() {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const form = useForm({
+  const form = useForm<TSearchBuggetFormType>({
     defaultValues: {
       license: searchParams.get('license') || undefined,
     },
-    resolver: yupResolver(schema),
+    resolver: zodResolver(schema),
   });
   const { control } = form;
 

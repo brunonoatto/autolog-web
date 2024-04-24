@@ -1,5 +1,6 @@
-import { yupResolver } from '@hookform/resolvers/yup';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import z from 'zod';
 
 import { TNewBudgetItem } from '@core/api/budget-item/types';
 import { useGetBudget } from '@core/service/budget';
@@ -8,17 +9,18 @@ import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
 import Form from '@shared/components/form';
 import FormField from '@shared/components/form/form-field';
 import { Input } from '@shared/design-system/ui/input';
-import { yup, yupValidators } from '@shared/form-validations';
+import { zodValidators } from '@shared/form-validations';
+import { MIN_INVALID_MSG } from '@shared/form-validations/consts';
 
-const schema = yup
+const schema = z
   .object({
-    description: yupValidators.StringValidator().required(),
-    qtd: yupValidators.NumberValidator().required(),
-    price: yupValidators.NumberValidator().required(),
+    description: zodValidators.String(),
+    qtd: zodValidators.Number().min(1, MIN_INVALID_MSG(0)),
+    price: zodValidators.Number().min(0.01, MIN_INVALID_MSG(0)),
   })
-  .required();
+  .strict();
 
-export type TBudgetItemFormType = yup.InferType<typeof schema>;
+export type TBudgetItemFormType = z.infer<typeof schema>;
 
 export default function BudgetViewForm() {
   const { mutate: mutateAddBudgetItem } = useAddBudgetItem();
@@ -27,9 +29,9 @@ export default function BudgetViewForm() {
   const { budget } = useBudgetView();
   const { os = '' } = budget || {};
 
-  const form = useForm({
-    defaultValues: { description: '', qtd: 1, price: 0 },
-    resolver: yupResolver(schema),
+  const form = useForm<TBudgetItemFormType>({
+    defaultValues: { qtd: 1 },
+    resolver: zodResolver(schema),
   });
   const { control, reset, setFocus } = form;
 

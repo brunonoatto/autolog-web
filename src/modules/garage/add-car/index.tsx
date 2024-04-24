@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
+import { useDebouncedCallback } from 'use-debounce';
 
-import { ServiceApi } from '@core/api';
 import { useAddBudget } from '@core/service/budget';
 import { useListBrands, useListModelsBrand } from '@core/service/fipe';
 import {
@@ -13,6 +13,7 @@ import { useLoadingStore } from '@core/store/hooks';
 import CarFields from '@modules/garage/add-car/car-fields';
 import Form from '@shared/components/form';
 import FormField from '@shared/components/form/form-field';
+import LoadingIcon from '@shared/components/loading-icon';
 import { CardTitle } from '@shared/design-system/ui/card';
 import { Input } from '@shared/design-system/ui/input';
 import Modal from '@shared/design-system/ui/modal';
@@ -25,17 +26,17 @@ function AddCarContent() {
   const { mutate } = useAddBudget();
   const loading = useLoadingStore((state) => state.loading);
 
-  const handleClearClientSelected = useGarageAddCarContext(
-    (prop) => prop.handleClearSelectedClient,
-  );
+  const isLoadingClient = useGarageAddCarContext((prop) => prop.isLoadingClient);
   const selectedClient = useGarageAddCarContext((prop) => prop.selectedClient);
   const handleClearSelectedClient = useGarageAddCarContext(
     (prop) => prop.handleClearSelectedClient,
   );
-  const handleSelectedClient = useGarageAddCarContext((prop) => prop.handleSelectedClient);
+  const handleLoadClient = useGarageAddCarContext((prop) => prop.handleLoadClient);
+
+  const handleLoadClientDebounce = useDebouncedCallback(handleLoadClient, 300);
 
   const form = useFormContext<TGarageAddCarFormType>();
-  const { control, getValues, watch, setValue } = form;
+  const { control, watch } = form;
 
   const brandId = watch('brand');
 
@@ -66,34 +67,12 @@ function AddCarContent() {
     );
   };
 
-  const loadClientCars = async () => {
-    const { cpf_cnpj } = getValues();
-
-    if (cpf_cnpj.length === 11) {
-      try {
-        const { data: clientData } = await ServiceApi.ClientApi.get({
-          cpf: cpf_cnpj,
-          withCars: true,
-        });
-
-        handleSelectedClient(clientData);
-
-        setValue('name', clientData.name);
-        setValue('phone', clientData.phone);
-      } catch {
-        handleClearClientSelected();
-      }
-    } else {
-      handleClearClientSelected();
-    }
-  };
-
-  const handleCpfChange = async () => {
+  const handleCpfChange = async (event: ChangeEvent<HTMLInputElement>) => {
     if (selectedClient) {
       handleClearSelectedClient();
     }
 
-    loadClientCars();
+    handleLoadClientDebounce(event.target.value);
   };
 
   return (
@@ -103,9 +82,18 @@ function AddCarContent() {
           Dados do Cliente
         </CardTitle>
 
-        <FormField control={control} name="cpf_cnpj" label="CPF/CNPJ">
-          <Input onChange={handleCpfChange} onBlur={loadClientCars} />
-        </FormField>
+        <div className="flex items-start gap-2">
+          <FormField className="flex-1" control={control} name="cpf_cnpj" label="CPF/CNPJ">
+            <Input
+              onChange={handleCpfChange}
+              maxLength={14}
+              placeholder="Informe o CPF/CNPJ do Cliente"
+            />
+          </FormField>
+
+          {/* TODO: pensar numa forma de mandar o isLoading para o FielField */}
+          {isLoadingClient && <LoadingIcon className="mt-10" />}
+        </div>
 
         <FormField
           className="lg:row-start-3 md:col-span-2"
@@ -113,11 +101,11 @@ function AddCarContent() {
           name="name"
           label="Nome Cliente"
         >
-          <Input disabled={!!selectedClient} />
+          <Input disabled={!!selectedClient} placeholder="Informe o nome do Cliente" />
         </FormField>
 
         <FormField className="lg:row-start-3" control={control} name="phone" label="Telefone">
-          <Input disabled={!!selectedClient} />
+          <Input disabled={!!selectedClient} placeholder="Informe o telefone do Cliente" />
         </FormField>
 
         <CarFields />
@@ -128,7 +116,7 @@ function AddCarContent() {
           name="observation"
           label="Observação"
         >
-          <Textarea rows={5} />
+          <Textarea rows={5} placeholder="Informe as observações do Orçamento" />
         </FormField>
       </Form>
 
