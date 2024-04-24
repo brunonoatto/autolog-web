@@ -1,6 +1,5 @@
 import { useListDashboard } from '@core/service/dashboard';
 import { CardTitle } from '@shared/design-system/ui/card';
-import IconButton from '@shared/design-system/ui/icon-button';
 import LinkButton from '@shared/design-system/ui/link-button';
 import useNavigateApp from '@shared/hooks/useNavigateApp';
 
