@@ -16,7 +16,7 @@ const ClientRegister = lazy(() => import('@modules/client-register'));
 const ConsultLicense = lazy(() => import('@modules/consult-license/index'));
 const GarageContent = lazy(() => import('@modules/garage'));
 const GarageDashboard = lazy(() => import('@modules/garage/dashboard'));
-const GarageAddCar = lazy(() => import('@modules/garage/add-car'));
+const GarageBudgetAdd = lazy(() => import('@modules/garage/budget-add'));
 const GarageBudgetSearch = lazy(() => import('@modules/garage/budget-search'));
 const GarageBudgetView = lazy(() => import('@modules/garage/budget-view'));
 const ClientContent = lazy(() => import('@modules/client'));
@@ -82,7 +82,7 @@ const router = createBrowserRouter([
           },
           {
             path: ROUTES_PATH.garageBudget,
-            Component: GarageAddCar,
+            Component: GarageBudgetAdd,
           },
           {
             path: urlJoin(ROUTES_PATH.garageBudget, ':os'),

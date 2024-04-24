@@ -1,8 +1,8 @@
 import { useFormContext } from 'react-hook-form';
 
 import type { TCar } from '@core/api/car/types';
-import type { TGarageAddCarFormType } from '@core/store/context/GarageAddCarContext';
-import useGarageAddCarContext from '@core/store/context/hooks/useGarageAddCar';
+import type { TBudgetAddFormType } from '@core/store/context/BudgetAddContext';
+import useBudgetAddContext from '@core/store/context/hooks/useBudgetAdd';
 import { Button } from '@shared/design-system/ui/button';
 
 type TClientCarButtonProps = {
@@ -10,9 +10,9 @@ type TClientCarButtonProps = {
 };
 
 export default function ClientCarButton({ car }: TClientCarButtonProps) {
-  const handleSelectedClientCar = useGarageAddCarContext((prop) => prop.handleSelectedClientCar);
+  const handleSelectedClientCar = useBudgetAddContext((prop) => prop.handleSelectedClientCar);
 
-  const { watch } = useFormContext<TGarageAddCarFormType>();
+  const { watch } = useFormContext<TBudgetAddFormType>();
 
   const license = watch('license');
 

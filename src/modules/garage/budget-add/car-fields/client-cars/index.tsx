@@ -1,8 +1,8 @@
-import useGarageAddCarContext from '@core/store/context/hooks/useGarageAddCar';
-import ClientCarButton from '@modules/garage/add-car/car-fields/client-cars/client-car-button';
+import useBudgetAddContext from '@core/store/context/hooks/useBudgetAdd';
+import ClientCarButton from '@modules/garage/budget-add/car-fields/client-cars/client-car-button';
 
 export default function ClientCars() {
-  const selectedClient = useGarageAddCarContext((prop) => prop.selectedClient);
+  const selectedClient = useBudgetAddContext((prop) => prop.selectedClient);
 
   if (!selectedClient || !selectedClient.cars?.length) {
     return null;

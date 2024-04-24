@@ -10,7 +10,7 @@ import type { TClientResponse } from '@core/api/client/types';
 import { useToast } from '@shared/design-system/ui/use-toast';
 import { zodValidators } from '@shared/form-validations';
 
-const garageAddCarSchema = z
+const budgetAddSchema = z
   .object({
     name: zodValidators.String(),
     phone: zodValidators.String(),
@@ -26,9 +26,9 @@ const garageAddCarSchema = z
   })
   .strict();
 
-export type TGarageAddCarFormType = z.infer<typeof garageAddCarSchema>;
+export type TBudgetAddFormType = z.infer<typeof budgetAddSchema>;
 
-export type TGarageAddCarValue = {
+export type TBudgetAddValue = {
   isLoadingClient: boolean;
   isLoadingCar: boolean;
   selectedClient: TClientResponse | undefined;
@@ -40,9 +40,9 @@ export type TGarageAddCarValue = {
   handleClearSelectedClientCar: () => void;
 };
 
-export const GarageAddCarContext = createContext({} as TGarageAddCarValue);
+export const BudgetAddContext = createContext({} as TBudgetAddValue);
 
-export function GarageAddCarProvider({ children }: { children: React.ReactNode }) {
+export function BudgetAddProvider({ children }: { children: React.ReactNode }) {
   const [isLoadingClient, setIsLoadingClient] = useState(false);
   const [isLoadingCar, setIsLoadingCar] = useState(false);
   const [selectedClient, setSelectedClient] = useState<TClientResponse | undefined>();
@@ -50,8 +50,8 @@ export function GarageAddCarProvider({ children }: { children: React.ReactNode }
 
   const { toast } = useToast();
 
-  const form = useForm<TGarageAddCarFormType>({
-    resolver: zodResolver(garageAddCarSchema),
+  const form = useForm<TBudgetAddFormType>({
+    resolver: zodResolver(budgetAddSchema),
   });
   const { setValue, setFocus, resetField } = form;
 
@@ -155,7 +155,7 @@ export function GarageAddCarProvider({ children }: { children: React.ReactNode }
   };
 
   return (
-    <GarageAddCarContext.Provider
+    <BudgetAddContext.Provider
       value={{
         isLoadingClient,
         isLoadingCar,
@@ -169,6 +169,6 @@ export function GarageAddCarProvider({ children }: { children: React.ReactNode }
       }}
     >
       <FormProvider {...form}>{children}</FormProvider>
-    </GarageAddCarContext.Provider>
+    </BudgetAddContext.Provider>
   );
 }

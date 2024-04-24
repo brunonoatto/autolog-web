@@ -4,13 +4,10 @@ import { useDebouncedCallback } from 'use-debounce';
 
 import { useAddBudget } from '@core/service/budget';
 import { useListBrands, useListModelsBrand } from '@core/service/fipe';
-import {
-  GarageAddCarProvider,
-  type TGarageAddCarFormType,
-} from '@core/store/context/GarageAddCarContext';
-import useGarageAddCarContext from '@core/store/context/hooks/useGarageAddCar';
+import { BudgetAddProvider, type TBudgetAddFormType } from '@core/store/context/BudgetAddContext';
+import useBudgetAddContext from '@core/store/context/hooks/useBudgetAdd';
 import { useLoadingStore } from '@core/store/hooks';
-import CarFields from '@modules/garage/add-car/car-fields';
+import CarFields from '@modules/garage/budget-add/car-fields';
 import Form from '@shared/components/form';
 import FormField from '@shared/components/form/form-field';
 import LoadingIcon from '@shared/components/loading-icon';
@@ -20,22 +17,20 @@ import Modal from '@shared/design-system/ui/modal';
 import { Textarea } from '@shared/design-system/ui/textarea';
 import useNavigateApp from '@shared/hooks/useNavigateApp';
 
-function AddCarContent() {
+function BudgetAddContent() {
   const [generateOS, setGenerateOS] = useState('');
   const navigate = useNavigateApp();
   const { mutate } = useAddBudget();
   const loading = useLoadingStore((state) => state.loading);
 
-  const isLoadingClient = useGarageAddCarContext((prop) => prop.isLoadingClient);
-  const selectedClient = useGarageAddCarContext((prop) => prop.selectedClient);
-  const handleClearSelectedClient = useGarageAddCarContext(
-    (prop) => prop.handleClearSelectedClient,
-  );
-  const handleLoadClient = useGarageAddCarContext((prop) => prop.handleLoadClient);
+  const isLoadingClient = useBudgetAddContext((prop) => prop.isLoadingClient);
+  const selectedClient = useBudgetAddContext((prop) => prop.selectedClient);
+  const handleClearSelectedClient = useBudgetAddContext((prop) => prop.handleClearSelectedClient);
+  const handleLoadClient = useBudgetAddContext((prop) => prop.handleLoadClient);
 
   const handleLoadClientDebounce = useDebouncedCallback(handleLoadClient, 300);
 
-  const form = useFormContext<TGarageAddCarFormType>();
+  const form = useFormContext<TBudgetAddFormType>();
   const { control, watch } = form;
 
   const brandId = watch('brand');
@@ -51,7 +46,7 @@ function AddCarContent() {
     navigate('/garage');
   };
 
-  const handleValid: SubmitHandler<TGarageAddCarFormType> = async (formValues) => {
+  const handleValid: SubmitHandler<TBudgetAddFormType> = async (formValues) => {
     loading(true);
 
     // TODO: transformar essa lógica em hook
@@ -132,10 +127,10 @@ function AddCarContent() {
   );
 }
 
-export default function AddCar() {
+export default function BudgetAdd() {
   return (
-    <GarageAddCarProvider>
-      <AddCarContent />
-    </GarageAddCarProvider>
+    <BudgetAddProvider>
+      <BudgetAddContent />
+    </BudgetAddProvider>
   );
 }
