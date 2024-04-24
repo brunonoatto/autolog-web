@@ -12,6 +12,7 @@ import SelectCarToTransfer from '@modules/client/transfer-car/select-car';
 import SelectCpfToTransfer from '@modules/client/transfer-car/select-cpf';
 import CarInfo from '@shared/components/car-info';
 import Form from '@shared/components/form';
+import { Alert, AlertDescription, AlertTitle } from '@shared/design-system/ui/alert';
 import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
 import IconButton from '@shared/design-system/ui/icon-button';
 import Modal from '@shared/design-system/ui/modal';
@@ -88,10 +89,14 @@ export default function ClientTransferCar() {
         </CardHeader>
 
         <CardContent>
-          <p>Você não tem nenhum veículo cadastrado para transferir.</p>
-          <IconButton icon="car" onClick={handleGotoRegisterCar}>
-            Cadastrar seu veículo
-          </IconButton>
+          <Alert>
+            <AlertTitle>Nehum veículo encontrado para para transferir.</AlertTitle>
+            <AlertDescription>
+              <IconButton icon="car" onClick={handleGotoRegisterCar}>
+                Cadastrar seu veículo
+              </IconButton>
+            </AlertDescription>
+          </Alert>
         </CardContent>
       </Card>
     );
