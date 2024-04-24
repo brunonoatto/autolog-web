@@ -1,6 +1,3 @@
-import { Outlet } from 'react-router-dom';
-
-import { ROUTES_PATH } from '@core/router/consts';
 import BodyApp from '@layout/body-app';
 
 export default function GarageContent() {
@@ -9,27 +6,25 @@ export default function GarageContent() {
       menus={[
         {
           title: 'Dashboard',
-          route: ROUTES_PATH.garageDashboard,
+          route: '/garage/dashboard',
           icon: 'trello',
         },
         {
           title: 'Adicionar Orçamento',
-          route: ROUTES_PATH.garageBudget,
+          route: '/garage/orcamento',
           icon: 'circle-dollar-sign',
         },
         {
           title: 'Orçamentos',
-          route: ROUTES_PATH.garageBuggetSearch,
+          route: '/garage/orcamentos',
           icon: 'search',
         },
         {
           title: 'Consultar Placa',
-          route: ROUTES_PATH.garageConsultationLicense,
+          route: '/garage/consulta-placa',
           icon: 'car',
         },
       ]}
-    >
-      <Outlet />
-    </BodyApp>
+    />
   );
 }

@@ -1,6 +1,3 @@
-import { Outlet } from 'react-router-dom';
-
-import { ROUTES_PATH } from '@core/router/consts';
 import BodyApp from '@layout/body-app';
 
 export default function ClientContent() {
@@ -9,22 +6,20 @@ export default function ClientContent() {
       menus={[
         {
           title: 'Orçamentos',
-          route: ROUTES_PATH.clientBudgetSearch,
+          route: '/cliente/orcamentos',
           icon: 'receipt',
         },
         {
           title: 'Transferir veículo',
-          route: ROUTES_PATH.clientTransfer,
+          route: '/cliente/transferir',
           icon: 'folder-input',
         },
         {
           title: 'Consultar Placa',
-          route: ROUTES_PATH.clientConsultationLicense,
+          route: '/cliente/consulta-placa',
           icon: 'car',
         },
       ]}
-    >
-      <Outlet />
-    </BodyApp>
+    />
   );
 }

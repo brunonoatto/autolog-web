@@ -1,4 +1,3 @@
-import { ROUTES_PATH } from '@core/router/consts';
 import Header from '@layout/body-app/header';
 
 import HomeCard from './home-card';
@@ -21,7 +20,7 @@ export default function LandingPage() {
                 Preço: <div className="font-semibold text-teal-400">R$ 99,99 p/ mês</div>
               </>
             }
-            linkRoute={ROUTES_PATH.garageRegister}
+            linkRoute="/cadastro-garagem"
             linkText="Quero me cadastrar"
           />
 
@@ -37,7 +36,7 @@ export default function LandingPage() {
                 Preço: <div className="font-bold text-xl text-teal-400">GRÁTIS</div>
               </>
             }
-            linkRoute={ROUTES_PATH.clientRegister}
+            linkRoute="/cadastro-cliente"
             linkText="Quero me cadastrar"
           />
         </div>

@@ -1,4 +1,3 @@
-import { ROUTES_PATH } from '@core/router/consts';
 import useAuth from '@core/store/context/hooks/useAuth';
 import LinkButton from '@shared/design-system/ui/link-button';
 
@@ -12,7 +11,7 @@ export default function Header() {
   return (
     <header className={styles.content}>
       <HomeLink />
-      {isAuthenticated ? <HeaderActions /> : <LinkButton to={ROUTES_PATH.login}>Login</LinkButton>}
+      {isAuthenticated ? <HeaderActions /> : <LinkButton to="/login">Login</LinkButton>}
     </header>
   );
 }
