@@ -1,4 +1,5 @@
 import { useListDashboard } from '@core/service/dashboard';
+import { Alert, AlertDescription, AlertTitle } from '@shared/design-system/ui/alert';
 import { CardTitle } from '@shared/design-system/ui/card';
 import LinkButton from '@shared/design-system/ui/link-button';
 import useNavigateApp from '@shared/hooks/useNavigateApp';
@@ -22,14 +23,18 @@ export default function Dashboard() {
 
       {!isLoadingDashboard && !dashboardItem?.length && (
         <>
-          <p>Nenhum orçamento em andamento</p>
-          <LinkButton
-            className="hidden md:inline-block"
-            to="/garage/orcamento"
-            icon="circle-dollar-sign"
-          >
-            Adicionar orçamento
-          </LinkButton>
+          <Alert>
+            <AlertTitle>Nenhum orçamento em andamento.</AlertTitle>
+            <AlertDescription>
+              <LinkButton
+                className="hidden md:inline-block"
+                to="/garage/orcamento"
+                icon="circle-dollar-sign"
+              >
+                Adicionar orçamento
+              </LinkButton>
+            </AlertDescription>
+          </Alert>
         </>
       )}
 

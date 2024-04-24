@@ -21,7 +21,7 @@ export default function ListBudgets() {
       <CardContent>
         {!budgets?.length && (
           <Alert>
-            <AlertTitle>Nenhum orçamento encontrado!</AlertTitle>
+            <AlertTitle>Nenhum orçamento encontrado</AlertTitle>
           </Alert>
         )}
 
