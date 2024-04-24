@@ -1,5 +1,4 @@
 import { useFormContext } from 'react-hook-form';
-import { twMerge } from 'tailwind-merge';
 import { useDebouncedCallback } from 'use-debounce';
 
 import type { TBudgetAddFormType } from '@core/store/context/BudgetAddContext';
@@ -8,6 +7,7 @@ import ClientCars from '@modules/garage/budget-add/car-fields/client-cars';
 import BrandCombobox from '@shared/components/combobox/brand-combobox';
 import ModelCombobox from '@shared/components/combobox/model-combobox';
 import FormField from '@shared/components/form/form-field';
+import LicenseInput from '@shared/components/form/license-input';
 import LoadingIcon from '@shared/components/loading-icon';
 import { CardTitle } from '@shared/design-system/ui/card';
 import { Input } from '@shared/design-system/ui/input';
@@ -24,7 +24,6 @@ export default function CarFields() {
 
   const { control, watch, resetField } = useFormContext<TBudgetAddFormType>();
 
-  const license = watch('license');
   const brandId = watch('brand');
 
   const handleLicenseChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,14 +47,12 @@ export default function CarFields() {
         <ClientCars />
 
         <div className="flex items-start gap-2 col-span-full">
-          <FormField control={control} name="license" label="Placa">
-            <Input
-              className={twMerge(`${license && 'text-xl font-bold uppercase'} w-48`)}
-              maxLength={10}
-              onChange={handleLicenseChange}
-              placeholder="Informe a placa do veículo"
-            />
-          </FormField>
+          <LicenseInput
+            control={control}
+            name="license"
+            label="Placa"
+            onChange={handleLicenseChange}
+          />
 
           {/* TODO: pensar numa forma de mandar o isLoading para o FielField */}
           {isLoadingCar && <LoadingIcon className="mt-10" />}
