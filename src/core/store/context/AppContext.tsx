@@ -29,6 +29,11 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     const responseInterceptorId = httpClient.interceptors.response.use(
       (response) => response,
       async (error: AxiosError<TErrorApiData>) => {
+        const configData = JSON.parse(error?.config?.data || '{}');
+        if (configData.noShowError) {
+          return Promise.reject(error);
+        }
+
         if (error.code === 'ERR_NETWORK') {
           toast({ title: 'Nâo foi possível conectar com o servidor!', variant: 'destructive' });
           return;
