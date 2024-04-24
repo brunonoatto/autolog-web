@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import BigSpinner from '@layout/body-app/big-spinner';
+import urlJoin from '@shared/helpers/string/urlJoin';
 
 import { ROUTES_PATH } from './consts';
 
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
         Component: Login,
       },
       {
-        path: `${ROUTES_PATH.budgetWithoutLogin}/:os`,
+        path: urlJoin(ROUTES_PATH.budgetWithoutLogin, ':os'),
         Component: ClientBudgetView,
       },
       {
@@ -77,7 +78,7 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            path: `${ROUTES_PATH.garageDashboard}/:license?`,
+            path: urlJoin(ROUTES_PATH.garageDashboard, ':license?'),
             Component: GarageDashboard,
           },
           {
@@ -85,7 +86,7 @@ const router = createBrowserRouter([
             Component: GarageAddCar,
           },
           {
-            path: `${ROUTES_PATH.garageBudget}/:os?`,
+            path: urlJoin(ROUTES_PATH.garageBudget, ':os'),
             Component: GarageBudgetView,
           },
           {
@@ -116,7 +117,7 @@ const router = createBrowserRouter([
             Component: ClientBudgetSearch,
           },
           {
-            path: `${ROUTES_PATH.clientBudgetView}/:os?`,
+            path: urlJoin(ROUTES_PATH.clientBudgetView, ':os'),
             Component: ClientBudgetView,
           },
           {
