@@ -10,6 +10,11 @@ export default function ClientContent() {
           icon: 'receipt',
         },
         {
+          title: 'Cadastrar veículo',
+          route: '/cliente/cadastrar-veiculo',
+          icon: 'car',
+        },
+        {
           title: 'Transferir veículo',
           route: '/cliente/transferir',
           icon: 'folder-input',
@@ -17,7 +22,7 @@ export default function ClientContent() {
         {
           title: 'Consultar Placa',
           route: '/cliente/consulta-placa',
-          icon: 'car',
+          icon: 'file-search-2',
         },
       ]}
     />

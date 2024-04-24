@@ -22,7 +22,7 @@ export default function GarageContent() {
         {
           title: 'Consultar Placa',
           route: '/garage/consulta-placa',
-          icon: 'car',
+          icon: 'file-search-2',
         },
       ]}
     />

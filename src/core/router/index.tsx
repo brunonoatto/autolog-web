@@ -23,6 +23,7 @@ const ClientContent = lazy(() => import('@modules/client'));
 const ClientBudgetSearch = lazy(() => import('@modules/client/budget-search'));
 const ClientBudgetView = lazy(() => import('@modules/client/budget-view'));
 const ClientTransferCar = lazy(() => import('@modules/client/transfer-car'));
+const ClientRegisterCar = lazy(() => import('@modules/client/register-car'));
 const NotFoundRoute = lazy(() => import('@shared/components/not-found-route'));
 
 const router = createBrowserRouter([
@@ -126,6 +127,10 @@ const router = createBrowserRouter([
           {
             path: ROUTES_PATH.clientTransfer,
             Component: ClientTransferCar,
+          },
+          {
+            path: ROUTES_PATH.clientRegisterCar,
+            Component: ClientRegisterCar,
           },
         ],
       },
