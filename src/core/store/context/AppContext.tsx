@@ -57,8 +57,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     <AppContext.Provider value={{}}>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider defaultTheme="dark" storageKey="autolog-theme">
-          <Toaster />
           <BigSpinner />
+          <Toaster />
 
           <AuthProvider>{children}</AuthProvider>
 
