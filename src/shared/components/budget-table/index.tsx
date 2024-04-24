@@ -1,6 +1,6 @@
 import { useDeleteBudgetItem } from '@core/service/budget-items';
 import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
-import { Alert, AlertTitle } from '@shared/design-system/ui/alert';
+import { Alert, AlertDescription, AlertTitle } from '@shared/design-system/ui/alert';
 import { CardTitle } from '@shared/design-system/ui/card';
 import IconButton from '@shared/design-system/ui/icon-button';
 
@@ -26,8 +26,8 @@ export default function BudgetTable({ allowActions = false }: TBudgetViewTablePr
       <Alert>
         <AlertTitle>
           <p>Nenhum item adicionado no orçamento ainda.</p>
-          <p>Preencha o formulário acima para adicionar um item.</p>
         </AlertTitle>
+        <AlertDescription>Preencha o formulário acima para adicionar um item.</AlertDescription>
       </Alert>
     );
   }
