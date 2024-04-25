@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useListBudgets } from '@core/service/budget';
 import BudgetCard from '@shared/components/budget-card';
 import ClientCarSelect from '@shared/components/selects/client-cars';
+import { Alert, AlertTitle } from '@shared/design-system/ui/alert';
 import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
 import useNavigateApp from '@shared/hooks/useNavigateApp';
 
@@ -31,6 +32,12 @@ export default function ClientBudgetSearch() {
 
       <CardContent className="space-y-4">
         <ClientCarSelect label="Carro" onValueChange={handleLicenseFilterChange} />
+
+        {!budgets.length && (
+          <Alert>
+            <AlertTitle>Nenhum orçamento encontrado.</AlertTitle>
+          </Alert>
+        )}
 
         {budgets?.map(({ os, createdDate, status, car }) => {
           return (
