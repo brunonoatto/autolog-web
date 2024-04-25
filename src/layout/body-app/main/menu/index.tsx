@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import IconButton from '@shared/design-system/ui/icon-button';
+import LinkButton from '@shared/design-system/ui/link-button';
 
-import MenuItem from './menu-item';
 import type { TMenu } from './types';
 
 type TMenuProps = { items: TMenu[] };
@@ -42,9 +42,18 @@ const Menu = ({ items }: TMenuProps) => {
       <div className="flex justify-end md:hidden" aria-label="Menu" aria-expanded="false">
         <IconButton variant="outline" icon="menu" onClick={handleMobileMenuClick} />
       </div>
+
       <div id="menu-list" className="hidden md:flex flex-col gap-6 pt-6 px-4">
-        {items.map((menu) => (
-          <MenuItem key={menu.route} isActive={pathname.endsWith(menu.route)} {...menu} />
+        {items.map(({ route, title, icon }) => (
+          <LinkButton
+            key={route}
+            className="md:justify-start"
+            variant={pathname.endsWith(route) ? 'outline-active' : 'outline'}
+            to={route}
+            icon={icon}
+          >
+            {title}
+          </LinkButton>
         ))}
       </div>
     </nav>
