@@ -20,7 +20,7 @@ type TCardProps = React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof car
 
 const Card = React.forwardRef<HTMLDivElement, TCardProps>(
   ({ className, border, ...props }, ref) => (
-    <div ref={ref} className={cardVariants({ className, border })} {...props} />
+    <div ref={ref} className={cn(cardVariants({ border }), className)} {...props} />
   ),
 );
 Card.displayName = 'Card';
@@ -62,7 +62,7 @@ const CardTitle = React.forwardRef<
     VariantProps<typeof cardTitleVariants> &
     VariantProps<typeof cardTitleTextVariants> & { icon?: TIcons }
 >(({ className, icon, size, alignTitle, children, ...props }, ref) => (
-  <div className={cn(cardTitleVariants({ className, alignTitle, size }))}>
+  <div className={cn(cardTitleVariants({ alignTitle, size }), className)}>
     {icon && <Icon name={icon} size={size === 'lg' ? 18 : 22} />}
     <div ref={ref} className={cn(cardTitleTextVariants({ size }))} {...props}>
       {children}
@@ -101,7 +101,7 @@ const CardFooter = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof cardFooterVariants>
 >(({ className, align, ...props }, ref) => (
-  <div ref={ref} className={cardFooterVariants({ className, align })} {...props} />
+  <div ref={ref} className={cn(cardFooterVariants({ align }), className)} {...props} />
 ));
 CardFooter.displayName = 'CardFooter';
 
