@@ -19,8 +19,8 @@ export const getByClient = async ({
   clientId = '',
   transfereds = false,
 }: TGetByClientParams): Promise<AxiosResponse<TCarGetResponse[]>> => {
-  const response = await httpClient.get<TCarGetResponse[]>(`${BASE_URL}/client/${clientId}`, {
-    params: { transfereds },
+  const response = await httpClient.get<TCarGetResponse[]>(`${BASE_URL}/client/cars`, {
+    params: { transfereds, clientId },
     data: { noShowError: true },
   });
   return response;
