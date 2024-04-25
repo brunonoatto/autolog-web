@@ -12,7 +12,7 @@ export default function SelectCarToTransfer() {
 
   return (
     <>
-      <CardTitle size="lg">Selecione o carro que deseja transferir</CardTitle>
+      <CardTitle size="lg">Selecione o veículo que deseja transferir</CardTitle>
 
       <FormField
         control={control}

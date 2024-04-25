@@ -31,7 +31,7 @@ export default function ClientBudgetSearch() {
       </CardHeader>
 
       <CardContent className="space-y-4">
-        <ClientCarSelect label="Carro" onValueChange={handleLicenseFilterChange} />
+        <ClientCarSelect label="Veículo" onValueChange={handleLicenseFilterChange} />
 
         {!budgets.length && (
           <Alert>

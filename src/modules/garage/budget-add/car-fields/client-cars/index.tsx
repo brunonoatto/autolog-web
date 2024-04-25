@@ -10,7 +10,7 @@ export default function ClientCars() {
 
   return (
     <div className="col-span-full">
-      <div>Carros do Cliente:</div>
+      <div>Veículos do Cliente:</div>
       <div className="flex gap-2 pt-2 overflow-x-auto">
         {selectedClient.cars.map((car) => {
           return (
