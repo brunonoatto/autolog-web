@@ -30,7 +30,7 @@ export default function ClientCarSelect(props: TClientCarSelect) {
       <Label>{label}</Label>
       <Select {...otherProps}>
         <SelectTrigger>
-          <SelectValue placeholder="Seleciona um item" />
+          <SelectValue placeholder="Selecione um veículo" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
