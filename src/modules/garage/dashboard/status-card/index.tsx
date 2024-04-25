@@ -1,4 +1,5 @@
 import { DashboardItem } from '@core/models/dashboard';
+import DashboardButton from '@shared/components/dashboard-button';
 import StatusBadge from '@shared/components/status-badge';
 import Icon from '@shared/design-system/ui/icon';
 import {
@@ -9,14 +10,13 @@ import {
 } from '@shared/design-system/ui/tooltip';
 
 import IdentificationCar from './identification-car';
-import styles from './styles.module.css';
 
 type TStatusCardProps = { item: DashboardItem; onClick: () => void };
 const StatusCard = ({ onClick, item }: TStatusCardProps) => {
   const { clientName, observation, status, license, brand, model, year } = item;
 
   return (
-    <button className={styles.container} onClick={onClick}>
+    <DashboardButton onClick={onClick}>
       <div className="w-full text-left text-xs whitespace-nowrap overflow-hidden text-ellipsis">
         {clientName}
       </div>
@@ -45,7 +45,7 @@ const StatusCard = ({ onClick, item }: TStatusCardProps) => {
 
         <StatusBadge status={status} />
       </div>
-    </button>
+    </DashboardButton>
   );
 };
 
