@@ -12,6 +12,7 @@ export enum ROUTES_PATH {
   garageBuggetSearch = '/garage/orcamentos',
   garageConsultationLicense = '/garage/consulta-placa',
   clientHome = '/cliente',
+  clientBudgets = '/cliente/orcamentos',
   clientBudgetView = '/cliente/orcamento',
   clientConsultationLicense = '/cliente/consulta-placa',
   clientTransfer = '/cliente/transferir',

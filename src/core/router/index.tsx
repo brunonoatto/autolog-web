@@ -20,6 +20,7 @@ const GarageBudgetAdd = lazy(() => import('@modules/garage/budget-add'));
 const GarageBudgetSearch = lazy(() => import('@modules/garage/budget-search'));
 const GarageBudgetView = lazy(() => import('@modules/garage/budget-view'));
 const ClientContent = lazy(() => import('@modules/client'));
+const ClientMyCars = lazy(() => import('@modules/client/my-cars'));
 const ClientBudgetSearch = lazy(() => import('@modules/client/budget-search'));
 const ClientBudgetView = lazy(() => import('@modules/client/budget-view'));
 const ClientTransferCar = lazy(() => import('@modules/client/transfer-car'));
@@ -114,6 +115,14 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
+            Component: ClientMyCars,
+          },
+          {
+            path: urlJoin(ROUTES_PATH.clientHome, ':license'),
+            element: <>Veículo view</>,
+          },
+          {
+            path: ROUTES_PATH.clientBudgets,
             Component: ClientBudgetSearch,
           },
           {

@@ -5,14 +5,19 @@ export default function ClientContent() {
     <BodyApp
       menus={[
         {
-          title: 'Orçamentos',
+          title: 'Meus veículos',
           route: '/cliente',
-          icon: 'receipt',
+          icon: 'warehouse',
         },
         {
           title: 'Cadastrar veículo',
           route: '/cliente/cadastrar-veiculo',
           icon: 'car',
+        },
+        {
+          title: 'Orçamentos',
+          route: '/cliente/orcamentos',
+          icon: 'receipt',
         },
         {
           title: 'Transferir veículo',
