@@ -14,7 +14,7 @@ import CarInfo from '@shared/components/car-info';
 import Form from '@shared/components/form';
 import { Alert, AlertDescription, AlertTitle } from '@shared/design-system/ui/alert';
 import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
-import IconButton from '@shared/design-system/ui/icon-button';
+import LinkButton from '@shared/design-system/ui/link-button';
 import Modal from '@shared/design-system/ui/modal';
 import { useToast } from '@shared/design-system/ui/use-toast';
 import { zodValidators } from '@shared/form-validations';
@@ -68,10 +68,6 @@ export default function ClientTransferCar() {
     });
   };
 
-  const handleGotoRegisterCar = () => {
-    // navigate('/cliente/cadastrar-veiculo');
-  };
-
   const handleValid = () => {
     if (!clientToTrasnferData) {
       setError('cpfOrCnpjToTransfer', { message: 'Insira um cpf que esteja cadastrado' });
@@ -92,9 +88,9 @@ export default function ClientTransferCar() {
           <Alert>
             <AlertTitle>Nehum veículo encontrado para para transferir.</AlertTitle>
             <AlertDescription>
-              <IconButton icon="car" onClick={handleGotoRegisterCar}>
+              <LinkButton icon="car" to="/cliente/cadastrar-veiculo">
                 Cadastrar seu veículo
-              </IconButton>
+              </LinkButton>
             </AlertDescription>
           </Alert>
         </CardContent>
