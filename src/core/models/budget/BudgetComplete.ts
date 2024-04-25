@@ -6,6 +6,7 @@ import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 export class BudgetComplete implements TBudget {
   os: string;
   garageId: string;
+  garageName: string;
   license: string;
   status: BudgetStatusEnum;
   clientId: string;
@@ -17,6 +18,7 @@ export class BudgetComplete implements TBudget {
   constructor(obj: TBudgetCompleteResponse) {
     this.os = obj.os;
     this.garageId = obj.garageId;
+    this.garageName = obj.garageName;
     this.license = obj.license;
     this.status = obj.status;
     this.clientId = obj.clientId;

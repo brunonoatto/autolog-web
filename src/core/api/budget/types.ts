@@ -26,6 +26,8 @@ export type TBudget = {
 export type TBudgetListItemResponse = {
   os: string;
   garageId: string;
+  garageName: string;
+  observation: string;
   createdDate: string;
   license: string;
   status: BudgetStatusEnum;
@@ -34,6 +36,7 @@ export type TBudgetListItemResponse = {
 };
 
 export type TBudgetCompleteResponse = TBudget & {
+  garageName: string;
   car: TCar;
   items: TBudgetItem[];
 };

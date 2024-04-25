@@ -39,10 +39,16 @@ export default function ClientBudgetSearch() {
           </Alert>
         )}
 
-        {budgets?.map(({ os, createdDate, status, car }) => {
+        {budgets?.map(({ os, garageName, createdDate, status, car }) => {
           return (
             <button key={os} className="w-full" onClick={() => handleGoToBudget(os)}>
-              <BudgetCard hover status={status} car={car} createdDate={createdDate} />
+              <BudgetCard
+                hover
+                garageName={garageName}
+                car={car}
+                status={status}
+                createdDate={createdDate}
+              />
             </button>
           );
         })}
