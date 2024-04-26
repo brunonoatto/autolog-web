@@ -15,6 +15,7 @@ export const get = async ({
 }: TGetClientParams): Promise<TClientResponse> => {
   const response = await httpClient.get<TClientResponse>(BASE_URL, {
     params: { cpf_cnpj, email, withCars },
+    data: { noShowError: true },
   });
   return response.data;
 };
