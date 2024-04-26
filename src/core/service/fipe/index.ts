@@ -5,10 +5,7 @@ import { ServiceApi } from '@core/api';
 export const useListBrands = () => {
   return useQuery({
     queryKey: ['useListBrands'],
-    queryFn: async () => {
-      const data = await ServiceApi.FipeApi.listBrands();
-      return data;
-    },
+    queryFn: ServiceApi.FipeApi.listBrands,
     staleTime: Infinity,
   });
 };
@@ -17,8 +14,7 @@ export const useListModelsBrand = (brandId: string) => {
   return useQuery({
     queryKey: ['useListModelsBrand', brandId],
     queryFn: async () => {
-      const data = await ServiceApi.FipeApi.listModelsBrand(brandId);
-      return data;
+      return ServiceApi.FipeApi.listModelsBrand(brandId);
     },
     enabled: !!brandId && !!Number(brandId),
     staleTime: Infinity,
