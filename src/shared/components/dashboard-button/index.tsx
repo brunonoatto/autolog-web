@@ -1,4 +1,4 @@
-import { cn } from '@shared/design-system-utils';
+import { cn } from '@shared/design-system/helpers/utils';
 
 import styles from './styles.module.css';
 

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Control, FieldPath, FieldValues, useFormContext } from 'react-hook-form';
 
 import type { TSelectItem } from '@shared/components/form/form-field-select';
+import { cn } from '@shared/design-system/helpers/utils';
 import { Button } from '@shared/design-system/ui/button';
 import {
   Command,
@@ -20,7 +21,6 @@ import {
   FormMessage,
 } from '@shared/design-system/ui/form';
 import { Popover, PopoverContent, PopoverTrigger } from '@shared/design-system/ui/popover';
-import { cn } from '@shared/design-system-utils';
 
 export type TComboboxDefaultProps<T extends FieldValues> = {
   control: Control<T>;

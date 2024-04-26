@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { cn } from '@shared/design-system-utils';
+import { cn } from '@shared/design-system/helpers/utils';
 
 export interface TInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;

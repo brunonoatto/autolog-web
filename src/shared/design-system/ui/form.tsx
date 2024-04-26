@@ -10,8 +10,8 @@ import {
   useFormContext,
 } from 'react-hook-form';
 
+import { cn } from '@shared/design-system/helpers/utils';
 import { Label } from '@shared/design-system/ui/label';
-import { cn } from '@shared/design-system-utils';
 
 const Form = FormProvider;
 
@@ -144,12 +144,12 @@ const FormMessage = React.forwardRef<
 FormMessage.displayName = 'FormMessage';
 
 export {
-  useFormField,
   Form,
-  FormItem,
-  FormLabel,
   FormControl,
   FormDescription,
-  FormMessage,
   FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  useFormField,
 };

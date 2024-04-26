@@ -2,9 +2,9 @@ import { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 
 import type { TRoute } from '@core/router/consts';
+import { cn } from '@shared/design-system/helpers/utils';
 import { buttonVariants, type TButtonProps } from '@shared/design-system/ui/button';
 import Icon, { TIconProps, TIcons } from '@shared/design-system/ui/icon';
-import { cn } from '@shared/design-system-utils';
 
 type TLinkButtonProps = Omit<React.ComponentProps<typeof Link>, 'to'> &
   Pick<TButtonProps, 'variant' | 'size'> & {

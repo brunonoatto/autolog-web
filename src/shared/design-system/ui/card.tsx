@@ -2,13 +2,13 @@ import { cva } from 'class-variance-authority';
 import React from 'react';
 import { VariantProps } from 'tailwind-variants';
 
-import Icon, { TIcons } from '@shared/design-system/ui/icon';
-import { cn } from '@shared/design-system-utils';
+import { cn } from '@shared/design-system/helpers/utils';
+import Icon, { type TIcons } from '@shared/design-system/ui/icon';
 
 const cardVariants = cva('flex flex-col rounded-lg bg-card text-card-foreground shadow-sm', {
   variants: {
     border: {
-      true: 'border border-primary',
+      true: 'border border-border',
     },
   },
   defaultVariants: {
@@ -44,7 +44,7 @@ const CardHeader = React.forwardRef<
 CardHeader.displayName = 'CardHeader';
 
 const cardTitleVariants = cva(
-  'flex items-center gap-2 border-b-[1px] border-primary w-11/12 md:w-3/4 pb-2',
+  'flex items-center gap-2 border-b-[1px] border-border w-11/12 md:w-3/4 pb-2',
   {
     variants: {
       size: {
@@ -131,4 +131,4 @@ const CardFooter = React.forwardRef<
 ));
 CardFooter.displayName = 'CardFooter';
 
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent };
+export { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle };
