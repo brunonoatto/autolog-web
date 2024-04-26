@@ -18,9 +18,9 @@ export const useClientCars = (params: TUseClientCarsParams = {}) => {
   return useQuery({
     queryKey: ['useClientCars', params],
     queryFn: async () => {
-      const { data } = await ServiceApi.CarApi.getByClient(params);
+      const cars = await ServiceApi.CarApi.listByClient(params);
 
-      return data;
+      return cars;
     },
   });
 };

@@ -16,3 +16,8 @@ export type TGetByClientParams = {
   clientId?: string;
   transfereds?: boolean;
 };
+
+export type TTransferCarProps = {
+  license: string;
+  cpfOrCnpjToTransfer: string;
+};

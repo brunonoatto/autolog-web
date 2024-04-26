@@ -9,27 +9,21 @@ export const useGetCar = (license: string) => {
     enabled: !!license,
     queryKey: ['useGetCar', license],
     queryFn: async () => {
-      const { data } = await ServiceApi.CarApi.get(license);
+      const car = await ServiceApi.CarApi.get(license);
 
-      return data;
+      return car;
     },
   });
 };
 
 export const useCreateCar = () => {
   return useMutation<boolean, DefaultError, TNewCar>({
-    mutationFn: async (data) => {
-      const response = await ServiceApi.CarApi.post(data);
-      return response.data;
-    },
+    mutationFn: ServiceApi.CarApi.post,
   });
 };
 
 export const useTransferCar = () => {
   return useMutation<boolean, DefaultError, TUseTransferCarParams>({
-    mutationFn: async (data) => {
-      const response = await ServiceApi.CarApi.transferCar(data.license, data.cpfOrCnpjToTransfer);
-      return response.data;
-    },
+    mutationFn: ServiceApi.CarApi.transferCar,
   });
 };

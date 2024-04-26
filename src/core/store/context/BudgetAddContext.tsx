@@ -87,7 +87,7 @@ export function BudgetAddProvider({ children }: { children: React.ReactNode }) {
     setIsLoadingCar(true);
 
     try {
-      const { data: car } = await ServiceApi.CarApi.get(license);
+      const car = await ServiceApi.CarApi.get(license);
 
       if (!car) return;
 
