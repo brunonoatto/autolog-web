@@ -45,7 +45,7 @@ export default function BudgetTable({ allowActions = false }: TBudgetViewTablePr
     return (
       <Alert>
         <AlertTitle>
-          <p>Nenhum item adicionado no orçamento ainda.</p>
+          <p>Nenhum item adicionado no orçamento.</p>
         </AlertTitle>
         <AlertDescription>Preencha o formulário acima para adicionar um item.</AlertDescription>
       </Alert>
@@ -57,6 +57,7 @@ export default function BudgetTable({ allowActions = false }: TBudgetViewTablePr
       <CardTitle icon="list-ordered" size="lg">
         Itens do Orçamento
       </CardTitle>
+
       <table className="w-full">
         <thead>
           <tr className="text-left">
@@ -82,7 +83,7 @@ export default function BudgetTable({ allowActions = false }: TBudgetViewTablePr
             const { id, description, qtd, price, recordStatus } = item;
 
             return (
-              <tr key={id}>
+              <tr key={id} className=" hover:bg-muted">
                 <td>{description}</td>
                 <td className="text-right">{qtd}</td>
                 <td className="text-right">{price}</td>
