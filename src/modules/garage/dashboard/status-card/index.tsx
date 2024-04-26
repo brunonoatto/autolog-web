@@ -30,7 +30,7 @@ const StatusCard = ({ onClick, item }: TStatusCardProps) => {
           <TooltipProvider delayDuration={200}>
             <Tooltip>
               <TooltipTrigger>
-                <Icon name="info" className="text-teal-600" />
+                <Icon name="info" className="text-primary" />
               </TooltipTrigger>
               <TooltipContent className="max-w-80 text-left space-y-2" align="start">
                 <p className="flex justify-start items-center gap-2">

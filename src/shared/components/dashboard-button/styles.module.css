@@ -1,5 +1,5 @@
 .container {
-  @apply bg-neutral-900 rounded-lg p-2 duration-300;
-  @apply hover:bg-neutral-800 ring-2 ring-primary/30 hover:ring-primary focus:ring-4 focus:ring-primary focus:outline-none;
+  @apply rounded-lg p-2 duration-300;
+  @apply bg-background hover:bg-muted ring-2 ring-border focus:ring-4 hover:ring-ring focus:ring-border focus:outline-none;
   @apply flex flex-col justify-between;
 }

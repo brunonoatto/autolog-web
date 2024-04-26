@@ -33,7 +33,7 @@ const Modal = ({
 }: TModalProps) => {
   return (
     <Portal open={open}>
-      <div className="m-auto w-full h-full md:h-auto md:w-2/3 bg-background rounded-xl p-4 md:p-6 flex flex-col space-y-4">
+      <div className="m-auto w-full h-full md:h-auto md:w-2/3 bg-background border-2 border-border rounded-xl p-4 md:p-6 flex flex-col space-y-4">
         <div>
           {onClose && (
             <div className="text-right">
