@@ -15,11 +15,11 @@ import { CardTitle } from '@shared/design-system/ui/card';
 import { Input } from '@shared/design-system/ui/input';
 import Modal from '@shared/design-system/ui/modal';
 import { Textarea } from '@shared/design-system/ui/textarea';
-import useNavigateApp from '@shared/hooks/useNavigateApp';
+import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
 function BudgetAddContent() {
   const [generateOS, setGenerateOS] = useState('');
-  const navigate = useNavigateApp();
+  const navigate = useNavigateCustom();
   const { mutate } = useAddBudget();
   const loading = useLoadingStore((state) => state.loading);
 

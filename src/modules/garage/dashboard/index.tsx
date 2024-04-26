@@ -2,13 +2,13 @@ import { useListDashboard } from '@core/service/dashboard';
 import { Alert, AlertDescription, AlertTitle } from '@shared/design-system/ui/alert';
 import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
 import LinkButton from '@shared/design-system/ui/link-button';
-import useNavigateApp from '@shared/hooks/useNavigateApp';
+import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
 import StatusCard from './status-card';
 import StatusCardSkeleton from './status-card-skeleton';
 
 export default function Dashboard() {
-  const navigate = useNavigateApp();
+  const navigate = useNavigateCustom();
   const { data: dashboardItem, isLoading } = useListDashboard();
 
   const handleSelectCar = (os: string) => {

@@ -13,7 +13,7 @@ import { Input } from '@shared/design-system/ui/input';
 import Modal from '@shared/design-system/ui/modal';
 import { zodValidators } from '@shared/form-validations/index';
 import { PasswordSchema } from '@shared/form-validations/validators';
-import useNavigateApp from '@shared/hooks/useNavigateApp';
+import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
 const registerClientSchema = z
   .object({
@@ -30,7 +30,7 @@ export default function ClientRegister() {
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
   const loading = useLoadingStore((state) => state.loading);
   const { mutate } = useCreateClient();
-  const navigate = useNavigateApp();
+  const navigate = useNavigateCustom();
 
   const form = useForm<TRegisterClientFormType>({
     resolver: zodResolver(registerClientSchema),

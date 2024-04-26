@@ -5,11 +5,11 @@ import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
 import useSendWhatApp from '@modules/garage/budget-view/hooks/useSendWhatsApp';
 import IconButton from '@shared/design-system/ui/icon-button';
 import Modal from '@shared/design-system/ui/modal';
-import useNavigateApp from '@shared/hooks/useNavigateApp';
+import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
 export default function SendForApproval() {
   const [openModal, setOpenModal] = useState(false);
-  const navigate = useNavigateApp();
+  const navigate = useNavigateCustom();
   const { mutate } = useSendForApproveBudget();
   const { sendWhatsApp } = useSendWhatApp();
 

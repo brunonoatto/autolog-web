@@ -18,7 +18,7 @@ import LinkButton from '@shared/design-system/ui/link-button';
 import Modal from '@shared/design-system/ui/modal';
 import { useToast } from '@shared/design-system/ui/use-toast';
 import { zodValidators } from '@shared/form-validations';
-import useNavigateApp from '@shared/hooks/useNavigateApp';
+import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
 const transferCarSchema = z
   .object({
@@ -34,7 +34,7 @@ export default function ClientTransferCar() {
   const [clientToTrasnferData, setClientToTrasnferData] = useState<TClientResponse>();
 
   const { toast } = useToast();
-  const navigate = useNavigateApp();
+  const navigate = useNavigateCustom();
   const loading = useLoadingStore((prop) => prop.loading);
   const { data: clientCars } = useClientCars();
   const { mutate } = useTransferCar();

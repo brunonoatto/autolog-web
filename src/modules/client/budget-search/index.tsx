@@ -5,10 +5,10 @@ import BudgetCard from '@shared/components/budget-card';
 import ClientCarSelect from '@shared/components/selects/client-cars';
 import { Alert, AlertTitle } from '@shared/design-system/ui/alert';
 import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
-import useNavigateApp from '@shared/hooks/useNavigateApp';
+import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
 export default function ClientBudgetSearch() {
-  const navigate = useNavigateApp();
+  const navigate = useNavigateCustom();
   const [, setSearchParams] = useSearchParams();
   const { budgets } = useListBudgets();
 

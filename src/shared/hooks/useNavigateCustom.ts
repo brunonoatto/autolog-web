@@ -5,7 +5,7 @@ import urlJoin from '@shared/helpers/string/urlJoin';
 
 type TRouteArr = [TRoute, ...string[]];
 
-export default function useNavigateApp() {
+export default function useNavigateCustom() {
   const navigateRouter = useNavigate();
 
   const navigate = (route: TRoute | number | TRouteArr, options?: NavigateOptions) => {

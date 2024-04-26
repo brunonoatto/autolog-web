@@ -1,8 +1,8 @@
 import { Button } from '@shared/design-system/ui/button';
-import useNavigateApp from '@shared/hooks/useNavigateApp';
+import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
 const GoBackButton = () => {
-  const navigate = useNavigateApp();
+  const navigate = useNavigateCustom();
 
   const handleGoBack = () => {
     navigate(-1);

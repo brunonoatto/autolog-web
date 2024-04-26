@@ -2,10 +2,10 @@ import { useListBudgets } from '@core/service/budget';
 import BudgetCard from '@shared/components/budget-card';
 import { Alert, AlertTitle } from '@shared/design-system/ui/alert';
 import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
-import useNavigateApp from '@shared/hooks/useNavigateApp';
+import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
 export default function ListBudgets() {
-  const navigate = useNavigateApp();
+  const navigate = useNavigateCustom();
   const { budgets } = useListBudgets();
 
   const handleBudgetSelected = (os: string) => {

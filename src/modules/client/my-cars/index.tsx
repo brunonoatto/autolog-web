@@ -4,10 +4,10 @@ import DashboardButton from '@shared/components/dashboard-button';
 import { Alert, AlertDescription, AlertTitle } from '@shared/design-system/ui/alert';
 import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
 import LinkButton from '@shared/design-system/ui/link-button';
-import useNavigateApp from '@shared/hooks/useNavigateApp';
+import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
 export default function ClientMyCars() {
-  const navigate = useNavigateApp();
+  const navigate = useNavigateCustom();
   const { data: cars } = useClientCars();
 
   const handleCarClick = (license: string) => () => {

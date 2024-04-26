@@ -4,11 +4,11 @@ import { useCompletedBudget } from '@core/service/budget';
 import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
 import IconButton from '@shared/design-system/ui/icon-button';
 import Modal from '@shared/design-system/ui/modal';
-import useNavigateApp from '@shared/hooks/useNavigateApp';
+import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
 export default function CompletedService() {
   const [openModal, setOpenModal] = useState(false);
-  const navigate = useNavigateApp();
+  const navigate = useNavigateCustom();
   const { mutate } = useCompletedBudget();
 
   const { budget } = useBudgetView();

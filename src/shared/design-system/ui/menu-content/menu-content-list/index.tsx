@@ -7,14 +7,14 @@ import {
   handleCloseMenuContent,
   MENU_CONTENT_ID,
 } from '@shared/design-system/ui/menu-content/helpers';
-import useNavigateApp from '@shared/hooks/useNavigateApp';
+import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
 type TMenuContentListProps = {
   items: TMenuContentProps['items'];
 };
 
 export default function MenuContentList({ items }: TMenuContentListProps) {
-  const navigate = useNavigateApp();
+  const navigate = useNavigateCustom();
 
   const handleMenuClick =
     (
