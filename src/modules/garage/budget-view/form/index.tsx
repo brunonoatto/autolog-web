@@ -14,7 +14,7 @@ import { MIN_INVALID_MSG } from '@shared/form-validations/consts';
 
 const schema = z
   .object({
-    description: zodValidators.String(),
+    description: zodValidators.String().toUpperCase(),
     qtd: zodValidators.Number().min(1, MIN_INVALID_MSG(0)),
     price: zodValidators.Number().min(0.01, MIN_INVALID_MSG(0)),
   })
@@ -65,7 +65,7 @@ export default function BudgetViewForm() {
       border={true}
     >
       <FormField className="col-span-full" control={control} name="description" label="Descrição">
-        <Input />
+        <Input className="uppercase" />
       </FormField>
 
       <FormField control={control} name="qtd" label="Quantidade">
