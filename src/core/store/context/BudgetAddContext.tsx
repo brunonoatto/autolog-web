@@ -60,8 +60,8 @@ export function BudgetAddProvider({ children }: { children: React.ReactNode }) {
       setIsLoadingClient(true);
 
       try {
-        const { data: clientData } = await ServiceApi.ClientApi.get({
-          cpf_cnpj: cpf_cnpj,
+        const clientData = await ServiceApi.ClientApi.get({
+          cpf_cnpj,
           withCars: true,
         });
 

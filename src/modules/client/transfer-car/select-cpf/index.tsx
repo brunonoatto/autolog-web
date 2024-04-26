@@ -27,7 +27,10 @@ export default function SelectCpfToTransfer({ clientData, setClient }: TSelectCp
     setCpfIsLoading(true);
 
     try {
-      const { data: clientData } = await ServiceApi.ClientApi.get({ cpf_cnpj });
+      const clientData = await ServiceApi.ClientApi.get({
+        cpf_cnpj,
+      });
+
       setClient(clientData);
     } finally {
       setCpfIsLoading(false);

@@ -6,11 +6,7 @@ import { TUseClientCarsParams } from '@core/service/client/types';
 
 export const useCreateClient = () => {
   return useMutation<boolean, DefaultError, TNewClient>({
-    mutationFn: async (data) => {
-      const response = await ServiceApi.ClientApi.post(data);
-
-      return response.data;
-    },
+    mutationFn: ServiceApi.ClientApi.post,
   });
 };
 
