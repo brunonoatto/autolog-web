@@ -36,12 +36,12 @@ export default function BudgetSearch() {
   };
 
   return (
-    <div className="flex flex-col gap-y-2">
+    <>
       <Form form={form} onValid={handleValid} title="Buscar orçamento" icon="search">
         <LicenseInput control={control} name="license" />
       </Form>
 
       <ListBudgets />
-    </div>
+    </>
   );
 }
