@@ -12,7 +12,7 @@ import {
 } from '@shared/design-system/ui/card';
 
 function ClientBudgetViewContent() {
-  const { data: budget } = useGetBudget();
+  const { budget } = useGetBudget();
 
   const { garageName, createdDate, status, car, observation } = budget || {};
 

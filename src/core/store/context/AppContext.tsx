@@ -14,8 +14,8 @@ import { useToast } from '@shared/design-system/ui/use-toast';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnWindowFocus: false,
       retry: false,
+      refetchOnWindowFocus: false,
     },
   },
 });

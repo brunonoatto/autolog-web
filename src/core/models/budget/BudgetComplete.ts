@@ -1,6 +1,7 @@
 import type { TBudget, TBudgetCompleteResponse } from '@core/api/budget/types';
 import type { TBudgetItem } from '@core/api/budget-item/types';
 import type { TCar } from '@core/api/car/types';
+import type { TQueryClientData } from '@core/service/types';
 import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
 export class BudgetComplete implements TBudget {
@@ -12,7 +13,7 @@ export class BudgetComplete implements TBudget {
   clientId: string;
   observation?: string;
   createdDate: string;
-  items: TBudgetItem[];
+  items: TQueryClientData<TBudgetItem>[];
   car: TCar;
 
   constructor(obj: TBudgetCompleteResponse) {
