@@ -1,10 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
-
 import { ServiceApi } from '@core/api';
 import { DashboardItem } from '@core/models/dashboard';
+import useQueryCustom from '@shared/hooks/useQueryCustom';
 
 export const useListDashboard = () => {
-  return useQuery({
+  return useQueryCustom({
     queryKey: ['useListDashboard'],
     queryFn: async () => {
       const items = await ServiceApi.DashboardApi.listDashboardItems();

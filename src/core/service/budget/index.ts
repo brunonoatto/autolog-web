@@ -1,9 +1,10 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { useParams, useSearchParams } from 'react-router-dom';
 
 import { ServiceApi } from '@core/api';
 import { BudgetComplete } from '@core/models/budget/BudgetComplete';
 import { BudgetListItem } from '@core/models/budget/BudgetListItem copy';
+import useQueryCustom from '@shared/hooks/useQueryCustom';
 
 export const useAddBudget = () => {
   return useMutation({
@@ -52,7 +53,7 @@ export const useListBudgets = () => {
 
   const license = params.get('license');
 
-  const { data } = useQuery({
+  const { data } = useQueryCustom({
     queryKey: ['useListBudgets', license],
     queryFn: async () => {
       const data = await ServiceApi.BudgetApi.listBudgets(license);
@@ -70,7 +71,7 @@ export const USE_GET_BUDGET_QUERY_KEY = 'useGetBudget';
 export const useGetBudget = () => {
   const { os: osParam } = useParams();
 
-  const { data } = useQuery({
+  const { data } = useQueryCustom({
     enabled: !!osParam,
     queryKey: [USE_GET_BUDGET_QUERY_KEY, osParam],
     queryFn: async () => {

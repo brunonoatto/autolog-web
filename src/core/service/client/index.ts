@@ -1,8 +1,9 @@
-import { DefaultError, useMutation, useQuery } from '@tanstack/react-query';
+import { DefaultError, useMutation } from '@tanstack/react-query';
 
 import { ServiceApi } from '@core/api';
 import type { TNewClient } from '@core/api/client/types';
 import { TUseClientCarsParams } from '@core/service/client/types';
+import useQueryCustom from '@shared/hooks/useQueryCustom';
 
 export const useCreateClient = () => {
   return useMutation<boolean, DefaultError, TNewClient>({
@@ -11,12 +12,8 @@ export const useCreateClient = () => {
 };
 
 export const useClientCars = (params: TUseClientCarsParams = {}) => {
-  return useQuery({
+  return useQueryCustom({
     queryKey: ['useClientCars', params],
-    queryFn: async () => {
-      const cars = await ServiceApi.CarApi.listByClient(params);
-
-      return cars;
-    },
+    queryFn: async () => ServiceApi.CarApi.listByClient(params),
   });
 };

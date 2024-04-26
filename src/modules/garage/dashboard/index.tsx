@@ -9,9 +9,7 @@ import StatusCardSkeleton from './status-card-skeleton';
 
 export default function Dashboard() {
   const navigate = useNavigateApp();
-  const { data: dashboardItem, isLoading, isRefetching } = useListDashboard();
-
-  const isLoadingDashboard = isLoading || isRefetching;
+  const { data: dashboardItem, isLoading } = useListDashboard();
 
   const handleSelectCar = (os: string) => {
     navigate(['/garage/orcamento', os]);
@@ -24,7 +22,7 @@ export default function Dashboard() {
       </CardHeader>
 
       <CardContent>
-        {!isLoadingDashboard && !dashboardItem?.length && (
+        {!isLoading && !dashboardItem?.length && (
           <>
             <Alert>
               <AlertTitle>Nenhum orçamento em andamento.</AlertTitle>
@@ -42,7 +40,7 @@ export default function Dashboard() {
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {isLoadingDashboard ? (
+          {isLoading ? (
             <>
               <StatusCardSkeleton />
               <StatusCardSkeleton />
