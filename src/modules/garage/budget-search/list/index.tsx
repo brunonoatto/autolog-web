@@ -6,7 +6,7 @@ import useNavigateApp from '@shared/hooks/useNavigateApp';
 
 export default function ListBudgets() {
   const navigate = useNavigateApp();
-  const { data: budgets } = useListBudgets();
+  const { budgets } = useListBudgets();
 
   const handleBudgetSelected = (os: string) => {
     navigate(['/garage/orcamento', os]);

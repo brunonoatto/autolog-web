@@ -10,7 +10,7 @@ import useNavigateApp from '@shared/hooks/useNavigateApp';
 export default function ClientBudgetSearch() {
   const navigate = useNavigateApp();
   const [, setSearchParams] = useSearchParams();
-  const { data: budgets = [] } = useListBudgets();
+  const { budgets } = useListBudgets();
 
   const handleGoToBudget = (os: string) => {
     navigate(['/cliente/orcamento', os]);
