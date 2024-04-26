@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import useAuth from '@core/store/context/hooks/useAuth';
+import ThemeSwitcher from '@layout/body-app/header/header-actions/theme-switcher';
 import IconButton from '@shared/design-system/ui/icon-button';
 import Modal from '@shared/design-system/ui/modal';
 
@@ -20,6 +21,8 @@ const HeaderActions = () => {
         <div>Usuário: </div>
         <div>{name}</div>
       </div>
+
+      <ThemeSwitcher />
 
       <IconButton
         icon="log-out"
