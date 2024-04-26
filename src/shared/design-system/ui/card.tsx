@@ -25,11 +25,22 @@ const Card = React.forwardRef<HTMLDivElement, TCardProps>(
 );
 Card.displayName = 'Card';
 
-const CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('flex flex-col space-y-1.5 p-6', className)} {...props} />
-  ),
-);
+const cardHeaderVariants = cva('flex flex-col space-y-1.5 py-4 px-6', {
+  variants: {
+    paddingX: {
+      false: 'px-0',
+    },
+  },
+  defaultVariants: {
+    paddingX: true,
+  },
+});
+const CardHeader = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof cardHeaderVariants>
+>(({ className, paddingX, ...props }, ref) => (
+  <div ref={ref} className={cn(cardHeaderVariants({ paddingX }), className)} {...props} />
+));
 CardHeader.displayName = 'CardHeader';
 
 const cardTitleVariants = cva(
@@ -79,11 +90,22 @@ const CardDescription = React.forwardRef<
 ));
 CardDescription.displayName = 'CardDescription';
 
-const CardContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('p-6 pt-0 flex-1 space-y-4', className)} {...props} />
-  ),
-);
+const cardContentVariants = cva('px-6 pb-4 pt-0 flex-1 space-y-4', {
+  variants: {
+    paddingX: {
+      false: 'px-0',
+    },
+  },
+  defaultVariants: {
+    paddingX: true,
+  },
+});
+const CardContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof cardContentVariants>
+>(({ className, paddingX, ...props }, ref) => (
+  <div ref={ref} className={cn(cardContentVariants({ paddingX }), className)} {...props} />
+));
 CardContent.displayName = 'CardContent';
 
 const cardFooterVariants = cva('flex items-center gap-2 p-6 pt-0', {
@@ -92,16 +114,20 @@ const cardFooterVariants = cva('flex items-center gap-2 p-6 pt-0', {
       end: 'justify-end',
       center: 'justify-center',
     },
+    paddingX: {
+      false: 'px-0',
+    },
   },
   defaultVariants: {
     align: 'end',
+    paddingX: true,
   },
 });
 const CardFooter = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof cardFooterVariants>
->(({ className, align, ...props }, ref) => (
-  <div ref={ref} className={cn(cardFooterVariants({ align }), className)} {...props} />
+>(({ className, align, paddingX, ...props }, ref) => (
+  <div ref={ref} className={cn(cardFooterVariants({ align, paddingX }), className)} {...props} />
 ));
 CardFooter.displayName = 'CardFooter';
 

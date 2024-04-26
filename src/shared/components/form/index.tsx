@@ -22,6 +22,7 @@ type TForm<T extends FieldValues> = PropsWithChildren & {
   icon?: TIcons;
   useDefaultGrid?: boolean;
   border?: boolean;
+  paddingX?: boolean;
 };
 
 export default function Form<T extends FieldValues>({
@@ -35,6 +36,7 @@ export default function Form<T extends FieldValues>({
   icon,
   useDefaultGrid = true,
   border = false,
+  paddingX = true,
 }: TForm<T>) {
   const { handleSubmit } = form;
 
@@ -42,20 +44,20 @@ export default function Form<T extends FieldValues>({
     <FormProvider {...form}>
       <form className={className} onSubmit={handleSubmit(onValid)}>
         <Card border={border}>
-          <CardHeader>
+          <CardHeader paddingX={paddingX}>
             <CardTitle icon={icon}>{title}</CardTitle>
             {/* <CardDescription>Card Description</CardDescription> */}
           </CardHeader>
 
-          <CardContent>
+          <CardContent paddingX={paddingX}>
             {useDefaultGrid ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">{children}</div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">{children}</div>
             ) : (
-              <div className="space-y-4">{children}</div>
+              <div className="space-y-2">{children}</div>
             )}
           </CardContent>
 
-          <CardFooter>
+          <CardFooter paddingX={paddingX}>
             {iconButton ? (
               <IconButton icon={iconButton}>{confirmButtonText}</IconButton>
             ) : (
