@@ -42,7 +42,6 @@ export const PasswordSchema = z
   })
   .refine(
     ({ password, passwordConfirm }) => {
-      console.log('refinerefinerefine', { password, passwordConfirm });
       return password === passwordConfirm;
     },
     {

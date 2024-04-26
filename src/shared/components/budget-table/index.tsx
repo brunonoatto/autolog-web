@@ -41,8 +41,6 @@ export default function BudgetTable({ allowActions = false }: TBudgetViewTablePr
     setItemToDeleted(undefined);
   };
 
-  console.log({ items: budget?.items, lenght: budget?.items.length });
-
   if (!budget?.items.length) {
     return (
       <Alert>
