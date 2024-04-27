@@ -42,6 +42,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.2",
+    "react-number-format": "^5.3.4",
     "react-router-dom": "^6.21.3",
     "tailwind-merge": "^2.2.2",
     "tailwind-variants": "^0.2.0",

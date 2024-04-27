@@ -2,6 +2,7 @@
 import React, { ReactElement } from 'react';
 import { Control, FieldPath, FieldValues, useFormContext } from 'react-hook-form';
 
+import { handleEvents, THandleEventsConfigs } from '@shared/components/form/form-field/helpers';
 import {
   FormControl,
   FormDescription,
@@ -10,9 +11,6 @@ import {
   FormLabel,
   FormMessage,
 } from '@shared/design-system/ui/form';
-
-type TEventParams = any[];
-type TEvent = (...event: TEventParams) => void;
 
 type TInputFormProps<T extends FieldValues> = {
   children: ReactElement;
@@ -26,33 +24,14 @@ type TInputFormProps<T extends FieldValues> = {
   labelProps?: any;
 };
 
-const handleEvents = (event1: TEvent, event2: TEvent, valueAsNumber: boolean, ...params: any[]) => {
-  const [_, ...otherParams] = params;
-  let [event] = params;
-
-  if (valueAsNumber && event?.target && 'value' in event.target) {
-    let newValue: number | string = event.target.value === '' ? NaN : +event.target.value;
-    if (isNaN(newValue)) newValue = '';
-
-    event = {
-      ...event,
-      target: {
-        ...event.target,
-        value: newValue,
-      },
-    };
-  }
-
-  const eventParams = [event, ...otherParams];
-  event1?.(...eventParams);
-  event2?.(...eventParams);
-};
-
 export default function FormField<T extends FieldValues>(props: TInputFormProps<T>) {
   const { className, name, label, description, children } = props;
   const { control } = useFormContext();
 
-  const valueAsNumber = children?.props?.type === 'number';
+  const eventConfig: THandleEventsConfigs = {
+    valueAsNumber: children?.props?.type === 'number',
+    isMask: !!children.props.mask,
+  };
 
   return (
     <FormFieldUI
@@ -67,9 +46,9 @@ export default function FormField<T extends FieldValues>(props: TInputFormProps<
                 ...field,
                 value: field?.value ?? '',
                 onChange: (event: any) =>
-                  handleEvents(field.onChange, children.props?.onChange, valueAsNumber, event),
+                  handleEvents(field.onChange, children.props?.onChange, eventConfig, event),
                 onBlur: (event: any) =>
-                  handleEvents(field.onBlur, children.props?.onBlur, valueAsNumber, event),
+                  handleEvents(field.onBlur, children.props?.onBlur, eventConfig, event),
               })}
             </FormControl>
 
