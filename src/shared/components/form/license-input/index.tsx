@@ -6,7 +6,7 @@ import { Input, TInputProps } from '@shared/design-system/ui/input';
 
 type TLicenseInputFormFieldProps = Omit<TInputProps, 'maxLength'>;
 
-const LicenseInputFormField = React.forwardRef<HTMLInputElement, TLicenseInputFormFieldProps>(
+const LicenseInput = React.forwardRef<HTMLInputElement, TLicenseInputFormFieldProps>(
   ({ className, ...otherProps }, ref) => {
     const currentValue = useFormFieldValue();
 
@@ -22,4 +22,4 @@ const LicenseInputFormField = React.forwardRef<HTMLInputElement, TLicenseInputFo
   },
 );
 
-export default LicenseInputFormField;
+export default LicenseInput;

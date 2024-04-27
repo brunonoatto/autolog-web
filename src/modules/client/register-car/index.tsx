@@ -9,7 +9,7 @@ import BrandCombobox from '@shared/components/combobox/brand-combobox';
 import ModelCombobox from '@shared/components/combobox/model-combobox';
 import Form from '@shared/components/form';
 import FormField from '@shared/components/form/form-field';
-import LicenseInputFormField from '@shared/components/form/license-input';
+import LicenseInput from '@shared/components/form/license-input';
 import { Input } from '@shared/design-system/ui/input';
 import { useToast } from '@shared/design-system/ui/use-toast';
 import { zodValidators } from '@shared/form-validations';
@@ -73,7 +73,7 @@ export default function ClientRegisterCar() {
   return (
     <Form form={form} title="Cadastro de veículo" onValid={handleValid}>
       <FormField className="col-span-full" control={control} name="license" label="Placa">
-        <LicenseInputFormField />
+        <LicenseInput />
       </FormField>
 
       <BrandCombobox

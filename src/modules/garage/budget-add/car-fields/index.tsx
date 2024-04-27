@@ -7,7 +7,7 @@ import ClientCars from '@modules/garage/budget-add/car-fields/client-cars';
 import BrandCombobox from '@shared/components/combobox/brand-combobox';
 import ModelCombobox from '@shared/components/combobox/model-combobox';
 import FormField from '@shared/components/form/form-field';
-import LicenseInputFormField from '@shared/components/form/license-input';
+import LicenseInput from '@shared/components/form/license-input';
 import LoadingIcon from '@shared/components/loading-icon';
 import { CardTitle } from '@shared/design-system/ui/card';
 import { Input } from '@shared/design-system/ui/input';
@@ -48,7 +48,7 @@ export default function CarFields() {
 
         <div className="flex items-start gap-2 col-span-full">
           <FormField className="col-span-full" control={control} name="license" label="Placa">
-            <LicenseInputFormField onChange={handleLicenseChange} />
+            <LicenseInput onChange={handleLicenseChange} />
           </FormField>
 
           {/* TODO: pensar numa forma de mandar o isLoading para o FielField */}
