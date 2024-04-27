@@ -10,6 +10,7 @@ import { useLoadingStore } from '@core/store/hooks';
 import CarFields from '@modules/garage/budget-add/car-fields';
 import Form from '@shared/components/form';
 import FormField from '@shared/components/form/form-field';
+import CpfCnpjInput from '@shared/components/inputs/cpf-cnpj-input';
 import LoadingIcon from '@shared/components/loading-icon';
 import { CardTitle } from '@shared/design-system/ui/card';
 import { Input } from '@shared/design-system/ui/input';
@@ -79,11 +80,7 @@ function BudgetAddContent() {
 
         <div className="flex items-start gap-2">
           <FormField className="flex-1" control={control} name="cpf_cnpj" label="CPF/CNPJ">
-            <Input
-              onChange={handleCpfChange}
-              maxLength={14}
-              placeholder="Informe o CPF/CNPJ do Cliente"
-            />
+            <CpfCnpjInput onChange={handleCpfChange} placeholder="Informe o CPF/CNPJ do Cliente" />
           </FormField>
 
           {/* TODO: pensar numa forma de mandar o isLoading para o FielField */}

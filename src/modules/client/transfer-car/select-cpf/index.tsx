@@ -7,9 +7,9 @@ import { TClientResponse } from '@core/api/client/types';
 import { TTransferCarForm } from '@modules/client/transfer-car';
 import ContainerSelected from '@shared/components/container-selected';
 import FormField from '@shared/components/form/form-field';
+import CpfCnpjInput from '@shared/components/inputs/cpf-cnpj-input';
 import LoadingIcon from '@shared/components/loading-icon';
 import { CardTitle } from '@shared/design-system/ui/card';
-import { Input } from '@shared/design-system/ui/input';
 
 type TSelectCpfToTransferProps = {
   clientData?: TClientResponse;
@@ -50,10 +50,8 @@ export default function SelectCpfToTransfer({ clientData, setClient }: TSelectCp
       <CardTitle size="lg">Selecione para quem você quer transferir</CardTitle>
       <div className="flex items-start gap-2">
         <FormField control={control} name="cpfOrCnpjToTransfer" label="CPF/CNPJ">
-          <Input
-            className="w-64"
+          <CpfCnpjInput
             onChange={handleCpfChange}
-            maxLength={14}
             placeholder="Informe o CPF/CNPJ do destinatário"
           />
         </FormField>

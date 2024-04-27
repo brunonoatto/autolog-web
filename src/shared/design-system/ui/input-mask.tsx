@@ -5,7 +5,7 @@ import { Input } from '@shared/design-system/ui/input';
 import MasksEnum from '@shared/helpers/string/masks';
 import onlyNumbers from '@shared/helpers/string/onlyNumbers';
 
-type TMaskInput = Omit<PatternFormatProps, 'format'> & {
+export type TMaskInput = Omit<PatternFormatProps, 'format'> & {
   mask: MasksEnum;
   maskSecond?: MasksEnum;
   maskSecondCondition?: (e: React.KeyboardEvent<HTMLInputElement>, value: string) => boolean;

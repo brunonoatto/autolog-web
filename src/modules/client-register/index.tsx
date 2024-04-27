@@ -8,6 +8,7 @@ import { useLoadingStore } from '@core/store/hooks';
 import HomeLink from '@layout/body-app/header/home-link';
 import Form from '@shared/components/form';
 import FormField from '@shared/components/form/form-field';
+import CpfCnpjInput from '@shared/components/inputs/cpf-cnpj-input';
 import { CardTitle } from '@shared/design-system/ui/card';
 import { Input } from '@shared/design-system/ui/input';
 import Modal from '@shared/design-system/ui/modal';
@@ -69,12 +70,15 @@ export default function ClientRegister() {
             <FormField control={control} name="name" label="Nome">
               <Input />
             </FormField>
-            <FormField control={control} name="cpf_cnpj" label="CPF">
-              <Input />
+
+            <FormField control={control} name="cpf_cnpj" label="CPF/CNPJ">
+              <CpfCnpjInput />
             </FormField>
+
             <FormField control={control} name="email" label="E-mail">
               <Input />
             </FormField>
+
             <FormField control={control} name="phone" label="Telefone">
               <Input />
             </FormField>
@@ -85,6 +89,7 @@ export default function ClientRegister() {
             <FormField control={control} name="password" label="Senha">
               <Input type="password" />
             </FormField>
+
             <FormField control={control} name="passwordConfirm" label="Confirmação Senha">
               <Input type="password" />
             </FormField>
