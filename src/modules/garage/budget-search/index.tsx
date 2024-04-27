@@ -5,7 +5,7 @@ import z from 'zod';
 
 import ListBudgets from '@modules/garage/budget-search/list';
 import Form from '@shared/components/form';
-import LicenseInput from '@shared/components/form/license-input';
+import LicenseInputFormField from '@shared/components/form/license-input';
 import { zodValidators } from '@shared/form-validations';
 
 const schema = z
@@ -38,7 +38,7 @@ export default function BudgetSearch() {
   return (
     <>
       <Form form={form} onValid={handleValid} title="Buscar orçamento" icon="search">
-        <LicenseInput control={control} name="license" />
+        <LicenseInputFormField control={control} name="license" />
       </Form>
 
       <ListBudgets />

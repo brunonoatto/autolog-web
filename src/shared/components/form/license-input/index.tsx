@@ -10,7 +10,7 @@ type TLicenseInputProps<T extends FieldValues> = TInputProps & {
   label?: string;
 };
 
-export default function LicenseInput<T extends FieldValues>({
+export default function LicenseInputFormField<T extends FieldValues>({
   control,
   name,
   label = 'Placa',
