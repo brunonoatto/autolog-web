@@ -47,12 +47,9 @@ export default function CarFields() {
         <ClientCars />
 
         <div className="flex items-start gap-2 col-span-full">
-          <LicenseInputFormField
-            control={control}
-            name="license"
-            label="Placa"
-            onChange={handleLicenseChange}
-          />
+          <FormField className="col-span-full" control={control} name="license" label="Placa">
+            <LicenseInputFormField onChange={handleLicenseChange} />
+          </FormField>
 
           {/* TODO: pensar numa forma de mandar o isLoading para o FielField */}
           {isLoadingCar && <LoadingIcon className="mt-10" />}

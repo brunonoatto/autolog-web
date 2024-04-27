@@ -1,33 +1,25 @@
-import { Control, FieldPath, FieldValues, useFormContext } from 'react-hook-form';
-import { twMerge } from 'tailwind-merge';
+import React from 'react';
 
-import FormField from '@shared/components/form/form-field';
+import { cn } from '@shared/design-system/helpers/utils';
+import { useFormFieldValue } from '@shared/design-system/ui/form';
 import { Input, TInputProps } from '@shared/design-system/ui/input';
 
-type TLicenseInputProps<T extends FieldValues> = TInputProps & {
-  control: Control<T>;
-  name: FieldPath<T>;
-  label?: string;
-};
+type TLicenseInputFormFieldProps = Omit<TInputProps, 'maxLength'>;
 
-export default function LicenseInputFormField<T extends FieldValues>({
-  control,
-  name,
-  label = 'Placa',
-  ...inputProps
-}: TLicenseInputProps<T>) {
-  const { watch } = useFormContext();
+const LicenseInputFormField = React.forwardRef<HTMLInputElement, TLicenseInputFormFieldProps>(
+  ({ className, ...otherProps }, ref) => {
+    const currentValue = useFormFieldValue();
 
-  const fieldValue = watch(name);
-
-  return (
-    <FormField className="col-span-full" control={control} name={name} label={label}>
+    return (
       <Input
-        className={twMerge(`${fieldValue && 'text-xl font-bold uppercase'} w-48`)}
+        className={cn(`${!!currentValue && 'text-xl font-bold uppercase'} w-48`, className)}
+        ref={ref}
         maxLength={10}
         placeholder="Informe a placa do veículo"
-        {...inputProps}
+        {...otherProps}
       />
-    </FormField>
-  );
-}
+    );
+  },
+);
+
+export default LicenseInputFormField;

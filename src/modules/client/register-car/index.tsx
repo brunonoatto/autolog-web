@@ -72,7 +72,9 @@ export default function ClientRegisterCar() {
 
   return (
     <Form form={form} title="Cadastro de veículo" onValid={handleValid}>
-      <LicenseInputFormField control={control} name="license" />
+      <FormField className="col-span-full" control={control} name="license" label="Placa">
+        <LicenseInputFormField />
+      </FormField>
 
       <BrandCombobox
         control={control}
