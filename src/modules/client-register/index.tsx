@@ -66,8 +66,8 @@ export default function ClientRegister() {
           useDefaultGrid={false}
           border
         >
-          <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
-            <FormField control={control} name="name" label="Nome">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <FormField className="col-span-full" control={control} name="name" label="Nome">
               <Input />
             </FormField>
 
@@ -75,22 +75,34 @@ export default function ClientRegister() {
               <CpfCnpjInput />
             </FormField>
 
-            <FormField control={control} name="email" label="E-mail">
-              <Input />
-            </FormField>
-
+            {/* TODO: colocar um tooltip com info para que o telefone é utilizado */}
             <FormField control={control} name="phone" label="Telefone">
               <Input />
             </FormField>
           </div>
 
           <CardTitle size="lg">Defina uma senha de acesso</CardTitle>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <FormField control={control} name="password" label="Senha">
+            <FormField
+              className="col-span-full md:col-span-2"
+              control={control}
+              name="email"
+              label="E-mail"
+            >
+              <Input />
+            </FormField>
+
+            <FormField className="row-start-2" control={control} name="password" label="Senha">
               <Input type="password" />
             </FormField>
 
-            <FormField control={control} name="passwordConfirm" label="Confirmação Senha">
+            <FormField
+              className="row-start-3 md:row-start-2"
+              control={control}
+              name="passwordConfirm"
+              label="Confirmação Senha"
+            >
               <Input type="password" />
             </FormField>
           </div>
