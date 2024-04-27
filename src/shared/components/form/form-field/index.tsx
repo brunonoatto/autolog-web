@@ -20,17 +20,18 @@ type TInputFormProps<T extends FieldValues> = {
   label?: string;
   description?: string;
 
+  isMask?: boolean;
   // deletar
   labelProps?: any;
 };
 
 export default function FormField<T extends FieldValues>(props: TInputFormProps<T>) {
-  const { className, name, label, description, children } = props;
+  const { className, name, label, description, isMask, children } = props;
   const { control } = useFormContext();
 
   const eventConfig: THandleEventsConfigs = {
     valueAsNumber: children?.props?.type === 'number',
-    isMask: !!children.props.mask,
+    isMask,
   };
 
   return (

@@ -49,7 +49,7 @@ export default function SelectCpfToTransfer({ clientData, setClient }: TSelectCp
     <>
       <CardTitle size="lg">Selecione para quem você quer transferir</CardTitle>
       <div className="flex items-start gap-2">
-        <FormField control={control} name="cpfOrCnpjToTransfer" label="CPF/CNPJ">
+        <FormField control={control} name="cpfOrCnpjToTransfer" label="CPF/CNPJ" isMask>
           <CpfCnpjInput
             onChange={handleCpfChange}
             placeholder="Informe o CPF/CNPJ do destinatário"

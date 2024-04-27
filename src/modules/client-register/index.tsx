@@ -71,7 +71,7 @@ export default function ClientRegister() {
               <Input />
             </FormField>
 
-            <FormField control={control} name="cpf_cnpj" label="CPF/CNPJ">
+            <FormField control={control} name="cpf_cnpj" label="CPF/CNPJ" isMask>
               <CpfCnpjInput />
             </FormField>
 

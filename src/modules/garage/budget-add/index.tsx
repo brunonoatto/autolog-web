@@ -79,7 +79,7 @@ function BudgetAddContent() {
         </CardTitle>
 
         <div className="flex items-start gap-2">
-          <FormField className="flex-1" control={control} name="cpf_cnpj" label="CPF/CNPJ">
+          <FormField className="flex-1" control={control} name="cpf_cnpj" label="CPF/CNPJ" isMask>
             <CpfCnpjInput onChange={handleCpfChange} placeholder="Informe o CPF/CNPJ do Cliente" />
           </FormField>
 
