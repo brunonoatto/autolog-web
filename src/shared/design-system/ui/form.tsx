@@ -60,6 +60,13 @@ const useFormField = () => {
   };
 };
 
+const useFormFieldValue = () => {
+  const fieldContext = React.useContext(FormFieldContext);
+  const { getValues } = useFormContext();
+
+  return getValues(fieldContext.name);
+};
+
 type FormItemContextValue = {
   id: string;
 };
@@ -152,4 +159,5 @@ export {
   FormLabel,
   FormMessage,
   useFormField,
+  useFormFieldValue,
 };
