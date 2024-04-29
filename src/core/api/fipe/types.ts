@@ -1,9 +1,9 @@
-export type TListCarsBrandsResponse = {
+export type TBrandResponse = {
   name: string;
   code: string;
 };
 
-export type TListBrandModelsResponse = {
+export type TModelResponse = {
   name: string;
   code: string;
 };
