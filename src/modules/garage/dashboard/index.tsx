@@ -1,4 +1,5 @@
 import { useListDashboard } from '@core/service/dashboard';
+import { DASHBOARD_CARD_TEST_ID } from '@modules/garage/dashboard/consts';
 import { Alert, AlertDescription, AlertTitle } from '@shared/design-system/ui/alert';
 import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
 import LinkButton from '@shared/design-system/ui/link-button';
@@ -16,7 +17,7 @@ export default function Dashboard() {
   };
 
   return (
-    <Card>
+    <Card data-testid={DASHBOARD_CARD_TEST_ID}>
       <CardHeader>
         <CardTitle icon="trello">Dashboard</CardTitle>
       </CardHeader>

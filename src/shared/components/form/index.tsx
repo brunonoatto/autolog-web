@@ -13,6 +13,7 @@ import type { TIcons } from '@shared/design-system/ui/icon';
 import IconButton from '@shared/design-system/ui/icon-button';
 
 type TForm<T extends FieldValues> = PropsWithChildren & {
+  'data-testid'?: string;
   form: UseFormReturn<T>;
   onValid: SubmitHandler<T>;
   title: string;
@@ -26,6 +27,7 @@ type TForm<T extends FieldValues> = PropsWithChildren & {
 };
 
 export default function Form<T extends FieldValues>({
+  'data-testid': dataTestId,
   form,
   onValid,
   title,
@@ -59,9 +61,11 @@ export default function Form<T extends FieldValues>({
 
           <CardFooter paddingX={paddingX}>
             {iconButton ? (
-              <IconButton icon={iconButton}>{confirmButtonText}</IconButton>
+              <IconButton data-testid={dataTestId} icon={iconButton}>
+                {confirmButtonText}
+              </IconButton>
             ) : (
-              <Button>{confirmButtonText}</Button>
+              <Button data-testid={dataTestId}>{confirmButtonText}</Button>
             )}
           </CardFooter>
         </Card>

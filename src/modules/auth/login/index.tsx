@@ -1,34 +1,28 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import z from 'zod';
 
 import useAuth from '@core/store/context/hooks/useAuth';
 import { useLoadingStore } from '@core/store/hooks';
 import HomeLink from '@layout/body-app/header/home-link';
+import {
+  LOGIN_FORM_TEST_ID,
+  loginFormSchema,
+  type TLoginFormType,
+} from '@modules/auth/login/types';
 import Form from '@shared/components/form';
 import FormField from '@shared/components/form/form-field';
 import { Input } from '@shared/design-system/ui/input';
-import { zodValidators } from '@shared/form-validations';
-
-const loginFormSchema = z
-  .object({
-    email: zodValidators.Email(),
-    password: zodValidators.String(),
-  })
-  .strict();
-
-type TLoginType = z.infer<typeof loginFormSchema>;
 
 export default function Login() {
   const loading = useLoadingStore((state) => state.loading);
   const { login } = useAuth();
 
-  const form = useForm<TLoginType>({
+  const form = useForm<TLoginFormType>({
     resolver: zodResolver(loginFormSchema),
   });
   const { control } = form;
 
-  const handleValid: SubmitHandler<TLoginType> = async ({ email, password }) => {
+  const handleValid: SubmitHandler<TLoginFormType> = async ({ email, password }) => {
     loading(true);
 
     await login(email, password);
@@ -42,6 +36,7 @@ export default function Login() {
       <HomeLink />
 
       <Form
+        data-testid={LOGIN_FORM_TEST_ID}
         className="w-full sm:w-1/2 lg:w-1/3"
         form={form}
         title="Login"

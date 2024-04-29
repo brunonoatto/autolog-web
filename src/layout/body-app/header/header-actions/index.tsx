@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import useAuth from '@core/store/context/hooks/useAuth';
+import { HEADER_NAME_TEST_ID } from '@layout/body-app/header/header-actions/consts';
 import ThemeSwitcher from '@layout/body-app/header/header-actions/theme-switcher';
 import IconButton from '@shared/design-system/ui/icon-button';
 import Modal from '@shared/design-system/ui/modal';
@@ -19,7 +20,7 @@ const HeaderActions = () => {
     <div className="flex gap-2">
       <div className="text-xs">
         <div>Usuário: </div>
-        <div>{name}</div>
+        <div data-testid={HEADER_NAME_TEST_ID}>{name}</div>
       </div>
 
       <ThemeSwitcher />

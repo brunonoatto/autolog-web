@@ -1,23 +1,24 @@
 import { createContext, useCallback, useLayoutEffect, useState } from 'react';
 
-import type { TLoginResponse } from '@core/api/auth/types';
+import type { TAccessTokenData } from '@core/api/auth/types';
 import httpClient from '@core/api/HttpClient';
 import { useLogin } from '@core/service/auth';
+import { StorageKeyEnum } from '@shared/types/storageKey';
 
-const authStorageKey = 'autolog-auth';
+const AUTH_STORAGE_KEY = StorageKeyEnum.auth;
 
 type TAuthContextValue = {
   isAuthenticated: boolean;
   login(email: string, password: string): Promise<void>;
   logout(): void;
-  getTokenData: () => TLoginResponse | null;
+  getTokenData: () => TAccessTokenData | null;
 };
 
 export const AuthContext = createContext({} as TAuthContextValue);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const { mutate: mutateLogin } = useLogin();
-  const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem(authStorageKey));
+  const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem(AUTH_STORAGE_KEY));
 
   const login = useCallback(
     async (email: string, password: string) => {
@@ -25,7 +26,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         { email, password },
         {
           onSuccess: (loginResponse) => {
-            localStorage.setItem(authStorageKey, loginResponse.accessToken);
+            localStorage.setItem(AUTH_STORAGE_KEY, loginResponse.accessToken);
             setIsAuthenticated(true);
           },
         },
@@ -40,7 +41,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const getTokenData = useCallback(() => {
-    const storageKey = localStorage.getItem(authStorageKey);
+    const storageKey = localStorage.getItem(AUTH_STORAGE_KEY);
 
     if (!storageKey) return null;
 
@@ -50,12 +51,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const decriptStorageKey = atob(storageKeyArr[1]);
 
-    return JSON.parse(decriptStorageKey) as TLoginResponse;
+    return JSON.parse(decriptStorageKey) as TAccessTokenData;
   }, []);
 
   useLayoutEffect(() => {
     const requestInterceptorId = httpClient.interceptors.request.use((config) => {
-      const accessToken = localStorage.getItem(authStorageKey);
+      const accessToken = localStorage.getItem(AUTH_STORAGE_KEY);
 
       if (accessToken) {
         config.headers.set('Authorization', `Bearer ${accessToken}`);

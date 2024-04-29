@@ -1,4 +1,5 @@
 export enum ROUTES_PATH {
+  none = '',
   landingPage = '/',
   all = '*',
   login = '/login',

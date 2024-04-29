@@ -18,6 +18,7 @@
     "baseUrl": ".",
     "paths": {
       "@core/*": ["src/core/*"],
+      "@e2e/*": ["src/e2e/*"],
       "@layout/*": ["src/layout/*"],
       "@modules/*": ["src/modules/*"],
       "@shared/*": ["src/shared/*"]

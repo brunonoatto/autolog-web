@@ -4,8 +4,13 @@ export type TLoginParams = {
 };
 
 export type TUserType = 'garage' | 'client';
+
 export type TLoginResponse = {
-  type: TUserType;
-  name: string;
   accessToken: string;
+};
+
+export type TAccessTokenData = {
+  id: string;
+  name: string;
+  type: TUserType;
 };

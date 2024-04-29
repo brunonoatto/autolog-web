@@ -3,6 +3,7 @@ import React from 'react';
 import { VariantProps } from 'tailwind-variants';
 
 import { cn } from '@shared/design-system/helpers/utils';
+import { CARD_TITLE_TESTE_ID } from '@shared/design-system/ui/consts';
 import Icon, { type TIcons } from '@shared/design-system/ui/icon';
 
 const cardVariants = cva('flex flex-col rounded-lg bg-card text-card-foreground shadow-sm', {
@@ -73,7 +74,10 @@ const CardTitle = React.forwardRef<
     VariantProps<typeof cardTitleVariants> &
     VariantProps<typeof cardTitleTextVariants> & { icon?: TIcons }
 >(({ className, icon, size, alignTitle, children, ...props }, ref) => (
-  <div className={cn(cardTitleVariants({ alignTitle, size }), className)}>
+  <div
+    data-testid={CARD_TITLE_TESTE_ID}
+    className={cn(cardTitleVariants({ alignTitle, size }), className)}
+  >
     {icon && <Icon name={icon} size={size === 'lg' ? 18 : 22} />}
     <div ref={ref} className={cn(cardTitleTextVariants({ size }))} {...props}>
       {children}
