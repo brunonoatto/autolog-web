@@ -29,7 +29,7 @@ export default function Dashboard() {
               <AlertTitle>Nenhum orçamento em andamento.</AlertTitle>
               <AlertDescription>
                 <LinkButton
-                  className="hidden md:inline-block"
+                  className="hidden md:inline-flex"
                   to="/garage/orcamento"
                   icon="circle-dollar-sign"
                 >
