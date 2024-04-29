@@ -3,6 +3,7 @@ import base from '@playwright/test';
 import RoutesUtils from '@e2e/core/fixtures/routes';
 import ApplicationSetup from '@e2e/core/fixtures/setup';
 import LoginPage from '@e2e/pages/auth/login';
+import ClientMyCarsPage from '@e2e/pages/client/my-cars';
 import GarageDashboardPage from '@e2e/pages/garage/dashboard';
 import HeaderPage from '@e2e/pages/header/header';
 
@@ -13,6 +14,7 @@ type TMyFixtures = {
   // modalComponent: ModalComponent;
   loginPage: LoginPage;
   headerPage: HeaderPage;
+  clientMyCarsPage: ClientMyCarsPage;
   garageDashboardPage: GarageDashboardPage;
 };
 
@@ -37,6 +39,9 @@ export const test = base.extend<TMyFixtures>({
   },
   headerPage: async ({ page }, use) => {
     await use(new HeaderPage(page));
+  },
+  clientMyCarsPage: async ({ page }, use) => {
+    await use(new ClientMyCarsPage(page));
   },
   garageDashboardPage: async ({ page }, use) => {
     await use(new GarageDashboardPage(page));

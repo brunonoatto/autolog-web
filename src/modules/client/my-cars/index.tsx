@@ -1,4 +1,5 @@
 import { useClientCars } from '@core/service/client';
+import { MY_CARS_CARD_TEST_ID } from '@modules/client/my-cars/consts';
 import IdentificationCar from '@modules/garage/dashboard/status-card/identification-car';
 import DashboardButton from '@shared/components/dashboard-button';
 import { Alert, AlertDescription, AlertTitle } from '@shared/design-system/ui/alert';
@@ -15,7 +16,7 @@ export default function ClientMyCars() {
   };
 
   return (
-    <Card>
+    <Card data-testid={MY_CARS_CARD_TEST_ID}>
       <CardHeader>
         <CardTitle icon="warehouse">Meus Veículos</CardTitle>
       </CardHeader>

@@ -1,14 +1,13 @@
 import RouteData from '@e2e/core/fixtures/routes/_types/RouteData';
-import RoutePost from '@e2e/core/fixtures/routes/_types/RoutePost';
-import { garageAccessTokenData } from '@e2e/core/shared/consts/auth';
+import { clientAccessToken, garageAccessToken } from '@e2e/core/shared/consts/auth';
+import RoutesData from '@e2e/shared/routes.ts';
 
-// const expectGarageLoginData: TLoginParams = {
-//   email: 'newgarage@garage.com',
-//   password: 'senha123',
-// };
-
-const loginGarageSuccessRoute = new RoutePost(`/login`);
-const garageSuccess = {
-  accessToken: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.${btoa(JSON.stringify(garageAccessTokenData))}.UtuZf-IxlwRF6YPGdQh0_RSM0ISAPMSoeIuEPfFDIBA`,
+const loginGarageResponse = {
+  accessToken: garageAccessToken,
 };
-export const logingarageSuccessRouteData = new RouteData(loginGarageSuccessRoute, garageSuccess);
+export const loginGarageRouteData = new RouteData(RoutesData.Auth.login, loginGarageResponse);
+
+const loginClientResponse = {
+  accessToken: clientAccessToken,
+};
+export const loginClientRouteData = new RouteData(RoutesData.Auth.login, loginClientResponse);

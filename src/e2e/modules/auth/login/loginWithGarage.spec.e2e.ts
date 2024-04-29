@@ -1,6 +1,6 @@
 import { test } from '@e2e/core/fixtures';
 import { garageAccessTokenData } from '@e2e/core/shared/consts/auth';
-import { logingarageSuccessRouteData } from '@e2e/modules/auth/login/mocks';
+import { loginGarageRouteData } from '@e2e/modules/auth/login/mocks';
 
 test('Deve realizar o login com usuário do tipo Garage', async ({
   applicationSetup,
@@ -9,12 +9,12 @@ test('Deve realizar o login com usuário do tipo Garage', async ({
   headerPage,
   garageDashboardPage,
 }) => {
-  await routesUtils.mockRouteResponseList([logingarageSuccessRouteData]);
+  await routesUtils.mockRouteResponseList([loginGarageRouteData]);
 
   await applicationSetup.setup('/login');
 
   await loginPage.login('garage@garage.com.br', 'senha123');
 
   await headerPage.expectNameToUser(garageAccessTokenData.name);
-  await garageDashboardPage.expectBodyTitle('Dashboard');
+  await garageDashboardPage.expectCardTitle('Dashboard');
 });

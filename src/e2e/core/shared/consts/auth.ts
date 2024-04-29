@@ -5,9 +5,12 @@ export const garageAccessTokenData: TAccessTokenData = {
   name: 'primeira garagem',
   type: 'garage',
 };
+export const garageAccessToken = `.${btoa(JSON.stringify(garageAccessTokenData))}.`;
 
 export const clientAccessTokenData: TAccessTokenData = {
   id: '5f182bd8-501c-4a84-803a-933cd253d2a8',
   name: 'Joana Silva CNPJ',
   type: 'client',
 };
+
+export const clientAccessToken = `.${btoa(JSON.stringify(clientAccessTokenData))}.`;
