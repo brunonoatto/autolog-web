@@ -14,8 +14,10 @@ import CpfCnpjInput from '@shared/components/inputs/cpf-cnpj-input';
 import LoadingIcon from '@shared/components/loading-icon';
 import { CardTitle } from '@shared/design-system/ui/card';
 import { Input } from '@shared/design-system/ui/input';
+import MaskInput from '@shared/design-system/ui/input-mask';
 import Modal from '@shared/design-system/ui/modal';
 import { Textarea } from '@shared/design-system/ui/textarea';
+import MasksEnum from '@shared/helpers/string/masks';
 import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
 function BudgetAddContent() {
@@ -97,7 +99,11 @@ function BudgetAddContent() {
         </FormField>
 
         <FormField className="lg:row-start-3" control={control} name="phone" label="Telefone">
-          <Input disabled={!!selectedClient} placeholder="Informe o telefone do Cliente" />
+          <MaskInput
+            mask={MasksEnum.phone}
+            disabled={!!selectedClient}
+            placeholder="Informe o telefone do Cliente"
+          />
         </FormField>
 
         <CarFields />

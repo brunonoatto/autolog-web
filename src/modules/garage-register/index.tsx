@@ -10,9 +10,11 @@ import Form from '@shared/components/form';
 import FormField from '@shared/components/form/form-field';
 import { CardTitle } from '@shared/design-system/ui/card';
 import { Input } from '@shared/design-system/ui/input';
+import MaskInput from '@shared/design-system/ui/input-mask';
 import Modal from '@shared/design-system/ui/modal';
 import { zodValidators } from '@shared/form-validations/index';
 import { PasswordSchema } from '@shared/form-validations/validators';
+import MasksEnum from '@shared/helpers/string/masks';
 import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
 const registerGarageSchema = z
@@ -91,7 +93,7 @@ export default function GarageRegister() {
             </FormField>
 
             <FormField control={control} name="phone" label="Telefone">
-              <Input />
+              <MaskInput mask={MasksEnum.phone} />
             </FormField>
           </div>
 

@@ -11,9 +11,11 @@ import FormField from '@shared/components/form/form-field';
 import CpfCnpjInput from '@shared/components/inputs/cpf-cnpj-input';
 import { CardTitle } from '@shared/design-system/ui/card';
 import { Input } from '@shared/design-system/ui/input';
+import MaskInput from '@shared/design-system/ui/input-mask';
 import Modal from '@shared/design-system/ui/modal';
 import { zodValidators } from '@shared/form-validations/index';
 import { PasswordSchema } from '@shared/form-validations/validators';
+import MasksEnum from '@shared/helpers/string/masks';
 import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
 const registerClientSchema = z
@@ -77,7 +79,7 @@ export default function ClientRegister() {
 
             {/* TODO: colocar um tooltip com info para que o telefone é utilizado */}
             <FormField control={control} name="phone" label="Telefone">
-              <Input />
+              <MaskInput mask={MasksEnum.phone} />
             </FormField>
           </div>
 
