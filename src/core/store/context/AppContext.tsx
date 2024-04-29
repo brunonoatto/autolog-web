@@ -3,7 +3,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import type { AxiosError } from 'axios';
 import { createContext, useLayoutEffect } from 'react';
 
-import httpClient from '@core/api/HttpClient';
+import httpClient from '@core/api/http-client';
 import type { TErrorApiData } from '@core/api/types';
 import { AuthProvider } from '@core/store/context/AuthContext';
 import { ThemeProvider } from '@core/store/context/ThemeProvider';

@@ -1,7 +1,7 @@
 import { createContext, useCallback, useLayoutEffect, useState } from 'react';
 
 import type { TAccessTokenData } from '@core/api/auth/types';
-import httpClient from '@core/api/HttpClient';
+import httpClient from '@core/api/http-client';
 import { useLogin } from '@core/service/auth';
 import { StorageKeyEnum } from '@shared/types/storageKey';
 

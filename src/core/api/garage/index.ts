@@ -1,5 +1,5 @@
 import type { TNewGarage } from '@core/api/garage/types';
-import httpClient from '@core/api/HttpClient';
+import httpClient from '@core/api/http-client';
 
 const BASE_URL = '/garage';
 

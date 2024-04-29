@@ -1,4 +1,4 @@
-import httpClient from '@core/api/HttpClient';
+import httpClient from '@core/api/http-client';
 
 import type { TDashboardItem } from './types';
 

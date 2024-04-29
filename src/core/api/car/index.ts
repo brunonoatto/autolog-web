@@ -5,7 +5,7 @@ import type {
   TNewCar,
   TTransferCarProps,
 } from '@core/api/car/types';
-import httpClient from '@core/api/HttpClient';
+import httpClient from '@core/api/http-client';
 
 const BASE_URL = '/car';
 

@@ -1,5 +1,5 @@
 import type { TClientResponse, TGetClientParams, TNewClient } from '@core/api/client/types';
-import httpClient from '@core/api/HttpClient';
+import httpClient from '@core/api/http-client';
 
 const BASE_URL = '/client';
 
