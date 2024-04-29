@@ -1,6 +1,6 @@
 import { test } from '@e2e/core/fixtures';
-import { garageAccessTokenData } from '@e2e/core/shared/consts/auth';
 import { loginGarageRouteData } from '@e2e/modules/auth/login/mocks';
+import { garageAccessTokenData } from '@e2e/shared/consts/auth';
 
 test('Deve realizar o login com usuário do tipo Garage', async ({
   applicationSetup,

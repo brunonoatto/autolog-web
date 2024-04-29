@@ -2,7 +2,7 @@ import type { Page } from '@playwright/test';
 
 import { TAccessTokenData } from '@core/api/auth/types';
 import { TRoute } from '@core/router/consts';
-import { clientAccessTokenData, garageAccessTokenData } from '@e2e/core/shared/consts/auth';
+import { clientAccessTokenData, garageAccessTokenData } from '@e2e/shared/consts/auth';
 import { StorageKeyEnum } from '@shared/types/storageKey';
 
 class ApplicationSetup {
