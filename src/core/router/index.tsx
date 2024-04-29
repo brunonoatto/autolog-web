@@ -1,6 +1,7 @@
-import { lazy, Suspense } from 'react';
+import { lazy } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+import SuspenseRoute from '@core/router/suspense-route';
 import BigSpinner from '@layout/body-app/big-spinner';
 import urlJoin from '@shared/helpers/string/urlJoin';
 
@@ -30,125 +31,118 @@ const NotFoundRoute = lazy(() => import('@shared/components/not-found-route'));
 
 const router = createBrowserRouter([
   {
-    element: (
-      <Suspense fallback={<BigSpinner open={true} />}>
-        <ProtectedRoute isPrivate={false} />
-      </Suspense>
-    ),
+    Component: SuspenseRoute,
     children: [
       {
-        id: 'login',
-        path: ROUTES_PATH.login,
-        Component: Login,
-      },
-      {
-        path: urlJoin(ROUTES_PATH.budgetWithoutLogin, ':os'),
-        Component: ClientBudgetView,
-      },
-      {
-        path: ROUTES_PATH.budgetApprovedWithoutLogin,
-        Component: BudgetApproved,
-      },
-      {
-        path: ROUTES_PATH.budgetRejectedWithoutLogin,
-        Component: BudgetRejected,
-      },
-      {
-        id: 'root',
-        path: ROUTES_PATH.landingPage,
-        Component: LandingPage,
-      },
-      {
-        path: ROUTES_PATH.garageRegister,
-        Component: GarageRegister,
-      },
-      {
-        path: ROUTES_PATH.clientRegister,
-        Component: ClientRegister,
-      },
-    ],
-  },
-  {
-    element: (
-      <Suspense fallback={<BigSpinner open={true} />}>
-        <ProtectedRoute isPrivate routeUserType="garage" />
-      </Suspense>
-    ),
-    children: [
-      {
-        path: ROUTES_PATH.garageHome,
-        Component: GarageContent,
+        element: <ProtectedRoute isPrivate={false} />,
         children: [
           {
-            index: true,
-            Component: GarageDashboard,
+            id: 'login',
+            path: ROUTES_PATH.login,
+            Component: Login,
           },
           {
-            path: ROUTES_PATH.garageBudget,
-            Component: GarageBudgetAdd,
-          },
-          {
-            path: urlJoin(ROUTES_PATH.garageBudget, ':os'),
-            Component: GarageBudgetView,
-          },
-          {
-            path: ROUTES_PATH.garageBuggetSearch,
-            Component: GarageBudgetSearch,
-          },
-          {
-            path: ROUTES_PATH.garageConsultationLicense,
-            Component: ConsultLicense,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    element: (
-      <Suspense fallback={<BigSpinner open={true} />}>
-        <ProtectedRoute isPrivate routeUserType="client" />
-      </Suspense>
-    ),
-    children: [
-      {
-        path: ROUTES_PATH.clientHome,
-        Component: ClientContent,
-        children: [
-          {
-            index: true,
-            Component: ClientMyCars,
-          },
-          {
-            path: urlJoin(ROUTES_PATH.clientHome, ':license'),
-            Component: ClientCarView,
-          },
-          {
-            path: ROUTES_PATH.clientBudgets,
-            Component: ClientBudgetSearch,
-          },
-          {
-            path: urlJoin(ROUTES_PATH.clientBudgetView, ':os'),
+            path: urlJoin(ROUTES_PATH.budgetWithoutLogin, ':os'),
             Component: ClientBudgetView,
           },
           {
-            path: ROUTES_PATH.clientConsultationLicense,
-            Component: ConsultLicense,
+            path: ROUTES_PATH.budgetApprovedWithoutLogin,
+            Component: BudgetApproved,
           },
           {
-            path: ROUTES_PATH.clientTransfer,
-            Component: ClientTransferCar,
+            path: ROUTES_PATH.budgetRejectedWithoutLogin,
+            Component: BudgetRejected,
           },
           {
-            path: ROUTES_PATH.clientRegisterCar,
-            Component: ClientRegisterCar,
+            id: 'root',
+            path: ROUTES_PATH.landingPage,
+            Component: LandingPage,
+          },
+          {
+            path: ROUTES_PATH.garageRegister,
+            Component: GarageRegister,
+          },
+          {
+            path: ROUTES_PATH.clientRegister,
+            Component: ClientRegister,
           },
         ],
       },
+      {
+        element: <ProtectedRoute isPrivate routeUserType="garage" />,
+        children: [
+          {
+            path: ROUTES_PATH.garageHome,
+            Component: GarageContent,
+            children: [
+              {
+                index: true,
+                Component: GarageDashboard,
+              },
+              {
+                path: ROUTES_PATH.garageBudget,
+                Component: GarageBudgetAdd,
+              },
+              {
+                path: urlJoin(ROUTES_PATH.garageBudget, ':os'),
+                Component: GarageBudgetView,
+              },
+              {
+                path: ROUTES_PATH.garageBuggetSearch,
+                Component: GarageBudgetSearch,
+              },
+              {
+                path: ROUTES_PATH.garageConsultationLicense,
+                Component: ConsultLicense,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        element: <ProtectedRoute isPrivate routeUserType="client" />,
+        children: [
+          {
+            path: ROUTES_PATH.clientHome,
+            Component: ClientContent,
+            children: [
+              {
+                index: true,
+                Component: ClientMyCars,
+              },
+              {
+                path: urlJoin(ROUTES_PATH.clientHome, ':license'),
+                Component: ClientCarView,
+              },
+              {
+                path: ROUTES_PATH.clientBudgets,
+                Component: ClientBudgetSearch,
+              },
+              {
+                path: urlJoin(ROUTES_PATH.clientBudgetView, ':os'),
+                Component: ClientBudgetView,
+              },
+              {
+                path: ROUTES_PATH.clientConsultationLicense,
+                Component: ConsultLicense,
+              },
+              {
+                path: ROUTES_PATH.clientTransfer,
+                Component: ClientTransferCar,
+              },
+              {
+                path: ROUTES_PATH.clientRegisterCar,
+                Component: ClientRegisterCar,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        path: ROUTES_PATH.all,
+        Component: NotFoundRoute,
+      },
     ],
-  },
-  {
-    path: ROUTES_PATH.all,
-    Component: NotFoundRoute,
   },
 ]);
 
