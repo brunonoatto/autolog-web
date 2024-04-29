@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 
 import { ServiceApi } from '@core/api';
-import { BudgetListItem } from '@core/models/budget/BudgetListItem copy';
+import { BudgetListItem } from '@core/models/budget/BudgetListItem';
 import useQueryCustom from '@shared/hooks/useQueryCustom';
 
 export const useListBudgets = () => {
