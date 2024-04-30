@@ -9,8 +9,8 @@ import httpClient from '@core/api/http-client';
 
 const BASE_URL = '/car';
 
-export const get = async (license: string): Promise<TCar> => {
-  const response = await httpClient.get<TCar>(`${BASE_URL}/${license}`);
+export const get = async (license: string, noShowError: boolean = false): Promise<TCar> => {
+  const response = await httpClient.get<TCar>(`${BASE_URL}/${license}`, { data: { noShowError } });
   return response.data;
 };
 
