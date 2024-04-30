@@ -1,11 +1,9 @@
-import { TRoute } from '@core/router/consts';
-
 import type { TMethodType, TRouteBase } from './index';
 
 class RouteGet implements TRouteBase {
   route: string;
   method: TMethodType = 'GET';
-  constructor(route: TRoute) {
+  constructor(route: string) {
     this.route = route;
   }
 }

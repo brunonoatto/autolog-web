@@ -1,3 +1,3 @@
-import RoutePost from '@e2e/core/fixtures/routes/_types/RoutePost';
+import RoutePost from '@e2e/core/fixtures/route/_types/RoutePost';
 
 export const login = new RoutePost(`/login`);

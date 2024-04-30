@@ -60,6 +60,8 @@ export default defineConfig({
     {
       command: 'pnpm preview',
       url: 'http://127.0.0.1:4173',
+      // command: 'pnpm start',
+      // url: 'http://127.0.0.1:5173',
       reuseExistingServer: false,
       env: {
         USE_BABEL_PLUGIN_ISTANBUL: '1',

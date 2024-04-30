@@ -1,8 +1,7 @@
 import type { Page } from '@playwright/test';
 
-import { TAccessTokenData } from '@core/api/auth/types';
 import { TRoute } from '@core/router/consts';
-import { clientAccessTokenData, garageAccessTokenData } from '@e2e/shared/consts/auth';
+import { clientAccessToken, garageAccessToken } from '@e2e/mocks/auth/login';
 import { StorageKeyEnum } from '@shared/types/storageKey';
 
 class ApplicationSetup {
@@ -17,15 +16,20 @@ class ApplicationSetup {
     // await this.page.route('**/node_modules/.vite/deps/chunk-**', (route) => route.abort());
   }
 
-  async setUserAuth(user: TAccessTokenData) {
-    await this.page.addInitScript((user) => {
-      localStorage.setItem(StorageKeyEnum.auth, btoa(JSON.stringify(user)));
-    }, user);
+  async setUserAuth(accessToken: string) {
+    const args = {
+      accessTokenKey: StorageKeyEnum.auth,
+      accessToken,
+    };
+
+    await this.page.addInitScript(({ accessTokenKey, accessToken }) => {
+      localStorage.setItem(accessTokenKey, accessToken);
+    }, args);
   }
 
-  async setup(route: TRoute = '', user?: TAccessTokenData) {
-    if (route && user) {
-      await this.setUserAuth(user);
+  async setup(route: TRoute = '', accessToken?: string) {
+    if (route && accessToken) {
+      await this.setUserAuth(accessToken);
     }
 
     await this.abortRoutes();
@@ -34,11 +38,11 @@ class ApplicationSetup {
   }
 
   async setupGarage(route: TRoute = '') {
-    this.setup(route, garageAccessTokenData);
+    await this.setup(route, garageAccessToken);
   }
 
   async setupClient(route: TRoute = '') {
-    this.setup(route, clientAccessTokenData);
+    await this.setup(route, clientAccessToken);
   }
 }
 

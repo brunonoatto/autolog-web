@@ -1,1 +1,1 @@
-export const inputSelector = <T>(name: keyof T) => `[name='${name as string}']`;
+export const selectorByName = <T>(name: keyof T) => `[name='${name as string}']`;

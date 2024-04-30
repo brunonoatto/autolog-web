@@ -1,6 +1,6 @@
 import { test } from '@e2e/core/fixtures';
+import { clientAccessTokenData } from '@e2e/mocks/auth/login';
 import { loginClientRouteData } from '@e2e/modules/auth/login/mocks';
-import { clientAccessTokenData } from '@e2e/shared/consts/auth';
 
 test('Deve realizar o login com usuário do tipo Client', async ({
   applicationSetup,

@@ -1,4 +1,4 @@
-import { type TAccessTokenData } from '@core/api/auth/types';
+import { TAccessTokenData } from '@core/api/auth/types';
 
 export const garageAccessTokenData: TAccessTokenData = {
   id: '54d77a26-d07a-4010-b0b3-9f5ad8139bbf',

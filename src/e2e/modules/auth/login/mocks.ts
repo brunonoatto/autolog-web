@@ -1,5 +1,5 @@
-import RouteData from '@e2e/core/fixtures/routes/_types/RouteData';
-import { clientAccessToken, garageAccessToken } from '@e2e/shared/consts/auth';
+import RouteData from '@e2e/core/fixtures/route/_types/RouteData';
+import { clientAccessToken, garageAccessToken } from '@e2e/mocks/auth/login';
 import RoutesData from '@e2e/shared/routes.ts';
 
 const loginGarageResponse = {

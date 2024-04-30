@@ -1,13 +1,14 @@
 import MockData from './MockData';
 
-import type { TMockData, TRouteBase, TRouteMockData } from './index';
+import type { TMock, TMockData, TRouteBase, TRouteMockData } from './index';
 
 class RouteData implements TRouteMockData {
+  base: TRouteBase;
   route: string;
   mocks: MockData[] = [];
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  constructor(base: TRouteBase, mock: any) {
+  constructor(base: TRouteBase, mock: TMock) {
+    this.base = base;
     this.route = `**/api${base.route}`;
     this.mocks.push(new MockData(base, mock));
   }
@@ -18,14 +19,13 @@ class RouteData implements TRouteMockData {
     return this;
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  setConditionMock = (conditionMock: TMockData['conditionMock'], mock2: any) => {
+  setConditionMock = (conditionMock: TMockData['conditionMock'], mock2: TMock) => {
     const lastIndex = this.mocks.length - 1;
     this.mocks[lastIndex].setConditionMock(conditionMock, mock2);
     return this;
   };
 
-  addMock = (base: TRouteBase, mock: any) => {
+  addMock = (base: TRouteBase, mock: TMock) => {
     this.mocks.push(new MockData(base, mock));
     return this;
   };

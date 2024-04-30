@@ -1,8 +1,8 @@
 import type { Page } from '@playwright/test';
 
-import RouteData from '@e2e/core/fixtures/routes/_types/RouteData';
+import RouteData from '@e2e/core/fixtures/route/_types/RouteData';
 
-class RoutesUtils {
+class RouteUtils {
   page: Page;
   constructor(page: Page) {
     this.page = page;
@@ -55,4 +55,4 @@ class RoutesUtils {
   }
 }
 
-export default RoutesUtils;
+export default RouteUtils;
