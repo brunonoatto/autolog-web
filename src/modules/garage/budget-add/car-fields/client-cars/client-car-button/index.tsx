@@ -1,8 +1,8 @@
 import { useFormContext } from 'react-hook-form';
 
 import type { TCar } from '@core/api/car/types';
-import type { TBudgetAddFormType } from '@core/store/context/BudgetAddContext';
 import useBudgetAddContext from '@core/store/context/hooks/useBudgetAdd';
+import type { TBudgetAddFormType } from '@core/store/context/types/budget-add';
 import { Button } from '@shared/design-system/ui/button';
 
 type TClientCarButtonProps = {

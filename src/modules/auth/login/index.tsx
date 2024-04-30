@@ -4,11 +4,8 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import useAuth from '@core/store/context/hooks/useAuth';
 import { useLoadingStore } from '@core/store/hooks';
 import HomeLink from '@layout/body-app/header/home-link';
-import {
-  LOGIN_FORM_TEST_ID,
-  loginFormSchema,
-  type TLoginFormType,
-} from '@modules/auth/login/types';
+import { LOGIN_FORM_TEST_ID } from '@modules/auth/login/const';
+import { loginFormSchema, type TLoginFormType } from '@modules/auth/login/types';
 import Form from '@shared/components/form';
 import FormField from '@shared/components/form/form-field';
 import { Input } from '@shared/design-system/ui/input';

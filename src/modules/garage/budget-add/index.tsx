@@ -4,10 +4,12 @@ import { useDebouncedCallback } from 'use-debounce';
 
 import { useAddBudget } from '@core/service/budget';
 import { useListBrands, useListModelsBrand } from '@core/service/fipe';
-import { BudgetAddProvider, type TBudgetAddFormType } from '@core/store/context/BudgetAddContext';
+import { BudgetAddProvider } from '@core/store/context/BudgetAddContext';
 import useBudgetAddContext from '@core/store/context/hooks/useBudgetAdd';
+import { TBudgetAddFormType } from '@core/store/context/types/budget-add';
 import { useLoadingStore } from '@core/store/hooks';
 import CarFields from '@modules/garage/budget-add/car-fields';
+import { GARAGE_BUDGET_ADD_FORM_TEST_ID } from '@modules/garage/budget-add/const';
 import Form from '@shared/components/form';
 import FormField from '@shared/components/form/form-field';
 import CpfCnpjInput from '@shared/components/inputs/cpf-cnpj-input';
@@ -55,7 +57,6 @@ function BudgetAddContent() {
     // TODO: transformar essa lógica em hook
     const brand = listBrands?.find((b) => b.code === formValues.brand)?.name;
     const model = listModels?.find((b) => b.code === formValues.model)?.name;
-
     mutate(
       { ...formValues, brand, model },
       {
@@ -75,7 +76,13 @@ function BudgetAddContent() {
 
   return (
     <>
-      <Form form={form} onValid={handleValid} title="Adicionar Orçamento" icon="circle-dollar-sign">
+      <Form
+        data-testid={GARAGE_BUDGET_ADD_FORM_TEST_ID}
+        form={form}
+        onValid={handleValid}
+        title="Adicionar Orçamento"
+        icon="circle-dollar-sign"
+      >
         <CardTitle className="col-span-full" icon="user" size="lg">
           Dados do Cliente
         </CardTitle>

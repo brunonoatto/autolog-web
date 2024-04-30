@@ -4,6 +4,10 @@ import { Button, TButtonProps } from '@shared/design-system/ui/button';
 import { CardTitle } from '@shared/design-system/ui/card';
 import { TIcons } from '@shared/design-system/ui/icon';
 import IconButton from '@shared/design-system/ui/icon-button';
+import {
+  MODAL_CANCEL_BUTTON_TEST_ID,
+  MODAL_CONFIRM_BUTTON_TEST_ID,
+} from '@shared/design-system/ui/modal/consts';
 import Portal from '@shared/design-system/ui/portal';
 
 type TModalProps = PropsWithChildren & {
@@ -45,12 +49,20 @@ const Modal = ({
         <div className="overflow-auto">{children}</div>
         <div className="text-right space-x-4 ">
           {onCancelClick && (
-            <Button variant={cancelVariant} onClick={onCancelClick}>
+            <Button
+              data-testid={MODAL_CANCEL_BUTTON_TEST_ID}
+              variant={cancelVariant}
+              onClick={onCancelClick}
+            >
               {cancelText}
             </Button>
           )}
           {onConfirmClick && (
-            <Button variant={confirmVariant} onClick={onConfirmClick}>
+            <Button
+              data-testid={MODAL_CONFIRM_BUTTON_TEST_ID}
+              variant={confirmVariant}
+              onClick={onConfirmClick}
+            >
               {confirmText}
             </Button>
           )}

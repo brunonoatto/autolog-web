@@ -13,6 +13,7 @@ import {
   CommandItem,
   CommandList,
 } from '@shared/design-system/ui/command';
+import { COMBOBOX_OPTIONS_TEST_ID } from '@shared/design-system/ui/consts';
 import {
   FormControl,
   FormField,
@@ -62,6 +63,7 @@ export default function Combobox<T extends FieldValues>({
                 <Button
                   variant="outline"
                   role="combobox"
+                  name={field.name}
                   aria-expanded={open}
                   disabled={disabled}
                   className={cn('block w-full ', !field.value && 'text-muted-foreground')}
@@ -80,7 +82,7 @@ export default function Combobox<T extends FieldValues>({
                 <CommandInput placeholder="Procurar item..." />
                 <CommandEmpty>Nenhum item encontrado.</CommandEmpty>
                 <CommandGroup>
-                  <CommandList>
+                  <CommandList data-testid={COMBOBOX_OPTIONS_TEST_ID}>
                     {items.map((item) => {
                       return (
                         <CommandItem
