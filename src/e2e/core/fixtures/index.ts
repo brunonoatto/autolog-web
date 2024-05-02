@@ -1,6 +1,8 @@
 import base from '@playwright/test';
 
 import AssertUtils from '@e2e/core/fixtures/assert';
+import contextCoverage from '@e2e/core/fixtures/coverage';
+import MenusUtils from '@e2e/core/fixtures/menus';
 import ModalComponent from '@e2e/core/fixtures/modal';
 import RoutesUtils from '@e2e/core/fixtures/route/index';
 import ApplicationSetup from '@e2e/core/fixtures/setup';
@@ -13,6 +15,7 @@ import HeaderPage from '@e2e/pages/header/header';
 
 type TMyFixtures = {
   applicationSetup: ApplicationSetup;
+  menusUtils: MenusUtils;
   assertUtils: AssertUtils;
   routesUtils: RoutesUtils;
   // toastComponent: ToastComponent;
@@ -26,11 +29,14 @@ type TMyFixtures = {
 };
 
 export const test = base.extend<TMyFixtures>({
-  // context: async ({ context }, use) => {
-  //   await contextCoverage(context, use);
-  // },
+  context: async ({ context }, use) => {
+    await contextCoverage(context, use);
+  },
   applicationSetup: async ({ page }, use) => {
     await use(new ApplicationSetup(page));
+  },
+  menusUtils: async ({ page }, use) => {
+    await use(new MenusUtils(page));
   },
   assertUtils: async ({ page }, use) => {
     await use(new AssertUtils(page));

@@ -12,12 +12,13 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './src/e2e',
   testMatch: '*.spec.e2e.ts',
-  timeout: 15_000,
+  timeout: 60_000,
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
-  reporter: [['html', { open: false }]],
+  workers: process.env.CI ? 1 : 4,
+  // reporter: [['html', { open: false }]],
+  reporter: 'dot',
   use: {
     headless: true,
     trace: 'on-first-retry',
@@ -58,10 +59,12 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: [
     {
-      command: 'pnpm preview',
-      url: 'http://127.0.0.1:4173',
-      // command: 'pnpm start',
-      // url: 'http://127.0.0.1:5173',
+      // Build
+      // command: 'pnpm preview',
+      // url: 'http://127.0.0.1:4173',
+      // Local
+      command: 'pnpm start',
+      url: 'http://127.0.0.1:5173',
       reuseExistingServer: false,
       env: {
         USE_BABEL_PLUGIN_ISTANBUL: '1',
