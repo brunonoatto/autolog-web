@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
+import { BODY_MENU_TEST_ID } from '@layout/body-app/main/menu/consts';
 import IconButton from '@shared/design-system/ui/icon-button';
 import LinkButton from '@shared/design-system/ui/link-button';
 
@@ -46,6 +47,7 @@ const Menu = ({ items }: TMenuProps) => {
       <div id="menu-list" className="hidden md:flex flex-col gap-6 pt-6 px-4">
         {items.map(({ route, title, icon }) => (
           <LinkButton
+            data-testid={`${BODY_MENU_TEST_ID}-${route}`}
             key={route}
             className="md:justify-start"
             variant={pathname.endsWith(route) ? 'outline-active' : 'outline'}
