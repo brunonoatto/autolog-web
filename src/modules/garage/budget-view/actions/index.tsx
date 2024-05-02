@@ -1,4 +1,4 @@
-import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
+import useBudgetView from '@core/store/context/BudgetViewContext/useBudgetViewContext';
 import BackToBudget from '@modules/garage/budget-view/actions/back-to-budget';
 import CompletedService from '@modules/garage/budget-view/actions/completed-budget';
 import RemakeBudget from '@modules/garage/budget-view/actions/remake-budget';

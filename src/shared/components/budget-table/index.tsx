@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import type { TBudgetItem } from '@core/api/budget-item/types';
 import { useDeleteBudgetItem } from '@core/service/budget-items';
-import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
+import useBudgetView from '@core/store/context/BudgetViewContext/useBudgetViewContext';
 import { Alert, AlertDescription, AlertTitle } from '@shared/design-system/ui/alert';
 import { CardTitle } from '@shared/design-system/ui/card';
 import IconButton from '@shared/design-system/ui/icon-button';

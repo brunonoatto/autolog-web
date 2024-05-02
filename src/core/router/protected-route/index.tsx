@@ -2,7 +2,7 @@ import { Navigate, Outlet, useLocation, useSearchParams } from 'react-router-dom
 
 import type { TUserType } from '@core/api/auth/types';
 import { ROUTES_PATH } from '@core/router/consts';
-import useAuth from '@core/store/context/hooks/useAuth';
+import useAuth from '@core/store/context/AuthContext/hook';
 
 type TProtectedRouteParams = {
   isPrivate: boolean;

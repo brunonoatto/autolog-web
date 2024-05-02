@@ -6,7 +6,7 @@ import { createContext, useLayoutEffect } from 'react';
 import httpClient from '@core/api/http-client';
 import type { TErrorApiData } from '@core/api/types';
 import { AuthProvider } from '@core/store/context/AuthContext';
-import { ThemeProvider } from '@core/store/context/ThemeProvider';
+import { ThemeProvider } from '@core/store/context/ThemeContext';
 import BigSpinner from '@layout/body-app/big-spinner';
 import { Toaster } from '@shared/design-system/ui/toaster';
 import { useToast } from '@shared/design-system/ui/use-toast';

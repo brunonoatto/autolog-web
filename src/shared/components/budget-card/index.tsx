@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 
 import type { TCar } from '@core/api/car/types';
-import useAuth from '@core/store/context/hooks/useAuth';
+import useAuth from '@core/store/context/AuthContext/hook';
 import CarInfo from '@shared/components/car-info';
 import StatusBadge from '@shared/components/status-badge';
 import { CardTitle } from '@shared/design-system/ui/card';

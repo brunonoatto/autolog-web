@@ -34,7 +34,7 @@ class ApplicationSetup {
 
     await this.abortRoutes();
 
-    await this.page.goto(`http://localhost:5173${route || ''}`);
+    await this.page.goto(`http://localhost:4173${route || ''}`);
   }
 
   async setupGarage(route: TRoute = '') {

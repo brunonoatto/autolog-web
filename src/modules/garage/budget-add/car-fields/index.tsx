@@ -1,7 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 import { useDebouncedCallback } from 'use-debounce';
 
-import useBudgetAddContext from '@core/store/context/hooks/useBudgetAdd';
+import useBudgetAddContext from '@core/store/context/BudgetAddContext/hook';
 import type { TBudgetAddFormType } from '@core/store/context/types/budget-add';
 import ClientCars from '@modules/garage/budget-add/car-fields/client-cars';
 import BrandCombobox from '@shared/components/combobox/brand-combobox';

@@ -4,7 +4,7 @@ import z from 'zod';
 
 import { TNewBudgetItem } from '@core/api/budget-item/types';
 import { useAddBudgetItem } from '@core/service/budget-items';
-import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
+import useBudgetView from '@core/store/context/BudgetViewContext/useBudgetViewContext';
 import Form from '@shared/components/form';
 import FormField from '@shared/components/form/form-field';
 import { Input } from '@shared/design-system/ui/input';

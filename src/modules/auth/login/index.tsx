@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import useAuth from '@core/store/context/hooks/useAuth';
+import useAuth from '@core/store/context/AuthContext/hook';
 import { useLoadingStore } from '@core/store/hooks';
 import HomeLink from '@layout/body-app/header/home-link';
 import { LOGIN_FORM_TEST_ID } from '@modules/auth/login/const';

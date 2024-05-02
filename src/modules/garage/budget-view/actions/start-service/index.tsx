@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { useStartServiceBudget } from '@core/service/budget';
-import useBudgetView from '@core/store/context/hooks/useBudgetViewContext';
+import useBudgetView from '@core/store/context/BudgetViewContext/useBudgetViewContext';
 import IconButton from '@shared/design-system/ui/icon-button';
 import Modal from '@shared/design-system/ui/modal';
 import useNavigateCustom from '@shared/hooks/useNavigateCustom';
