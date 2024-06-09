@@ -19,19 +19,23 @@ type TSelectCpfToTransferProps = {
 export default function SelectCpfToTransfer({ clientData, setClient }: TSelectCpfToTransferProps) {
   const [cpfIsLoading, setCpfIsLoading] = useState(false);
 
-  const { control } = useFormContext<TTransferCarForm>();
+  const { control, setError, clearErrors } = useFormContext<TTransferCarForm>();
 
-  const handleGetClient = async (cpf_cnpj: string) => {
-    if (cpf_cnpj.length !== 11 && cpf_cnpj.length !== 14) return;
+  const handleGetClient = async (cpfCnpj: string) => {
+    if (cpfCnpj.length !== 11 && cpfCnpj.length !== 14) return;
 
     setCpfIsLoading(true);
 
     try {
       const clientData = await ServiceApi.ClientApi.get({
-        cpf_cnpj,
+        cpfCnpj,
       });
 
       setClient(clientData);
+      clearErrors('cpfOrCnpjToTransfer');
+    } catch {
+      setClient(undefined);
+      setError('cpfOrCnpjToTransfer', { message: 'CPF não cadastrado' });
     } finally {
       setCpfIsLoading(false);
     }
