@@ -4,11 +4,10 @@ import z from 'zod';
 
 import { TNewBudgetItem } from '@core/api/budget-item/types';
 import { useAddBudgetItem } from '@core/service/budget-items';
-import useBudgetView from '@core/store/context/BudgetViewContext/useBudgetViewContext';
+import useBudgetViewContext from '@core/store/context/BudgetViewContext/useBudgetViewContext';
 import Form from '@shared/components/form';
 import FormField from '@shared/components/form/form-field';
 import { Input } from '@shared/design-system/ui/input';
-import { useToast } from '@shared/design-system/ui/use-toast';
 import { zodValidators } from '@shared/form-validations';
 import { MIN_INVALID_MSG } from '@shared/form-validations/consts';
 
@@ -23,11 +22,10 @@ const schema = z
 export type TBudgetItemFormType = z.infer<typeof schema>;
 
 export default function BudgetViewForm() {
-  const { toast } = useToast();
   const { mutate: mutateAddBudgetItem } = useAddBudgetItem();
 
-  const { budget } = useBudgetView();
-  const { os = '' } = budget || {};
+  const { budget } = useBudgetViewContext();
+  const { id = '' } = budget || {};
 
   const form = useForm<TBudgetItemFormType>({
     defaultValues: { qtd: 1 },
@@ -36,8 +34,8 @@ export default function BudgetViewForm() {
   const { control, reset, setFocus } = form;
 
   const handleValid: SubmitHandler<TBudgetItemFormType> = (formValues) => {
-    const newData: TNewBudgetItem = {
-      os,
+    const newBudgetItem: TNewBudgetItem = {
+      budgetId: id,
       ...formValues,
     };
 
@@ -45,14 +43,7 @@ export default function BudgetViewForm() {
     setFocus('description');
     reset();
 
-    mutateAddBudgetItem(newData, {
-      onError: () => {
-        toast({
-          title: `Não foi possível adicionar o item '${formValues.description}'.`,
-          variant: 'destructive',
-        });
-      },
-    });
+    mutateAddBudgetItem(newBudgetItem);
   };
 
   return (
