@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { useSendForApproveBudget } from '@core/service/budget';
-import useBudgetView from '@core/store/context/BudgetViewContext/useBudgetViewContext';
+import useBudgetViewContext from '@core/store/context/BudgetViewContext/useBudgetViewContext';
 import useSendWhatApp from '@modules/garage/budget-view/hooks/useSendWhatsApp';
 import { Button } from '@shared/design-system/ui/button';
 import Modal from '@shared/design-system/ui/modal';
@@ -13,7 +13,7 @@ export default function SendForApproval() {
   const { mutate } = useSendForApproveBudget();
   const { sendWhatsApp } = useSendWhatApp();
 
-  const { budget } = useBudgetView();
+  const { budget } = useBudgetViewContext();
   const { id = '' } = budget || {};
 
   const handleGoToDashboard = () => {

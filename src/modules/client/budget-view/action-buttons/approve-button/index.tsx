@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { useApproveBudget } from '@core/service/budget';
 import useAuth from '@core/store/context/AuthContext/hook';
-import useBudgetView from '@core/store/context/BudgetViewContext/useBudgetViewContext';
+import useBudgetViewContext from '@core/store/context/BudgetViewContext/useBudgetViewContext';
 import { Button } from '@shared/design-system/ui/button';
 import Modal from '@shared/design-system/ui/modal';
 import useNavigateCustom from '@shared/hooks/useNavigateCustom';
@@ -14,7 +14,7 @@ export default function ApproveButton() {
   const { isAuthenticated } = useAuth();
   const { mutate } = useApproveBudget();
 
-  const { budget } = useBudgetView();
+  const { budget } = useBudgetViewContext();
   const { id = '' } = budget || {};
 
   const handleGoToBudgets = () => {

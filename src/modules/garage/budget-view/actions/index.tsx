@@ -1,4 +1,4 @@
-import useBudgetView from '@core/store/context/BudgetViewContext/useBudgetViewContext';
+import useBudgetViewContext from '@core/store/context/BudgetViewContext/useBudgetViewContext';
 import BackToBudget from '@modules/garage/budget-view/actions/back-to-budget';
 import CompletedService from '@modules/garage/budget-view/actions/completed-budget';
 import RemakeBudget from '@modules/garage/budget-view/actions/remake-budget';
@@ -34,7 +34,7 @@ const actionsByStatus: { [key in BudgetStatusEnum]?: React.ReactNode } = {
 };
 
 export default function BudgetViewActions() {
-  const { budget } = useBudgetView();
+  const { budget } = useBudgetViewContext();
   const { status, items } = budget || {};
 
   const showActions = status && !!items?.length;

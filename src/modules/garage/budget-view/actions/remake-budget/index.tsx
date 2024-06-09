@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { useRemakeBudget } from '@core/service/budget';
-import useBudgetView from '@core/store/context/BudgetViewContext/useBudgetViewContext';
+import useBudgetViewContext from '@core/store/context/BudgetViewContext/useBudgetViewContext';
 import { Button } from '@shared/design-system/ui/button';
 import Modal from '@shared/design-system/ui/modal';
 import useNavigateCustom from '@shared/hooks/useNavigateCustom';
@@ -11,7 +11,7 @@ export default function RemakeBudget() {
   const navigate = useNavigateCustom();
   const { mutate } = useRemakeBudget();
 
-  const { budget } = useBudgetView();
+  const { budget } = useBudgetViewContext();
   const { id = '', os = '' } = budget || {};
 
   const handleGoToBudget = () => {
