@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import type { TBudgetItem } from '@core/api/budget-item/types';
 import { useDeleteBudgetItem } from '@core/service/budget-items';
-import useBudgetView from '@core/store/context/BudgetViewContext/useBudgetViewContext';
+import useBudgetViewContext from '@core/store/context/BudgetViewContext/useBudgetViewContext';
 import { Alert, AlertDescription, AlertTitle } from '@shared/design-system/ui/alert';
 import { Button } from '@shared/design-system/ui/button';
 import { CardTitle } from '@shared/design-system/ui/card';
@@ -15,7 +15,7 @@ type TBudgetViewTableProps = {
 
 export default function BudgetTable({ allowActions = false }: TBudgetViewTableProps) {
   const { toast } = useToast();
-  const { budget } = useBudgetView();
+  const { budget } = useBudgetViewContext();
   const { mutate: mutateDeleteBudgetItem } = useDeleteBudgetItem();
 
   const [itemToDeleted, setItemToDeleted] = useState<TBudgetItem>();
