@@ -1,4 +1,4 @@
-import { useListBudgets } from '@core/service/budget';
+import { useLicenseSearchBudgets } from '@core/service/budget';
 import BudgetCard from '@shared/components/budget-card';
 import { Alert, AlertTitle } from '@shared/design-system/ui/alert';
 import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
@@ -6,7 +6,7 @@ import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
 export default function ListBudgets() {
   const navigate = useNavigateCustom();
-  const { budgets } = useListBudgets();
+  const { budgets } = useLicenseSearchBudgets();
 
   const handleBudgetSelected = (os: string) => {
     navigate(['/garage/orcamento', os]);
