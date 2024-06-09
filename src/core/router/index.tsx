@@ -69,7 +69,7 @@ const router = createBrowserRouter([
         ],
       },
       {
-        element: <ProtectedRoute isPrivate routeUserType="garage" />,
+        element: <ProtectedRoute isPrivate routeUserType="Garage" />,
         children: [
           {
             path: ROUTES_PATH.garageHome,
@@ -100,7 +100,7 @@ const router = createBrowserRouter([
         ],
       },
       {
-        element: <ProtectedRoute isPrivate routeUserType="client" />,
+        element: <ProtectedRoute isPrivate routeUserType="Client" />,
         children: [
           {
             path: ROUTES_PATH.clientHome,

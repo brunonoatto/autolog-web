@@ -1,6 +1,6 @@
 import { Navigate, Outlet, useLocation, useSearchParams } from 'react-router-dom';
 
-import type { TUserType } from '@core/api/auth/types';
+import { TUserType } from '@core/api/auth/types';
 import { ROUTES_PATH } from '@core/router/consts';
 import useAuth from '@core/store/context/AuthContext/hook';
 
@@ -28,14 +28,14 @@ export default function ProtectedRoute({ isPrivate, routeUserType }: TProtectedR
 
     if (isPrivate) {
       if (routeUserType !== tokenData.type) {
-        if (tokenData.type === 'client') {
+        if (tokenData.type === 'Client') {
           return <Navigate to={ROUTES_PATH.clientHome} replace />;
         }
 
         return <Navigate to={ROUTES_PATH.garageHome} replace />;
       }
     } else {
-      if (tokenData.type === 'client') {
+      if (tokenData.type === 'Client') {
         return <Navigate to={ROUTES_PATH.clientHome} replace />;
       }
 
