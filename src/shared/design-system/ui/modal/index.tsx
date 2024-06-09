@@ -3,7 +3,6 @@ import type { PropsWithChildren, ReactNode } from 'react';
 import { Button, TButtonProps } from '@shared/design-system/ui/button';
 import { CardTitle } from '@shared/design-system/ui/card';
 import { TIcons } from '@shared/design-system/ui/icon';
-import IconButton from '@shared/design-system/ui/icon-button';
 import {
   MODAL_CANCEL_BUTTON_TEST_ID,
   MODAL_CONFIRM_BUTTON_TEST_ID,
@@ -41,7 +40,7 @@ const Modal = ({
         <div>
           {onClose && (
             <div className="text-right">
-              <IconButton icon="circle-x" variant="ghost" size="icon" onClick={onClose} />
+              <Button icon="circle-x" variant="ghost" size="icon" onClick={onClose} />
             </div>
           )}
           <CardTitle icon={icon}>{title}</CardTitle>

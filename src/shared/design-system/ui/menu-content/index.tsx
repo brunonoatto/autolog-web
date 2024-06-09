@@ -1,5 +1,5 @@
 import type { TRoute } from '@core/router/consts';
-import IconButton, { type TIconButtonProps } from '@shared/design-system/ui/icon-button';
+import { Button, TButtonProps } from '@shared/design-system/ui/button';
 import {
   handleCloseMenuContent,
   handleToogleMenuContent,
@@ -14,7 +14,7 @@ export type TMenuContentItem = {
   dividerTop?: boolean;
 };
 
-export type TMenuContentProps = TIconButtonProps & {
+export type TMenuContentProps = TButtonProps & {
   items: TMenuContentItem[];
 };
 
@@ -23,7 +23,7 @@ export default function MenuContent({ items, ...otherPops }: TMenuContentProps) 
 
   return (
     <div ref={ref}>
-      <IconButton variant="outline" size="sm" onClick={handleToogleMenuContent} {...otherPops} />
+      <Button variant="outline" size="sm" onClick={handleToogleMenuContent} {...otherPops} />
 
       <MenuContentList items={items} />
     </div>

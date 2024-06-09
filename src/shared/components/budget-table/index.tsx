@@ -4,8 +4,8 @@ import type { TBudgetItem } from '@core/api/budget-item/types';
 import { useDeleteBudgetItem } from '@core/service/budget-items';
 import useBudgetView from '@core/store/context/BudgetViewContext/useBudgetViewContext';
 import { Alert, AlertDescription, AlertTitle } from '@shared/design-system/ui/alert';
+import { Button } from '@shared/design-system/ui/button';
 import { CardTitle } from '@shared/design-system/ui/card';
-import IconButton from '@shared/design-system/ui/icon-button';
 import Modal from '@shared/design-system/ui/modal';
 import { useToast } from '@shared/design-system/ui/use-toast';
 
@@ -29,10 +29,7 @@ export default function BudgetTable({ allowActions = false }: TBudgetViewTablePr
 
     mutateDeleteBudgetItem(itemToDeleted!.id, {
       onError: () => {
-        toast({
-          title: `Nâo foi possível remover o item '${itemToDeleted?.description}'.`,
-          variant: 'destructive',
-        });
+        toast.error(`Nâo foi possível remover o item '${itemToDeleted?.description}'.`);
       },
     });
   };
@@ -45,9 +42,11 @@ export default function BudgetTable({ allowActions = false }: TBudgetViewTablePr
     return (
       <Alert>
         <AlertTitle>
-          <p>Nenhum item adicionado no orçamento.</p>
+          <p>Nenhum item adicionado ao orçamento.</p>
         </AlertTitle>
-        <AlertDescription>Preencha o formulário acima para adicionar um item.</AlertDescription>
+        {allowActions && (
+          <AlertDescription>Preencha o formulário acima para adicionar um item.</AlertDescription>
+        )}
       </Alert>
     );
   }
@@ -91,14 +90,14 @@ export default function BudgetTable({ allowActions = false }: TBudgetViewTablePr
                 {allowActions && (
                   <td className="flex justify-end space-x-2">
                     {/* // TODO criar modal para alterar */}
-                    <IconButton
+                    <Button
                       icon="pencil"
                       size="sm"
                       variant="outline"
                       title="Alterar"
                       disabled={recordStatus === 'pending'}
                     />
-                    <IconButton
+                    <Button
                       icon="trash-2"
                       size="sm"
                       variant="outline"

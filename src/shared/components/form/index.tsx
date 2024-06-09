@@ -10,7 +10,6 @@ import {
   CardTitle,
 } from '@shared/design-system/ui/card';
 import type { TIcons } from '@shared/design-system/ui/icon';
-import IconButton from '@shared/design-system/ui/icon-button';
 
 type TForm<T extends FieldValues> = PropsWithChildren & {
   'data-testid'?: string;
@@ -61,9 +60,9 @@ export default function Form<T extends FieldValues>({
 
           <CardFooter paddingX={paddingX}>
             {iconButton ? (
-              <IconButton data-testid={dataTestId} icon={iconButton}>
+              <Button data-testid={dataTestId} icon={iconButton}>
                 {confirmButtonText}
-              </IconButton>
+              </Button>
             ) : (
               <Button data-testid={dataTestId}>{confirmButtonText}</Button>
             )}

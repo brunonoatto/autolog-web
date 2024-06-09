@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { BODY_MENU_TEST_ID } from '@layout/body-app/main/menu/consts';
-import IconButton from '@shared/design-system/ui/icon-button';
+import { Button } from '@shared/design-system/ui/button';
 import LinkButton from '@shared/design-system/ui/link-button';
 
 import type { TMenu } from './types';
@@ -41,7 +41,7 @@ const Menu = ({ items }: TMenuProps) => {
   return (
     <nav className="p-4 md:p-0 md:w-60 md:border-r-[1px] md:rounded-xl">
       <div className="flex justify-end md:hidden" aria-label="Menu" aria-expanded="false">
-        <IconButton variant="outline" icon="menu" onClick={handleMobileMenuClick} />
+        <Button variant="outline" icon="menu" onClick={handleMobileMenuClick} />
       </div>
 
       <div id="menu-list" className="hidden md:flex flex-col gap-6 pt-6 px-4">

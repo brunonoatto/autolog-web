@@ -3,7 +3,7 @@ import { useState } from 'react';
 import useAuth from '@core/store/context/AuthContext/hook';
 import { HEADER_NAME_TEST_ID } from '@layout/body-app/header/header-actions/consts';
 import ThemeSwitcher from '@layout/body-app/header/header-actions/theme-switcher';
-import IconButton from '@shared/design-system/ui/icon-button';
+import { Button } from '@shared/design-system/ui/button';
 import Modal from '@shared/design-system/ui/modal';
 
 const HeaderActions = () => {
@@ -25,7 +25,7 @@ const HeaderActions = () => {
 
       <ThemeSwitcher />
 
-      <IconButton
+      <Button
         icon="log-out"
         variant="ghost"
         size="icon"
