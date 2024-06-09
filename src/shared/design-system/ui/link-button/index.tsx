@@ -25,9 +25,7 @@ const LinkButton: FunctionComponent<TLinkButtonProps> = ({
 }) => {
   return (
     <Link className={cn(buttonVariants({ variant, size }), className)} {...otherProps}>
-      {icon && (
-        <Icon name={icon as TIcons} size={size === 'sm' ? '1.2rem' : '1.5rem'} {...iconProps} />
-      )}
+      {icon && <Icon name={icon as TIcons} size={size === 'icon' ? 'sm' : size} {...iconProps} />}
       {children}
     </Link>
   );
