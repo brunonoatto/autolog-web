@@ -5,6 +5,7 @@ import type { TQueryClientData } from '@core/service/types';
 import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
 export class BudgetComplete implements TBudget {
+  id: string;
   os: string;
   garageId: string;
   garageName: string;
@@ -17,6 +18,7 @@ export class BudgetComplete implements TBudget {
   car: TCar;
 
   constructor(obj: TBudgetCompleteResponse) {
+    this.id = obj.id;
     this.os = obj.os;
     this.garageId = obj.garageId;
     this.garageName = obj.garageName;
