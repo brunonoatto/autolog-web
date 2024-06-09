@@ -35,7 +35,7 @@ const StatusCard = ({ onClick, item }: TStatusCardProps) => {
               <TooltipContent className="max-w-80 text-left space-y-2" align="start">
                 <p className="flex justify-start items-center gap-2">
                   <Icon className="inline" name="notebook-pen" />
-                  <b>Observação:</b>
+                  <b>Observações:</b>
                 </p>
                 <p>{observation}</p>
               </TooltipContent>
