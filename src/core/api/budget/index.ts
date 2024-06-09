@@ -16,7 +16,7 @@ export const createBudget = async (data: TNewBudgetParams): Promise<TBudget> => 
   return response.data;
 };
 
-export const listBudgets = async (license: string | null): Promise<TBudgetListItemResponse[]> => {
+export const listBudgets = async (license: string): Promise<TBudgetListItemResponse[]> => {
   const response = await httpClient.get<TBudgetListItemResponse[]>(BASE_URL, {
     params: { license },
   });
