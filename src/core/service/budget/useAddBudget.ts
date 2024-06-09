@@ -4,6 +4,6 @@ import { ServiceApi } from '@core/api';
 
 export const useAddBudget = () => {
   return useMutation({
-    mutationFn: ServiceApi.BudgetApi.addBudget,
+    mutationFn: ServiceApi.BudgetApi.createBudget,
   });
 };
