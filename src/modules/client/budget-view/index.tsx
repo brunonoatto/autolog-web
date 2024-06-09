@@ -2,7 +2,9 @@ import { useGetBudget } from '@core/service/budget';
 import { BudgetViewProvider } from '@core/store/context/BudgetViewContext';
 import BudgetViewActionButtons from '@modules/client/budget-view/action-buttons';
 import BudgetCard from '@shared/components/budget-card';
+import { BudgetObservation } from '@shared/components/budget-observation';
 import BudgetTable from '@shared/components/budget-table';
+import LoadingCard from '@shared/components/loading-card';
 import {
   Card,
   CardContent,
@@ -12,13 +14,9 @@ import {
 } from '@shared/design-system/ui/card';
 
 function ClientBudgetViewContent() {
-  const { budget } = useGetBudget();
+  const { budget, isLoading } = useGetBudget();
 
   const { garageName, createdDate, status, car, observation } = budget || {};
-
-  if (!budget) {
-    return <>Loading...</>;
-  }
 
   return (
     <Card>
@@ -27,15 +25,22 @@ function ClientBudgetViewContent() {
       </CardHeader>
 
       <CardContent>
-        <BudgetCard
-          garageName={garageName}
-          createdDate={createdDate}
-          status={status}
-          car={car}
-          observation={observation}
-        />
+        {isLoading && <LoadingCard />}
 
-        <BudgetTable />
+        {!isLoading && (
+          <>
+            <BudgetCard
+              garageName={garageName}
+              createdDate={createdDate}
+              status={status}
+              car={car}
+            />
+
+            <BudgetObservation observation={observation} />
+
+            <BudgetTable />
+          </>
+        )}
       </CardContent>
 
       <CardFooter>
