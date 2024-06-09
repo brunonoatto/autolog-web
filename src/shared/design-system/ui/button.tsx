@@ -2,10 +2,12 @@ import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 import React from 'react';
 
+import LoadingIcon from '@shared/components/loading-icon';
 import { cn } from '@shared/design-system/helpers/utils';
+import Icon, { TIconProps, TIcons } from '@shared/design-system/ui/icon';
 
 export const buttonVariants = cva(
-  'inline-flex gap-4 items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex gap-2 items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-70',
   {
     variants: {
       variant: {
@@ -36,13 +38,44 @@ export interface TButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
+  isLoading?: boolean;
+  size?: 'default' | 'sm' | 'lg' | 'icon';
+  icon?: TIcons;
+  iconProps?: TIconProps;
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, TButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  (
+    {
+      className,
+      children,
+      disabled,
+      isLoading,
+      variant,
+      size = 'default',
+      asChild = false,
+      icon,
+      iconProps,
+      ...props
+    },
+    ref,
+  ) => {
     const Comp = asChild ? Slot : 'button';
+    const iconSize = size === 'icon' ? 'sm' : size;
+
     return (
-      <Comp className={cn(buttonVariants({ variant, size }), className)} ref={ref} {...props} />
+      <Comp
+        className={cn(buttonVariants({ variant, size }), className)}
+        ref={ref}
+        disabled={disabled || isLoading}
+        {...props}
+      >
+        {isLoading && <LoadingIcon size={size === 'icon' ? 'sm' : size} />}
+
+        {icon && !isLoading && <Icon name={icon} size={iconSize} {...iconProps} />}
+
+        {children}
+      </Comp>
     );
   },
 );
