@@ -30,7 +30,7 @@ test('Deve realizar a inclusão de um orçamento e após ir para tela de add ite
     brand: 'Mercedes-Benz',
     model: 'C-180',
     year: 2010,
-    observation: 'Texto da observação do teste.',
+    observation: 'Texto da Observações do teste.',
   });
 
   await modalComponent.confirmClick();
