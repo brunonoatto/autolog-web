@@ -3,7 +3,7 @@ export type TLoginParams = {
   password: string;
 };
 
-export type TUserType = 'garage' | 'client';
+export type TUserType = 'Client' | 'Garage';
 
 export type TLoginResponse = {
   accessToken: string;

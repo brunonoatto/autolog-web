@@ -4,7 +4,7 @@ import type { TDashboardItem } from './types';
 
 const BASE_URL = '/dashboard';
 
-export const listDashboardItems = async (): Promise<TDashboardItem[]> => {
-  const response = await httpClient.get<TDashboardItem[]>(BASE_URL);
+export const listGarageDashboard = async (): Promise<TDashboardItem[]> => {
+  const response = await httpClient.get<TDashboardItem[]>(`${BASE_URL}/garage`);
   return response.data;
 };

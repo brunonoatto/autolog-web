@@ -1,24 +1,28 @@
 import type { TCar } from '@core/api/car/types';
 
-export type TNewClient = {
-  name: string;
-  cpf_cnpj: string;
-  phone: string;
-  email: string;
-  password: string;
-};
-
-export type TClientResponse = {
+export type TClient = {
   id: string;
   name: string;
-  cpf_cnpj: string;
+  cpfCnpj: string;
   email: string;
   phone: string;
+};
+
+export type TClientResponse = TClient & {
   cars?: TCar[];
 };
 
 export type TGetClientParams = {
-  cpf_cnpj?: string;
+  cpfCnpj?: string;
   email?: string;
   withCars?: boolean;
+};
+
+export type TCarGetResponse = TCar & {
+  isTransfered: boolean;
+};
+
+export type TGetByClientParams = {
+  clientId: string;
+  transfereds?: boolean;
 };

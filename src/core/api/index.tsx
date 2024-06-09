@@ -5,7 +5,7 @@ import * as CarApi from './car';
 import * as ClientApi from './client';
 import * as DashboardApi from './dashboard';
 import * as FipeApi from './fipe';
-import * as GarageApi from './garage';
+import * as UserApi from './user';
 
 export const ServiceApi = {
   AuthApi,
@@ -15,5 +15,5 @@ export const ServiceApi = {
   ClientApi,
   DashboardApi,
   FipeApi,
-  GarageApi,
+  UserApi,
 };

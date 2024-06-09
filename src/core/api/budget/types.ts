@@ -3,17 +3,25 @@ import type { TCar } from '@core/api/car/types';
 import type { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
 export type TNewBudgetParams = {
-  license: string;
-  name: string;
-  phone: string;
-  cpf_cnpj: string;
+  garageId: string;
+  clientId?: string;
+  newClient?: {
+    name: string;
+    cpfCnpj: string;
+    phone: string;
+  };
+  carId?: string;
+  car?: {
+    license: string;
+    brand: string;
+    model: string;
+    year: number;
+  };
   observation?: string;
-  brand?: string;
-  model?: string;
-  year?: number;
 };
 
 export type TBudget = {
+  id: string;
   os: string;
   garageId: string;
   license: string;
@@ -43,4 +51,9 @@ export type TBudgetCompleteResponse = TBudget & {
 
 export type TGetWhatsLinkResponse = {
   link: string;
+};
+
+export type TObservationUpdateParams = {
+  budgetId: string;
+  observation: string;
 };

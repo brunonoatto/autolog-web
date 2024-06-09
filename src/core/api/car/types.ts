@@ -1,4 +1,5 @@
 export type TCar = {
+  id: string;
   license: string;
   clientId: string;
   brand: string;
@@ -6,18 +7,11 @@ export type TCar = {
   year: number;
 };
 
-export type TNewCar = Omit<TCar, 'clientId'>;
-
-export type TCarGetResponse = TCar & {
-  isTransfered: boolean;
-};
-
-export type TGetByClientParams = {
-  clientId?: string;
-  transfereds?: boolean;
-};
+// TODO: porquanto vai ser enviado o clientId para criar o carro, depois q mudar a api voltar como era antes
+// export type TNewCar = Omit<TCar, 'clientId'>;
+export type TNewCar = Omit<TCar, 'id'>;
 
 export type TTransferCarProps = {
-  license: string;
-  cpfOrCnpjToTransfer: string;
+  carId: string;
+  clientIdToTransfer: string;
 };

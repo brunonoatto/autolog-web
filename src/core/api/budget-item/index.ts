@@ -5,10 +5,10 @@ import type { TBudgetItem, TNewBudgetItem } from './types';
 const BASE_URL = '/budget-item';
 
 export const addBudgetItem = async ({
-  os,
+  budgetId,
   ...otherFields
 }: TNewBudgetItem): Promise<TBudgetItem> => {
-  const response = await httpClient.post<TBudgetItem>(`${BASE_URL}/${os}`, otherFields);
+  const response = await httpClient.post<TBudgetItem>(`${BASE_URL}/${budgetId}`, otherFields);
   return response.data;
 };
 

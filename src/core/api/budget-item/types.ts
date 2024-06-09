@@ -1,6 +1,6 @@
 export type TBudgetItem = {
   id: string;
-  os: string;
+  budgetId: string;
   description: string;
   qtd: number;
   price: number;
