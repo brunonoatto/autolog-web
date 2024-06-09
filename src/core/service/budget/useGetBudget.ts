@@ -8,7 +8,7 @@ export const USE_GET_BUDGET_QUERY_KEY = 'useGetBudget';
 export const useGetBudget = () => {
   const { os: osParam } = useParams();
 
-  const { data } = useQueryCustom({
+  const { data, isLoading } = useQueryCustom({
     enabled: !!osParam,
     queryKey: [USE_GET_BUDGET_QUERY_KEY, osParam],
     queryFn: async () => {
@@ -24,5 +24,6 @@ export const useGetBudget = () => {
 
   return {
     budget: data,
+    isLoading,
   };
 };
