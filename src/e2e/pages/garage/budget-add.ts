@@ -26,7 +26,7 @@ class GarageBudgetAddPage {
     this.page = page;
     this.cardTitleElement = page.getByTestId(MY_CARS_CARD_TEST_ID).getByTestId(CARD_TITLE_TESTE_ID);
 
-    this.cpfCnpjInput = page.locator(selectorByName<TBudgetAddFormType>('cpf_cnpj'));
+    this.cpfCnpjInput = page.locator(selectorByName<TBudgetAddFormType>('cpfCnpj'));
     this.nameInput = page.locator(selectorByName<TBudgetAddFormType>('name'));
     this.phoneInput = page.locator(selectorByName<TBudgetAddFormType>('phone'));
     this.licenseInput = page.locator(selectorByName<TBudgetAddFormType>('license'));

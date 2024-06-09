@@ -14,7 +14,7 @@ export type TBudgetAddValue = {
   isLoadingCar: boolean;
   selectedClient: TClientResponse | undefined;
   selectedCar: TCar | undefined;
-  handleLoadClient: (cpf_cnpj: string) => Promise<void>;
+  handleLoadClient: (cpfCnpj: string) => Promise<void>;
   handleLoadCar: (license: string) => Promise<void>;
   handleSelectedClientCar: (car: TCar) => void;
   handleClearSelectedClient: () => void;
@@ -36,13 +36,13 @@ export function BudgetAddProvider({ children }: { children: React.ReactNode }) {
   });
   const { setValue, setFocus, resetField } = form;
 
-  const onLoadClient = async (cpf_cnpj: string) => {
-    if (cpf_cnpj.length === 11 || cpf_cnpj.length === 14) {
+  const onLoadClient = async (cpfCnpj: string) => {
+    if (cpfCnpj.length === 11 || cpfCnpj.length === 14) {
       setIsLoadingClient(true);
 
       try {
         const clientData = await ServiceApi.ClientApi.get({
-          cpf_cnpj,
+          cpfCnpj,
           withCars: true,
         });
 
@@ -75,10 +75,7 @@ export function BudgetAddProvider({ children }: { children: React.ReactNode }) {
       if (selectedClient && car && selectedClient.id !== car.clientId) {
         resetField('license');
 
-        toast({
-          title: 'Veículo pertence a um proprietário diferente do selecionado',
-          variant: 'warning',
-        });
+        toast.warning('Veículo pertence a um proprietário diferente do selecionado');
 
         return;
       }

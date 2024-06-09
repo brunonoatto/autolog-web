@@ -6,7 +6,7 @@ export const budgetAddSchema = z
   .object({
     name: zodValidators.String(),
     phone: zodValidators.String(),
-    cpf_cnpj: zodValidators.CpfOrCnpj(),
+    cpfCnpj: zodValidators.CpfOrCnpj(),
     license: zodValidators.String().toUpperCase(),
     brand: zodValidators.String(),
     model: zodValidators.String(),

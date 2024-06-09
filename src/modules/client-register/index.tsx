@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import z from 'zod';
 
-import { useCreateClient } from '@core/service/client';
+import { useCreateClient } from '@core/service/user';
 import { useLoadingStore } from '@core/store/hooks';
 import HomeLink from '@layout/body-app/header/home-link';
 import Form from '@shared/components/form';
@@ -21,7 +21,7 @@ import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 const registerClientSchema = z
   .object({
     name: zodValidators.String({ minLength: 5 }),
-    cpf_cnpj: zodValidators.CpfOrCnpj(),
+    cpfCnpj: zodValidators.CpfOrCnpj(),
     phone: zodValidators.String(),
     email: zodValidators.Email(),
   })
@@ -73,7 +73,7 @@ export default function ClientRegister() {
               <Input />
             </FormField>
 
-            <FormField control={control} name="cpf_cnpj" label="CPF/CNPJ" isMask>
+            <FormField control={control} name="cpfCnpj" label="CPF/CNPJ" isMask>
               <CpfCnpjInput />
             </FormField>
 

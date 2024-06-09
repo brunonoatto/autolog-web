@@ -3,11 +3,12 @@ import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { useCreateGarage } from '@core/service/garage';
+import { useCreateGarage } from '@core/service/user';
 import { useLoadingStore } from '@core/store/hooks';
 import HomeLink from '@layout/body-app/header/home-link';
 import Form from '@shared/components/form';
 import FormField from '@shared/components/form/form-field';
+import CnpjInput from '@shared/components/inputs/cnpj-input';
 import { CardTitle } from '@shared/design-system/ui/card';
 import { Input } from '@shared/design-system/ui/input';
 import MaskInput from '@shared/design-system/ui/input-mask';
@@ -75,9 +76,9 @@ export default function GarageRegister() {
               <Input />
             </FormField>
 
-            <FormField control={control} name="cnpj" label="CNPJ">
+            <FormField control={control} name="cnpj" label="CNPJ" isMask>
               {/* TODO: criar componente only CNPJ */}
-              <Input />
+              <CnpjInput />
             </FormField>
 
             <FormField control={control} name="address" label="Endereço">
