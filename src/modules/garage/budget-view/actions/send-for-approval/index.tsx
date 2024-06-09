@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useSendForApproveBudget } from '@core/service/budget';
 import useBudgetView from '@core/store/context/BudgetViewContext/useBudgetViewContext';
 import useSendWhatApp from '@modules/garage/budget-view/hooks/useSendWhatsApp';
-import IconButton from '@shared/design-system/ui/icon-button';
+import { Button } from '@shared/design-system/ui/button';
 import Modal from '@shared/design-system/ui/modal';
 import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
@@ -14,20 +14,20 @@ export default function SendForApproval() {
   const { sendWhatsApp } = useSendWhatApp();
 
   const { budget } = useBudgetView();
-  const { os = '' } = budget || {};
+  const { id = '' } = budget || {};
 
   const handleGoToDashboard = () => {
     navigate('/garage');
   };
 
   const handleSendWhatsApp = async () => {
-    await sendWhatsApp(os);
+    await sendWhatsApp(id);
 
     handleGoToDashboard();
   };
 
   const handleSendForApproval = async () => {
-    mutate(os, {
+    mutate(id, {
       onSuccess: () => {
         setOpenModal(true);
       },
@@ -36,9 +36,9 @@ export default function SendForApproval() {
 
   return (
     <>
-      <IconButton icon="send" onClick={handleSendForApproval}>
+      <Button icon="send" onClick={handleSendForApproval}>
         Enviar para aprovação
-      </IconButton>
+      </Button>
 
       <Modal
         open={openModal}

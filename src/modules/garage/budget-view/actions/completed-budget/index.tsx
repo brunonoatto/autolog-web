@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { useCompletedBudget } from '@core/service/budget';
 import useBudgetView from '@core/store/context/BudgetViewContext/useBudgetViewContext';
-import IconButton from '@shared/design-system/ui/icon-button';
+import { Button } from '@shared/design-system/ui/button';
 import Modal from '@shared/design-system/ui/modal';
 import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
@@ -12,14 +12,14 @@ export default function CompletedService() {
   const { mutate } = useCompletedBudget();
 
   const { budget } = useBudgetView();
-  const { os = '' } = budget || {};
+  const { id = '' } = budget || {};
 
   const handleGoToDashboard = () => {
     navigate('/garage');
   };
 
   const handleSendForApproval = () => {
-    mutate(os, {
+    mutate(id, {
       onSuccess: () => {
         setOpenModal(true);
       },
@@ -28,9 +28,9 @@ export default function CompletedService() {
 
   return (
     <>
-      <IconButton icon="receipt" color="primary" onClick={handleSendForApproval}>
+      <Button icon="receipt" color="primary" onClick={handleSendForApproval}>
         Finalizar serviço
-      </IconButton>
+      </Button>
 
       <Modal
         open={openModal}

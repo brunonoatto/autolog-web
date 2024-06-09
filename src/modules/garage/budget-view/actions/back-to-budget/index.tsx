@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { useRemakeBudget } from '@core/service/budget';
 import useBudgetView from '@core/store/context/BudgetViewContext/useBudgetViewContext';
-import IconButton from '@shared/design-system/ui/icon-button';
+import { Button } from '@shared/design-system/ui/button';
 import Modal from '@shared/design-system/ui/modal';
 import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
@@ -12,14 +12,14 @@ export default function BackToBudget() {
   const { mutate } = useRemakeBudget();
 
   const { budget } = useBudgetView();
-  const { os = '' } = budget || {};
+  const { id = '' } = budget || {};
 
   const handleGoToDashboard = () => {
     navigate('/garage');
   };
 
   const handleSendForApproval = () => {
-    mutate(os, {
+    mutate(id, {
       onSuccess: () => {
         setOpenModal(true);
       },
@@ -28,9 +28,9 @@ export default function BackToBudget() {
 
   return (
     <>
-      <IconButton icon="corner-up-left" variant="outline" onClick={handleSendForApproval}>
+      <Button icon="corner-up-left" variant="outline" onClick={handleSendForApproval}>
         Voltar para realizar orçamento
-      </IconButton>
+      </Button>
 
       <Modal
         open={openModal}

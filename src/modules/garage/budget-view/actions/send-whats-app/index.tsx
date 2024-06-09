@@ -1,19 +1,19 @@
 import useBudgetView from '@core/store/context/BudgetViewContext/useBudgetViewContext';
 import useSendWhatApp from '@modules/garage/budget-view/hooks/useSendWhatsApp';
-import IconButton from '@shared/design-system/ui/icon-button';
+import { Button } from '@shared/design-system/ui/button';
 
 export default function SendWhatsApp() {
   const { sendWhatsApp } = useSendWhatApp();
   const { budget } = useBudgetView();
-  const { os = '' } = budget || {};
+  const { id = '' } = budget || {};
 
   const handleSendWhatsApp = async () => {
-    await sendWhatsApp(os);
+    await sendWhatsApp(id);
   };
 
   return (
-    <IconButton icon="message-circle-more" onClick={handleSendWhatsApp}>
+    <Button icon="message-circle-more" onClick={handleSendWhatsApp}>
       Enviar Whats App
-    </IconButton>
+    </Button>
   );
 }

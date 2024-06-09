@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { useRemakeBudget } from '@core/service/budget';
 import useBudgetView from '@core/store/context/BudgetViewContext/useBudgetViewContext';
-import IconButton from '@shared/design-system/ui/icon-button';
+import { Button } from '@shared/design-system/ui/button';
 import Modal from '@shared/design-system/ui/modal';
 import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
@@ -12,7 +12,7 @@ export default function RemakeBudget() {
   const { mutate } = useRemakeBudget();
 
   const { budget } = useBudgetView();
-  const { os = '' } = budget || {};
+  const { id = '', os = '' } = budget || {};
 
   const handleGoToBudget = () => {
     navigate(['/garage/orcamento', os]);
@@ -23,7 +23,7 @@ export default function RemakeBudget() {
   };
 
   const handleRemake = () => {
-    mutate(os, {
+    mutate(id, {
       onSuccess: () => {
         setOpenModal(true);
       },
@@ -32,9 +32,9 @@ export default function RemakeBudget() {
 
   return (
     <>
-      <IconButton icon="corner-up-left" color="primary" onClick={handleRemake}>
+      <Button icon="corner-up-left" color="primary" onClick={handleRemake}>
         Refazer Orçamento
-      </IconButton>
+      </Button>
 
       <Modal
         open={openModal}

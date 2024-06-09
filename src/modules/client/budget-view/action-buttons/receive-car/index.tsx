@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { useFinishBudget } from '@core/service/budget';
 import useBudgetView from '@core/store/context/BudgetViewContext/useBudgetViewContext';
-import IconButton from '@shared/design-system/ui/icon-button';
+import { Button } from '@shared/design-system/ui/button';
 import Modal from '@shared/design-system/ui/modal';
 import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
@@ -12,14 +12,14 @@ export default function ReceiveButton() {
   const { mutate } = useFinishBudget();
 
   const { budget } = useBudgetView();
-  const { os = '' } = budget || {};
+  const { id = '' } = budget || {};
 
   const handleGoToBudgets = () => {
     navigate('/cliente');
   };
 
   const handleRejectBudget = () => {
-    mutate(os, {
+    mutate(id, {
       onSuccess: () => {
         setOpenModal(true);
       },
@@ -28,9 +28,9 @@ export default function ReceiveButton() {
 
   return (
     <>
-      <IconButton icon="check-check" onClick={handleRejectBudget}>
+      <Button icon="check-check" onClick={handleRejectBudget}>
         Veículo recebido
-      </IconButton>
+      </Button>
 
       <Modal
         open={openModal}

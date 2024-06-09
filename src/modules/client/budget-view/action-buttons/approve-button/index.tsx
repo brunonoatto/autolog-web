@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useApproveBudget } from '@core/service/budget';
 import useAuth from '@core/store/context/AuthContext/hook';
 import useBudgetView from '@core/store/context/BudgetViewContext/useBudgetViewContext';
-import IconButton from '@shared/design-system/ui/icon-button';
+import { Button } from '@shared/design-system/ui/button';
 import Modal from '@shared/design-system/ui/modal';
 import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
@@ -15,7 +15,7 @@ export default function ApproveButton() {
   const { mutate } = useApproveBudget();
 
   const { budget } = useBudgetView();
-  const { os = '' } = budget || {};
+  const { id = '' } = budget || {};
 
   const handleGoToBudgets = () => {
     if (isAuthenticated) {
@@ -28,7 +28,7 @@ export default function ApproveButton() {
   const handleApproveBudget = () => {
     setOpenConfirmModal(false);
 
-    mutate(os, {
+    mutate(id, {
       onSuccess: () => {
         setOpenSuccessModal(true);
       },
@@ -37,9 +37,9 @@ export default function ApproveButton() {
 
   return (
     <>
-      <IconButton icon="thumbs-up" onClick={() => setOpenConfirmModal(true)}>
+      <Button icon="thumbs-up" onClick={() => setOpenConfirmModal(true)}>
         Aprovar orçamento
-      </IconButton>
+      </Button>
 
       <Modal
         open={openConfirmModal}
