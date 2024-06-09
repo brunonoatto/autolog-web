@@ -1,1 +1,1 @@
-export * from './useListDashboard';
+export * from './useGarageDashboard';

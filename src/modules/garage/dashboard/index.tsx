@@ -1,4 +1,4 @@
-import { useListDashboard } from '@core/service/dashboard';
+import { useGarageDashboard } from '@core/service/dashboard';
 import { DASHBOARD_CARD_TEST_ID } from '@modules/garage/dashboard/consts';
 import { Alert, AlertDescription, AlertTitle } from '@shared/design-system/ui/alert';
 import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
@@ -10,7 +10,7 @@ import StatusCardSkeleton from './status-card-skeleton';
 
 export default function Dashboard() {
   const navigate = useNavigateCustom();
-  const { data: dashboardItem, isLoading } = useListDashboard();
+  const { data: dashboardItem, isLoading } = useGarageDashboard();
 
   const handleSelectCar = (os: string) => {
     navigate(['/garage/orcamento', os]);
