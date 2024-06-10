@@ -8,7 +8,7 @@ import { FormControl, FormField, FormItem, FormMessage } from '@shared/design-sy
 
 export default function SelectCarToTransfer() {
   const { control } = useFormContext<TTransferCarForm>();
-  const { data: clientCars } = useClientCars();
+  const { cars } = useClientCars();
 
   return (
     <>
@@ -16,13 +16,13 @@ export default function SelectCarToTransfer() {
 
       <FormField
         control={control}
-        name="license"
+        name="carId"
         render={() => {
           return (
             <FormItem>
               <FormControl>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {clientCars?.map((car) => {
+                  {cars.map((car) => {
                     return <CarCard key={car.license} car={car} />;
                   })}
                 </div>
