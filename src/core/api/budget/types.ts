@@ -3,7 +3,6 @@ import type { TCar } from '@core/api/car/types';
 import type { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
 export type TNewBudgetParams = {
-  garageId: string;
   clientId?: string;
   newClient?: {
     name: string;

@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from 'react';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
 import { useDebouncedCallback } from 'use-debounce';
 
+import { TNewBudgetParams } from '@core/api/budget/types';
 import { useAddBudget } from '@core/service/budget';
 import { useListBrands, useListModelsBrand } from '@core/service/fipe';
 import { BudgetAddProvider } from '@core/store/context/BudgetAddContext';
@@ -30,6 +31,7 @@ function BudgetAddContent() {
 
   const isLoadingClient = useBudgetAddContext((prop) => prop.isLoadingClient);
   const selectedClient = useBudgetAddContext((prop) => prop.selectedClient);
+  const selectedCar = useBudgetAddContext((prop) => prop.selectedCar);
   const handleClearSelectedClient = useBudgetAddContext((prop) => prop.handleClearSelectedClient);
   const handleLoadClient = useBudgetAddContext((prop) => prop.handleLoadClient);
 
@@ -54,16 +56,38 @@ function BudgetAddContent() {
   const handleValid: SubmitHandler<TBudgetAddFormType> = async (formValues) => {
     loading(true);
 
+    const clientId = selectedClient?.id;
+    const carId = selectedCar?.id;
+
     // TODO: transformar essa lógica em hook
     const brand = listBrands?.find((b) => b.code === formValues.brand)?.name;
     const model = listModels?.find((b) => b.code === formValues.model)?.name;
-    mutate(
-      { ...formValues, brand, model },
-      {
-        onSuccess: (budget) => setGenerateOS(budget.os),
-        onSettled: () => loading(false),
-      },
-    );
+
+    const newBudget: TNewBudgetParams = {
+      clientId,
+      newClient: clientId
+        ? undefined
+        : {
+            cpfCnpj: formValues.cpfCnpj,
+            name: formValues.name,
+            phone: formValues.phone,
+          },
+      carId,
+      car: carId
+        ? undefined
+        : {
+            license: formValues.license,
+            brand: brand!,
+            model: model!,
+            year: formValues.year,
+          },
+      observation: formValues.observation,
+    };
+
+    mutate(newBudget, {
+      onSuccess: (budget) => setGenerateOS(budget.os),
+      onSettled: () => loading(false),
+    });
   };
 
   const handleCpfChange = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -88,7 +112,7 @@ function BudgetAddContent() {
         </CardTitle>
 
         <div className="flex items-start gap-2">
-          <FormField className="flex-1" control={control} name="cpf_cnpj" label="CPF/CNPJ" isMask>
+          <FormField className="flex-1" control={control} name="cpfCnpj" label="CPF/CNPJ" isMask>
             <CpfCnpjInput onChange={handleCpfChange} placeholder="Informe o CPF/CNPJ do Cliente" />
           </FormField>
 
@@ -119,7 +143,7 @@ function BudgetAddContent() {
           className="col-span-full"
           control={control}
           name="observation"
-          label="Observação"
+          label="Observações"
         >
           <Textarea rows={5} placeholder="Informe as observações do Orçamento" />
         </FormField>
