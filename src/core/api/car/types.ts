@@ -7,9 +7,7 @@ export type TCar = {
   year: number;
 };
 
-// TODO: porquanto vai ser enviado o clientId para criar o carro, depois q mudar a api voltar como era antes
-// export type TNewCar = Omit<TCar, 'clientId'>;
-export type TNewCar = Omit<TCar, 'id'>;
+export type TNewCar = Omit<TCar, 'id' | 'clientId'>;
 
 export type TTransferCarProps = {
   carId: string;
