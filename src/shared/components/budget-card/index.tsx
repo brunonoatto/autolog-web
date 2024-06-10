@@ -28,6 +28,10 @@ export default function BudgetCard({
 
   const tokenData = useMemo(() => getTokenData(), [getTokenData]);
 
+  const showClientName = tokenData?.type === 'Garage' && !!clientName;
+  const showGarageName = tokenData?.type === 'Client' && !!garageName;
+  const showCreatedDate = !showClientName && !showGarageName && !!createdDate;
+
   if (!status || !car) return null;
 
   return (
@@ -36,14 +40,14 @@ export default function BudgetCard({
         data-hover={hover}
         className="w-full rounded-lg ring-1 ring-primary data-[hover=true]:hover:ring-2 p-2 md:p-3 flex flex-col duration-300 data-[hover=true]:hover:bg-muted"
       >
-        {tokenData?.type === 'Garage' && clientName && (
+        {showClientName && (
           <div className="flex justify-between text-sm">
             <p className="whitespace-nowrap overflow-hidden text-ellipsis">Cliente: {clientName}</p>
             <p>{createdDate}</p>
           </div>
         )}
 
-        {tokenData?.type === 'Client' && garageName && (
+        {showGarageName && (
           <div className="flex justify-between text-sm">
             <p className="whitespace-nowrap overflow-hidden text-ellipsis">Ofinina: {garageName}</p>
             <p>{createdDate}</p>
@@ -53,7 +57,7 @@ export default function BudgetCard({
           <div>
             <CarInfo {...car} />
 
-            {!clientName && createdDate && <p className="text-left">{createdDate}</p>}
+            {showCreatedDate && <p className="text-left">{createdDate}</p>}
           </div>
 
           <div className="mt-auto">
