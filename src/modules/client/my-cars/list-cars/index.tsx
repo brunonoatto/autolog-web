@@ -1,10 +1,10 @@
-import { TCarGetResponse } from '@core/api/client/types';
+import { TClientCarsResponse } from '@core/api/car/types';
 import IdentificationCar from '@modules/garage/dashboard/status-card/identification-car';
 import DashboardButton from '@shared/components/dashboard-button';
 import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
 type TListCarsProps = {
-  cars: TCarGetResponse[];
+  cars: TClientCarsResponse[];
 };
 
 export function ListCars({ cars }: TListCarsProps) {

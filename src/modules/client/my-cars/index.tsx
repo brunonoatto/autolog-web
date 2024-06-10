@@ -2,7 +2,7 @@ import { useClientCars } from '@core/service/client';
 import { MY_CARS_CARD_TEST_ID } from '@modules/client/my-cars/consts';
 import { ListCars } from '@modules/client/my-cars/list-cars';
 import { NotFoundCars } from '@modules/client/my-cars/not-found-cars';
-import LoadingCard from '@shared/components/loading-card';
+import { RenderLoadingData } from '@shared/components/render-loading-data';
 import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
 
 export default function ClientMyCars() {
@@ -15,12 +15,13 @@ export default function ClientMyCars() {
       </CardHeader>
 
       <CardContent>
-        {/* Queee código mais feio, pensar em algo melhor */}
-        {isLoading && <LoadingCard />}
-
-        {!isLoading && !cars?.length && <NotFoundCars />}
-
-        {!isLoading && !!cars?.length && <ListCars cars={cars} />}
+        <RenderLoadingData
+          isLoading={isLoading}
+          hasData={!!cars.length}
+          notFoundElement={<NotFoundCars />}
+        >
+          <ListCars cars={cars} />
+        </RenderLoadingData>
       </CardContent>
     </Card>
   );
