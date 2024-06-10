@@ -1,15 +1,15 @@
 import { ServiceApi } from '@core/api';
 
 export default function useSendWhatApp() {
-  const getWhatsAppLink = async (os: string) => {
-    const data = await ServiceApi.BudgetApi.getWhatsLink(os);
+  const getWhatsAppLink = async (budgetId: string) => {
+    const data = await ServiceApi.BudgetApi.getWhatsLink(budgetId);
     const { link } = data;
 
     return link;
   };
 
-  const sendWhatsApp = async (os: string) => {
-    const link = await getWhatsAppLink(os);
+  const sendWhatsApp = async (budgetId: string) => {
+    const link = await getWhatsAppLink(budgetId);
 
     link && window.open(link, '_blank')?.focus();
   };
