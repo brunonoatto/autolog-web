@@ -15,3 +15,12 @@ export type TTransferCarProps = {
   carId: string;
   clientIdToTransfer: string;
 };
+
+export type TClientCarsResponse = TCar & {
+  isTransfered: boolean;
+};
+
+export type TGetByClientParams = {
+  clientId?: string;
+  transfereds?: boolean;
+};

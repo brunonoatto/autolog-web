@@ -18,9 +18,9 @@ type TClientCarSelect = SelectProps & {
 
 export default function ClientCarSelect(props: TClientCarSelect) {
   const { label, ...otherProps } = props;
-  const { data: clientCars } = useClientCars({ transfereds: true });
+  const { cars } = useClientCars({ transfereds: true });
 
-  const items = buildSelectOptions(clientCars, 'license', (item) => {
+  const items = buildSelectOptions(cars, 'license', (item) => {
     const transferedText = item.isTransfered ? '(Transferido) ' : '';
     return `${transferedText}${item.license} - ${item.brand} ${item.model} ${item.year}`;
   });

@@ -17,12 +17,3 @@ export type TGetClientParams = {
   email?: string;
   withCars?: boolean;
 };
-
-export type TCarGetResponse = TCar & {
-  isTransfered: boolean;
-};
-
-export type TGetByClientParams = {
-  clientId: string;
-  transfereds?: boolean;
-};
