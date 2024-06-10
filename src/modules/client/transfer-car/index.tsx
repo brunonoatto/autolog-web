@@ -22,7 +22,7 @@ import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
 const transferCarSchema = z
   .object({
-    license: zodValidators.String({ requiredMessage: 'Selecione um veículo' }),
+    carId: zodValidators.String({ requiredMessage: 'Selecione um veículo' }),
     cpfOrCnpjToTransfer: zodValidators.CpfOrCnpj(),
   })
   .strict();
@@ -36,7 +36,7 @@ export default function ClientTransferCar() {
   const { toast } = useToast();
   const navigate = useNavigateCustom();
   const loading = useLoadingStore((prop) => prop.loading);
-  const { data: clientCars } = useClientCars();
+  const { cars } = useClientCars();
   const { mutate } = useTransferCar();
 
   const form = useForm<TTransferCarForm>({
@@ -45,27 +45,37 @@ export default function ClientTransferCar() {
   });
   const { watch, setError, getValues } = form;
 
-  const licenseSelected = watch('license');
+  const selectedCarId = watch('carId');
 
   const selectedCar = useMemo(
-    () => clientCars?.find((c) => c.license === licenseSelected),
-    [clientCars, licenseSelected],
+    () => cars.find((c) => c.id === selectedCarId),
+    [cars, selectedCarId],
   );
 
   const handleTrasnferCar = () => {
+    if (!clientToTrasnferData) {
+      return;
+    }
+
     loading(true);
 
     const formValues = getValues();
 
-    mutate(formValues, {
-      onSuccess: () => {
-        toast({ title: 'Transferência realizada com sucesso' });
-        navigate('/cliente');
+    mutate(
+      {
+        carId: formValues.carId,
+        clientIdToTransfer: clientToTrasnferData.id,
       },
-      onSettled: () => {
-        loading(false);
+      {
+        onSuccess: () => {
+          toast.success('Transferência realizada com sucesso');
+          navigate('/cliente');
+        },
+        onSettled: () => {
+          loading(false);
+        },
       },
-    });
+    );
   };
 
   const handleValid = () => {
@@ -77,7 +87,7 @@ export default function ClientTransferCar() {
     setOpenModal(true);
   };
 
-  if (!clientCars?.length) {
+  if (!cars.length) {
     return (
       <Card>
         <CardHeader>
@@ -87,6 +97,7 @@ export default function ClientTransferCar() {
         <CardContent>
           <Alert>
             <AlertTitle>Nehum veículo encontrado para para transferir.</AlertTitle>
+
             <AlertDescription>
               <LinkButton icon="car" to="/cliente/cadastrar-veiculo">
                 Cadastrar seu veículo
@@ -140,7 +151,7 @@ export default function ClientTransferCar() {
             </CardHeader>
 
             <CardContent>
-              <div>CPF: {clientToTrasnferData?.cpf_cnpj}</div>
+              <div>CPF: {clientToTrasnferData?.cpfCnpj}</div>
               <div>Nome: {clientToTrasnferData?.name}</div>
             </CardContent>
           </Card>

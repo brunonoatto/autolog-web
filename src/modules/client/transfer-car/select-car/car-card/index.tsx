@@ -14,19 +14,19 @@ type TCarCardProps = {
 export default function CarCard({ car }: TCarCardProps) {
   const { setValue, watch } = useFormContext<TTransferCarForm>();
 
-  const licenseSelected = watch('license');
+  const selectedCarId = watch('carId');
 
   const handleCardClick = () => {
-    setValue('license', car.license, { shouldValidate: true });
+    setValue('carId', car.id, { shouldValidate: true });
   };
 
   const handleClearSelectedCar: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.stopPropagation();
 
-    setValue('license', '');
+    setValue('carId', '');
   };
 
-  if (licenseSelected && licenseSelected !== car.license) {
+  if (selectedCarId && selectedCarId !== car.id) {
     return null;
   }
 
@@ -37,12 +37,12 @@ export default function CarCard({ car }: TCarCardProps) {
       <Button
         type="button"
         variant="outline"
-        data-selected={!!licenseSelected}
+        data-selected={!!selectedCarId}
         className="block p-0 h-auto border-2 border-border ring-primary rounded-lg focus:outline-primary duration-300 data-[selected=true]:col-span-full data-[selected=true]:hover:bg-background data-[selected=true]:hover:cursor-default data-[selected=false]:hover:scale-[1.03] data-[selected=false]:hover:md:scale-[1.05]"
-        onClick={() => handleCardClick()}
+        onClick={handleCardClick}
       >
-        {licenseSelected && (
-          <ContainerSelected className="border-0">
+        {selectedCarId && (
+          <ContainerSelected className="border-0" title="Veículo selecionado">
             <CarInfoComponent />
 
             <Button
@@ -56,7 +56,8 @@ export default function CarCard({ car }: TCarCardProps) {
             </Button>
           </ContainerSelected>
         )}
-        {!licenseSelected && <CarInfoComponent />}
+
+        {!selectedCarId && <CarInfoComponent />}
       </Button>
     </>
   );
