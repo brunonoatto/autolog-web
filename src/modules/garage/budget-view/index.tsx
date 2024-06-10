@@ -33,7 +33,6 @@ function GarageBudgetViewContent() {
         <CardTitle>Orçamento</CardTitle>
       </CardHeader>
       <CardContent>
-        <LoadingCard />
         {isLoading && <LoadingCard />}
 
         {!isLoading && !budget && (
