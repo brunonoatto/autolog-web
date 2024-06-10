@@ -13,7 +13,7 @@ export const useGetBudget = () => {
     queryKey: [USE_GET_BUDGET_QUERY_KEY, osParam],
     queryFn: async () => {
       if (!osParam) {
-        return {} as BudgetComplete;
+        return undefined;
       }
 
       const data = await ServiceApi.BudgetApi.getBudget(osParam);

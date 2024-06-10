@@ -1,10 +1,12 @@
+import { useParams } from 'react-router-dom';
+
 import { useGetBudget } from '@core/service/budget';
 import { BudgetViewProvider } from '@core/store/context/BudgetViewContext';
 import BudgetViewActionButtons from '@modules/client/budget-view/action-buttons';
 import BudgetCard from '@shared/components/budget-card';
 import { BudgetObservation } from '@shared/components/budget-observation';
 import BudgetTable from '@shared/components/budget-table';
-import LoadingCard from '@shared/components/loading-card';
+import { RenderLoadingData } from '@shared/components/render-loading-data';
 import {
   Card,
   CardContent,
@@ -14,6 +16,8 @@ import {
 } from '@shared/design-system/ui/card';
 
 function ClientBudgetViewContent() {
+  const { os: osParam } = useParams();
+
   const { budget, isLoading } = useGetBudget();
 
   const { garageName, createdDate, status, car, observation } = budget || {};
@@ -21,26 +25,21 @@ function ClientBudgetViewContent() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle icon="receipt">Orçamento</CardTitle>
+        <CardTitle icon="receipt">Orçamento {osParam}</CardTitle>
       </CardHeader>
 
       <CardContent>
-        {isLoading && <LoadingCard />}
+        <RenderLoadingData
+          isLoading={isLoading}
+          hasData={!!budget}
+          notFoundText="Orçamento não encontrado."
+        >
+          <BudgetCard garageName={garageName} createdDate={createdDate} status={status} car={car} />
 
-        {!isLoading && (
-          <>
-            <BudgetCard
-              garageName={garageName}
-              createdDate={createdDate}
-              status={status}
-              car={car}
-            />
+          <BudgetObservation observation={observation} />
 
-            <BudgetObservation observation={observation} />
-
-            <BudgetTable />
-          </>
-        )}
+          <BudgetTable />
+        </RenderLoadingData>
       </CardContent>
 
       <CardFooter>
