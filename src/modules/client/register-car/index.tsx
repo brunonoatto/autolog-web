@@ -55,7 +55,7 @@ export default function ClientRegisterCar() {
     const model = listModels?.find((b) => b.code === formValues.model)?.name;
 
     if (!brand || !model) {
-      toast({ title: 'Informações do veículo não encontradas.', variant: 'destructive' });
+      toast.error('Informações do veículo não encontradas.');
       return;
     }
 
@@ -63,7 +63,7 @@ export default function ClientRegisterCar() {
       { ...formValues, brand, model },
       {
         onSuccess: () => {
-          toast({ title: 'Veículo cadastrado com sucesso!' });
+          toast.success('Veículo cadastrado com sucesso!');
         },
         onSettled: () => loading(false),
       },
