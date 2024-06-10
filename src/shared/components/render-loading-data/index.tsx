@@ -7,6 +7,7 @@ type RenderLoadingData = {
   children: ReactNode;
   isLoading: boolean;
   hasData: boolean;
+  notFoundText?: string;
   notFoundElement?: ReactNode;
 };
 
@@ -14,6 +15,7 @@ export function RenderLoadingData({
   children,
   isLoading,
   hasData,
+  notFoundText,
   notFoundElement,
 }: RenderLoadingData) {
   if (isLoading) return <LoadingCard />;
@@ -22,7 +24,7 @@ export function RenderLoadingData({
     return (
       notFoundElement || (
         <Alert>
-          <AlertTitle>Dados não encontrados.</AlertTitle>
+          <AlertTitle>{notFoundText || 'Dados não encontrados.'}</AlertTitle>
         </Alert>
       )
     );
