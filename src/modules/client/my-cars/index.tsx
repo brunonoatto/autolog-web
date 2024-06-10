@@ -1,19 +1,12 @@
 import { useClientCars } from '@core/service/client';
 import { MY_CARS_CARD_TEST_ID } from '@modules/client/my-cars/consts';
-import IdentificationCar from '@modules/garage/dashboard/status-card/identification-car';
-import DashboardButton from '@shared/components/dashboard-button';
-import { Alert, AlertDescription, AlertTitle } from '@shared/design-system/ui/alert';
+import { ListCars } from '@modules/client/my-cars/list-cars';
+import { NotFoundCars } from '@modules/client/my-cars/not-found-cars';
+import LoadingCard from '@shared/components/loading-card';
 import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
-import LinkButton from '@shared/design-system/ui/link-button';
-import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
 export default function ClientMyCars() {
-  const navigate = useNavigateCustom();
-  const { data: cars } = useClientCars();
-
-  const handleCarClick = (license: string) => () => {
-    navigate(['/cliente', license]);
-  };
+  const { cars, isLoading } = useClientCars();
 
   return (
     <Card data-testid={MY_CARS_CARD_TEST_ID}>
@@ -22,28 +15,12 @@ export default function ClientMyCars() {
       </CardHeader>
 
       <CardContent>
-        {!cars?.length && (
-          <Alert>
-            <AlertTitle>Você não possui nenhum veículo cadastrado.</AlertTitle>
-            <AlertDescription>
-              <LinkButton icon="car" to="/cliente/cadastrar-veiculo">
-                Cadastrar seu veículo
-              </LinkButton>
-            </AlertDescription>
-          </Alert>
-        )}
+        {/* Queee código mais feio, pensar em algo melhor */}
+        {isLoading && <LoadingCard />}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {cars?.map(({ license, brand, model, year }) => (
-            <DashboardButton
-              key={license}
-              className="md:min-h-24"
-              onClick={handleCarClick(license)}
-            >
-              <IdentificationCar license={license} brand={brand} model={model} year={year} />
-            </DashboardButton>
-          ))}
-        </div>
+        {!isLoading && !cars?.length && <NotFoundCars />}
+
+        {!isLoading && !!cars?.length && <ListCars cars={cars} />}
       </CardContent>
     </Card>
   );
