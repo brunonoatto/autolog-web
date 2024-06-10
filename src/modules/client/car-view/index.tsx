@@ -3,8 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useGetCar } from '@core/service/car';
 import BudgetsCar from '@modules/client/car-view/budgets-car';
 import TimelineCar from '@modules/client/car-view/timeline-car';
-import LoadingCard from '@shared/components/loading-card';
-import { Alert, AlertTitle } from '@shared/design-system/ui/alert';
+import { RenderLoadingData } from '@shared/components/render-loading-data';
 import {
   Card,
   CardContent,
@@ -27,15 +26,11 @@ export default function ClientCarView() {
       </CardHeader>
 
       <CardContent>
-        {isLoading && <LoadingCard />}
-
-        {!isLoading && !car && (
-          <Alert>
-            <AlertTitle>Veículo não encontrado.</AlertTitle>
-          </Alert>
-        )}
-
-        {!!car && (
+        <RenderLoadingData
+          isLoading={isLoading}
+          hasData={!!car}
+          notFoundText="Veículo não encontrado."
+        >
           <Tabs defaultValue="budgets">
             <TabsList>
               <TabsTrigger value="budgets">Orçamentos</TabsTrigger>
@@ -48,7 +43,7 @@ export default function ClientCarView() {
               <TimelineCar />
             </TabsContent>
           </Tabs>
-        )}
+        </RenderLoadingData>
       </CardContent>
     </Card>
   );
