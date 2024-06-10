@@ -3,7 +3,6 @@ import RouteData from '@e2e/core/fixtures/route/_types/RouteData';
 import RoutesData from '@e2e/shared/routes.ts';
 
 const budgetPostRequestAssert: TNewBudgetParams = {
-  garageId: '54d77a26-d07a-4010-b0b3-9f5ad8139bbf', // temp
   newClient: {
     name: 'Cliente sem cadastro',
     cpfCnpj: '31017944040',
