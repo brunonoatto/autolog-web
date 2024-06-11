@@ -29,7 +29,7 @@ export default function ClientCarView() {
         <RenderLoadingData
           isLoading={isLoading}
           hasData={!!car}
-          notFoundText="Veículo não encontrado."
+          notFoundTitle="Veículo não encontrado."
         >
           <Tabs defaultValue="budgets">
             <TabsList>

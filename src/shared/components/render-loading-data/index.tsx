@@ -1,13 +1,14 @@
 import { ReactNode } from 'react';
 
 import LoadingCard from '@shared/components/loading-card';
-import { Alert, AlertTitle } from '@shared/design-system/ui/alert';
+import { Alert, AlertDescription, AlertTitle } from '@shared/design-system/ui/alert';
 
 type TRenderLoadingData = {
   children: ReactNode;
   isLoading: boolean;
   hasData: boolean;
-  notFoundText?: string;
+  notFoundTitle?: ReactNode | string;
+  notFoundDescription?: ReactNode | string;
   notFoundElement?: ReactNode;
 };
 
@@ -15,7 +16,8 @@ export function RenderLoadingData({
   children,
   isLoading,
   hasData,
-  notFoundText,
+  notFoundTitle,
+  notFoundDescription,
   notFoundElement,
 }: TRenderLoadingData) {
   if (isLoading) return <LoadingCard />;
@@ -24,7 +26,9 @@ export function RenderLoadingData({
     return (
       notFoundElement || (
         <Alert>
-          <AlertTitle>{notFoundText || 'Dados não encontrados.'}</AlertTitle>
+          <AlertTitle>{notFoundTitle || 'Dados não encontrados.'}</AlertTitle>
+
+          {notFoundDescription && <AlertDescription>{notFoundDescription}</AlertDescription>}
         </Alert>
       )
     );

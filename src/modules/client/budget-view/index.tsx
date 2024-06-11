@@ -32,7 +32,7 @@ function ClientBudgetViewContent() {
         <RenderLoadingData
           isLoading={isLoading}
           hasData={!!budget}
-          notFoundText="Orçamento não encontrado."
+          notFoundTitle="Orçamento não encontrado."
         >
           <BudgetCard garageName={garageName} createdDate={createdDate} status={status} car={car} />
 
