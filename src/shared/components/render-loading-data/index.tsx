@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import LoadingCard from '@shared/components/loading-card';
 import { Alert, AlertTitle } from '@shared/design-system/ui/alert';
 
-type RenderLoadingData = {
+type TRenderLoadingData = {
   children: ReactNode;
   isLoading: boolean;
   hasData: boolean;
@@ -17,7 +17,7 @@ export function RenderLoadingData({
   hasData,
   notFoundText,
   notFoundElement,
-}: RenderLoadingData) {
+}: TRenderLoadingData) {
   if (isLoading) return <LoadingCard />;
 
   if (!hasData) {
