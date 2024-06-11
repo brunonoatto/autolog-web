@@ -1,6 +1,6 @@
 import type { Page } from '@playwright/test';
 
-import type { TRoute } from '@core/router/consts';
+import type { TRoute } from '@core/router/types';
 import { BODY_MENU_TEST_ID } from '@layout/body-app/main/menu/consts';
 
 class MenusUtils {

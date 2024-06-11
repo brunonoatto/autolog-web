@@ -1,4 +1,4 @@
-import { TRoute } from '@core/router/consts';
+import { TRoute } from '@core/router/types';
 import {
   Card,
   CardContent,

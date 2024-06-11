@@ -1,6 +1,6 @@
 import { NavigateOptions, useNavigate } from 'react-router-dom';
 
-import { TRoute } from '@core/router/consts';
+import { TRoute } from '@core/router/types';
 import urlJoin from '@shared/helpers/string/urlJoin';
 
 type TRouteArr = [TRoute, ...string[]];

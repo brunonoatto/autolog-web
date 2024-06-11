@@ -5,7 +5,7 @@ import SuspenseRoute from '@core/router/suspense-route';
 import BigSpinner from '@layout/body-app/big-spinner';
 import urlJoin from '@shared/helpers/string/urlJoin';
 
-import { ROUTES_PATH } from './consts';
+import { ROUTES_PATH } from './types';
 
 const ProtectedRoute = lazy(() => import('./protected-route'));
 const Login = lazy(() => import('@modules/auth/login'));

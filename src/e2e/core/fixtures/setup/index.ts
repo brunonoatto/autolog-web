@@ -1,6 +1,6 @@
 import type { Page } from '@playwright/test';
 
-import { TRoute } from '@core/router/consts';
+import { TRoute } from '@core/router/types';
 import { clientAccessToken, garageAccessToken } from '@e2e/mocks/auth/login';
 import { StorageKeyEnum } from '@shared/types/storageKey';
 

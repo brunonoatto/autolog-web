@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 
-import type { TRoute } from '@core/router/consts';
+import type { TRoute } from '@core/router/types';
 import { cn } from '@shared/design-system/helpers/utils';
 import { buttonVariants, type TButtonProps } from '@shared/design-system/ui/button';
 import Icon, { TIconProps, TIcons } from '@shared/design-system/ui/icon';

@@ -1,7 +1,7 @@
 import { Navigate, Outlet, useLocation, useSearchParams } from 'react-router-dom';
 
 import { TUserType } from '@core/api/auth/types';
-import { ROUTES_PATH } from '@core/router/consts';
+import { ROUTES_PATH } from '@core/router/types';
 import useAuth from '@core/store/context/AuthContext/hook';
 
 type TProtectedRouteParams = {

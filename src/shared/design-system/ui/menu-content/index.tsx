@@ -1,4 +1,4 @@
-import type { TRoute } from '@core/router/consts';
+import type { TRoute } from '@core/router/types';
 import { Button, TButtonProps } from '@shared/design-system/ui/button';
 import {
   handleCloseMenuContent,
