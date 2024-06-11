@@ -29,11 +29,7 @@ export default function Dashboard() {
           loadingElement={<StatusCardSkeletons />}
           notFoundTitle="Nenhum orçamento em andamento."
           notFoundDescription={
-            <LinkButton
-              className="hidden md:inline-flex"
-              to="/garage/orcamento"
-              icon="circle-dollar-sign"
-            >
+            <LinkButton to="/garage/orcamento" icon="circle-dollar-sign">
               Adicionar orçamento
             </LinkButton>
           }
