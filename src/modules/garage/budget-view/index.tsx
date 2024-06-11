@@ -14,7 +14,8 @@ import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
 function GarageBudgetViewContent() {
   const { os: osParam } = useParams();
-  const { mutate: observationUpdateMutate, isPending } = useObservationUpdate(osParam);
+  const { mutate: observationUpdateMutate, isPending: isPendingMutate } =
+    useObservationUpdate(osParam);
 
   const { budget, isLoading } = useGetBudget();
   const { id, status, car, observation } = budget || {};
@@ -40,7 +41,7 @@ function GarageBudgetViewContent() {
 
           <BudgetObservation
             observation={observation}
-            isLoading={isPending}
+            isLoading={isPendingMutate}
             onEditedCallback={handleObservationSave}
           />
 
