@@ -7,6 +7,7 @@ type TRenderLoadingData = {
   children: ReactNode;
   isLoading: boolean;
   hasData: boolean;
+  loadingElement?: ReactNode;
   notFoundTitle?: ReactNode | string;
   notFoundDescription?: ReactNode | string;
   notFoundElement?: ReactNode;
@@ -16,11 +17,12 @@ export function RenderLoadingData({
   children,
   isLoading,
   hasData,
+  loadingElement,
   notFoundTitle,
   notFoundDescription,
   notFoundElement,
 }: TRenderLoadingData) {
-  if (isLoading) return <LoadingCard />;
+  if (isLoading) return loadingElement || <LoadingCard />;
 
   if (!hasData) {
     return (
