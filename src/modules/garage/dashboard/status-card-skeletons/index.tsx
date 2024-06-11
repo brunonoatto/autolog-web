@@ -1,5 +1,7 @@
+import { DashboardGrid } from '@modules/garage/dashboard/dashboard-grid';
+
 // TODO: falta fazer skeleton com layout desktop
-const StatusCardSkeleton = () => {
+function StatusCardSkeleton() {
   return (
     <div className="animate-pulse min-h-32 rounded-lg flex flex-col justify-between border-2 border-neutral-600 p-2">
       <div className="space-y-2">
@@ -12,6 +14,16 @@ const StatusCardSkeleton = () => {
       </div>
     </div>
   );
-};
+}
 
-export default StatusCardSkeleton;
+export function StatusCardSkeletons() {
+  return (
+    <DashboardGrid>
+      <StatusCardSkeleton />
+      <StatusCardSkeleton />
+      <StatusCardSkeleton />
+      <StatusCardSkeleton />
+      <StatusCardSkeleton />
+    </DashboardGrid>
+  );
+}

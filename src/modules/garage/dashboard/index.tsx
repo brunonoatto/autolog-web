@@ -1,12 +1,12 @@
 import { useGarageDashboard } from '@core/service/dashboard';
 import { DASHBOARD_CARD_TEST_ID } from '@modules/garage/dashboard/consts';
-import { Alert, AlertDescription, AlertTitle } from '@shared/design-system/ui/alert';
+import { DashboardGrid } from '@modules/garage/dashboard/dashboard-grid';
+import StatusCard from '@modules/garage/dashboard/status-card';
+import { StatusCardSkeletons } from '@modules/garage/dashboard/status-card-skeletons';
+import { RenderLoadingData } from '@shared/components/render-loading-data';
 import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
 import LinkButton from '@shared/design-system/ui/link-button';
 import useNavigateCustom from '@shared/hooks/useNavigateCustom';
-
-import StatusCard from './status-card';
-import StatusCardSkeleton from './status-card-skeleton';
 
 export default function Dashboard() {
   const navigate = useNavigateCustom();
@@ -23,48 +23,31 @@ export default function Dashboard() {
       </CardHeader>
 
       <CardContent>
-        {!isLoading && !dashboardItem?.length && (
-          <>
-            <Alert>
-              <AlertTitle>Nenhum orçamento em andamento.</AlertTitle>
-              <AlertDescription>
-                <LinkButton
-                  className="hidden md:inline-flex"
-                  to="/garage/orcamento"
-                  icon="circle-dollar-sign"
-                >
-                  Adicionar orçamento
-                </LinkButton>
-              </AlertDescription>
-            </Alert>
-          </>
-        )}
+        <RenderLoadingData
+          isLoading={isLoading}
+          hasData={!!dashboardItem?.length}
+          loadingElement={<StatusCardSkeletons />}
+          notFoundTitle="Nenhum orçamento em andamento."
+          notFoundDescription={
+            <LinkButton
+              className="hidden md:inline-flex"
+              to="/garage/orcamento"
+              icon="circle-dollar-sign"
+            >
+              Adicionar orçamento
+            </LinkButton>
+          }
+        >
+          <DashboardGrid>
+            <LinkButton className="md:hidden h-16" to="/garage/orcamento">
+              Adicionar Orçamento
+            </LinkButton>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {isLoading ? (
-            <>
-              <StatusCardSkeleton />
-              <StatusCardSkeleton />
-              <StatusCardSkeleton />
-              <StatusCardSkeleton />
-              <StatusCardSkeleton />
-            </>
-          ) : (
-            <>
-              <LinkButton className="md:hidden h-16" to="/garage/orcamento">
-                Adicionar Orçamento
-              </LinkButton>
-
-              {dashboardItem?.map((item) => (
-                <StatusCard
-                  key={item.license}
-                  item={item}
-                  onClick={() => handleSelectCar(item.os)}
-                />
-              ))}
-            </>
-          )}
-        </div>
+            {dashboardItem?.map((item) => (
+              <StatusCard key={item.license} item={item} onClick={() => handleSelectCar(item.os)} />
+            ))}
+          </DashboardGrid>
+        </RenderLoadingData>
       </CardContent>
     </Card>
   );
