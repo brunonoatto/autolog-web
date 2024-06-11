@@ -8,9 +8,7 @@ import BudgetViewForm from '@modules/garage/budget-view/form';
 import BudgetCard from '@shared/components/budget-card';
 import { BudgetObservation } from '@shared/components/budget-observation';
 import BudgetTable from '@shared/components/budget-table';
-import GoBackButton from '@shared/components/go-back-button';
-import LoadingCard from '@shared/components/loading-card';
-import { Alert, AlertDescription, AlertTitle } from '@shared/design-system/ui/alert';
+import { RenderLoadingData } from '@shared/components/render-loading-data';
 import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
 import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
@@ -33,34 +31,25 @@ function GarageBudgetViewContent() {
         <CardTitle>Orçamento</CardTitle>
       </CardHeader>
       <CardContent>
-        {isLoading && <LoadingCard />}
+        <RenderLoadingData
+          isLoading={isLoading}
+          hasData={!!budget}
+          notFoundTitle={`Orçamento ${osParam} não encontrado.`}
+        >
+          <BudgetCard status={status} car={car} />
 
-        {!isLoading && !budget && (
-          <Alert>
-            <AlertTitle>Orçamento {osParam} não encontrado.</AlertTitle>
-            <AlertDescription>
-              <GoBackButton />
-            </AlertDescription>
-          </Alert>
-        )}
+          <BudgetObservation
+            observation={observation}
+            isLoading={isPending}
+            onEditedCallback={handleObservationSave}
+          />
 
-        {!isLoading && budget && (
-          <>
-            <BudgetCard status={status} car={car} />
+          {allowEditBudget && <BudgetViewForm />}
 
-            <BudgetObservation
-              observation={observation}
-              isLoading={isPending}
-              onEditedCallback={handleObservationSave}
-            />
+          <BudgetTable allowActions={allowEditBudget} />
 
-            {allowEditBudget && <BudgetViewForm />}
-
-            <BudgetTable allowActions={allowEditBudget} />
-
-            <BudgetViewActions />
-          </>
-        )}
+          <BudgetViewActions />
+        </RenderLoadingData>
       </CardContent>
     </Card>
   );
