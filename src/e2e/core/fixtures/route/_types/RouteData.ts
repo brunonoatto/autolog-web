@@ -9,7 +9,7 @@ class RouteData implements TRouteMockData {
 
   constructor(base: TRouteBase, mock: TMock) {
     this.base = base;
-    this.route = `**/api${base.route}`;
+    this.route = `**${base.route}`;
     this.mocks.push(new MockData(base, mock));
   }
 
