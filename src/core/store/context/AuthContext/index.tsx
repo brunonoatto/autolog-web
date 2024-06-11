@@ -1,15 +1,14 @@
 import { createContext, useCallback, useLayoutEffect, useState } from 'react';
 
-import type { TAccessTokenData } from '@core/api/auth/types';
+import type { TAccessTokenData, TLoginResponse } from '@core/api/auth/types';
 import httpClient from '@core/api/http-client';
-import { useLogin } from '@core/service/auth';
 import { StorageKeyEnum } from '@shared/types/storageKey';
 
 const AUTH_STORAGE_KEY = StorageKeyEnum.auth;
 
 type TAuthContextValue = {
   isAuthenticated: boolean;
-  login(email: string, password: string): Promise<void>;
+  login(loginResponse: TLoginResponse): void;
   logout(): void;
   getTokenData: () => TAccessTokenData | null;
 };
@@ -17,23 +16,12 @@ type TAuthContextValue = {
 export const AuthContext = createContext({} as TAuthContextValue);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const { mutate: mutateLogin } = useLogin();
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem(AUTH_STORAGE_KEY));
 
-  const login = useCallback(
-    async (email: string, password: string) => {
-      mutateLogin(
-        { email, password },
-        {
-          onSuccess: (loginResponse) => {
-            localStorage.setItem(AUTH_STORAGE_KEY, loginResponse.accessToken);
-            setIsAuthenticated(true);
-          },
-        },
-      );
-    },
-    [mutateLogin],
-  );
+  const login = useCallback((loginResponse: TLoginResponse) => {
+    localStorage.setItem(AUTH_STORAGE_KEY, loginResponse.accessToken);
+    setIsAuthenticated(true);
+  }, []);
 
   const logout = useCallback(() => {
     localStorage.clear();
