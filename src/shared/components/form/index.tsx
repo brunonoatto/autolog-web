@@ -13,7 +13,7 @@ import type { TIcons } from '@shared/design-system/ui/icon';
 
 type TForm<T extends FieldValues> = PropsWithChildren & {
   'data-testid'?: string;
-  isLoading: boolean;
+  isLoading?: boolean;
   form: UseFormReturn<T>;
   onValid: SubmitHandler<T>;
   title: string;
