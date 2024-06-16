@@ -94,7 +94,7 @@ const CardDescription = React.forwardRef<
 ));
 CardDescription.displayName = 'CardDescription';
 
-const cardContentVariants = cva('px-6 pb-4 pt-0 flex-1 space-y-4', {
+const cardContentVariants = cva('px-6 pb-4 pt-0 flex-1 space-y-2', {
   variants: {
     paddingX: {
       false: 'px-0',
