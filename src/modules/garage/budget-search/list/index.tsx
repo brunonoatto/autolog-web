@@ -2,11 +2,12 @@ import { useLicenseSearchBudgets } from '@core/service/budget';
 import BudgetCard from '@shared/components/budget-card';
 import { RenderLoadingData } from '@shared/components/render-loading-data';
 import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
+import { Pagination } from '@shared/design-system/ui/pagination';
 import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
 export default function ListBudgets() {
   const navigate = useNavigateCustom();
-  const { budgets, isLoading } = useLicenseSearchBudgets();
+  const { budgets, isLoading, totalPages, totalItems } = useLicenseSearchBudgets();
 
   const handleBudgetSelected = (os: string) => {
     navigate(['/garage/orcamento', os]);
@@ -38,6 +39,8 @@ export default function ListBudgets() {
             );
           })}
         </RenderLoadingData>
+
+        <Pagination totalPages={totalPages} totalItems={totalItems} />
       </CardContent>
     </Card>
   );
