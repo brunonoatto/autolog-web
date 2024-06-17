@@ -151,7 +151,7 @@ function BudgetAddContent() {
 
       <Modal
         open={!!generateOS}
-        title="Veículo cadastrado com sucesso!"
+        title="Orçamento cadastrado com sucesso!"
         confirmText="Editar orçamento"
         onConfirmClick={handleSuccessConfirm}
         cancelText="Ir para Dashboard"
