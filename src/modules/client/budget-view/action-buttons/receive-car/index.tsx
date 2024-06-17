@@ -18,7 +18,7 @@ export default function ReceiveButton() {
     navigate('/cliente');
   };
 
-  const handleRejectBudget = () => {
+  const handleFinishBudget = () => {
     mutate(id, {
       onSuccess: () => {
         setOpenModal(true);
@@ -28,7 +28,7 @@ export default function ReceiveButton() {
 
   return (
     <>
-      <Button icon="check-check" onClick={handleRejectBudget}>
+      <Button icon="check-check" onClick={handleFinishBudget}>
         Veículo recebido
       </Button>
 
