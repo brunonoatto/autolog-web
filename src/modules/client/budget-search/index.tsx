@@ -20,7 +20,10 @@ export default function ClientBudgetSearch() {
     if (value) {
       setSearchParams({ license: value });
     } else {
-      setSearchParams();
+      setSearchParams((prev) => {
+        prev.delete('license');
+        return prev;
+      });
     }
   };
 
