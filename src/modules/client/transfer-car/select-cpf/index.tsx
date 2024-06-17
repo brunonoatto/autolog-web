@@ -52,22 +52,24 @@ export default function SelectCpfToTransfer({ clientData, setClient }: TSelectCp
   return (
     <>
       <CardTitle size="lg">Selecione para quem você quer transferir</CardTitle>
-      <div className="flex items-start gap-2">
-        <FormField control={control} name="cpfOrCnpjToTransfer" label="CPF/CNPJ" isMask>
-          <CpfCnpjInput
-            onChange={handleCpfChange}
-            placeholder="Informe o CPF/CNPJ do destinatário"
-          />
-        </FormField>
+      <div className="flex flex-col md:flex-row gap-2">
+        <div className="flex items-start gap-2">
+          <FormField control={control} name="cpfOrCnpjToTransfer" label="CPF/CNPJ" isMask>
+            <CpfCnpjInput
+              onChange={handleCpfChange}
+              placeholder="Informe o CPF/CNPJ do destinatário"
+            />
+          </FormField>
 
-        {cpfIsLoading && <LoadingIcon className="mt-10" />}
+          {cpfIsLoading && <LoadingIcon className="mt-10" />}
+        </div>
+
+        {clientData && !cpfIsLoading && (
+          <ContainerSelected className="flex-1 max-w-96" title="Usuário Selecionado" align="center">
+            {clientData?.name}
+          </ContainerSelected>
+        )}
       </div>
-
-      {clientData && !cpfIsLoading && (
-        <ContainerSelected title="Usuário Selecionado" align="center">
-          {clientData?.name}
-        </ContainerSelected>
-      )}
     </>
   );
 }

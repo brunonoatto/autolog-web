@@ -38,7 +38,7 @@ export default function CarCard({ car }: TCarCardProps) {
         type="button"
         variant="outline"
         data-selected={!!selectedCarId}
-        className="block p-0 h-auto border-2 border-border ring-primary rounded-lg focus:outline-primary duration-300 data-[selected=true]:col-span-full data-[selected=true]:hover:bg-background data-[selected=true]:hover:cursor-default data-[selected=false]:hover:scale-[1.03] data-[selected=false]:hover:md:scale-[1.05]"
+        className="block max-w-[650px] p-0 h-auto border-2 border-border ring-primary rounded-lg focus:outline-primary duration-300 data-[selected=true]:col-span-full data-[selected=true]:hover:bg-background data-[selected=true]:hover:cursor-default data-[selected=false]:hover:scale-[1.03] data-[selected=false]:hover:md:scale-[1.05]"
         onClick={handleCardClick}
       >
         {selectedCarId && (
