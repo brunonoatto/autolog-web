@@ -130,11 +130,12 @@ export default function ClientTransferCar() {
       <Modal
         open={openModal}
         title="Confirmação dos dados da Transferência de Veículo"
+        icon="folder-check"
         confirmText="Transferir"
         onConfirmClick={handleTrasnferCar}
         onCancelClick={() => setOpenModal(false)}
       >
-        <div className="inline md:flex justify-evenly space-y-4 md:space-y-0">
+        <div className="inline md:grid grid-cols-2 space-y-4 md:space-y-0">
           <Card>
             <CardHeader>
               <CardTitle>Automóvel:</CardTitle>
