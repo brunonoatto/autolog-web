@@ -45,7 +45,7 @@ function PageButton({ number }: TPageButton) {
   );
 }
 
-type TPaginationProps = {
+export type TPaginationProps = {
   totalItems: number;
   totalPages: number;
 };

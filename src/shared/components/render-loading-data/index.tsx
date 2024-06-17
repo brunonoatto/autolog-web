@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 
 import LoadingCard from '@shared/components/loading-card';
 import { Alert, AlertDescription, AlertTitle } from '@shared/design-system/ui/alert';
+import { Pagination, TPaginationProps } from '@shared/design-system/ui/pagination';
 
 type TRenderLoadingData = {
   children: ReactNode;
@@ -11,6 +12,7 @@ type TRenderLoadingData = {
   notFoundTitle?: ReactNode | string;
   notFoundDescription?: ReactNode | string;
   notFoundElement?: ReactNode;
+  pagination?: TPaginationProps;
 };
 
 export function RenderLoadingData({
@@ -21,6 +23,7 @@ export function RenderLoadingData({
   notFoundTitle,
   notFoundDescription,
   notFoundElement,
+  pagination,
 }: TRenderLoadingData) {
   if (isLoading) return loadingElement || <LoadingCard />;
 
@@ -36,5 +39,11 @@ export function RenderLoadingData({
     );
   }
 
-  return children;
+  return (
+    <>
+      {children}
+
+      {!isLoading && pagination && <Pagination {...pagination} />}
+    </>
+  );
 }
