@@ -3,9 +3,9 @@ import { useSearchParams } from 'react-router-dom';
 import { useListBudgetsCar } from '@core/service/budget';
 
 export const useLicenseSearchBudgets = () => {
-  const [params] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
-  const license = params.get('license');
+  const license = searchParams.get('license') || '';
 
-  return useListBudgetsCar(license || '');
+  return useListBudgetsCar(license);
 };

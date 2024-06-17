@@ -1,5 +1,6 @@
 import type { TBudgetItem } from '@core/api/budget-item/types';
 import type { TCar } from '@core/api/car/types';
+import type { TPaginationParams } from '@core/api/types';
 import type { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
 export type TNewBudgetParams = {
@@ -28,6 +29,10 @@ export type TBudget = {
   clientId: string;
   observation?: string;
   createdDate: string;
+};
+
+export type TBudgetListParams = TPaginationParams & {
+  license: string;
 };
 
 export type TBudgetListItemResponse = {

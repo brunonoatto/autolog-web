@@ -1,9 +1,11 @@
 import httpClient from '@core/api/http-client';
+import { TPaginationResponse } from '@core/api/types';
 
 import type {
   TBudget,
   TBudgetCompleteResponse,
   TBudgetListItemResponse,
+  TBudgetListParams,
   TGetWhatsLinkResponse,
   TNewBudgetParams,
   TObservationUpdateParams,
@@ -16,9 +18,11 @@ export const createBudget = async (data: TNewBudgetParams): Promise<TBudget> => 
   return response.data;
 };
 
-export const listBudgets = async (license: string): Promise<TBudgetListItemResponse[]> => {
-  const response = await httpClient.get<TBudgetListItemResponse[]>(BASE_URL, {
-    params: { license },
+export const listBudgets = async (
+  params: TBudgetListParams,
+): Promise<TPaginationResponse<TBudgetListItemResponse>> => {
+  const response = await httpClient.get<TPaginationResponse<TBudgetListItemResponse>>(BASE_URL, {
+    params,
   });
   return response.data;
 };
