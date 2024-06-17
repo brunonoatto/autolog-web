@@ -2,7 +2,6 @@ import { useLicenseSearchBudgets } from '@core/service/budget';
 import BudgetCard from '@shared/components/budget-card';
 import { RenderLoadingData } from '@shared/components/render-loading-data';
 import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
-import { Pagination } from '@shared/design-system/ui/pagination';
 import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
 export default function ListBudgets() {
@@ -24,6 +23,7 @@ export default function ListBudgets() {
           isLoading={isLoading}
           hasData={!!budgets}
           notFoundTitle="Nenhum orçamento encontrado."
+          pagination={{ totalPages, totalItems }}
         >
           {budgets.map(({ os, createdDate, status, clientName, car }) => {
             return (
@@ -39,8 +39,6 @@ export default function ListBudgets() {
             );
           })}
         </RenderLoadingData>
-
-        <Pagination totalPages={totalPages} totalItems={totalItems} />
       </CardContent>
     </Card>
   );

@@ -40,10 +40,7 @@ export default function ClientBudgetSearch() {
           isLoading={isLoading}
           hasData={!!budgets}
           notFoundTitle="Nenhum orçamento encontrado."
-          pagination={{
-            totalPages,
-            totalItems,
-          }}
+          pagination={{ totalPages, totalItems }}
         >
           {budgets?.map(({ os, garageName, createdDate, status, car }) => {
             return (
