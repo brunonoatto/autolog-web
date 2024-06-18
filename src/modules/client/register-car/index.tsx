@@ -13,6 +13,7 @@ import LicenseInput from '@shared/components/form/license-input';
 import { Input } from '@shared/design-system/ui/input';
 import { useToast } from '@shared/design-system/ui/use-toast';
 import { zodValidators } from '@shared/form-validations';
+import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
 const registerCarSchema = z
   .object({
@@ -29,6 +30,7 @@ const registerCarSchema = z
 export type TRegisterCarFormType = z.infer<typeof registerCarSchema>;
 
 export default function ClientRegisterCar() {
+  const navigate = useNavigateCustom();
   const { toast } = useToast();
   const { mutate } = useCreateCar();
   const loading = useLoadingStore((prop) => prop.loading);
@@ -64,6 +66,7 @@ export default function ClientRegisterCar() {
       {
         onSuccess: () => {
           toast.success('Veículo cadastrado com sucesso!');
+          navigate('/cliente');
         },
         onSettled: () => loading(false),
       },
