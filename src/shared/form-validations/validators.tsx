@@ -10,7 +10,6 @@ import {
   EMAIL_INVALID_MSG,
   INTEGER_INVALID_MSG,
   MAX_LENGTH_INVALID_MSG,
-  MIN_LENGTH_INVALID_MSG,
   NUMBER_INVALID_MSG,
   REQUIRED_MSG,
   STRING_MAX_LENGTH_DEFAULT,
@@ -26,7 +25,7 @@ export const String = ({
 }: TStringValidator = {}) =>
   z
     .string({ required_error: requiredMessage || REQUIRED_MSG })
-    .min(minLength, MIN_LENGTH_INVALID_MSG(minLength))
+    .min(minLength, requiredMessage || REQUIRED_MSG)
     .max(maxLength, MAX_LENGTH_INVALID_MSG(maxLength));
 
 export const StringOptional = ({
