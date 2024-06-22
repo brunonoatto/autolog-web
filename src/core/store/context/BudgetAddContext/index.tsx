@@ -12,29 +12,30 @@ import { useToast } from '@shared/design-system/ui/use-toast';
 export type TBudgetAddValue = {
   isLoadingClient: boolean;
   isLoadingCar: boolean;
-  selectedClient: TClientResponse | undefined;
-  selectedCar: TCar | undefined;
+  selectedClientCars: TCar[];
+  allowSelectCar: boolean;
   handleLoadClient: (cpfCnpj: string) => Promise<void>;
   handleLoadCar: (license: string) => Promise<void>;
   handleSelectedClientCar: (car: TCar) => void;
   handleClearSelectedClient: () => void;
   handleClearSelectedClientCar: () => void;
+  setAllowSelectCar: (allow: boolean) => void;
 };
 
 export const BudgetAddContext = createContext({} as TBudgetAddValue);
 
 export function BudgetAddProvider({ children }: { children: React.ReactNode }) {
+  const [allowSelectCar, setAllowSelectCar] = useState(false);
+  const [selectedClientCars, setSelectedClientCars] = useState<TCar[]>([]);
   const [isLoadingClient, setIsLoadingClient] = useState(false);
   const [isLoadingCar, setIsLoadingCar] = useState(false);
-  const [selectedClient, setSelectedClient] = useState<TClientResponse | undefined>();
-  const [selectedCar, setSelectedCar] = useState<TCar | undefined>();
 
   const { toast } = useToast();
 
   const form = useForm<TBudgetAddFormType>({
     resolver: zodResolver(budgetAddSchema),
   });
-  const { setValue, setFocus, resetField } = form;
+  const { setValue, setFocus, resetField, getValues } = form;
 
   const onLoadClient = async (cpfCnpj: string) => {
     if (cpfCnpj.length === 11 || cpfCnpj.length === 14) {
@@ -72,8 +73,9 @@ export function BudgetAddProvider({ children }: { children: React.ReactNode }) {
 
       if (!car) return;
 
-      if (selectedClient && car && selectedClient.id !== car.clientId) {
-        resetField('license');
+      const selectedClientId = getValues('client.id');
+      if (selectedClientId && car && selectedClientId !== car.clientId) {
+        resetField('car');
 
         toast.warning('Veículo pertence a um proprietário diferente do selecionado');
 
@@ -87,49 +89,52 @@ export function BudgetAddProvider({ children }: { children: React.ReactNode }) {
   };
 
   const onSelectedClient = (client: TClientResponse) => {
-    setFocus('license');
+    setFocus('car.license');
 
-    setValue('name', client.name, { shouldValidate: true });
-    setValue('phone', client.phone, { shouldValidate: true });
+    setValue('client.id', client.id);
+    setValue('client.cpfCnpj', client.cpfCnpj, { shouldValidate: true });
+    setValue('client.name', client.name, { shouldValidate: true });
+    setValue('client.phone', client.phone, { shouldValidate: true });
 
-    resetField('license');
+    setSelectedClientCars(client.cars || []);
 
-    setSelectedClient(client);
+    resetField('car.license');
   };
 
   const onClearSelectedClient = () => {
-    if (!selectedClient) return;
+    const selectedClientId = getValues('client.id');
+    if (!selectedClientId) return;
 
-    resetField('name');
-    resetField('phone');
+    resetField('client.id');
+    resetField('client.cpfCnpj');
+    resetField('client.name');
+    resetField('client.phone');
 
-    setSelectedClient(undefined);
-    onClearSelectedClientCar(true);
+    setSelectedClientCars([]);
+
+    onClearSelectedClientCar();
+
+    setAllowSelectCar(false);
   };
 
   const onSelectedClientCar = (car: TCar) => {
+    setValue('car.id', car.id, { shouldValidate: true });
+    setValue('car.license', car.license, { shouldValidate: true });
+    setValue('car.brand', car.brand, { shouldValidate: true });
+    setValue('car.model', car.model, { shouldValidate: true });
+    setValue('car.year', car.year, { shouldValidate: true });
+
     setFocus('observation');
-
-    setValue('license', car.license, { shouldValidate: true });
-    setValue('brand', car.brand, { shouldValidate: true });
-    setValue('model', car.model, { shouldValidate: true });
-    setValue('year', car.year, { shouldValidate: true });
-
-    setSelectedCar(car);
   };
 
-  const onClearSelectedClientCar = (clearLicense = false) => {
-    if (!selectedCar) return;
-
-    if (clearLicense) {
-      resetField('license');
-    }
-
-    resetField('brand');
-    resetField('model');
-    resetField('year');
-
-    setSelectedCar(undefined);
+  const onClearSelectedClientCar = () => {
+    // TODO: quando chama o clear, as msgs de erro do form não aparecem mais
+    // resetField('car.id', { defaultValue: true });
+    // resetField('car.license', { defaultValue: true });
+    // resetField('car.model', { defaultValue: true });
+    // resetField('car.brand', { defaultValue: true });
+    // resetField('car.year', { defaultValue: true });
+    resetField('car');
   };
 
   return (
@@ -137,13 +142,14 @@ export function BudgetAddProvider({ children }: { children: React.ReactNode }) {
       value={{
         isLoadingClient,
         isLoadingCar,
-        selectedClient,
-        selectedCar,
+        selectedClientCars,
+        allowSelectCar,
         handleLoadClient: onLoadClient,
         handleLoadCar: onLoadCar,
         handleSelectedClientCar: onSelectedClientCar,
         handleClearSelectedClient: onClearSelectedClient,
         handleClearSelectedClientCar: onClearSelectedClientCar,
+        setAllowSelectCar,
       }}
     >
       <FormProvider {...form}>{children}</FormProvider>

@@ -5,7 +5,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import { ServiceApi } from '@core/api';
 import { TClientResponse } from '@core/api/client/types';
 import { TTransferCarForm } from '@modules/client/transfer-car';
-import ContainerSelected from '@shared/components/container-selected';
+import ContainerTitle from '@shared/components/container-title';
 import FormField from '@shared/components/form/form-field';
 import CpfCnpjInput from '@shared/components/inputs/cpf-cnpj-input';
 import LoadingIcon from '@shared/components/loading-icon';
@@ -65,9 +65,9 @@ export default function SelectCpfToTransfer({ clientData, setClient }: TSelectCp
         </div>
 
         {clientData && !cpfIsLoading && (
-          <ContainerSelected className="flex-1 max-w-96" title="Usuário Selecionado" align="center">
+          <ContainerTitle className="flex-1" title="Usuário Selecionado" align="center">
             {clientData?.name}
-          </ContainerSelected>
+          </ContainerTitle>
         )}
       </div>
     </>

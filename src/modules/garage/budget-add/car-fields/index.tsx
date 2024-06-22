@@ -14,7 +14,6 @@ import { Input } from '@shared/design-system/ui/input';
 
 export default function CarFields() {
   const isLoadingCar = useBudgetAddContext((prop) => prop.isLoadingCar);
-  const selectedCar = useBudgetAddContext((prop) => prop.selectedCar);
   const handleLoadCar = useBudgetAddContext((prop) => prop.handleLoadCar);
   const handleClearSelectedClientCar = useBudgetAddContext(
     (prop) => prop.handleClearSelectedClientCar,
@@ -24,7 +23,8 @@ export default function CarFields() {
 
   const { control, watch, resetField } = useFormContext<TBudgetAddFormType>();
 
-  const brandId = watch('brand');
+  const selectedCarId = watch('car.id');
+  const brandId = watch('car.brand');
 
   const handleLicenseChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -35,7 +35,7 @@ export default function CarFields() {
   };
 
   const handleBrandChanged = () => {
-    resetField('model');
+    resetField('car.model');
   };
 
   return (
@@ -43,33 +43,34 @@ export default function CarFields() {
       <CardTitle icon="car" size="lg">
         Dados do veículo
       </CardTitle>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         <ClientCars />
 
-        <div className="flex items-start gap-2 col-span-full">
-          <FormField className="col-span-full" control={control} name="license" label="Placa">
-            <LicenseInput onChange={handleLicenseChange} />
-          </FormField>
-
-          {/* TODO: pensar numa forma de mandar o isLoading para o FielField */}
-          {isLoadingCar && <LoadingIcon className="mt-10" />}
-        </div>
-
-        {selectedCar ? (
-          <p className="col-span-full">
-            {selectedCar.brand} - {selectedCar.model} {selectedCar.year}
-          </p>
-        ) : (
+        {!selectedCarId && (
           <>
+            <div className="flex items-start gap-2 col-span-full">
+              <FormField
+                className="col-span-full"
+                control={control}
+                name="car.license"
+                label="Placa"
+              >
+                <LicenseInput onChange={handleLicenseChange} />
+              </FormField>
+
+              {/* TODO: pensar numa forma de mandar o isLoading para o FielField */}
+              {isLoadingCar && <LoadingIcon className="mt-10" />}
+            </div>
+
             <BrandCombobox
               control={control}
-              name="brand"
+              name="car.brand"
               label="Montadora"
               onChange={handleBrandChanged}
             />
-            <ModelCombobox control={control} name="model" label="Modelo" brandId={brandId} />
+            <ModelCombobox control={control} name="car.model" label="Modelo" brandId={brandId} />
 
-            <FormField control={control} name="year" label="Ano">
+            <FormField control={control} name="car.year" label="Ano">
               <Input type="number" placeholder="Informe o ano do veículo" />
             </FormField>
           </>

@@ -49,11 +49,11 @@ export default function BudgetViewForm() {
   return (
     <Form
       form={form}
-      onValid={handleValid}
+      border
       title="Adicionar Item no Orçamento"
       iconButton="list-plus"
       confirmButtonText="Adicionar"
-      border={true}
+      onValid={handleValid}
     >
       <FormField className="col-span-full" control={control} name="description" label="Descrição">
         <Input className="uppercase" />

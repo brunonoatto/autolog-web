@@ -1,8 +1,10 @@
 import { useFormContext } from 'react-hook-form';
 
+import type { TCar } from '@core/api/car/types';
 import { useClientCars } from '@core/service/client';
 import { TTransferCarForm } from '@modules/client/transfer-car';
 import CarCard from '@shared/components/car-card';
+import { HoverButton } from '@shared/components/hover-button';
 import { CardTitle } from '@shared/design-system/ui/card';
 import { FormControl, FormField, FormItem, FormMessage } from '@shared/design-system/ui/form';
 
@@ -12,8 +14,8 @@ export default function SelectCarToTransfer() {
 
   const selectedCarId = watch('carId');
 
-  const handleCardClick = (carId: string) => {
-    setValue('carId', carId, { shouldValidate: true });
+  const handleCardClick = (car: TCar) => {
+    setValue('carId', car.id, { shouldValidate: true });
   };
 
   const handleClearSelectedCar = () => {
@@ -32,17 +34,24 @@ export default function SelectCarToTransfer() {
             <FormItem>
               <FormControl>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {cars.map((car) => {
-                    return (
-                      <CarCard
-                        key={car.license}
-                        car={car}
-                        isSelected={selectedCarId === car.id}
-                        onClick={handleCardClick}
-                        onClearClick={handleClearSelectedCar}
-                      />
-                    );
-                  })}
+                  {cars
+                    .filter((c) => !selectedCarId || selectedCarId === c.id)
+                    .map((car) => {
+                      // TODO: não renderizar o HoverButton quando tiver um carro selecionado
+                      return (
+                        <HoverButton
+                          key={car.license}
+                          isSelected={selectedCarId === car.id}
+                          onClick={() => handleCardClick(car)}
+                        >
+                          <CarCard
+                            car={car}
+                            isSelected={selectedCarId === car.id}
+                            onClearClick={handleClearSelectedCar}
+                          />
+                        </HoverButton>
+                      );
+                    })}
                 </div>
               </FormControl>
 

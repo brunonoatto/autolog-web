@@ -1,31 +1,60 @@
+import { useFormContext } from 'react-hook-form';
+
+import { TCar } from '@core/api/car/types';
 import useBudgetAddContext from '@core/store/context/BudgetAddContext/hook';
-import ClientCarButton from '@modules/garage/budget-add/car-fields/client-cars/client-car-button';
+import type { TBudgetAddFormType } from '@core/store/context/types/budget-add';
+import CarCard from '@shared/components/car-card';
+import { HoverButton } from '@shared/components/hover-button';
 
 export default function ClientCars() {
-  const selectedClient = useBudgetAddContext((prop) => prop.selectedClient);
+  const handleSelectedClientCar = useBudgetAddContext((prop) => prop.handleSelectedClientCar);
+  const handleClearSelectedClientCar = useBudgetAddContext(
+    (prop) => prop.handleClearSelectedClientCar,
+  );
+  const cars = useBudgetAddContext((prop) => prop.selectedClientCars);
 
-  if (!selectedClient || !selectedClient.cars?.length) {
+  const { watch } = useFormContext<TBudgetAddFormType>();
+
+  const selectedCarId = watch('car.id');
+
+  const selectedCar = cars.find((c) => c.id === selectedCarId);
+
+  const handleSelectedCar = (car: TCar) => {
+    handleSelectedClientCar(car);
+  };
+
+  const handleClearSelectedCar = () => {
+    handleClearSelectedClientCar();
+  };
+
+  if (!cars?.length) {
     return null;
+  }
+
+  if (selectedCar) {
+    return (
+      <CarCard
+        key={selectedCar.license}
+        car={selectedCar}
+        isSelected
+        onClearClick={handleClearSelectedCar}
+      />
+    );
   }
 
   return (
     <div className="col-span-full">
       <div>Veículos do Cliente:</div>
-      <div className="flex gap-2 pt-2 overflow-x-auto">
-        {selectedClient.cars.map((car) => {
-          return (
-            // <Tooltip
-            //   key={license}
-            //   title={
-            //     <>
-            //       {brand} {model} {year}
-            //     </>
-            //   }
-            // >
-            <ClientCarButton key={car.license} car={car} />
-            // </Tooltip>
-          );
-        })}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
+        {cars.map((car) => (
+          <HoverButton
+            key={car.license}
+            isSelected={selectedCarId === car.id}
+            onClick={() => handleSelectedCar(car)}
+          >
+            <CarCard key={car.license} car={car} />
+          </HoverButton>
+        ))}
       </div>
     </div>
   );
