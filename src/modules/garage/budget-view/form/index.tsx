@@ -51,8 +51,8 @@ export default function BudgetViewForm() {
       form={form}
       border
       title="Adicionar Item no Orçamento"
-      iconButton="list-plus"
       confirmButtonText="Adicionar"
+      confirmButtonProps={{ icon: 'list-plus' }}
       onValid={handleValid}
     >
       <FormField className="col-span-full" control={control} name="description" label="Descrição">

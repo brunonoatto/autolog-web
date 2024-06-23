@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 import { FieldValues, FormProvider, type SubmitHandler, type UseFormReturn } from 'react-hook-form';
 
-import { Button } from '@shared/design-system/ui/button';
+import { Button, type TButtonProps } from '@shared/design-system/ui/button';
 import {
   Card,
   CardContent,
@@ -18,7 +18,7 @@ type TForm<T extends FieldValues> = PropsWithChildren & {
   onValid: SubmitHandler<T>;
   title: string;
   confirmButtonText?: string;
-  iconButton?: TIcons;
+  confirmButtonProps?: TButtonProps;
   className?: string;
   icon?: TIcons;
   useDefaultGrid?: boolean;
@@ -34,7 +34,7 @@ export default function Form<T extends FieldValues>({
   onValid,
   title,
   confirmButtonText = 'Confirmar',
-  iconButton,
+  confirmButtonProps,
   children,
   className,
   icon,
@@ -43,6 +43,8 @@ export default function Form<T extends FieldValues>({
   paddingX = true,
   showFooter = true,
 }: TForm<T>) {
+  const { disabled: disabledConfirmButton, ...otherConfirmButtonProps } = confirmButtonProps || {};
+
   const { handleSubmit } = form;
 
   return (
@@ -64,7 +66,11 @@ export default function Form<T extends FieldValues>({
 
           {showFooter && (
             <CardFooter paddingX={paddingX}>
-              <Button data-testid={dataTestId} icon={iconButton} disabled={isLoading}>
+              <Button
+                data-testid={dataTestId}
+                disabled={disabledConfirmButton || isLoading}
+                {...otherConfirmButtonProps}
+              >
                 {confirmButtonText}
               </Button>
             </CardFooter>
