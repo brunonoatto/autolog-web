@@ -7,13 +7,13 @@ import { cn } from '@shared/design-system/helpers/utils';
 import Icon, { TIconProps, TIcons } from '@shared/design-system/ui/icon';
 
 export const buttonVariants = cva(
-  'inline-flex gap-2 items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-70',
+  'inline-flex gap-2 items-center justify-center whitespace-nowrap rounded-md text-sm font-semibold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-70',
   {
     variants: {
       size: {
         default: 'h-10 px-4 py-2',
         sm: 'h-8 rounded-md px-2',
-        lg: 'h-11 rounded-md px-8',
+        lg: 'h-12 text-lg  rounded-md px-8',
         icon: 'h-10 w-10',
       },
       variant: {
