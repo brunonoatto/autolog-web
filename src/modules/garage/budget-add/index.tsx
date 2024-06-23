@@ -3,6 +3,7 @@ import { SubmitHandler, useFormContext } from 'react-hook-form';
 
 import { TNewBudgetParams } from '@core/api/budget/types';
 import { useAddBudget } from '@core/service/budget';
+import { useListBrands, useListModelsBrand } from '@core/service/fipe';
 import { BudgetAddProvider } from '@core/store/context/BudgetAddContext';
 import useBudgetAddContext from '@core/store/context/BudgetAddContext/hook';
 import { TBudgetAddFormType } from '@core/store/context/types/budget-add';
@@ -24,7 +25,12 @@ function BudgetAddContent() {
   const loading = useLoadingStore((state) => state.loading);
 
   const form = useFormContext<TBudgetAddFormType>();
-  const { control } = form;
+  const { control, watch } = form;
+
+  const brandId = watch('car.brand');
+
+  const { data: listBrands } = useListBrands();
+  const { data: listModels } = useListModelsBrand(brandId);
 
   const handleSuccessConfirm = () => {
     navigate(['/garage/orcamento', generateOS]);
@@ -40,6 +46,9 @@ function BudgetAddContent() {
     const clientId = formValues.client.id;
     const carId = formValues.car.id;
 
+    const brand = listBrands?.find((b) => b.code === formValues.car.brand)?.name || '';
+    const model = listModels?.find((b) => b.code === formValues.car.model)?.name || '';
+
     const newBudget: TNewBudgetParams = {
       clientId,
       newClient: clientId
@@ -54,8 +63,8 @@ function BudgetAddContent() {
         ? undefined
         : {
             license: formValues.car.license,
-            brand: formValues.car.brand,
-            model: formValues.car.model,
+            brand,
+            model,
             year: formValues.car.year,
           },
       observation: formValues.observation,
