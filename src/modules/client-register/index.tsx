@@ -6,6 +6,7 @@ import z from 'zod';
 import { useCreateClient } from '@core/service/user';
 import { useLoadingStore } from '@core/store/hooks';
 import HomeLink from '@layout/body-app/header/home-link';
+import { WithoutLoginMain } from '@layout/without-login-main';
 import Form from '@shared/components/form';
 import FormField from '@shared/components/form/form-field';
 import CpfCnpjInput from '@shared/components/inputs/cpf-cnpj-input';
@@ -57,8 +58,8 @@ export default function ClientRegister() {
 
   return (
     <>
-      <div className="pt-10 space-y-6 flex flex-col items-center p-4">
-        <HomeLink />
+      <WithoutLoginMain className="max-w-[825px]">
+        <HomeLink center />
 
         <Form
           form={form}
@@ -109,7 +110,7 @@ export default function ClientRegister() {
             </FormField>
           </div>
         </Form>
-      </div>
+      </WithoutLoginMain>
 
       <Modal
         open={openSuccessModal}
