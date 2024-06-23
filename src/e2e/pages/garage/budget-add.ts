@@ -6,7 +6,10 @@ import { TMyCarsFillProps } from '@e2e/pages/client/types';
 import { fillSelect } from '@e2e/shared/helpers/select';
 import { selectorByName } from '@e2e/shared/utils';
 import { MY_CARS_CARD_TEST_ID } from '@modules/client/my-cars/consts';
-import { GARAGE_BUDGET_ADD_FORM_TEST_ID } from '@modules/garage/budget-add/const';
+import {
+  GARAGE_BUDGET_ADD_FORM_TEST_ID,
+  SELECT_CAR_BUDGET_ADD_BUTTON_TESTID,
+} from '@modules/garage/budget-add/const';
 import { CARD_TITLE_TESTE_ID } from '@shared/design-system/ui/consts';
 
 class GarageBudgetAddPage {
@@ -20,20 +23,22 @@ class GarageBudgetAddPage {
   private modelInput: Locator;
   private yearInput: Locator;
   private observationInput: Locator;
+  private addCarButton: Locator;
   private form: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.cardTitleElement = page.getByTestId(MY_CARS_CARD_TEST_ID).getByTestId(CARD_TITLE_TESTE_ID);
 
-    this.cpfCnpjInput = page.locator(selectorByName<TBudgetAddFormType>('cpfCnpj'));
-    this.nameInput = page.locator(selectorByName<TBudgetAddFormType>('name'));
-    this.phoneInput = page.locator(selectorByName<TBudgetAddFormType>('phone'));
-    this.licenseInput = page.locator(selectorByName<TBudgetAddFormType>('license'));
-    this.brandInput = page.locator(selectorByName<TBudgetAddFormType>('brand'));
-    this.modelInput = page.locator(selectorByName<TBudgetAddFormType>('model'));
-    this.yearInput = page.locator(selectorByName<TBudgetAddFormType>('year'));
+    this.cpfCnpjInput = page.locator(selectorByName<TBudgetAddFormType>('client.cpfCnpj'));
+    this.nameInput = page.locator(selectorByName<TBudgetAddFormType>('client.name'));
+    this.phoneInput = page.locator(selectorByName<TBudgetAddFormType>('client.phone'));
+    this.licenseInput = page.locator(selectorByName<TBudgetAddFormType>('car.license'));
+    this.brandInput = page.locator(selectorByName<TBudgetAddFormType>('car.brand'));
+    this.modelInput = page.locator(selectorByName<TBudgetAddFormType>('car.model'));
+    this.yearInput = page.locator(selectorByName<TBudgetAddFormType>('car.year'));
     this.observationInput = page.locator(selectorByName<TBudgetAddFormType>('observation'));
+    this.addCarButton = page.getByTestId(SELECT_CAR_BUDGET_ADD_BUTTON_TESTID);
     this.form = page.getByTestId(GARAGE_BUDGET_ADD_FORM_TEST_ID);
   }
 
@@ -50,11 +55,11 @@ class GarageBudgetAddPage {
     await this.cpfCnpjInput.fill(cpfCnpj);
     await this.nameInput.fill(name);
     await this.phoneInput.fill(phone);
-    await this.licenseInput.fill(license);
+    await this.addCarButton.click();
 
+    await this.licenseInput.fill(license);
     await fillSelect(this.page, this.brandInput, brand);
     await fillSelect(this.page, this.modelInput, model);
-
     await this.yearInput.fill(year.toString());
 
     if (observation) await this.observationInput.fill(observation);

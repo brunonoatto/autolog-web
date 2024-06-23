@@ -5,6 +5,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import useBudgetAddContext from '@core/store/context/BudgetAddContext/hook';
 import { TBudgetAddFormType } from '@core/store/context/types/budget-add';
 import { SelectedClient } from '@modules/garage/budget-add/client-fields/selected-client';
+import { SELECT_CAR_BUDGET_ADD_BUTTON_TESTID } from '@modules/garage/budget-add/const';
 import FormField from '@shared/components/form/form-field';
 import CpfCnpjInput from '@shared/components/inputs/cpf-cnpj-input';
 import LoadingIcon from '@shared/components/loading-icon';
@@ -96,7 +97,11 @@ export function ClientData() {
           </FormField>
 
           <div className="col-span-full justify-self-end">
-            <Button secondIcon="arrow-right" onClick={handleClick}>
+            <Button
+              data-testid={SELECT_CAR_BUDGET_ADD_BUTTON_TESTID}
+              secondIcon="arrow-right"
+              onClick={handleClick}
+            >
               Selecionar Veículo
             </Button>
           </div>
