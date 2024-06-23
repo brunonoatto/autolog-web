@@ -28,6 +28,7 @@ export type TBudget = {
   status: BudgetStatusEnum;
   clientId: string;
   observation?: string;
+  observationClient?: string;
   createdDate: string;
 };
 

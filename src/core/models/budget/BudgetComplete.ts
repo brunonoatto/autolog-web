@@ -13,6 +13,7 @@ export class BudgetComplete implements TBudget {
   status: BudgetStatusEnum;
   clientId: string;
   observation?: string;
+  observationClient?: string;
   createdDate: string;
   items: TQueryClientData<TBudgetItem>[];
   car: TCar;
@@ -26,6 +27,7 @@ export class BudgetComplete implements TBudget {
     this.status = obj.status;
     this.clientId = obj.clientId;
     this.observation = obj.observation;
+    this.observationClient = obj.observationClient;
     this.createdDate = new Date(obj.createdDate).toLocaleDateString();
     this.items = obj.items;
     this.car = obj.car;

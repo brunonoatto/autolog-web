@@ -6,7 +6,7 @@ import BudgetViewActions from '@modules/garage/budget-view/actions';
 import { AddBugdetItemForm } from '@modules/garage/budget-view/add-budget-item-form';
 import { GARAGE_BUDGET_VIEW_CARD_TEST_ID } from '@modules/garage/budget-view/consts';
 import BudgetCard from '@shared/components/budget-card';
-import { BudgetObservation } from '@shared/components/budget-observation';
+import { BudgetObservationsContainer } from '@shared/components/budget-observations-container';
 import BudgetTable from '@shared/components/budget-table';
 import { RenderLoadingData } from '@shared/components/render-loading-data';
 import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
@@ -18,7 +18,7 @@ function GarageBudgetViewContent() {
     useObservationUpdate(osParam);
 
   const { budget, isLoading } = useGetBudget();
-  const { id, status, car, observation } = budget || {};
+  const { id, status, car, observation, observationClient } = budget || {};
 
   const allowEditBudget = status === BudgetStatusEnum.MakingBudget;
 
@@ -39,10 +39,15 @@ function GarageBudgetViewContent() {
         >
           <BudgetCard status={status} car={car} />
 
-          <BudgetObservation
-            observation={observation}
-            isLoading={isPendingMutate}
-            onEditedCallback={handleObservationSave}
+          <BudgetObservationsContainer
+            observationData={{
+              observation: observation,
+              isLoading: isPendingMutate,
+              onEditedCallback: handleObservationSave,
+            }}
+            observationClientData={{
+              observation: observationClient,
+            }}
           />
 
           {allowEditBudget && <AddBugdetItemForm />}
