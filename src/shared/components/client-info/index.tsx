@@ -1,4 +1,4 @@
-import { twMerge } from 'tailwind-merge';
+import { cn } from '@shared/design-system/helpers/utils';
 
 export type TClientInfoProps = {
   cpfCnpj: string;
@@ -9,7 +9,7 @@ export type TClientInfoProps = {
 
 export default function ClientInfo({ className, cpfCnpj, name, phone }: TClientInfoProps) {
   return (
-    <div className={twMerge('px-2', className)}>
+    <div className={cn('px-2', className)}>
       <div className="flex gap-2">
         CPF/CNPJ:
         <h3 className="font-semibold">{cpfCnpj}</h3>

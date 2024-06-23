@@ -1,5 +1,4 @@
-import { twMerge } from 'tailwind-merge';
-
+import { cn } from '@shared/design-system/helpers/utils';
 import Icon, { TIconProps } from '@shared/design-system/ui/icon';
 
 type TLoadingIconProps = Omit<TIconProps, 'name'>;
@@ -7,7 +6,7 @@ type TLoadingIconProps = Omit<TIconProps, 'name'>;
 export default function LoadingIcon({ className, ...otherProps }: TLoadingIconProps) {
   return (
     <Icon
-      className={twMerge('inline text-primary animate-spin', className)}
+      className={cn('inline text-primary animate-spin', className)}
       name="rotate-cw"
       {...otherProps}
     />

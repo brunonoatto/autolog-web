@@ -1,4 +1,4 @@
-import { twMerge } from 'tailwind-merge';
+import { cn } from '@shared/design-system/helpers/utils';
 
 type TContainerFooterProps = {
   children: React.ReactNode;
@@ -6,5 +6,5 @@ type TContainerFooterProps = {
 };
 
 export default function ContainerContent({ children, className }: TContainerFooterProps) {
-  return <div className={twMerge('space-y-4', className)}>{children}</div>;
+  return <div className={cn('space-y-4', className)}>{children}</div>;
 }

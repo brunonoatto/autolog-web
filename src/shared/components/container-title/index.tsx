@@ -1,5 +1,6 @@
 import { cva, VariantProps } from 'class-variance-authority';
-import { twMerge } from 'tailwind-merge';
+
+import { cn } from '@shared/design-system/helpers/utils';
 
 const containerTitleContentVariants = cva('p-2', {
   variants: {
@@ -24,7 +25,7 @@ export default function ContainerTitle({
   align,
 }: TContainerTitleProps) {
   return (
-    <div className={twMerge('rounded-lg border-2 border-border h-full', className)}>
+    <div className={cn('rounded-lg border-2 border-border h-full', className)}>
       {showTitle && (
         <div className="px-4 rounded-top-lg bg-border text-center text-sm font-semibold">
           {title}

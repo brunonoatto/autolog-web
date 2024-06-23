@@ -1,7 +1,6 @@
-import { twMerge } from 'tailwind-merge';
-
 import ContainerContent from '@shared/components/container/container-content';
 import ContainerFooter from '@shared/components/container/container-footer';
+import { cn } from '@shared/design-system/helpers/utils';
 import { CardTitle } from '@shared/design-system/ui/card';
 import { TIcons } from '@shared/design-system/ui/icon';
 
@@ -25,7 +24,7 @@ function Container({
   return (
     <div
       data-border={border}
-      className={twMerge(
+      className={cn(
         'rounded-lg data-[border=true]:ring-2 data-[border=true]:ring-primary p-2 flex flex-col gap-y-4 px-2',
         className,
       )}

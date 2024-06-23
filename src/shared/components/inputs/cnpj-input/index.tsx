@@ -1,6 +1,6 @@
 import React from 'react';
-import { twMerge } from 'tailwind-merge';
 
+import { cn } from '@shared/design-system/helpers/utils';
 import MaskInput, { type TMaskInput } from '@shared/design-system/ui/input-mask';
 import MasksEnum from '@shared/helpers/string/masks';
 
@@ -11,7 +11,7 @@ const CnpjInput = React.forwardRef<HTMLInputElement, TCnpjInputProps>(
     return (
       <MaskInput
         {...otherProps}
-        className={twMerge('w-64', className)}
+        className={cn('w-64', className)}
         ref={ref}
         mask={MasksEnum.cnpj}
       />
