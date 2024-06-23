@@ -7,7 +7,7 @@ import { CARD_TITLE_TESTE_ID } from '@shared/design-system/ui/consts';
 import Icon, { type TIcons } from '@shared/design-system/ui/icon';
 
 const cardVariants = cva(
-  'flex flex-col rounded-lg bg-card text-card-foreground shadow-sm space-y-4',
+  'flex flex-col rounded-lg bg-card text-card-foreground shadow-sm space-y-2',
   {
     variants: {
       border: {
@@ -48,7 +48,7 @@ const CardHeader = React.forwardRef<
 CardHeader.displayName = 'CardHeader';
 
 const cardTitleVariants = cva(
-  'flex items-center gap-2 border-b-[1px] border-border w-11/12 md:w-3/4 pb-2',
+  'flex items-bassline gap-2 border-b-[1px] border-border w-11/12 md:w-3/4 pb-2 h-8',
   {
     variants: {
       size: {
