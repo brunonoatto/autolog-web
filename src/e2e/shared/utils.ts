@@ -1,1 +1,3 @@
-export const selectorByName = <T>(name: keyof T) => `[name='${name as string}']`;
+import { Path } from 'react-hook-form';
+
+export const selectorByName = <T>(name: Path<T>) => `[name='${name as string}']`;
