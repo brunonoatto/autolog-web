@@ -6,16 +6,19 @@ import { cn } from '@shared/design-system/helpers/utils';
 import { CARD_TITLE_TESTE_ID } from '@shared/design-system/ui/consts';
 import Icon, { type TIcons } from '@shared/design-system/ui/icon';
 
-const cardVariants = cva('flex flex-col rounded-lg bg-card text-card-foreground shadow-sm', {
-  variants: {
-    border: {
-      true: 'border border-border',
+const cardVariants = cva(
+  'flex flex-col rounded-lg bg-card text-card-foreground shadow-sm space-y-4',
+  {
+    variants: {
+      border: {
+        true: 'border border-border p-4',
+      },
+    },
+    defaultVariants: {
+      border: false,
     },
   },
-  defaultVariants: {
-    border: false,
-  },
-});
+);
 
 type TCardProps = React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof cardVariants>;
 
@@ -26,7 +29,7 @@ const Card = React.forwardRef<HTMLDivElement, TCardProps>(
 );
 Card.displayName = 'Card';
 
-const cardHeaderVariants = cva('flex flex-col space-y-1.5 py-4 px-6', {
+const cardHeaderVariants = cva('flex flex-col space-y-1.5', {
   variants: {
     paddingX: {
       false: 'px-0',
@@ -94,7 +97,7 @@ const CardDescription = React.forwardRef<
 ));
 CardDescription.displayName = 'CardDescription';
 
-const cardContentVariants = cva('px-6 pb-4 pt-0 flex-1 space-y-2', {
+const cardContentVariants = cva('flex-1 space-y-2', {
   variants: {
     paddingX: {
       false: 'px-0',
@@ -112,7 +115,7 @@ const CardContent = React.forwardRef<
 ));
 CardContent.displayName = 'CardContent';
 
-const cardFooterVariants = cva('flex items-center gap-2 p-6 pt-0', {
+const cardFooterVariants = cva('flex items-center gap-2', {
   variants: {
     align: {
       end: 'justify-end',
