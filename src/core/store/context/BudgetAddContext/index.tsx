@@ -18,7 +18,7 @@ export type TBudgetAddValue = {
   handleLoadCar: (license: string) => Promise<void>;
   handleSelectedClientCar: (car: TCar) => void;
   handleClearSelectedClient: () => void;
-  handleClearSelectedClientCar: () => void;
+  handleClearSelectedClientCar: (clearLicense?: boolean) => void;
   setAllowSelectCar: (allow: boolean) => void;
 };
 
@@ -127,14 +127,18 @@ export function BudgetAddProvider({ children }: { children: React.ReactNode }) {
     setFocus('observation');
   };
 
-  const onClearSelectedClientCar = () => {
+  const onClearSelectedClientCar = (clearLicense = true) => {
     // TODO: quando chama o clear, as msgs de erro do form não aparecem mais
-    // resetField('car.id', { defaultValue: true });
-    // resetField('car.license', { defaultValue: true });
-    // resetField('car.model', { defaultValue: true });
-    // resetField('car.brand', { defaultValue: true });
-    // resetField('car.year', { defaultValue: true });
-    resetField('car');
+    resetField('car.id');
+
+    if (clearLicense) {
+      resetField('car.license');
+    }
+
+    resetField('car.model');
+    resetField('car.brand');
+    resetField('car.year');
+    // resetField('car');
   };
 
   return (

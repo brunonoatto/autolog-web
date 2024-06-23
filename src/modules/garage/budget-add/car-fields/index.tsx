@@ -29,8 +29,7 @@ export default function CarFields() {
   const handleLicenseChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
 
-    handleClearSelectedClientCar();
-
+    handleClearSelectedClientCar(false);
     handleLoadCarDebounce(value);
   };
 
