@@ -11,6 +11,7 @@ const ProtectedRoute = lazy(() => import('./protected-route'));
 const Login = lazy(() => import('@modules/auth/login'));
 const BudgetApproved = lazy(() => import('@modules/without-login/budget-approved'));
 const BudgetRejected = lazy(() => import('@modules/without-login/budget-rejected'));
+const ClientBudgetAction = lazy(() => import('@modules/without-login/client-budget-action'));
 const LandingPage = lazy(() => import('@modules/landing-page'));
 const GarageRegister = lazy(() => import('@modules/garage-register'));
 const ClientRegister = lazy(() => import('@modules/client-register'));
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
           },
           {
             path: urlJoin(ROUTES_PATH.budgetWithoutLogin, ':os'),
-            Component: ClientBudgetView,
+            Component: ClientBudgetAction,
           },
           {
             path: ROUTES_PATH.budgetApprovedWithoutLogin,

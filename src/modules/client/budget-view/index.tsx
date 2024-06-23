@@ -45,7 +45,7 @@ function ClientBudgetViewContent() {
   );
 }
 
-export default function GarageBudgetView() {
+export default function ClientBudgetView() {
   return (
     <BudgetViewProvider>
       <ClientBudgetViewContent />
