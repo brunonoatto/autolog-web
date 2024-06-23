@@ -1,19 +1,21 @@
 import { MouseEventHandler, useRef, useState } from 'react';
 
 import { Button } from '@shared/design-system/ui/button';
-import { CardTitle } from '@shared/design-system/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/ui/card';
 import { Textarea } from '@shared/design-system/ui/textarea';
 
-type TBudgetObservation = {
+export type TBudgetObservationProps = {
+  title?: string;
   observation?: string;
   onEditedCallback?: (newObservation: string) => void;
   isLoading?: boolean;
 };
 export function BudgetObservation({
+  title = 'Obs. da Oficina',
   observation,
   onEditedCallback,
   isLoading = false,
-}: TBudgetObservation) {
+}: TBudgetObservationProps) {
   const observationRef = useRef<HTMLTextAreaElement>(null);
   const [inEditing, setInEditing] = useState(false);
 
@@ -33,37 +35,41 @@ export function BudgetObservation({
     setInEditing(false);
   };
 
-  if (!observation) return null;
+  if (!observation && !onEditedCallback) return null;
 
   return (
-    <>
-      <CardTitle icon="notebook-pen" size="lg">
-        <div className="flex gap-2">
-          <div>Observações</div>
+    <Card className="w-full">
+      <CardHeader>
+        <CardTitle icon="notebook-pen" size="lg">
+          <div className="flex gap-2">
+            <div>{title}</div>
 
-          {onEditedCallback && !inEditing && (
-            <Button size="sm" variant="link" onClick={handleOnEditing}>
-              Editar
-            </Button>
+            {onEditedCallback && !inEditing && (
+              <Button size="sm" variant="link" onClick={handleOnEditing}>
+                Editar
+              </Button>
+            )}
+          </div>
+        </CardTitle>
+      </CardHeader>
+
+      <CardContent>
+        <div className="flex flex-col items-end gap-2">
+          <Textarea ref={observationRef} defaultValue={observation} rows={5} disabled={isLoading} />
+
+          {inEditing && (
+            <div className="space-x-2">
+              <Button size="sm" variant="outline" disabled={isLoading} onClick={handleCancelEdit}>
+                Cancelar edição
+              </Button>
+
+              <Button size="sm" isLoading={isLoading} onClick={handleObservationSaveClick}>
+                Salvar observação
+              </Button>
+            </div>
           )}
         </div>
-      </CardTitle>
-
-      <div className="flex flex-col items-end gap-2">
-        <Textarea ref={observationRef} defaultValue={observation} rows={5} disabled={isLoading} />
-
-        {inEditing && (
-          <div className="space-x-2">
-            <Button size="sm" variant="outline" disabled={isLoading} onClick={handleCancelEdit}>
-              Cancelar edição
-            </Button>
-
-            <Button size="sm" isLoading={isLoading} onClick={handleObservationSaveClick}>
-              Salvar observação
-            </Button>
-          </div>
-        )}
-      </div>
-    </>
+      </CardContent>
+    </Card>
   );
 }
