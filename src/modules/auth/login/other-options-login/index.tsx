@@ -1,4 +1,4 @@
-import { Button } from '@shared/design-system/ui/button';
+import LinkButton from '@shared/design-system/ui/link-button';
 
 export function OtherOptionsLogin() {
   return (
@@ -9,9 +9,9 @@ export function OtherOptionsLogin() {
         <div className="flex-1 border-t-2 border-muted-foreground" />
       </div>
 
-      <Button className="w-full mt-6" size="lg" variant="outline">
+      <LinkButton className="w-full mt-6" size="lg" variant="outline" to="/">
         Realizar cadastro
-      </Button>
+      </LinkButton>
     </>
   );
 }
