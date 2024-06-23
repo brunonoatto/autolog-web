@@ -21,7 +21,7 @@ const schema = z
 
 export type TBudgetItemFormType = z.infer<typeof schema>;
 
-export default function BudgetViewForm() {
+export function AddBugdetItemForm() {
   const { mutate: mutateAddBudgetItem } = useAddBudgetItem();
 
   const { budget } = useBudgetViewContext();
@@ -51,6 +51,7 @@ export default function BudgetViewForm() {
       form={form}
       border
       title="Adicionar Item no Orçamento"
+      icon="list-plus"
       confirmButtonText="Adicionar"
       confirmButtonProps={{ icon: 'list-plus' }}
       onValid={handleValid}
