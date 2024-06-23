@@ -1,5 +1,3 @@
-import { useParams } from 'react-router-dom';
-
 import { useGetBudget } from '@core/service/budget';
 import { BudgetViewProvider } from '@core/store/context/BudgetViewContext';
 import BudgetViewActionButtons from '@modules/client/budget-view/action-buttons';
@@ -16,16 +14,14 @@ import {
 } from '@shared/design-system/ui/card';
 
 function ClientBudgetViewContent() {
-  const { os: osParam } = useParams();
-
   const { budget, isLoading } = useGetBudget();
 
-  const { garageName, createdDate, status, car, observation } = budget || {};
+  const { os, garageName, createdDate, status, car, observation } = budget || {};
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle icon="receipt">Orçamento {osParam}</CardTitle>
+        <CardTitle icon="receipt">Orçamento {os}</CardTitle>
       </CardHeader>
 
       <CardContent>
