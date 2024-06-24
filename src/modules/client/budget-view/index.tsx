@@ -1,4 +1,4 @@
-import { useGetBudget } from '@core/service/budget';
+import { useGetBudget, useObservationUpdate } from '@core/service/budget';
 import { BudgetViewProvider } from '@core/store/context/BudgetViewContext';
 import BudgetViewActionButtons from '@modules/client/budget-view/action-buttons';
 import BudgetCard from '@shared/components/budget-card';
@@ -12,11 +12,21 @@ import {
   CardHeader,
   CardTitle,
 } from '@shared/design-system/ui/card';
+import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
 function ClientBudgetViewContent() {
+  const { mutate: observationUpdateMutate, isPending: isPendingMutate } = useObservationUpdate();
+
   const { budget, isLoading } = useGetBudget();
 
-  const { os, garageName, createdDate, status, car, observation, observationClient } = budget || {};
+  const { id, os, garageName, createdDate, status, car, observation, observationClient } =
+    budget || {};
+
+  const allowEdit = status === BudgetStatusEnum.WaitingBudgetApproval;
+
+  const handleObservationSave = (newObservation: string) => {
+    observationUpdateMutate({ budgetId: id!, observation: newObservation, ofClient: true });
+  };
 
   return (
     <Card>
@@ -37,7 +47,10 @@ function ClientBudgetViewContent() {
               observation: observation,
             }}
             observationClientData={{
+              allowEdit,
               observation: observationClient,
+              isLoading: isPendingMutate,
+              onEditedCallback: handleObservationSave,
             }}
           />
 

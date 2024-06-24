@@ -70,9 +70,11 @@ export const getWhatsLink = async (os: string): Promise<TGetWhatsLinkResponse> =
 export const observationUpdate = async ({
   budgetId,
   observation,
+  ofClient = false,
 }: TObservationUpdateParams): Promise<boolean> => {
   const response = await httpClient.patch<boolean>(`${BASE_URL}/observation/${budgetId}`, {
     observation,
+    ofClient,
   });
   return response.data;
 };

@@ -1,5 +1,3 @@
-import { useParams } from 'react-router-dom';
-
 import { useGetBudget, useObservationUpdate } from '@core/service/budget';
 import { BudgetViewProvider } from '@core/store/context/BudgetViewContext';
 import BudgetViewActions from '@modules/garage/budget-view/actions';
@@ -13,14 +11,12 @@ import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/
 import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
 function GarageBudgetViewContent() {
-  const { osOrBudgetId } = useParams();
-  const { mutate: observationUpdateMutate, isPending: isPendingMutate } =
-    useObservationUpdate(osOrBudgetId);
+  const { mutate: observationUpdateMutate, isPending: isPendingMutate } = useObservationUpdate();
 
   const { budget, isLoading } = useGetBudget();
-  const { id, status, car, observation, observationClient } = budget || {};
+  const { id, os, status, car, observation, observationClient } = budget || {};
 
-  const allowEditBudget = status === BudgetStatusEnum.MakingBudget;
+  const allowEdit = status === BudgetStatusEnum.MakingBudget;
 
   const handleObservationSave = (newObservation: string) => {
     observationUpdateMutate({ budgetId: id!, observation: newObservation });
@@ -29,13 +25,13 @@ function GarageBudgetViewContent() {
   return (
     <Card data-testid={GARAGE_BUDGET_VIEW_CARD_TEST_ID}>
       <CardHeader>
-        <CardTitle>Orçamento {osOrBudgetId}</CardTitle>
+        <CardTitle>Orçamento {os}</CardTitle>
       </CardHeader>
       <CardContent>
         <RenderLoadingData
           isLoading={isLoading}
           hasData={!!budget}
-          notFoundTitle={`Orçamento ${osOrBudgetId} não encontrado.`}
+          notFoundTitle={`Orçamento ${os} não encontrado.`}
         >
           <BudgetCard status={status} car={car} />
 
@@ -50,9 +46,9 @@ function GarageBudgetViewContent() {
             }}
           />
 
-          {allowEditBudget && <AddBugdetItemForm />}
+          {allowEdit && <AddBugdetItemForm />}
 
-          <BudgetTable allowActions={allowEditBudget} />
+          <BudgetTable allowActions={allowEdit} />
 
           <BudgetViewActions />
         </RenderLoadingData>

@@ -1,13 +1,16 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 
 import { ServiceApi } from '@core/api';
 import { BudgetComplete } from '@core/models/budget/BudgetComplete';
 import { USE_GET_BUDGET_QUERY_KEY } from '@core/service/budget/useGetBudget';
 
-export const useObservationUpdate = (os?: string) => {
+export const useObservationUpdate = () => {
+  const { osOrBudgetId } = useParams();
+
   const queryClient = useQueryClient();
 
-  const getBudgetQueryKey = !!os && [USE_GET_BUDGET_QUERY_KEY, os];
+  const getBudgetQueryKey = !!osOrBudgetId && [USE_GET_BUDGET_QUERY_KEY, osOrBudgetId];
   const optimisticActive = !!getBudgetQueryKey;
 
   return useMutation({

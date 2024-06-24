@@ -16,7 +16,7 @@ export function BudgetObservationsContainer({
     <div className="flex flex-col md:flex-row justify-between gap-2">
       <BudgetObservation {...observationData} />
 
-      <BudgetObservation title="Obs. do Cliente" {...observationClientData} />
+      <BudgetObservation ofClient {...observationClientData} />
     </div>
   );
 }

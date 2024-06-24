@@ -61,4 +61,5 @@ export type TGetWhatsLinkResponse = {
 export type TObservationUpdateParams = {
   budgetId: string;
   observation: string;
+  ofClient?: boolean;
 };
