@@ -6,17 +6,17 @@ import useQueryCustom from '@shared/hooks/useQueryCustom';
 
 export const USE_GET_BUDGET_QUERY_KEY = 'useGetBudget';
 export const useGetBudget = () => {
-  const { os: osParam } = useParams();
+  const { osOrBudgetId } = useParams();
 
   const { data, isLoading } = useQueryCustom({
-    enabled: !!osParam,
-    queryKey: [USE_GET_BUDGET_QUERY_KEY, osParam],
+    enabled: !!osOrBudgetId,
+    queryKey: [USE_GET_BUDGET_QUERY_KEY, osOrBudgetId],
     queryFn: async () => {
-      if (!osParam) {
+      if (!osOrBudgetId) {
         return undefined;
       }
 
-      const data = await ServiceApi.BudgetApi.getBudget(osParam);
+      const data = await ServiceApi.BudgetApi.getBudget(osOrBudgetId);
 
       return new BudgetComplete(data);
     },

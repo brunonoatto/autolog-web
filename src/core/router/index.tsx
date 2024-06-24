@@ -43,7 +43,7 @@ const router = createBrowserRouter([
             Component: Login,
           },
           {
-            path: urlJoin(ROUTES_PATH.budgetWithoutLogin, ':os'),
+            path: urlJoin(ROUTES_PATH.budgetWithoutLogin, ':osOrBudgetId'),
             Component: ClientBudgetAction,
           },
           {
@@ -85,7 +85,7 @@ const router = createBrowserRouter([
                 Component: GarageBudgetAdd,
               },
               {
-                path: urlJoin(ROUTES_PATH.garageBudget, ':os'),
+                path: urlJoin(ROUTES_PATH.garageBudget, ':osOrBudgetId'),
                 Component: GarageBudgetView,
               },
               {
@@ -120,7 +120,7 @@ const router = createBrowserRouter([
                 Component: ClientBudgetSearch,
               },
               {
-                path: urlJoin(ROUTES_PATH.clientBudgetView, ':os'),
+                path: urlJoin(ROUTES_PATH.clientBudgetView, ':osOrBudgetId'),
                 Component: ClientBudgetView,
               },
               {

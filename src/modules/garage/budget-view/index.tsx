@@ -13,9 +13,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@shared/design-system/
 import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 
 function GarageBudgetViewContent() {
-  const { os: osParam } = useParams();
+  const { osOrBudgetId } = useParams();
   const { mutate: observationUpdateMutate, isPending: isPendingMutate } =
-    useObservationUpdate(osParam);
+    useObservationUpdate(osOrBudgetId);
 
   const { budget, isLoading } = useGetBudget();
   const { id, status, car, observation, observationClient } = budget || {};
@@ -29,13 +29,13 @@ function GarageBudgetViewContent() {
   return (
     <Card data-testid={GARAGE_BUDGET_VIEW_CARD_TEST_ID}>
       <CardHeader>
-        <CardTitle>Orçamento {osParam}</CardTitle>
+        <CardTitle>Orçamento {osOrBudgetId}</CardTitle>
       </CardHeader>
       <CardContent>
         <RenderLoadingData
           isLoading={isLoading}
           hasData={!!budget}
-          notFoundTitle={`Orçamento ${osParam} não encontrado.`}
+          notFoundTitle={`Orçamento ${osOrBudgetId} não encontrado.`}
         >
           <BudgetCard status={status} car={car} />
 

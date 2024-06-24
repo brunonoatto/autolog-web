@@ -8,8 +8,8 @@ import { USE_GET_BUDGET_QUERY_KEY } from '@core/service/budget/useGetBudget';
 export const useDeleteBudgetItem = () => {
   const queryClient = useQueryClient();
 
-  const { os } = useParams();
-  const getBudgetQueryKey = [USE_GET_BUDGET_QUERY_KEY, os];
+  const { osOrBudgetId } = useParams();
+  const getBudgetQueryKey = [USE_GET_BUDGET_QUERY_KEY, osOrBudgetId];
 
   return useMutation({
     mutationFn: ServiceApi.BudgetItemsApi.deleteBudgetItem,
