@@ -167,7 +167,10 @@ function toast({ ...props }: Toast) {
 function useToast() {
   const [state, setState] = useState<State>(memoryState);
 
-  const success = useCallback((message: string) => toast({ title: message }), []);
+  const success = useCallback(
+    (message: string) => toast({ title: message, variant: 'succsess' }),
+    [],
+  );
 
   const error = useCallback(
     (message: string) => toast({ title: message, variant: 'destructive' }),
@@ -175,11 +178,7 @@ function useToast() {
   );
 
   const warning = useCallback(
-    (message: string) =>
-      toast({
-        title: message,
-        variant: 'warning',
-      }),
+    (message: string) => toast({ title: message, variant: 'warning' }),
     [],
   );
 
