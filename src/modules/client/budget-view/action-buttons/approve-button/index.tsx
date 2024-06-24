@@ -9,7 +9,6 @@ import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
 export default function ApproveButton() {
   const [openConfirmModal, setOpenConfirmModal] = useState(false);
-  const [openSuccessModal, setOpenSuccessModal] = useState(false);
   const navigate = useNavigateCustom();
   const { isAuthenticated } = useAuth();
   const { mutate } = useApproveBudget();
@@ -30,7 +29,7 @@ export default function ApproveButton() {
 
     mutate(id, {
       onSuccess: () => {
-        setOpenSuccessModal(true);
+        handleGoToBudgets();
       },
     });
   };
@@ -44,15 +43,9 @@ export default function ApproveButton() {
       <Modal
         open={openConfirmModal}
         title="Confirma a aprovação do orçamento?"
+        icon="check-check"
         onConfirmClick={handleApproveBudget}
         onCancelClick={() => setOpenConfirmModal(false)}
-      />
-
-      <Modal
-        open={openSuccessModal}
-        title="Orçamento aprovado com sucesso!"
-        confirmText="Continuar"
-        onConfirmClick={handleGoToBudgets}
       />
     </>
   );

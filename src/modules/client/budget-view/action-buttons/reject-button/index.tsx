@@ -9,7 +9,6 @@ import useNavigateCustom from '@shared/hooks/useNavigateCustom';
 
 export default function RejectButton() {
   const [openConfirmModal, setOpenConfirmModal] = useState(false);
-  const [openSuccessModal, setOpenSuccessModal] = useState(false);
   const navigate = useNavigateCustom();
   const { isAuthenticated } = useAuth();
   const { mutate } = useRemakeBudget();
@@ -30,7 +29,7 @@ export default function RejectButton() {
 
     mutate(id, {
       onSuccess: () => {
-        setOpenSuccessModal(true);
+        handleGoToBudgets();
       },
     });
   };
@@ -44,16 +43,10 @@ export default function RejectButton() {
       <Modal
         open={openConfirmModal}
         title="Confirma a rejeição do orçamento?"
+        icon="thumbs-down"
         confirmVariant="destructive"
         onConfirmClick={handleRejectBudget}
         onCancelClick={() => setOpenConfirmModal(false)}
-      />
-
-      <Modal
-        open={openSuccessModal}
-        title="Orçamento Rejeitado!"
-        confirmText="Continuar"
-        onConfirmClick={handleGoToBudgets}
       />
     </>
   );
