@@ -2,6 +2,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 
 import { cn } from '@shared/design-system/helpers/utils';
+import Icon, { TIcons } from '@shared/design-system/ui/icon';
 
 const alertVariants = cva(
   'w-full rounded-lg border p-4 space-y-2 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground',
@@ -28,13 +29,19 @@ const Alert = React.forwardRef<
 ));
 Alert.displayName = 'Alert';
 
-const AlertTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLHeadingElement>>(
-  ({ className, ...props }, ref) => (
-    <h5
-      ref={ref}
-      className={cn('mb-1 font-medium leading-none tracking-tight', className)}
-      {...props}
-    />
+type TAlertTitleProps = React.HTMLAttributes<HTMLHeadingElement> & {
+  icon?: TIcons;
+};
+const AlertTitle = React.forwardRef<HTMLParagraphElement, TAlertTitleProps>(
+  ({ className, icon, ...props }, ref) => (
+    <div className="flex items-center gap-2">
+      {icon && <Icon name={icon} />}
+      <h5
+        ref={ref}
+        className={cn('font-medium leading-none tracking-tight', className)}
+        {...props}
+      />
+    </div>
   ),
 );
 AlertTitle.displayName = 'AlertTitle';

@@ -4,7 +4,7 @@ import LinkButton from '@shared/design-system/ui/link-button';
 export function ClientRegisterCard() {
   return (
     <Alert variant="primary">
-      <AlertTitle>
+      <AlertTitle icon="user-plus">
         Você quer consultar a qualquer momento este e outros orçamentos do seu veículo?.
       </AlertTitle>
       <AlertDescription className="space-y-4">
