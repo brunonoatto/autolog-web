@@ -48,15 +48,19 @@ const CardHeader = React.forwardRef<
 CardHeader.displayName = 'CardHeader';
 
 const cardTitleVariants = cva(
-  'flex items-bassline gap-2 border-b-[1px] border-border w-11/12 md:w-3/4 pb-2 h-8',
+  'flex items-center gap-2 border-b-[1px] border-border w-11/12 md:w-3/4 pb-2 h-8',
   {
     variants: {
       size: {
+        default: 'h-10',
         lg: 'pb-0',
       },
       alignTitle: {
         center: 'w-full md:w-full justify-center',
       },
+    },
+    defaultVariants: {
+      size: 'default',
     },
   },
 );
