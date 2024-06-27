@@ -8,12 +8,10 @@ import BrandCombobox from '@shared/components/combobox/brand-combobox';
 import ModelCombobox from '@shared/components/combobox/model-combobox';
 import FormField from '@shared/components/form/form-field';
 import LicenseInput from '@shared/components/form/license-input';
-import LoadingIcon from '@shared/components/loading-icon';
 import { CardTitle } from '@shared/design-system/ui/card';
 import { Input } from '@shared/design-system/ui/input';
 
 export default function CarFields() {
-  const isLoadingCar = useBudgetAddContext((prop) => prop.isLoadingCar);
   const handleLoadCar = useBudgetAddContext((prop) => prop.handleLoadCar);
   const handleClearSelectedClientCar = useBudgetAddContext(
     (prop) => prop.handleClearSelectedClientCar,
@@ -47,19 +45,14 @@ export default function CarFields() {
 
         {!selectedCarId && (
           <>
-            <div className="flex items-start gap-2 col-span-full">
-              <FormField
-                className="col-span-full"
-                control={control}
-                name="car.license"
-                label="Placa"
-              >
-                <LicenseInput onChange={handleLicenseChange} />
-              </FormField>
+            {/* Precisa renderizar o field car.id como hidden para funcionar o resetFields do hookForm */}
+            <FormField className="hidden" control={control} name="car.id">
+              <Input />
+            </FormField>
 
-              {/* TODO: pensar numa forma de mandar o isLoading para o FielField */}
-              {isLoadingCar && <LoadingIcon className="mt-10" />}
-            </div>
+            <FormField className="col-span-full" control={control} name="car.license" label="Placa">
+              <LicenseInput onChange={handleLicenseChange} />
+            </FormField>
 
             <BrandCombobox
               control={control}
@@ -67,6 +60,7 @@ export default function CarFields() {
               label="Montadora"
               onChange={handleBrandChanged}
             />
+
             <ModelCombobox control={control} name="car.model" label="Modelo" brandId={brandId} />
 
             <FormField control={control} name="car.year" label="Ano">

@@ -7,11 +7,9 @@ import { ServiceApi } from '@core/api';
 import type { TCar } from '@core/api/car/types';
 import type { TClientResponse } from '@core/api/client/types';
 import { budgetAddSchema, TBudgetAddFormType } from '@core/store/context/types/budget-add';
-import { useToast } from '@shared/design-system/ui/use-toast';
 
 export type TBudgetAddValue = {
   isLoadingClient: boolean;
-  isLoadingCar: boolean;
   selectedClientCars: TCar[];
   allowSelectCar: boolean;
   handleLoadClient: (cpfCnpj: string) => Promise<void>;
@@ -28,9 +26,6 @@ export function BudgetAddProvider({ children }: { children: React.ReactNode }) {
   const [allowSelectCar, setAllowSelectCar] = useState(false);
   const [selectedClientCars, setSelectedClientCars] = useState<TCar[]>([]);
   const [isLoadingClient, setIsLoadingClient] = useState(false);
-  const [isLoadingCar, setIsLoadingCar] = useState(false);
-
-  const { toast } = useToast();
 
   const form = useForm<TBudgetAddFormType>({
     resolver: zodResolver(budgetAddSchema),
@@ -66,26 +61,11 @@ export function BudgetAddProvider({ children }: { children: React.ReactNode }) {
   const onLoadCar = async (license: string) => {
     if (!license || license.length < 7) return;
 
-    setIsLoadingCar(true);
+    const car = selectedClientCars.find((c) => c.license === license);
 
-    try {
-      const car = await ServiceApi.CarApi.get(license, true);
+    if (!car) return;
 
-      if (!car) return;
-
-      const selectedClientId = getValues('client.id');
-      if (selectedClientId && car && selectedClientId !== car.clientId) {
-        resetField('car');
-
-        toast.warning('Veículo pertence a um proprietário diferente do selecionado');
-
-        return;
-      }
-
-      onSelectedClientCar(car);
-    } finally {
-      setIsLoadingCar(false);
-    }
+    onSelectedClientCar(car);
   };
 
   const onSelectedClient = (client: TClientResponse) => {
@@ -128,24 +108,20 @@ export function BudgetAddProvider({ children }: { children: React.ReactNode }) {
   };
 
   const onClearSelectedClientCar = (clearLicense = true) => {
-    // TODO: quando chama o clear, as msgs de erro do form não aparecem mais
-    resetField('car.id');
-
     if (clearLicense) {
       resetField('car.license');
     }
 
+    resetField('car.id');
     resetField('car.model');
     resetField('car.brand');
     resetField('car.year');
-    // resetField('car');
   };
 
   return (
     <BudgetAddContext.Provider
       value={{
         isLoadingClient,
-        isLoadingCar,
         selectedClientCars,
         allowSelectCar,
         handleLoadClient: onLoadClient,
