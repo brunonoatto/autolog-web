@@ -48,11 +48,11 @@ const CardHeader = React.forwardRef<
 CardHeader.displayName = 'CardHeader';
 
 const cardTitleVariants = cva(
-  'flex items-center gap-2 border-b-[1px] border-border w-11/12 md:w-3/4 pb-2 h-8',
+  'flex items-center gap-2 border-b-[1px] border-border w-11/12 md:w-3/4 pb-2',
   {
     variants: {
       size: {
-        default: 'h-10',
+        default: '',
         lg: 'pb-0',
       },
       alignTitle: {
@@ -101,7 +101,7 @@ const CardDescription = React.forwardRef<
 ));
 CardDescription.displayName = 'CardDescription';
 
-const cardContentVariants = cva('flex-1 space-y-2', {
+const cardContentVariants = cva('flex-1 space-y-2 px-2', {
   variants: {
     paddingX: {
       false: 'px-0',

@@ -78,7 +78,6 @@ export default function GarageRegister() {
             </FormField>
 
             <FormField control={control} name="cnpj" label="CNPJ" isMask>
-              {/* TODO: criar componente only CNPJ */}
               <CnpjInput />
             </FormField>
 
