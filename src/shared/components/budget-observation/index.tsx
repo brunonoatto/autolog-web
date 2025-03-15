@@ -54,7 +54,7 @@ export function BudgetObservation({
       <CardHeader>
         <CardTitle icon="notebook-pen" size="lg">
           <div className="flex gap-2">
-            <div>{ofClient ? 'Obs. da Cliente' : 'Obs. do Oficina'}</div>
+            <div>{ofClient ? 'Obs. do Cliente' : 'Obs. da Oficina'}</div>
 
             {showEditButton && (
               <Button size="sm" variant="link" onClick={handleOnEditing}>

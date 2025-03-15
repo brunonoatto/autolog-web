@@ -5,7 +5,7 @@ export function ClientRegisterCard() {
   return (
     <Alert variant="primary">
       <AlertTitle icon="user-plus">
-        Você quer consultar a qualquer momento este e outros orçamentos do seu veículo?.
+        Você quer consultar a qualquer momento este e outros orçamentos do seu veículo?
       </AlertTitle>
       <AlertDescription className="space-y-4">
         <p>
@@ -14,7 +14,7 @@ export function ClientRegisterCard() {
         </p>
         <div className="block">
           <LinkButton className="" size="lg" variant="outline-active" to="/cadastro-cliente">
-            Fazer cadastro GRÁTIS.
+            Fazer cadastro GRÁTIS
           </LinkButton>
         </div>
       </AlertDescription>
