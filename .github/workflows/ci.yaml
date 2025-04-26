@@ -38,3 +38,6 @@ jobs:
 
       - name: Typecheking
         run: pnpm typecheck
+
+      - name: E2E Test
+        run: pnpm test:e2e
