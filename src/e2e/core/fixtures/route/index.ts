@@ -40,7 +40,7 @@ class RouteUtils {
 
   async clearRoutes(routeList: string[]) {
     for (let i = 0; i < routeList.length; i += 1) {
-      await this.page.unroute(routeList[i]); // eslint-disable-line no-await-in-loop
+      await this.page.unroute(routeList[i]);
     }
   }
 

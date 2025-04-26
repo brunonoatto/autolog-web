@@ -1,4 +1,4 @@
-import { cva, VariantProps } from 'class-variance-authority';
+import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@shared/design-system/helpers/utils';
 

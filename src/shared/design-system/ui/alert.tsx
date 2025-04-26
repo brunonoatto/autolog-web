@@ -33,14 +33,12 @@ type TAlertTitleProps = React.HTMLAttributes<HTMLHeadingElement> & {
   icon?: TIcons;
 };
 const AlertTitle = React.forwardRef<HTMLParagraphElement, TAlertTitleProps>(
-  ({ className, icon, ...props }, ref) => (
+  ({ className, icon, children, ...props }, ref) => (
     <div className="flex items-center gap-2">
       {icon && <Icon name={icon} />}
-      <h5
-        ref={ref}
-        className={cn('font-medium leading-none tracking-tight', className)}
-        {...props}
-      />
+      <h5 ref={ref} className={cn('font-medium leading-none tracking-tight', className)} {...props}>
+        {children}
+      </h5>
     </div>
   ),
 );
