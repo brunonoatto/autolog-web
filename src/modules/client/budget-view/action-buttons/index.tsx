@@ -1,4 +1,4 @@
-import useBudgetViewContext from '@core/store/context/BudgetViewContext/useBudgetViewContext';
+import useBudgetViewContext from '@core/store/context/BudgetViewContext/hook';
 import ApproveButton from '@modules/client/budget-view/action-buttons/approve-button';
 import ReceiveButton from '@modules/client/budget-view/action-buttons/receive-car';
 import RejectButton from '@modules/client/budget-view/action-buttons/reject-button';

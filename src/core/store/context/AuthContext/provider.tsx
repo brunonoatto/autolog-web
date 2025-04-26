@@ -1,19 +1,11 @@
-import { createContext, useCallback, useLayoutEffect, useState } from 'react';
+import { useCallback, useLayoutEffect, useState } from 'react';
 
 import type { TAccessTokenData, TLoginResponse } from '@core/api/auth/types';
 import httpClient from '@core/api/http-client';
+import { AuthContext } from '@core/store/context/AuthContext';
 import { StorageKeyEnum } from '@shared/types/storageKey';
 
 const AUTH_STORAGE_KEY = StorageKeyEnum.auth;
-
-type TAuthContextValue = {
-  isAuthenticated: boolean;
-  login(loginResponse: TLoginResponse): void;
-  logout(): void;
-  getTokenData: () => TAccessTokenData | null;
-};
-
-export const AuthContext = createContext({} as TAuthContextValue);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem(AUTH_STORAGE_KEY));

@@ -1,5 +1,5 @@
 import { useGetBudget, useObservationUpdate } from '@core/service/budget';
-import { BudgetViewProvider } from '@core/store/context/BudgetViewContext';
+import { BudgetViewProvider } from '@core/store/context/BudgetViewContext/provider';
 import BudgetViewActionButtons from '@modules/client/budget-view/action-buttons';
 import BudgetCard from '@shared/components/budget-card';
 import { BudgetObservationsContainer } from '@shared/components/budget-observations-container';

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { useLogin } from '@core/service/auth';
-import useAuth from '@core/store/context/AuthContext/hook';
+import { useAuth } from '@core/store/context/AuthContext';
 import { LOGIN_FORM_TEST_ID } from '@modules/auth/login/const';
 import { loginFormSchema, TLoginFormType } from '@modules/auth/login/types';
 import Form from '@shared/components/form';

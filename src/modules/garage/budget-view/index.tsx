@@ -1,5 +1,5 @@
 import { useGetBudget, useObservationUpdate } from '@core/service/budget';
-import { BudgetViewProvider } from '@core/store/context/BudgetViewContext';
+import { BudgetViewProvider } from '@core/store/context/BudgetViewContext/provider';
 import BudgetViewActions from '@modules/garage/budget-view/actions';
 import { AddBugdetItemForm } from '@modules/garage/budget-view/add-budget-item-form';
 import { GARAGE_BUDGET_VIEW_CARD_TEST_ID } from '@modules/garage/budget-view/consts';

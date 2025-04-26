@@ -1,13 +1,5 @@
-import { createContext } from 'react';
-
-import { BudgetComplete } from '@core/models/budget/BudgetComplete';
 import { useGetBudget } from '@core/service/budget';
-
-type TBudgetViewValue = {
-  budget?: BudgetComplete;
-};
-
-export const BudgetViewContext = createContext({} as TBudgetViewValue);
+import { BudgetViewContext } from '@core/store/context/BudgetViewContext';
 
 export function BudgetViewProvider({ children }: { children: React.ReactNode }) {
   const { budget } = useGetBudget();

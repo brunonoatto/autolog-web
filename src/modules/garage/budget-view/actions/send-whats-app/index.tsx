@@ -1,4 +1,4 @@
-import useBudgetViewContext from '@core/store/context/BudgetViewContext/useBudgetViewContext';
+import useBudgetViewContext from '@core/store/context/BudgetViewContext/hook';
 import useSendWhatApp from '@modules/garage/budget-view/hooks/useSendWhatsApp';
 import { Button } from '@shared/design-system/ui/button';
 

@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import { Link } from 'react-router-dom';
 
-import useAuth from '@core/store/context/AuthContext/hook';
+import { useAuth } from '@core/store/context/AuthContext';
 import { cn } from '@shared/design-system/helpers/utils';
 
 const homeLinkVariants = cva(

@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 
 import type { TCar } from '@core/api/car/types';
-import useAuth from '@core/store/context/AuthContext/hook';
+import { useAuth } from '@core/store/context/AuthContext';
 import CarInfo from '@shared/components/car-info';
 import StatusBadge from '@shared/components/status-badge';
 import { BudgetStatusEnum } from '@shared/types/budgetStatus';

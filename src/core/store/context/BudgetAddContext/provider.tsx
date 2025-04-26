@@ -1,4 +1,3 @@
-import { createContext } from '@fluentui/react-context-selector';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -6,21 +5,8 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { ServiceApi } from '@core/api';
 import type { TCar } from '@core/api/car/types';
 import type { TClientResponse } from '@core/api/client/types';
+import { BudgetAddContext } from '@core/store/context/BudgetAddContext';
 import { budgetAddSchema, TBudgetAddFormType } from '@core/store/context/types/budget-add';
-
-export type TBudgetAddValue = {
-  isLoadingClient: boolean;
-  selectedClientCars: TCar[];
-  allowSelectCar: boolean;
-  handleLoadClient: (cpfCnpj: string) => Promise<void>;
-  handleLoadCar: (license: string) => Promise<void>;
-  handleSelectedClientCar: (car: TCar) => void;
-  handleClearSelectedClient: () => void;
-  handleClearSelectedClientCar: (clearLicense?: boolean) => void;
-  setAllowSelectCar: (allow: boolean) => void;
-};
-
-export const BudgetAddContext = createContext({} as TBudgetAddValue);
 
 export function BudgetAddProvider({ children }: { children: React.ReactNode }) {
   const [allowSelectCar, setAllowSelectCar] = useState(false);

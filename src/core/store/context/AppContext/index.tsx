@@ -21,7 +21,7 @@ const queryClient = new QueryClient({
   },
 });
 
-export const AppContext = createContext({});
+const AppContext = createContext({});
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
   const { toast } = useToast();

@@ -1,4 +1,4 @@
-import useAuth from '@core/store/context/AuthContext/hook';
+import { useAuth } from '@core/store/context/AuthContext';
 import LinkButton from '@shared/design-system/ui/link-button';
 
 import HeaderActions from './header-actions';

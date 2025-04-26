@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import useAuth from '@core/store/context/AuthContext/hook';
+import { useAuth } from '@core/store/context/AuthContext';
 import { HEADER_NAME_TEST_ID } from '@layout/body-app/header/header-actions/consts';
 import ThemeSwitcher from '@layout/body-app/header/header-actions/theme-switcher';
 import { Button } from '@shared/design-system/ui/button';
