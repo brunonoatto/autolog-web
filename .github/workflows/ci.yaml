@@ -38,5 +38,3 @@ jobs:
 
       - name: Typecheking
         run: pnpm typecheck
-
-      # - run: pnpm test
