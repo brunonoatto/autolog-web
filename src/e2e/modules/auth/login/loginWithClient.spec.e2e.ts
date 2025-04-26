@@ -1,4 +1,5 @@
 import { test } from '@e2e/core/fixtures';
+import { clientAccessTokenData } from '@e2e/mocks/auth/login';
 import { loginClientRouteData } from '@e2e/modules/auth/login/mocks';
 
 test('Deve realizar o login com usuário do tipo Client', async ({
@@ -14,6 +15,6 @@ test('Deve realizar o login com usuário do tipo Client', async ({
 
   await loginPage.login('client@client.com.br', 'senha123');
 
-  await headerPage.expectNameToUser('clientAccessTokenData.name');
+  await headerPage.expectNameToUser(clientAccessTokenData.name);
   await clientMyCarsPage.expectCardTitle('Meus Veículos');
 });
