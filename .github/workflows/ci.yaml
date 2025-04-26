@@ -1,0 +1,42 @@
+name: AutoLog Web CI
+
+on:
+  push:
+    branches: ['master']
+  pull_request:
+    branches: ['master']
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: PNPM Install
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'pnpm'
+
+      - name: Remove Husky prepare
+        run: pnpm pkg delete scripts.prepare
+
+      - name: Install dependencies
+        run: pnpm i --frozen-lockfile
+
+      - name: Build aplication
+        run: pnpm build
+
+      - name: Linting
+        run: pnpm lint
+
+      - name: Typecheking
+        run: pnpm typecheck
+
+      # - run: pnpm test
