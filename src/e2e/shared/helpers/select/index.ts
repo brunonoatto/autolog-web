@@ -11,4 +11,6 @@ export async function fillSelect(page: Page, elementLocator: Locator, searchValu
   await selectInput.fill(searchValue);
 
   await page.locator(`[data-testid=${COMBOBOX_OPTIONS_TEST_ID}] div div`).nth(0).click();
+
+  await dialog.waitFor({ state: 'hidden' });
 }
