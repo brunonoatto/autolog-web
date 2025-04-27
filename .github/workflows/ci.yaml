@@ -28,7 +28,7 @@ jobs:
         run: pnpm pkg delete scripts.prepare
 
       - name: Install dependencies
-        run: pnpm i --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Build aplication
         run: pnpm build
