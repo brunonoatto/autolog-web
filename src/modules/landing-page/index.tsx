@@ -7,7 +7,7 @@ export default function LandingPage() {
     <>
       <Header />
       <div className="flex flex-col items-center p-2 md:p-10">
-        <div className="font-bold mb-6">Selecione o Produto desejado</div>
+        <div className="font-bold mb-6">Selecione o Produto desejado:</div>
         <div className="md:flex md:justify-around md:space-y-0 md:gap-x-4 space-y-4">
           <HomeCard
             title="Sistema para mecânicas"
