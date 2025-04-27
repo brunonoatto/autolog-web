@@ -9,7 +9,7 @@ phases:
     commands:
       - npm install -g pnpm
       - pnpm pkg delete scripts.prepare
-      - pnpm install --lock-file
+      - pnpm install --frozen-lockfile
 
   build:
     commands:
