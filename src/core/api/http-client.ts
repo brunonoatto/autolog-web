@@ -1,7 +1,8 @@
 import axios from 'axios';
 
+console.log('----', { a: import.meta.env.API_URL });
 const httpClient = axios.create({
-  baseURL: 'http://localhost:5280',
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 export default httpClient;
