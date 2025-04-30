@@ -1,3 +1,4 @@
+import { CheckCheck } from 'lucide-react';
 import { useState } from 'react';
 
 import { useFinishBudget } from '@core/service/budget';
@@ -28,7 +29,7 @@ export default function ReceiveButton() {
 
   return (
     <>
-      <Button icon="check-check" onClick={handleFinishBudget}>
+      <Button icon={CheckCheck} onClick={handleFinishBudget}>
         Veículo recebido
       </Button>
 

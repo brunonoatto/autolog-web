@@ -1,3 +1,4 @@
+import { Wrench } from 'lucide-react';
 import { useState } from 'react';
 
 import { useStartServiceBudget } from '@core/service/budget';
@@ -28,7 +29,7 @@ export default function StartService() {
 
   return (
     <>
-      <Button icon="wrench" color="primary" onClick={handleSendForApproval}>
+      <Button icon={Wrench} color="primary" onClick={handleSendForApproval}>
         Iniciar Serviço
       </Button>
 

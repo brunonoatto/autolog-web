@@ -1,3 +1,4 @@
+import { Receipt } from 'lucide-react';
 import { useState } from 'react';
 
 import { useCompletedBudget } from '@core/service/budget';
@@ -28,7 +29,7 @@ export default function CompletedService() {
 
   return (
     <>
-      <Button icon="receipt" color="primary" onClick={handleSendForApproval}>
+      <Button icon={Receipt} color="primary" onClick={handleSendForApproval}>
         Finalizar serviço
       </Button>
 

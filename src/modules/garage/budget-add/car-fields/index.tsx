@@ -1,3 +1,4 @@
+import { Car } from 'lucide-react';
 import { useFormContext } from 'react-hook-form';
 import { useDebouncedCallback } from 'use-debounce';
 
@@ -37,7 +38,7 @@ export default function CarFields() {
 
   return (
     <div className="col-span-full space-y-2">
-      <CardTitle icon="car" size="lg">
+      <CardTitle icon={Car} size="lg">
         Dados do veículo
       </CardTitle>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">

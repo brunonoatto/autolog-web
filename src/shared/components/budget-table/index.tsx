@@ -1,3 +1,4 @@
+import { ListOrdered, Pencil, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 
 import type { TBudgetItem } from '@core/api/budget-item/types';
@@ -53,7 +54,7 @@ export default function BudgetTable({ allowActions = false }: TBudgetViewTablePr
 
   return (
     <>
-      <CardTitle icon="list-ordered" size="lg">
+      <CardTitle icon={ListOrdered} size="lg">
         Itens do Orçamento
       </CardTitle>
 
@@ -91,14 +92,14 @@ export default function BudgetTable({ allowActions = false }: TBudgetViewTablePr
                   <td className="flex justify-end space-x-2">
                     {/* // TODO criar modal para alterar */}
                     <Button
-                      icon="pencil"
+                      icon={Pencil}
                       size="sm"
                       variant="outline"
                       title="Alterar"
                       disabled={recordStatus === 'pending'}
                     />
                     <Button
-                      icon="trash-2"
+                      icon={Trash2}
                       size="sm"
                       variant="outline"
                       onClick={() => handleDeleteItemClick(item)}

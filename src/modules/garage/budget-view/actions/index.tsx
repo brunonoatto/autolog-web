@@ -1,3 +1,5 @@
+import { CircleOff } from 'lucide-react';
+
 import useBudgetViewContext from '@core/store/context/BudgetViewContext/hook';
 import BackToBudget from '@modules/garage/budget-view/actions/back-to-budget';
 import CompletedService from '@modules/garage/budget-view/actions/completed-budget';
@@ -19,7 +21,7 @@ const actionsByStatus: { [key in BudgetStatusEnum]?: React.ReactNode } = {
   [BudgetStatusEnum.ApprovedBudget]: <StartService />,
   [BudgetStatusEnum.BudgetRejected]: (
     <>
-      <Button icon="circle-off" variant="outline">
+      <Button icon={CircleOff} variant="outline">
         Cancelar orçamento
       </Button>
       <RemakeBudget />

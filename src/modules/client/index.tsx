@@ -1,3 +1,5 @@
+import { Car, FileSearch2, FolderInput, Receipt, Warehouse } from 'lucide-react';
+
 import BodyApp from '@layout/body-app';
 
 export default function ClientContent() {
@@ -7,27 +9,27 @@ export default function ClientContent() {
         {
           title: 'Meus veículos',
           route: '/cliente',
-          icon: 'warehouse',
+          icon: Warehouse,
         },
         {
           title: 'Cadastrar veículo',
           route: '/cliente/cadastrar-veiculo',
-          icon: 'car',
+          icon: Car,
         },
         {
           title: 'Orçamentos',
           route: '/cliente/orcamentos',
-          icon: 'receipt',
+          icon: Receipt,
         },
         {
           title: 'Transferir veículo',
           route: '/cliente/transferir',
-          icon: 'folder-input',
+          icon: FolderInput,
         },
         {
           title: 'Consultar Placa',
           route: '/cliente/consulta-placa',
-          icon: 'file-search-2',
+          icon: FileSearch2,
         },
       ]}
     />

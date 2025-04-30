@@ -1,3 +1,5 @@
+import { MessageCircleMore } from 'lucide-react';
+
 import useBudgetViewContext from '@core/store/context/BudgetViewContext/hook';
 import useSendWhatApp from '@modules/garage/budget-view/hooks/useSendWhatsApp';
 import { Button } from '@shared/design-system/ui/button';
@@ -12,7 +14,7 @@ export default function SendWhatsApp() {
   };
 
   return (
-    <Button icon="message-circle-more" onClick={handleSendWhatsApp}>
+    <Button icon={MessageCircleMore} onClick={handleSendWhatsApp}>
       Enviar Whats App
     </Button>
   );

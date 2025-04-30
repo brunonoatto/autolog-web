@@ -1,3 +1,4 @@
+import { CornerUpLeft } from 'lucide-react';
 import { useState } from 'react';
 
 import { useRemakeBudget } from '@core/service/budget';
@@ -32,7 +33,7 @@ export default function RemakeBudget() {
 
   return (
     <>
-      <Button icon="corner-up-left" color="primary" onClick={handleRemake}>
+      <Button icon={CornerUpLeft} color="primary" onClick={handleRemake}>
         Refazer Orçamento
       </Button>
 

@@ -1,3 +1,4 @@
+import { ThumbsDown } from 'lucide-react';
 import { useState } from 'react';
 
 import { useRemakeBudget } from '@core/service/budget';
@@ -36,14 +37,14 @@ export default function RejectButton() {
 
   return (
     <>
-      <Button icon="thumbs-down" variant="destructive" onClick={() => setOpenConfirmModal(true)}>
+      <Button icon={ThumbsDown} variant="destructive" onClick={() => setOpenConfirmModal(true)}>
         Rejeitar orçamento
       </Button>
 
       <Modal
         open={openConfirmModal}
         title="Confirma a rejeição do orçamento?"
-        icon="thumbs-down"
+        icon={ThumbsDown}
         confirmVariant="destructive"
         onConfirmClick={handleRejectBudget}
         onCancelClick={() => setOpenConfirmModal(false)}

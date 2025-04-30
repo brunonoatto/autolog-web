@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { ListPlus } from 'lucide-react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import z from 'zod';
 
@@ -51,9 +52,9 @@ export function AddBugdetItemForm() {
       form={form}
       border
       title="Adicionar Item no Orçamento"
-      icon="list-plus"
+      icon={ListPlus}
       confirmButtonText="Adicionar"
-      confirmButtonProps={{ icon: 'list-plus' }}
+      confirmButtonProps={{ icon: ListPlus }}
       onValid={handleValid}
     >
       <FormField className="col-span-full" control={control} name="description" label="Descrição">

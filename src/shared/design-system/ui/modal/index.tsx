@@ -1,3 +1,4 @@
+import { CircleX } from 'lucide-react';
 import type { PropsWithChildren, ReactNode } from 'react';
 
 import { Button, TButtonProps } from '@shared/design-system/ui/button';
@@ -40,7 +41,7 @@ const Modal = ({
         <div>
           {onClose && (
             <div className="text-right">
-              <Button icon="circle-x" variant="ghost" size="icon" onClick={onClose} />
+              <Button icon={CircleX} variant="ghost" size="icon" onClick={onClose} />
             </div>
           )}
           <CardTitle icon={icon}>{title}</CardTitle>

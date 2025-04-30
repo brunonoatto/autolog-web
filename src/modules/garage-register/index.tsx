@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Warehouse } from 'lucide-react';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -68,7 +69,7 @@ export default function GarageRegister() {
           form={form}
           onValid={handleValid}
           title="Cadastro de Mecânica"
-          icon="warehouse"
+          icon={Warehouse}
           useDefaultGrid={false}
           border
         >

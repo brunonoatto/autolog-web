@@ -76,11 +76,11 @@ export const Button = React.forwardRef<HTMLButtonElement, TButtonProps>(
       >
         {isLoading && <LoadingIcon size={size === 'icon' ? 'sm' : size} />}
 
-        {icon && !isLoading && <Icon name={icon} size={iconSize} {...iconProps} />}
+        {icon && !isLoading && <Icon component={icon} size={iconSize} {...iconProps} />}
 
         {children}
 
-        {secondIcon && <Icon name={secondIcon} size={iconSize} {...secondIconProps} />}
+        {secondIcon && <Icon component={secondIcon} size={iconSize} {...secondIconProps} />}
       </Comp>
     );
   },

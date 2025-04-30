@@ -1,3 +1,4 @@
+import { NotebookPen } from 'lucide-react';
 import { MouseEventHandler, useEffect, useRef, useState } from 'react';
 
 import { Button } from '@shared/design-system/ui/button';
@@ -52,7 +53,7 @@ export function BudgetObservation({
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle icon="notebook-pen" size="lg">
+        <CardTitle icon={NotebookPen} size="lg">
           <div className="flex gap-2">
             <div>{ofClient ? 'Obs. do Cliente' : 'Obs. da Oficina'}</div>
 

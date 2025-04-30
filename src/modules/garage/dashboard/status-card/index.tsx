@@ -1,3 +1,5 @@
+import { InfoIcon, NotebookPen } from 'lucide-react';
+
 import { DashboardItem } from '@core/models/dashboard';
 import DashboardButton from '@shared/components/dashboard-button';
 import StatusBadge from '@shared/components/status-badge';
@@ -30,11 +32,11 @@ const StatusCard = ({ onClick, item }: TStatusCardProps) => {
           <TooltipProvider delayDuration={200}>
             <Tooltip>
               <TooltipTrigger>
-                <Icon name="info" className="text-primary" />
+                <Icon className="text-primary" component={InfoIcon} />
               </TooltipTrigger>
               <TooltipContent className="max-w-80 text-left space-y-2" align="start">
                 <p className="flex justify-start items-center gap-2">
-                  <Icon className="inline" name="notebook-pen" />
+                  <Icon className="inline" component={NotebookPen} />
                   <b>Observações:</b>
                 </p>
                 <p>{observation}</p>
