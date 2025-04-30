@@ -85,7 +85,7 @@ const CardTitle = React.forwardRef<
     data-testid={CARD_TITLE_TESTE_ID}
     className={cn(cardTitleVariants({ alignTitle, size }), className)}
   >
-    {icon && <Icon name={icon} size={size === 'lg' ? 'lg' : 'default'} />}
+    {icon && <Icon component={icon} size={size === 'lg' ? 'lg' : 'default'} />}
     <div ref={ref} className={cn(cardTitleTextVariants({ size }))} {...props}>
       {children}
     </div>

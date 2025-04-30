@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { CircleUserRound } from 'lucide-react';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import z from 'zod';
@@ -65,7 +66,7 @@ export default function ClientRegister() {
           form={form}
           onValid={handleValid}
           title="Cadastro de Cliente"
-          icon="circle-user-round"
+          icon={CircleUserRound}
           useDefaultGrid={false}
           border
         >

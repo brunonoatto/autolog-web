@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Car, FolderCheck, FolderInput } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import z from 'zod';
@@ -91,7 +92,7 @@ export default function ClientTransferCar() {
     return (
       <Card>
         <CardHeader>
-          <CardTitle icon="folder-input">Transferência de veículo</CardTitle>
+          <CardTitle icon={FolderInput}>Transferência de veículo</CardTitle>
         </CardHeader>
 
         <CardContent>
@@ -99,7 +100,7 @@ export default function ClientTransferCar() {
             <AlertTitle>Nehum veículo encontrado para para transferir.</AlertTitle>
 
             <AlertDescription>
-              <LinkButton icon="car" to="/cliente/cadastrar-veiculo">
+              <LinkButton icon={Car} to="/cliente/cadastrar-veiculo">
                 Cadastrar seu veículo
               </LinkButton>
             </AlertDescription>
@@ -114,7 +115,7 @@ export default function ClientTransferCar() {
       <Form
         form={form}
         title="Transferência de veículo"
-        icon="folder-input"
+        icon={FolderInput}
         confirmButtonText="Continuar"
         onValid={handleValid}
         useDefaultGrid={false}
@@ -130,7 +131,7 @@ export default function ClientTransferCar() {
       <Modal
         open={openModal}
         title="Confirmação dos dados da Transferência de Veículo"
-        icon="folder-check"
+        icon={FolderCheck}
         confirmText="Transferir"
         onConfirmClick={handleTrasnferCar}
         onCancelClick={() => setOpenModal(false)}

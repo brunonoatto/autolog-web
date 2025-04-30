@@ -1,3 +1,4 @@
+import { Receipt } from 'lucide-react';
 import { useSearchParams } from 'react-router-dom';
 
 import { useLicenseSearchBudgets } from '@core/service/budget';
@@ -30,7 +31,7 @@ export default function ClientBudgetSearch() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle icon="receipt">Orçamentos</CardTitle>
+        <CardTitle icon={Receipt}>Orçamentos</CardTitle>
       </CardHeader>
 
       <CardContent className="space-y-4">

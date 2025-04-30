@@ -1,3 +1,4 @@
+import { Send } from 'lucide-react';
 import { useState } from 'react';
 
 import { useSendForApproveBudget } from '@core/service/budget';
@@ -36,7 +37,7 @@ export default function SendForApproval() {
 
   return (
     <>
-      <Button icon="send" onClick={handleSendForApproval}>
+      <Button icon={Send} onClick={handleSendForApproval}>
         Enviar para aprovação
       </Button>
 

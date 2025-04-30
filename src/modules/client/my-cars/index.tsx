@@ -1,3 +1,5 @@
+import { Warehouse } from 'lucide-react';
+
 import { useClientCars } from '@core/service/client';
 import { MY_CARS_CARD_TEST_ID } from '@modules/client/my-cars/consts';
 import { ListCars } from '@modules/client/my-cars/list-cars';
@@ -11,7 +13,7 @@ export default function ClientMyCars() {
   return (
     <Card data-testid={MY_CARS_CARD_TEST_ID}>
       <CardHeader>
-        <CardTitle icon="warehouse">Meus Veículos</CardTitle>
+        <CardTitle icon={Warehouse}>Meus Veículos</CardTitle>
       </CardHeader>
 
       <CardContent>

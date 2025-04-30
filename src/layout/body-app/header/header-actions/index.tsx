@@ -1,3 +1,4 @@
+import { LogOut } from 'lucide-react';
 import { useState } from 'react';
 
 import { useAuth } from '@core/store/context/AuthContext';
@@ -26,7 +27,7 @@ const HeaderActions = () => {
       <ThemeSwitcher />
 
       <Button
-        icon="log-out"
+        icon={LogOut}
         variant="ghost"
         size="icon"
         title="Sair"
@@ -36,7 +37,7 @@ const HeaderActions = () => {
       <Modal
         open={openModal}
         title="Sair do sistema"
-        icon="log-out"
+        icon={LogOut}
         confirmText="Sim"
         onConfirmClick={handleLogout}
         cancelText="Não"

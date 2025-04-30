@@ -1,3 +1,4 @@
+import { ArrowRight, User } from 'lucide-react';
 import { ChangeEvent } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useDebouncedCallback } from 'use-debounce';
@@ -48,7 +49,7 @@ export function ClientData() {
 
   return (
     <>
-      <CardTitle className="col-span-full" icon="user" size="lg">
+      <CardTitle className="col-span-full" icon={User} size="lg">
         Dados do Cliente
       </CardTitle>
 
@@ -99,7 +100,7 @@ export function ClientData() {
           <div className="col-span-full justify-self-end">
             <Button
               data-testid={SELECT_CAR_BUDGET_ADD_BUTTON_TESTID}
-              secondIcon="arrow-right"
+              secondIcon={ArrowRight}
               onClick={handleClick}
             >
               Selecionar Veículo

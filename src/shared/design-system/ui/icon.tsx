@@ -1,6 +1,4 @@
-import { LucideProps } from 'lucide-react';
-import dynamicIconImports from 'lucide-react/dynamicIconImports';
-import { lazy, Suspense } from 'react';
+import { ElementType, Suspense } from 'react';
 
 type TSize = 'sm' | 'default' | 'lg';
 const sizeData: { [key in TSize]: number } = {
@@ -9,20 +7,23 @@ const sizeData: { [key in TSize]: number } = {
   lg: 34,
 };
 
-export type TIcons = keyof typeof dynamicIconImports;
-export type TIconProps = Omit<LucideProps, 'ref'> & {
-  name: TIcons;
+export type TIcons = ElementType;
+export type TIconProps = {
+  component: TIcons;
   size?: TSize;
+  className?: string;
 };
 
 const fallback = <div style={{ background: '#ddd', width: 24, height: 24 }} />;
 
-export default function Icon({ name, size = 'default', ...otherProps }: TIconProps) {
-  const LucideIcon = lazy(dynamicIconImports[name]);
-
+export default function Icon({
+  component: Component,
+  size = 'default',
+  ...otherProps
+}: TIconProps) {
   return (
     <Suspense fallback={fallback}>
-      <LucideIcon {...otherProps} width={sizeData[size]} />
+      <Component {...otherProps} width={sizeData[size]} />
     </Suspense>
   );
 }

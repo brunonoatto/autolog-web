@@ -1,3 +1,4 @@
+import { Car } from 'lucide-react';
 import { useParams } from 'react-router-dom';
 
 import { useGetCar } from '@core/service/car';
@@ -21,7 +22,7 @@ export default function ClientCarView() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle icon="car">Veículo {car?.license}</CardTitle>
+        <CardTitle icon={Car}>Veículo {car?.license}</CardTitle>
         <CardDescription>{!!car && carName(car)}</CardDescription>
       </CardHeader>
 

@@ -1,3 +1,4 @@
+import { CornerUpLeft } from 'lucide-react';
 import { useState } from 'react';
 
 import { useRemakeBudget } from '@core/service/budget';
@@ -28,7 +29,7 @@ export default function BackToBudget() {
 
   return (
     <>
-      <Button icon="corner-up-left" variant="outline" onClick={handleSendForApproval}>
+      <Button icon={CornerUpLeft} variant="outline" onClick={handleSendForApproval}>
         Voltar para realizar orçamento
       </Button>
 

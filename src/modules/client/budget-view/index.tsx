@@ -1,3 +1,5 @@
+import { Receipt } from 'lucide-react';
+
 import { useGetBudget, useObservationUpdate } from '@core/service/budget';
 import { BudgetViewProvider } from '@core/store/context/BudgetViewContext/provider';
 import BudgetViewActionButtons from '@modules/client/budget-view/action-buttons';
@@ -31,7 +33,7 @@ function ClientBudgetViewContent() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle icon="receipt">Orçamento {os}</CardTitle>
+        <CardTitle icon={Receipt}>Orçamento {os}</CardTitle>
       </CardHeader>
 
       <CardContent>

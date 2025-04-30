@@ -1,3 +1,4 @@
+import { CheckCheck, ThumbsUp } from 'lucide-react';
 import { useState } from 'react';
 
 import { useApproveBudget } from '@core/service/budget';
@@ -36,14 +37,14 @@ export default function ApproveButton() {
 
   return (
     <>
-      <Button icon="thumbs-up" onClick={() => setOpenConfirmModal(true)}>
+      <Button icon={ThumbsUp} onClick={() => setOpenConfirmModal(true)}>
         Aprovar orçamento
       </Button>
 
       <Modal
         open={openConfirmModal}
         title="Confirma a aprovação do orçamento?"
-        icon="check-check"
+        icon={CheckCheck}
         onConfirmClick={handleApproveBudget}
         onCancelClick={() => setOpenConfirmModal(false)}
       />

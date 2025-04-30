@@ -1,3 +1,4 @@
+import { CircleDollarSign } from 'lucide-react';
 import { useState } from 'react';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
 
@@ -83,7 +84,7 @@ function BudgetAddContent() {
         form={form}
         onValid={handleValid}
         title="Adicionar Orçamento"
-        icon="circle-dollar-sign"
+        icon={CircleDollarSign}
         confirmButtonText="Cadastrar Orçamento"
         showFooter={allowSelectCar}
       >

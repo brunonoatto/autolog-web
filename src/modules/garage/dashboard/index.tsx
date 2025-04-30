@@ -1,3 +1,5 @@
+import { CircleDollarSign, Trello } from 'lucide-react';
+
 import { useGarageDashboard } from '@core/service/dashboard';
 import { DASHBOARD_CARD_TEST_ID } from '@modules/garage/dashboard/consts';
 import { DashboardGrid } from '@modules/garage/dashboard/dashboard-grid';
@@ -19,7 +21,7 @@ export default function Dashboard() {
   return (
     <Card data-testid={DASHBOARD_CARD_TEST_ID}>
       <CardHeader>
-        <CardTitle icon="trello">Dashboard</CardTitle>
+        <CardTitle icon={Trello}>Dashboard</CardTitle>
       </CardHeader>
 
       <CardContent>
@@ -29,7 +31,7 @@ export default function Dashboard() {
           loadingElement={<StatusCardSkeletons />}
           notFoundTitle="Nenhum orçamento em andamento."
           notFoundDescription={
-            <LinkButton to="/garage/orcamento" icon="circle-dollar-sign">
+            <LinkButton to="/garage/orcamento" icon={CircleDollarSign}>
               Adicionar orçamento
             </LinkButton>
           }
