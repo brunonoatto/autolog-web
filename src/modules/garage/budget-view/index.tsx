@@ -1,4 +1,5 @@
-import { useGetBudget, useObservationUpdate } from '@core/service/budget';
+import { useObservationUpdate } from '@core/service/budget';
+import useBudgetViewContext from '@core/store/context/BudgetViewContext/hook';
 import { BudgetViewProvider } from '@core/store/context/BudgetViewContext/provider';
 import BudgetViewActions from '@modules/garage/budget-view/actions';
 import { AddBugdetItemForm } from '@modules/garage/budget-view/add-budget-item-form';
@@ -13,7 +14,7 @@ import { BudgetStatusEnum } from '@shared/types/budgetStatus';
 function GarageBudgetViewContent() {
   const { mutate: observationUpdateMutate, isPending: isPendingMutate } = useObservationUpdate();
 
-  const { budget, isLoading } = useGetBudget();
+  const { budget, isLoading } = useBudgetViewContext();
   const { id, os, status, car, observation, observationClient } = budget || {};
 
   const allowEdit = status === BudgetStatusEnum.MakingBudget;
