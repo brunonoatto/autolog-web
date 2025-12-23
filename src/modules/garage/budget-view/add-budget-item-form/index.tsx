@@ -26,6 +26,7 @@ export function AddBugdetItemForm() {
   const { mutate: mutateAddBudgetItem } = useAddBudgetItem();
 
   const { budget } = useBudgetViewContext();
+  console.log('---AddBugdetItemForm', { budget });
   const { id = '' } = budget || {};
 
   const form = useForm<TBudgetItemFormType>({
@@ -43,6 +44,8 @@ export function AddBugdetItemForm() {
     // Se este setFocus ficar depois do reset não funciona
     setFocus('description');
     reset();
+
+    console.log('---- send on mutation', { newBudgetItem });
 
     mutateAddBudgetItem(newBudgetItem);
   };
