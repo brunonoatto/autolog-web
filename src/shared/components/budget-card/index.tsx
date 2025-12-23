@@ -53,14 +53,14 @@ export default function BudgetCard({
             <p>{createdDate}</p>
           </div>
         )}
-        <div className="flex justify-between">
+        <div className="flex flex-col md:flex-row justify-between">
           <div>
             <CarInfo {...car} />
 
             {showCreatedDate && <p className="text-left">{createdDate}</p>}
           </div>
 
-          <div className="mt-auto">
+          <div className="mt-auto ml-auto">
             <StatusBadge status={status} />
           </div>
         </div>
