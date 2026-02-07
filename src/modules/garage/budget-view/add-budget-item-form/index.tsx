@@ -9,6 +9,7 @@ import useBudgetViewContext from '@core/store/context/BudgetViewContext/hook';
 import Form from '@shared/components/form';
 import FormField from '@shared/components/form/form-field';
 import { Input } from '@shared/design-system/ui/input';
+import { CurrencyInput } from '@shared/design-system/ui/input-currency';
 import { zodValidators } from '@shared/form-validations';
 import { MIN_INVALID_MSG } from '@shared/form-validations/consts';
 
@@ -65,8 +66,8 @@ export function AddBugdetItemForm() {
         <Input type="number" />
       </FormField>
 
-      <FormField control={control} name="price" label="Preço Unitário">
-        <Input type="number" />
+      <FormField control={control} name="price" label="Preço Unitário (R$)">
+        <CurrencyInput />
       </FormField>
     </Form>
   );
