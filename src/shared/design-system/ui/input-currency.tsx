@@ -19,6 +19,7 @@ const CurrencyInput = React.forwardRef<HTMLInputElement, TInputProps>(
         if (displayValue !== '') setDisplayValue('');
         return;
       }
+
       const decimalDisplayValue = parseFloat(displayValue.replace(',', '.'));
       const alreadyInitDisplayValue = decimalDisplayValue === propsValue;
 
