@@ -1,5 +1,5 @@
 import { ListOrdered, Pencil, Trash2 } from 'lucide-react';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import type { TBudgetItem } from '@core/api/budget-item/types';
 import { useDeleteBudgetItem } from '@core/service/budget-items';
@@ -20,6 +20,16 @@ export default function BudgetTable({ allowActions = false }: TBudgetViewTablePr
   const { mutate: mutateDeleteBudgetItem } = useDeleteBudgetItem();
 
   const [itemToDeleted, setItemToDeleted] = useState<TBudgetItem>();
+
+  const budgetTotalValue = useMemo(() => {
+    const totalCentsValue =
+      budget?.items?.reduce((acc, item) => {
+        const centsPrice = item.price * 100;
+        return acc + item.qtd * centsPrice;
+      }, 0) || 0;
+
+    return totalCentsValue > 0 ? (totalCentsValue / 100).toFixed(2) : 0;
+  }, [budget?.items]);
 
   const handleDeleteItemClick = async (item: TBudgetItem) => {
     setItemToDeleted(item);
@@ -117,11 +127,7 @@ export default function BudgetTable({ allowActions = false }: TBudgetViewTablePr
             <th scope="row" colSpan={3}>
               Total do Orçamento:
             </th>
-            <td>
-              {budget?.items?.reduce((acc, item) => {
-                return acc + item.qtd * item.price;
-              }, 0)}
-            </td>
+            <td>{budgetTotalValue}</td>
           </tr>
         </tfoot>
       </table>
