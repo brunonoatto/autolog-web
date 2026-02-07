@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { Input } from '@shared/design-system/ui/input';
 
@@ -47,7 +47,7 @@ const formatToDisplayValue = (value: string) => {
 const CurrencyInput = React.forwardRef<HTMLInputElement, TInputProps>(
   ({ error, onChange, onBlur, value: propsValue, ...props }, ref) => {
     const [displayValue, setDisplayValue] = useState('');
-    console.log({ displayValue });
+
     // Sincroniza quando o formulário é resetado ou valor alterado externamente
     useEffect(() => {
       if (typeof propsValue === 'number') {
@@ -63,21 +63,26 @@ const CurrencyInput = React.forwardRef<HTMLInputElement, TInputProps>(
       }
     }, [displayValue, propsValue]);
 
+    const notifyChange = useCallback(
+      (newDisplayValue: string, originalEvent: any) => {
+        const decimalValue = parseFloat(newDisplayValue.replace(',', '.'));
+
+        onChange?.({
+          ...originalEvent,
+          target: {
+            ...originalEvent.target,
+            name: name,
+            value: isNaN(decimalValue) ? null : decimalValue,
+          },
+        } as any);
+      },
+      [onChange],
+    );
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const sanitizedValue = sanitizeChangedValue(e.target.value);
-      console.log('onchange', { value: e.target.value, sanitizedValue });
-
       setDisplayValue(sanitizedValue);
-
-      const decimalValue = parseFloat(sanitizedValue.replace(',', '.'));
-      onChange?.({
-        ...e,
-        target: {
-          ...e.target,
-          name: props.name,
-          value: isNaN(decimalValue) ? null : decimalValue,
-        },
-      } as any); // eslint-disable-line @typescript-eslint/no-explicit-any
+      notifyChange(sanitizedValue, e);
     };
 
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -89,18 +94,8 @@ const CurrencyInput = React.forwardRef<HTMLInputElement, TInputProps>(
       }
 
       const formatedValue = formatToDisplayValue(inputValue);
-
       setDisplayValue(formatedValue);
-
-      const decimalValue = parseFloat(formatedValue.replace(',', '.'));
-      onChange?.({
-        ...e,
-        target: {
-          ...e.target,
-          name: props.name,
-          value: isNaN(decimalValue) ? null : decimalValue,
-        },
-      } as any); // eslint-disable-line @typescript-eslint/no-explicit-any
+      //notifyChange(formatedValue, e);
 
       if (onBlur) onBlur(e);
     };
