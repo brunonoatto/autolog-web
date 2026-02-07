@@ -1,44 +1,20 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
+import {
+  formatToDisplayValue,
+  sanitizeChangedValue,
+} from '@shared/design-system/helpers/input-currency';
 import { Input } from '@shared/design-system/ui/input';
 
 export interface TInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
 }
 
-const sanitizeChangedValue = (value: string) => {
-  let result = value;
-  result = result.replace(/\./g, ','); // 1. Troca ponto por vírgula na hora
-  result = result.replace(/[^\d,]/g, ''); // 2. Remove caracteres inválidos (aceita apenas números e uma vírgula)
-  const parts = result.split(',');
-  if (parts?.length > 2) result = parts[0] + ',' + parts.slice(1).join(''); // 3. Impede mais de uma vírgula
-  if (parts[1]?.length > 2) result = `${parts[0]},${parts[1].slice(0, 2)}`; // 4. Limita a 2 casas decimais enquanto digita (opcional, mas recomendado)
-
-  return result;
-};
-
-const formatToDisplayValue = (value: string) => {
-  let result = value;
-  if (result.startsWith(',')) result = '0' + result; // Se o usuário digitou apenas a vírgula (ex: ",5"), adicionamos o zero à esquerda
-
-  // Se não tem vírgula, adiciona ",00"
-  if (!result.includes(',')) {
-    result += ',00';
-  } else {
-    // Se tem vírgula, garante duas casas decimais
-    const [integer, decimal] = result.split(',');
-    result = `${integer},${decimal.padEnd(2, '0')}`;
-  }
-
-  return result;
-};
-
 const CurrencyInput = React.forwardRef<HTMLInputElement, TInputProps>(
   ({ error, onChange, onBlur, value: propsValue, ...props }, ref) => {
     const [displayValue, setDisplayValue] = useState('');
 
-    // Sincroniza quando o formulário é resetado ou valor alterado externamente
-    useEffect(() => {
+    const initializeDisplayValue = useCallback(() => {
       if (typeof propsValue !== 'number') {
         if (displayValue !== '') setDisplayValue('');
         return;
@@ -50,7 +26,7 @@ const CurrencyInput = React.forwardRef<HTMLInputElement, TInputProps>(
 
       const formattedValue = formatToDisplayValue(sanitizeChangedValue(propsValue.toString()));
       setDisplayValue(formattedValue);
-    }, [propsValue, displayValue]);
+    }, [displayValue, propsValue]);
 
     const notifyChange = useCallback(
       (
@@ -91,6 +67,10 @@ const CurrencyInput = React.forwardRef<HTMLInputElement, TInputProps>(
 
       if (onBlur) onBlur(e);
     };
+
+    useEffect(() => {
+      initializeDisplayValue();
+    }, [initializeDisplayValue]);
 
     return (
       <>
