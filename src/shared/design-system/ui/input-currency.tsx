@@ -8,29 +8,18 @@ export interface TInputProps extends React.InputHTMLAttributes<HTMLInputElement>
 
 const sanitizeChangedValue = (value: string) => {
   let result = value;
-  // 1. Troca ponto por vírgula na hora
-  result = result.replace(/\./g, ',');
-
-  // 2. Remove caracteres inválidos (aceita apenas números e uma vírgula)
-  result = result.replace(/[^\d,]/g, '');
-
-  // 3. Impede mais de uma vírgula
+  result = result.replace(/\./g, ','); // 1. Troca ponto por vírgula na hora
+  result = result.replace(/[^\d,]/g, ''); // 2. Remove caracteres inválidos (aceita apenas números e uma vírgula)
   const parts = result.split(',');
-  if (parts?.length > 2) result = parts[0] + ',' + parts.slice(1).join('');
-
-  // 4. Limita a 2 casas decimais enquanto digita (opcional, mas recomendado)
-  if (parts[1]?.length > 2) result = `${parts[0]},${parts[1].slice(0, 2)}`;
+  if (parts?.length > 2) result = parts[0] + ',' + parts.slice(1).join(''); // 3. Impede mais de uma vírgula
+  if (parts[1]?.length > 2) result = `${parts[0]},${parts[1].slice(0, 2)}`; // 4. Limita a 2 casas decimais enquanto digita (opcional, mas recomendado)
 
   return result;
 };
 
 const formatToDisplayValue = (value: string) => {
   let result = value;
-
-  // Se o usuário digitou apenas a vírgula (ex: ",5"), adicionamos o zero à esquerda
-  if (result.startsWith(',')) {
-    result = '0' + result;
-  }
+  if (result.startsWith(',')) result = '0' + result; // Se o usuário digitou apenas a vírgula (ex: ",5"), adicionamos o zero à esquerda
 
   // Se não tem vírgula, adiciona ",00"
   if (!result.includes(',')) {
@@ -50,33 +39,36 @@ const CurrencyInput = React.forwardRef<HTMLInputElement, TInputProps>(
 
     // Sincroniza quando o formulário é resetado ou valor alterado externamente
     useEffect(() => {
-      if (typeof propsValue === 'number') {
-        const decimalDisplayValue = parseFloat(displayValue.replace(',', '.'));
-        const alreadyInitDisplayValue = decimalDisplayValue === propsValue;
-
-        if (alreadyInitDisplayValue) return;
-
-        const formattedValue = formatToDisplayValue(sanitizeChangedValue(propsValue.toString()));
-        setDisplayValue(formattedValue);
-      } else {
-        setDisplayValue('');
+      if (typeof propsValue !== 'number') {
+        if (displayValue !== '') setDisplayValue('');
+        return;
       }
-    }, [displayValue, propsValue]);
+      const decimalDisplayValue = parseFloat(displayValue.replace(',', '.'));
+      const alreadyInitDisplayValue = decimalDisplayValue === propsValue;
+
+      if (alreadyInitDisplayValue) return;
+
+      const formattedValue = formatToDisplayValue(sanitizeChangedValue(propsValue.toString()));
+      setDisplayValue(formattedValue);
+    }, [propsValue, displayValue]);
 
     const notifyChange = useCallback(
-      (newDisplayValue: string, originalEvent: any) => {
+      (
+        newDisplayValue: string,
+        originalEvent: React.ChangeEvent<HTMLInputElement> | React.FocusEvent<HTMLInputElement>,
+      ) => {
         const decimalValue = parseFloat(newDisplayValue.replace(',', '.'));
 
         onChange?.({
           ...originalEvent,
           target: {
             ...originalEvent.target,
-            name: name,
+            name: props.name,
             value: isNaN(decimalValue) ? null : decimalValue,
           },
         } as any);
       },
-      [onChange],
+      [onChange, props.name],
     );
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -89,13 +81,13 @@ const CurrencyInput = React.forwardRef<HTMLInputElement, TInputProps>(
       const inputValue = e.target.value;
 
       if (!inputValue) {
-        if (onBlur) onBlur(e);
+        onBlur?.(e);
         return;
       }
 
-      const formatedValue = formatToDisplayValue(inputValue);
-      setDisplayValue(formatedValue);
-      //notifyChange(formatedValue, e);
+      const formattedValue = formatToDisplayValue(inputValue);
+      if (formattedValue !== displayValue) setDisplayValue(formattedValue);
+      //notifyChange(formattedValue, e);
 
       if (onBlur) onBlur(e);
     };
@@ -106,6 +98,7 @@ const CurrencyInput = React.forwardRef<HTMLInputElement, TInputProps>(
           {...props}
           type="text"
           inputMode="decimal" // Abre teclado numérico com separador no mobile
+          autoComplete="off"
           value={displayValue}
           onChange={handleChange}
           onBlur={handleBlur}
