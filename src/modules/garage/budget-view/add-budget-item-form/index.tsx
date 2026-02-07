@@ -30,7 +30,7 @@ export function AddBugdetItemForm() {
   const { id = '' } = budget || {};
 
   const form = useForm<TBudgetItemFormType>({
-    defaultValues: { qtd: 1, price: 11 },
+    defaultValues: { qtd: 1 },
     resolver: zodResolver(schema),
   });
   const { control, reset, setFocus } = form;
