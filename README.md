@@ -46,3 +46,37 @@ export default {
 - build: Alterações que afetam o sistema de construção ou dependências externas (escopos de exemplo: gulp, broccoli, npm).
 - ci: Mudanças em nossos arquivos e scripts de configuração de CI (exemplo de escopos: Travis, Circle, BrowserStack, SauceLabs).
 - env: Utilizado na descrição de modificações ou adições em arquivos de configuração em processos e métodos de integração contínua (CI), como parâmetros em arquivos de configuração de containers.
+
+## 🚀 Fluxo de Deploy (CI/CD)
+
+A aplicação utiliza um pipeline de integração e entrega contínua (CI/CD) automatizado via **GitHub Actions** e **AWS**, garantindo que o código em produção esteja sempre sincronizado com a branch principal de forma performática.
+
+### Arquitetura de Implantação
+
+O fluxo de atualização automática é estruturado da seguinte forma:
+
+1.  **Gatilho (Trigger)**: Sempre que um `push` ou `merge` é realizado na branch `main`, o GitHub Actions inicia o workflow.
+2.  **Build de Produção**: O ambiente é preparado com Node.js para instalar dependências e executar o comando de build. Esta etapa gera os arquivos estáticos otimizados (HTML, CSS e JS).
+3.  **Distribuição (Amazon S3)**: Os arquivos resultantes são enviados para um bucket no **Amazon S3**. O processo utiliza o comando `sync`, que compara os arquivos locais com os remotos e atualiza apenas o que foi alterado, economizando tempo e banda.
+4.  **Invalidação de Cache (Amazon CloudFront)**: Após o upload, o pipeline dispara uma invalidação de cache global (`/*`). Isso garante que o usuário final receba a nova versão imediatamente, ignorando os arquivos antigos armazenados nos servidores de borda (Edge Locations) da AWS.
+
+### Tecnologias e Serviços
+
+- **GitHub Actions**: Orquestrador do pipeline de CI/CD.
+- **Amazon S3**: Hospedagem de objetos e site estático.
+- **Amazon CloudFront**: CDN (Content Delivery Network) para baixa latência e HTTPS.
+- **Node.js**: Engine para processamento e build do frontend.
+
+---
+
+## 🛠 Manutenção e Diagnóstico
+
+Caso precise intervir manualmente ou validar o estado do deploy, siga as instruções abaixo:
+
+### Invalidação Manual via CLI
+
+Se os arquivos foram atualizados mas o navegador ainda exibe a versão antiga, force uma invalidação:
+
+```bash
+aws cloudfront create-invalidation --distribution-id YOUR_DIST_ID --paths "/*"
+```
