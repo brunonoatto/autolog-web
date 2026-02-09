@@ -103,7 +103,7 @@ export default function BudgetTable({ allowActions = false }: TBudgetViewTablePr
               Preço
             </th>
             <th scope="col" className="text-right">
-              Total
+              Total (R$)
             </th>
             {allowActions && (
               <th scope="col" className="text-right">
@@ -116,12 +116,16 @@ export default function BudgetTable({ allowActions = false }: TBudgetViewTablePr
           {budget?.items.map((item) => {
             const { id, description, qtd, price, recordStatus } = item;
 
+            const centsPrice = price * 100;
+            const totalCentsItemValue = qtd * centsPrice;
+            const totalItemValue = (totalCentsItemValue / 100).toFixed(2);
+
             return (
               <tr key={id} className=" hover:bg-muted">
                 <td>{description}</td>
                 <td className="text-right">{qtd}</td>
                 <td className="text-right">{price}</td>
-                <td className="text-right">{qtd * price}</td>
+                <td className="text-right">{totalItemValue}</td>
                 {allowActions && (
                   <td className="flex justify-end space-x-2">
                     {/* // TODO criar modal para alterar */}
