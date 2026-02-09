@@ -3,7 +3,6 @@ export type TMyCarsFillProps = {
   name: string;
   phone: string;
   license: string;
-  brand: string;
   model: string;
   year: number;
   observation?: string;

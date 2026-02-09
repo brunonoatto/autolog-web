@@ -1,10 +1,6 @@
 import { test } from '@e2e/core/fixtures';
 import { budgetPostAssertData } from '@e2e/modules/garage/budget-add/asserts';
-import {
-  brandsRouteData,
-  budgetPostRouteData,
-  modelsMecaRouteData,
-} from '@e2e/modules/garage/budget-add/mocks';
+import { budgetPostRouteData } from '@e2e/modules/garage/budget-add/mocks';
 
 test('Deve realizar a inclusão de um orçamento e após ir para tela de add itens', async ({
   applicationSetup,
@@ -14,11 +10,7 @@ test('Deve realizar a inclusão de um orçamento e após ir para tela de add ite
   garageBudgetAddPage,
 }) => {
   await assertUtils.assertRequestPayloadList([budgetPostAssertData]);
-  await routesUtils.mockRouteResponseList([
-    brandsRouteData,
-    modelsMecaRouteData,
-    budgetPostRouteData,
-  ]);
+  await routesUtils.mockRouteResponseList([budgetPostRouteData]);
 
   await applicationSetup.setupGarage('/garage/orcamento');
 
@@ -27,7 +19,6 @@ test('Deve realizar a inclusão de um orçamento e após ir para tela de add ite
     name: 'Cliente sem cadastro',
     phone: '51998855221',
     license: 'AAA1212',
-    brand: 'Mercedes-Benz',
     model: 'C-180',
     year: 2010,
     observation: 'Texto da Observações do teste.',

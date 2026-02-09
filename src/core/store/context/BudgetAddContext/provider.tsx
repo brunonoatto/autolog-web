@@ -86,7 +86,6 @@ export function BudgetAddProvider({ children }: { children: React.ReactNode }) {
   const onSelectedClientCar = (car: TCar) => {
     setValue('car.id', car.id, { shouldValidate: true });
     setValue('car.license', car.license, { shouldValidate: true });
-    setValue('car.brand', car.brand, { shouldValidate: true });
     setValue('car.model', car.model, { shouldValidate: true });
     setValue('car.year', car.year, { shouldValidate: true });
 
@@ -100,7 +99,6 @@ export function BudgetAddProvider({ children }: { children: React.ReactNode }) {
 
     resetField('car.id');
     resetField('car.model');
-    resetField('car.brand');
     resetField('car.year');
   };
 

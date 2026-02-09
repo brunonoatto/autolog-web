@@ -15,7 +15,6 @@ export const budgetAddCarSchema = z
   .object({
     id: zodValidators.String().optional(),
     license: zodValidators.String().toUpperCase(),
-    brand: zodValidators.String(),
     model: zodValidators.String(),
     year: zodValidators
       .Int()

@@ -22,7 +22,7 @@ export default function ClientCarSelect(props: TClientCarSelect) {
 
   const items = buildSelectOptions(cars, 'license', (item) => {
     const transferedText = item.isTransfered ? '(Transferido) ' : '';
-    return `${transferedText}${item.license} - ${item.brand} ${item.model} ${item.year}`;
+    return `${transferedText}${item.license} - ${item.model} ${item.year}`;
   });
 
   return (

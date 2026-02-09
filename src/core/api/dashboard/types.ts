@@ -4,7 +4,6 @@ export type TDashboardItem = {
   observation?: string;
   clientName: string;
   license: string;
-  brand: string;
   model: string;
   year: number;
 };

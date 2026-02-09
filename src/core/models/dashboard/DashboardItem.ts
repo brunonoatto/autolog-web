@@ -9,7 +9,6 @@ export class DashboardItem {
   statusDescription: string;
   clientName: string;
   license: string;
-  brand: string;
   model: string;
   year: number;
 
@@ -20,7 +19,6 @@ export class DashboardItem {
     this.statusDescription = getStatusCarDescription(obj.status);
     this.clientName = obj.clientName;
     this.license = obj.license;
-    this.brand = obj.brand;
     this.model = obj.model;
     this.year = obj.year;
   }
