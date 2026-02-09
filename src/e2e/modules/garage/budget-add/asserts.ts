@@ -10,8 +10,7 @@ const budgetPostRequestAssert: TNewBudgetParams = {
   },
   car: {
     license: 'AAA1212',
-    brand: 'Mercedes-Benz',
-    model: 'C-180 1.6 Turbo 16V/Flex 16V Aut.',
+    model: 'C-180',
     year: 2010,
   },
   observation: 'Texto da Observações do teste.',

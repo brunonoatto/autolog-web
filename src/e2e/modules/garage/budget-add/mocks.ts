@@ -1,14 +1,6 @@
 import { TBudget } from '@core/api/budget/types';
 import RouteData from '@e2e/core/fixtures/route/_types/RouteData';
-import { brandsMock } from '@e2e/mocks/general/brands';
-import { modelsMecaMock } from '@e2e/mocks/general/models-meca';
 import RoutesData from '@e2e/shared/routes.ts';
-
-export const brandsRouteData = new RouteData(RoutesData.Fipe.fipeBrandsRoute, brandsMock);
-export const modelsMecaRouteData = new RouteData(
-  RoutesData.Fipe.fipeModelsMecaRoute,
-  modelsMecaMock,
-);
 
 const budgetPostResponse: TBudget = {
   id: 'budgetId',

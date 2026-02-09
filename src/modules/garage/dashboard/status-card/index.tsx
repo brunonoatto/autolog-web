@@ -15,7 +15,7 @@ import IdentificationCar from './identification-car';
 
 type TStatusCardProps = { item: DashboardItem; onClick: () => void };
 const StatusCard = ({ onClick, item }: TStatusCardProps) => {
-  const { clientName, observation, status, license, brand, model, year } = item;
+  const { clientName, observation, status, license, model, year } = item;
 
   return (
     <DashboardButton onClick={onClick}>
@@ -23,7 +23,7 @@ const StatusCard = ({ onClick, item }: TStatusCardProps) => {
         {clientName}
       </div>
 
-      <IdentificationCar license={license} brand={brand} model={model} year={year} />
+      <IdentificationCar license={license} model={model} year={year} />
 
       <div
         className={`w-full mt-2 flex items-center ${observation ? 'justify-between' : 'justify-end'} `}

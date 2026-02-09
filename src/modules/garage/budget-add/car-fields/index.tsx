@@ -5,8 +5,6 @@ import { useDebouncedCallback } from 'use-debounce';
 import useBudgetAddContext from '@core/store/context/BudgetAddContext/hook';
 import type { TBudgetAddFormType } from '@core/store/context/types/budget-add';
 import ClientCars from '@modules/garage/budget-add/car-fields/client-cars';
-import BrandCombobox from '@shared/components/combobox/brand-combobox';
-import ModelCombobox from '@shared/components/combobox/model-combobox';
 import FormField from '@shared/components/form/form-field';
 import LicenseInput from '@shared/components/form/license-input';
 import { CardTitle } from '@shared/design-system/ui/card';
@@ -20,20 +18,15 @@ export default function CarFields() {
 
   const handleLoadCarDebounce = useDebouncedCallback(handleLoadCar, 300);
 
-  const { control, watch, resetField } = useFormContext<TBudgetAddFormType>();
+  const { control, watch } = useFormContext<TBudgetAddFormType>();
 
   const selectedCarId = watch('car.id');
-  const brandId = watch('car.brand');
 
   const handleLicenseChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
 
     handleClearSelectedClientCar(false);
     handleLoadCarDebounce(value);
-  };
-
-  const handleBrandChanged = () => {
-    resetField('car.model');
   };
 
   return (
@@ -55,14 +48,9 @@ export default function CarFields() {
               <LicenseInput onChange={handleLicenseChange} />
             </FormField>
 
-            <BrandCombobox
-              control={control}
-              name="car.brand"
-              label="Montadora"
-              onChange={handleBrandChanged}
-            />
-
-            <ModelCombobox control={control} name="car.model" label="Modelo" brandId={brandId} />
+            <FormField control={control} name="car.model" label="Modelo">
+              <Input placeholder="Informe o modelo do veículo" className="uppercase" />
+            </FormField>
 
             <FormField control={control} name="car.year" label="Ano">
               <Input type="number" placeholder="Informe o ano do veículo" />

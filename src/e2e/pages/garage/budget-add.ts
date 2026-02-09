@@ -3,7 +3,6 @@ import type { Locator, Page } from '@playwright/test';
 import { TBudgetAddFormType } from '@core/store/context/types/budget-add';
 import { expect } from '@e2e/core/fixtures';
 import { TMyCarsFillProps } from '@e2e/pages/client/types';
-import { fillSelect } from '@e2e/shared/helpers/select';
 import { selectorByName } from '@e2e/shared/utils';
 import { MY_CARS_CARD_TEST_ID } from '@modules/client/my-cars/consts';
 import {
@@ -19,7 +18,6 @@ class GarageBudgetAddPage {
   private nameInput: Locator;
   private phoneInput: Locator;
   private licenseInput: Locator;
-  private brandInput: Locator;
   private modelInput: Locator;
   private yearInput: Locator;
   private observationInput: Locator;
@@ -34,7 +32,6 @@ class GarageBudgetAddPage {
     this.nameInput = page.locator(selectorByName<TBudgetAddFormType>('client.name'));
     this.phoneInput = page.locator(selectorByName<TBudgetAddFormType>('client.phone'));
     this.licenseInput = page.locator(selectorByName<TBudgetAddFormType>('car.license'));
-    this.brandInput = page.locator(selectorByName<TBudgetAddFormType>('car.brand'));
     this.modelInput = page.locator(selectorByName<TBudgetAddFormType>('car.model'));
     this.yearInput = page.locator(selectorByName<TBudgetAddFormType>('car.year'));
     this.observationInput = page.locator(selectorByName<TBudgetAddFormType>('observation'));
@@ -47,7 +44,6 @@ class GarageBudgetAddPage {
     name,
     phone,
     license,
-    brand,
     model,
     year,
     observation,
@@ -58,8 +54,7 @@ class GarageBudgetAddPage {
     await this.addCarButton.click();
 
     await this.licenseInput.fill(license);
-    await fillSelect(this.page, this.brandInput, brand);
-    await fillSelect(this.page, this.modelInput, model);
+    await this.modelInput.fill(model);
     await this.yearInput.fill(year.toString());
 
     if (observation) await this.observationInput.fill(observation);

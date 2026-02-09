@@ -13,7 +13,6 @@ export type TNewBudgetParams = {
   carId?: string;
   car?: {
     license: string;
-    brand: string;
     model: string;
     year: number;
   };

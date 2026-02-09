@@ -4,7 +4,6 @@ import * as BudgetItemsApi from './budget-item';
 import * as CarApi from './car';
 import * as ClientApi from './client';
 import * as DashboardApi from './dashboard';
-import * as FipeApi from './fipe';
 import * as UserApi from './user';
 
 export const ServiceApi = {
@@ -14,6 +13,5 @@ export const ServiceApi = {
   CarApi,
   ClientApi,
   DashboardApi,
-  FipeApi,
   UserApi,
 };
