@@ -14,6 +14,7 @@ type TModalProps = PropsWithChildren & {
   open: boolean;
   title?: ReactNode;
   icon?: TIcons;
+  formId?: string;
   confirmText?: string;
   cancelText?: string;
   confirmVariant?: TButtonProps['variant'];
@@ -27,6 +28,7 @@ const Modal = ({
   open,
   title,
   icon,
+  formId,
   confirmText = 'Confirmar',
   cancelText = 'Voltar',
   confirmVariant = 'default',
@@ -57,11 +59,23 @@ const Modal = ({
               {cancelText}
             </Button>
           )}
+
           {onConfirmClick && (
             <Button
               data-testid={MODAL_CONFIRM_BUTTON_TEST_ID}
               variant={confirmVariant}
               onClick={onConfirmClick}
+            >
+              {confirmText}
+            </Button>
+          )}
+
+          {formId && (
+            <Button
+              data-testid={MODAL_CONFIRM_BUTTON_TEST_ID}
+              variant={confirmVariant}
+              type="submit"
+              form={formId}
             >
               {confirmText}
             </Button>

@@ -6,4 +6,4 @@ export type TBudgetItem = {
   price: number;
 };
 
-export type TNewBudgetItem = Omit<TBudgetItem, 'id'>;
+export type TFormBudgetItem = Omit<TBudgetItem, 'id'> & { id?: string };

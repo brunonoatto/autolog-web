@@ -12,6 +12,7 @@ import {
 import type { TIcons } from '@shared/design-system/ui/icon';
 
 type TForm<T extends FieldValues> = PropsWithChildren & {
+  id?: string;
   'data-testid'?: string;
   isLoading?: boolean;
   form: UseFormReturn<T>;
@@ -28,6 +29,7 @@ type TForm<T extends FieldValues> = PropsWithChildren & {
 };
 
 export default function Form<T extends FieldValues>({
+  id,
   'data-testid': dataTestId,
   isLoading = false,
   form,
@@ -49,7 +51,7 @@ export default function Form<T extends FieldValues>({
 
   return (
     <FormProvider {...form}>
-      <form className={className} onSubmit={handleSubmit(onValid)}>
+      <form id={id} className={className} onSubmit={handleSubmit(onValid)}>
         <Card border={border}>
           <CardHeader paddingX={paddingX}>
             <CardTitle icon={icon}>{title}</CardTitle>

@@ -1,14 +1,26 @@
 import httpClient from '@core/api/http-client';
 
-import type { TBudgetItem, TNewBudgetItem } from './types';
+import type { TBudgetItem, TFormBudgetItem } from './types';
 
 const BASE_URL = '/budget-item';
 
 export const addBudgetItem = async ({
   budgetId,
   ...otherFields
-}: TNewBudgetItem): Promise<TBudgetItem> => {
+}: TFormBudgetItem): Promise<TBudgetItem> => {
   const response = await httpClient.post<TBudgetItem>(`${BASE_URL}/${budgetId}`, otherFields);
+  return response.data;
+};
+
+export const updateBudgetItem = async ({
+  budgetId,
+  id: budgetItemId,
+  ...otherFields
+}: TFormBudgetItem): Promise<TBudgetItem> => {
+  const response = await httpClient.put<TBudgetItem>(
+    `${BASE_URL}/${budgetId}/${budgetItemId}`,
+    otherFields,
+  );
   return response.data;
 };
 
